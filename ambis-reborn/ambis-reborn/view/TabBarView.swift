@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @State private var selectedTab = 1
     var defaultAccentColor = Color("AccentColor")
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             InventoryView().tabItem {
                 InventoryView().getIconName()
                 InventoryView().gettabName()
-            }
+            }.tag(1)
             CategoryView().tabItem {
                 CategoryView().getIconName()
                 CategoryView().gettabName()
-            }
+            }.tag(2)
         }.accentColor(defaultAccentColor)
     }
 }

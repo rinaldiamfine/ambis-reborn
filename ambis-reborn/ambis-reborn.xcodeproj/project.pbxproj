@@ -14,6 +14,20 @@
 		905DE8C8269332D300E7011C /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8C7269332D300E7011C /* TabBarView.swift */; };
 		905DE8CC2693333C00E7011C /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8CB2693333C00E7011C /* InventoryView.swift */; };
 		905DE8CE2693334A00E7011C /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8CD2693334A00E7011C /* CategoryView.swift */; };
+		905DE8D12693E54F00E7011C /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8CF2693E54F00E7011C /* CoreData.xcdatamodeld */; };
+		905DE8D72693E93B00E7011C /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8D62693E93B00E7011C /* CategoryListView.swift */; };
+		9082AE9B2693F479009A7161 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9082AE9A2693F479009A7161 /* SearchBar.swift */; };
+		9082AE9D2693F4AB009A7161 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9082AE9C2693F4AB009A7161 /* Extension.swift */; };
+		9082AE9F2693F4F5009A7161 /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9082AE9E2693F4F5009A7161 /* ViewControllerResolver.swift */; };
+		9090AC962699222D008AF935 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC952699222D008AF935 /* Persistence.swift */; };
+		9090AC9826993F6C008AF935 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9726993F6C008AF935 /* InventoryViewModel.swift */; };
+		9090AC9A26993FA7008AF935 /* InventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9926993FA7008AF935 /* InventoryModel.swift */; };
+		9090AC9C269948E3008AF935 /* InventoryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9B269948E3008AF935 /* InventoryFormView.swift */; };
+		9090AC9E269948F0008AF935 /* InventoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9D269948F0008AF935 /* InventoryListView.swift */; };
+		9090ACA026994AB1008AF935 /* InventoryListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */; };
+		9090ACA226997208008AF935 /* FoodCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090ACA126997208008AF935 /* FoodCategoryModel.swift */; };
+		90AD5F0026976BF000E98152 /* CategoryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5EFF26976BF000E98152 /* CategoryFormView.swift */; };
+		90AD5F022697736900E98152 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5F012697736900E98152 /* CategoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +40,20 @@
 		905DE8C7269332D300E7011C /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		905DE8CB2693333C00E7011C /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		905DE8CD2693334A00E7011C /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		905DE8D02693E54F00E7011C /* ambis-reborn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ambis-reborn.xcdatamodel"; sourceTree = "<group>"; };
+		905DE8D62693E93B00E7011C /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		9082AE9A2693F479009A7161 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		9082AE9C2693F4AB009A7161 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		9082AE9E2693F4F5009A7161 /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
+		9090AC952699222D008AF935 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		9090AC9726993F6C008AF935 /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
+		9090AC9926993FA7008AF935 /* InventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryModel.swift; sourceTree = "<group>"; };
+		9090AC9B269948E3008AF935 /* InventoryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFormView.swift; sourceTree = "<group>"; };
+		9090AC9D269948F0008AF935 /* InventoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListView.swift; sourceTree = "<group>"; };
+		9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListEmptyView.swift; sourceTree = "<group>"; };
+		9090ACA126997208008AF935 /* FoodCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryModel.swift; sourceTree = "<group>"; };
+		90AD5EFF26976BF000E98152 /* CategoryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFormView.swift; sourceTree = "<group>"; };
+		90AD5F012697736900E98152 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +109,10 @@
 		905DE8C4269331F900E7011C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				9090AC952699222D008AF935 /* Persistence.swift */,
+				905DE8CF2693E54F00E7011C /* CoreData.xcdatamodeld */,
+				9090AC9926993FA7008AF935 /* InventoryModel.swift */,
+				9090ACA126997208008AF935 /* FoodCategoryModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -91,6 +123,9 @@
 				905DE8CA2693332C00E7011C /* Category */,
 				905DE8C92693332000E7011C /* Inventory */,
 				905DE8C7269332D300E7011C /* TabBarView.swift */,
+				9082AE9A2693F479009A7161 /* SearchBar.swift */,
+				9082AE9C2693F4AB009A7161 /* Extension.swift */,
+				9082AE9E2693F4F5009A7161 /* ViewControllerResolver.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -98,6 +133,8 @@
 		905DE8C62693321200E7011C /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
+				90AD5F012697736900E98152 /* CategoryViewModel.swift */,
+				9090AC9726993F6C008AF935 /* InventoryViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -106,6 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				905DE8CB2693333C00E7011C /* InventoryView.swift */,
+				9090AC9B269948E3008AF935 /* InventoryFormView.swift */,
+				9090AC9D269948F0008AF935 /* InventoryListView.swift */,
+				9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -114,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				905DE8CD2693334A00E7011C /* CategoryView.swift */,
+				905DE8D62693E93B00E7011C /* CategoryListView.swift */,
+				90AD5EFF26976BF000E98152 /* CategoryFormView.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -187,11 +229,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9082AE9D2693F4AB009A7161 /* Extension.swift in Sources */,
 				905DE8B82693311600E7011C /* ContentView.swift in Sources */,
+				9090AC9E269948F0008AF935 /* InventoryListView.swift in Sources */,
+				9090ACA026994AB1008AF935 /* InventoryListEmptyView.swift in Sources */,
+				90AD5F0026976BF000E98152 /* CategoryFormView.swift in Sources */,
 				905DE8C8269332D300E7011C /* TabBarView.swift in Sources */,
+				90AD5F022697736900E98152 /* CategoryViewModel.swift in Sources */,
+				905DE8D72693E93B00E7011C /* CategoryListView.swift in Sources */,
+				905DE8D12693E54F00E7011C /* CoreData.xcdatamodeld in Sources */,
+				9090AC962699222D008AF935 /* Persistence.swift in Sources */,
+				9090AC9A26993FA7008AF935 /* InventoryModel.swift in Sources */,
 				905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */,
+				9082AE9F2693F4F5009A7161 /* ViewControllerResolver.swift in Sources */,
+				9082AE9B2693F479009A7161 /* SearchBar.swift in Sources */,
 				905DE8CC2693333C00E7011C /* InventoryView.swift in Sources */,
 				905DE8CE2693334A00E7011C /* CategoryView.swift in Sources */,
+				9090AC9826993F6C008AF935 /* InventoryViewModel.swift in Sources */,
+				9090ACA226997208008AF935 /* FoodCategoryModel.swift in Sources */,
+				9090AC9C269948E3008AF935 /* InventoryFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,10 +385,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ambis-reborn.ambis-reborn";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ambis-reborn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -351,10 +407,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ambis-reborn.ambis-reborn";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ambis-reborn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -380,6 +436,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		905DE8CF2693E54F00E7011C /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				905DE8D02693E54F00E7011C /* ambis-reborn.xcdatamodel */,
+			);
+			currentVersion = 905DE8D02693E54F00E7011C /* ambis-reborn.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 905DE8AA2693311500E7011C /* Project object */;
 }
