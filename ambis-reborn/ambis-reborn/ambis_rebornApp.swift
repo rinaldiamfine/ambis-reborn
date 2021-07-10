@@ -22,12 +22,13 @@ struct ambis_rebornApp: App {
             switch phase {
                 case .active:
                     print("active")
-                    persistenceController.getInventoryData()
                 case .inactive:
                     print("inactive")
                 case .background:
                     print("background")
                     persistenceController.saveData()
+                @unknown default:
+                    print("Apple update status baru kah")
             }
         }
     }
