@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct CategoryListView: View {
-    var title: String = ""
+    var foodCategory: FoodCategoryModel
+    
     var body: some View {
         HStack {
-            Image(systemName: "circle").font(.system(size: 25)).frame(width: 40, height: 40)
-            Text(title).font(.body)
+//            Image(uiImage: icon.symbolToImage())
+            Text(foodCategory.imageString).font(.system(size: 18))
+            Text(foodCategory.name).font(.body)
             Spacer()
         }
     }
 }
 
-struct CategoryListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryListView()
-    }
-}
+//struct CategoryListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CategoryListView()
+//    }
+//}

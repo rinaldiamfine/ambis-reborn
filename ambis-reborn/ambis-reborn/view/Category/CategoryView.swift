@@ -20,19 +20,16 @@ struct CategoryView: View {
                 List {
                     ForEach(foodCategoryViewModel.foodCategories, id:\.id) {
                         category in
-                        NavigationLink(destination: CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented)) {
-                            CategoryListView(title: category.name)
+                        NavigationLink(destination: CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, foodCategory: category).navigationBarTitleDisplayMode(.inline)) {
+                            CategoryListView(foodCategory: category)
                         }
                     }
-                }.listStyle(InsetGroupedListStyle())
+                }
+                .listStyle(InsetGroupedListStyle())
             }
             .navigationBarTitle("Category")
-            .navigationBarItems(trailing: Button(action: createData, label: {
-                Image(systemName: "plus")
-            }))
-        }.sheet(isPresented: $isPresented, content: {
-            CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented)
-        }).onAppear(perform: {
+        }
+        .onAppear(perform: {
             foodCategoryViewModel.getData()
         })
     }
