@@ -9,10 +9,13 @@ import SwiftUI
 
 struct InventoryView: View {
     @StateObject private var inventoryViewModel = InventoryViewModel()
+    @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
     @State var isPresented = false
+    @ObservedObject var searchBar: SearchBar = SearchBar()
     
     func loadList() {
         inventoryViewModel.getData()
+        foodCategoryViewModel.getData()
     }
     func getIconName() -> Image {
         return Image(systemName: "list.dash")
@@ -25,15 +28,28 @@ struct InventoryView: View {
         self.isPresented = true
     }
     
+    func deleteItem(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let inventory = inventoryViewModel.inventory[index]
+            inventoryViewModel.deleteData(inventory)
+        }
+        inventoryViewModel.getData()
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 if inventoryViewModel.inventoryCount > 0 {
                     List {
-                        ForEach (inventoryViewModel.inventory, id:\.id) {
-                            inventory in InventoryListView(title: inventory.name, subtitle: "")
+                        ForEach (inventoryViewModel.inventory.filter {
+                            searchBar.text.isEmpty ||
+                                $0.name.localizedStandardContains(searchBar.text)
+                        }, id:\.id) {
+                            inventory in InventoryListView(inventory: inventory)
                         }
-                    }.listStyle(InsetGroupedListStyle())
+                        .onDelete(perform: deleteItem)
+                    }
+                    .listStyle(InsetGroupedListStyle())
                 } else {
                     InventoryListEmptyView()
                 }
@@ -42,12 +58,13 @@ struct InventoryView: View {
             .navigationBarItems(trailing: Button(action: createData, label: {
                 Image(systemName: "plus")
             }))
+            .add(self.searchBar)
         }
         .sheet(isPresented: $isPresented) {
-            InventoryFormView(inventoryViewModel: self.inventoryViewModel, isPresented: $isPresented)
+            InventoryFormView(inventoryViewModel: self.inventoryViewModel, isPresented: $isPresented, foodCategoryViewModel: self.foodCategoryViewModel)
         }
         .onAppear(perform: {
-            inventoryViewModel.getData()
+            loadList()
         })
     }
 }

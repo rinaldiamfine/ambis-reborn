@@ -23,6 +23,18 @@ struct PersistenceController {
         })
     }
     
+    func getInventoryDataById(id: NSManagedObjectID) -> Inventory? {
+        do {
+            return try container.viewContext.existingObject(with: id) as? Inventory
+        } catch {
+            return nil
+        }
+    }
+    func deleteInventoryData(inventory: Inventory) {
+        container.viewContext.delete(inventory)
+        saveData()
+    }
+    
     func getInventoryData() -> [Inventory] {
         let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
         do {

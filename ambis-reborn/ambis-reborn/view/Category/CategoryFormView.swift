@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryFormView: View {
-    @ObservedObject var foodCategoryViewModel: FoddCategoryViewModel
+    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     @Binding var isPresented: Bool
     var foodCategory: FoodCategoryModel
     

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import SwiftUI
 
-class FoddCategoryViewModel: ObservableObject {
+class FoodCategoryViewModel: ObservableObject {
     var name: String = ""
     var subtitle: String = ""
     var estimation: String = ""
@@ -19,13 +19,6 @@ class FoddCategoryViewModel: ObservableObject {
     var defaultFoodCategory: [DefalutFoodCategory] = []
     @Published var foodCategories: [FoodCategoryModel] = []
     @Published var foodCategoriesCount: Int = 0
-    @Published private(set) var dest: AnyView? = nil
-    @Published var isActive: Bool = false
-    
-    func move(to: AnyView) {
-        self.dest = to
-        self.isActive = true
-    }
     
     func getData() {
         foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)

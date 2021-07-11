@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct CategoryView: View {
-    @StateObject private var foodCategoryViewModel = FoddCategoryViewModel()
+    @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
     
     @State var isPresented = false
     @ObservedObject var searchBar: SearchBar = SearchBar()
@@ -18,12 +18,16 @@ struct CategoryView: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(foodCategoryViewModel.foodCategories, id:\.id) {
-                        category in
-                        NavigationLink(destination: CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, foodCategory: category).navigationBarTitleDisplayMode(.inline)) {
-                            CategoryListView(foodCategory: category)
+                    Section(header:
+                        Text("Food Category")) {
+                            ForEach(foodCategoryViewModel.foodCategories, id:\.id) {
+                                category in
+                                NavigationLink(destination: CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, foodCategory: category)
+                                    .navigationBarTitleDisplayMode(.inline)) {
+                                    CategoryListView(foodCategory: category)
+                                }
+                            }
                         }
-                    }
                 }
                 .listStyle(InsetGroupedListStyle())
             }
@@ -32,11 +36,6 @@ struct CategoryView: View {
         .onAppear(perform: {
             foodCategoryViewModel.getData()
         })
-    }
-    
-    func createData() {
-        print("Yuk create data", self.isPresented)
-        self.isPresented = true
     }
     
     func getIconName() -> Image {

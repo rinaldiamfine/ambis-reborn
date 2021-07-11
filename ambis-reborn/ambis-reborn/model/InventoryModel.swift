@@ -18,4 +18,16 @@ struct InventoryModel {
     var name: String {
         return inventory.name ?? ""
     }
+    var total: Double {
+        return Double(inventory.total)
+    }
+    var totalType: String {
+        return inventory.totalType ?? ""
+    }
+    var purchaseDate: Date {
+        return inventory.purchaseDate ?? Date()
+    }
+    var expiryDate: Date {
+        return inventory.expiryDate ?? Date()
+    }
 }
