@@ -14,7 +14,7 @@ class InventoryViewModel: ObservableObject {
     var total: String = ""
     var totalType: String = ""
     @Published var purchaseDate: Date = Date()
-    var expiryDate: Date = Date()
+    @Published var expiryDate: Date = Date()
     
     @Published var inventory: [InventoryModel] = []
     @Published var inventoryCount: Int = 0

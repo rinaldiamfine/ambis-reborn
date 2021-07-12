@@ -41,6 +41,7 @@ struct InventoryFormView: View {
                                 .contentShape(Rectangle())
                                 .onTapGesture {
                                     self.previewSelectedCategory = category.imageString + " " + category.name
+                                    inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.expiryDate)!
                                 }
                         }
                     }
