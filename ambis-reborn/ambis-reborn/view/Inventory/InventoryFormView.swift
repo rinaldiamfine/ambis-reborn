@@ -47,8 +47,7 @@ struct InventoryFormView: View {
                 }
                 Section(header: Text("Date Information")) {
                     DatePicker("Buy", selection: $inventoryViewModel.purchaseDate, displayedComponents: .date)
-                    DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, displayedComponents: .date)
-
+                    DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, in: inventoryViewModel.purchaseDate..., displayedComponents: .date)
                 }
                 Section(header: Text("Disclaimer")) {
                     Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")

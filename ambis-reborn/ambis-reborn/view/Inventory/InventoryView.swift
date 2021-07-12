@@ -46,6 +46,25 @@ struct InventoryView: View {
                                 $0.name.localizedStandardContains(searchBar.text)
                         }, id:\.id) {
                             inventory in InventoryListView(inventory: inventory)
+                                .contextMenu {
+                                    Button {
+                                        print("edit")
+                                    } label: {
+                                        Label("Update Inventory", systemImage: "square.and.pencil")
+                                    }
+                                    
+                                    Button {
+                                        print("share")
+                                    } label: {
+                                        Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                    }
+                                    
+                                    Button {
+                                        print("delete")
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
                         }
                         .onDelete(perform: deleteItem)
                     }
