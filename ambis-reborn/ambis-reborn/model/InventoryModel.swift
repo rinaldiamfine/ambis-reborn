@@ -14,6 +14,9 @@ struct InventoryModel {
     var id: NSManagedObjectID {
         return inventory.objectID
     }
+    var foodCategory: FoodCategory {
+        return inventory.toFoodCategory!
+    }
     
     var name: String {
         return inventory.name ?? ""

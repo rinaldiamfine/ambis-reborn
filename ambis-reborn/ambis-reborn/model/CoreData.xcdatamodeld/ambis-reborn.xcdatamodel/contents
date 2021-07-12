@@ -9,7 +9,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="subtitle" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="toInventory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Inventory" inverseName="toFoodCategory" inverseEntity="Inventory"/>
+        <relationship name="toInventory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Inventory" inverseName="toFoodCategory" inverseEntity="Inventory"/>
     </entity>
     <entity name="Inventory" representedClassName="Inventory" syncable="YES" codeGenerationType="class">
         <attribute name="expiryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -24,8 +24,8 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="FoodCategory" positionX="-63" positionY="-18" width="128" height="164"/>
-        <element name="Inventory" positionX="-54" positionY="54" width="128" height="134"/>
-        <element name="Item" positionX="-63" positionY="45" width="128" height="44"/>
+        <element name="FoodCategory" positionX="191.70361328125" positionY="-14.79122924804688" width="128" height="178"/>
+        <element name="Inventory" positionX="-41.131103515625" positionY="-15.9132080078125" width="128" height="134"/>
+        <element name="Item" positionX="-191.2103881835938" positionY="-34.45909118652344" width="128" height="44"/>
     </elements>
 </model>

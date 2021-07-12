@@ -10,11 +10,11 @@ import SwiftUI
 struct InventoryFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
     @Binding var isPresented: Bool
-    var previewOptions = ["Always", "When Unlocked", "Never"]
     @State var previewSelectedCategory = "Choose Category"
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     func actionDone() {
+//        inventoryViewModel.addFoodCategoryToInventory()
         inventoryViewModel.saveData()
         inventoryViewModel.getData()
         isPresented = false
@@ -34,13 +34,14 @@ struct InventoryFormView: View {
                     TextField("Type", text: $inventoryViewModel.totalType)
                 }
                 Section(header: Text("Product Category")) {
-                    Picker(selection: $inventoryViewModel.name, label: Text(previewSelectedCategory)) {
+                    Picker(selection: $inventoryViewModel.toInventory, label: Text(previewSelectedCategory)) {
                         ForEach(foodCategoryViewModel.foodCategories, id:\.id) {
                                 category in
                             CategoryListView(foodCategory: category)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
                                     self.previewSelectedCategory = category.imageString + " " + category.name
+                                    inventoryViewModel.toInventory = [category.foodCategory]
                                     inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
                                 }
                         }

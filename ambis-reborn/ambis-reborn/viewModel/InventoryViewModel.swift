@@ -13,6 +13,8 @@ class InventoryViewModel: ObservableObject {
     var name: String = ""
     var total: String = ""
     var totalType: String = ""
+    var toInventory: [FoodCategory] = []
+    
     @Published var purchaseDate: Date = Date()
     @Published var expiryDate: Date = Date()
     
@@ -38,7 +40,17 @@ class InventoryViewModel: ObservableObject {
         inventory.totalType = totalType
         inventory.purchaseDate = purchaseDate
         inventory.expiryDate = expiryDate
+        if toInventory.count > 0 {
+            inventory.toFoodCategory = toInventory.first
+        }
         PersistenceController.shared.saveData()
+    }
+    
+    func addFoodCategoryToInventory() {
+        let inventory = Inventory(context: PersistenceController.shared.container.viewContext)
+        let foodCategory = FoodCategory(context: PersistenceController.shared.container.viewContext)
+        print(toInventory, "FOOD CATEGORY", name)
+//        inventory.toFoodCategory = [FoodCategory[0]]
     }
     
 }

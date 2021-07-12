@@ -18,7 +18,7 @@ struct InventoryListView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "circle").font(.system(size: 25)).frame(width: 40, height: 40)
+            Text(inventory.foodCategory.imageString ?? "").font(.system(size: 18))
             VStack {
                 Text(inventory.name).font(.system(size: 15))
                 Text(formatSubtitle()).font(.system(size: 13))
