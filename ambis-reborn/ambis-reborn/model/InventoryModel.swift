@@ -30,4 +30,21 @@ struct InventoryModel {
     var expiryDate: Date {
         return inventory.expiryDate ?? Date()
     }
+    var remainingDays: Int {
+        var remainingDays: Int = 0
+        let currentDate = Date()
+        let secondToDay: Double = 60 * 60 * 24
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        if dateFormatter.string(from: currentDate) == dateFormatter.string(from: expiryDate) {
+            //Today
+            remainingDays = 0
+        } else {
+            let roundingDay = Int(round(currentDate.distance(to: expiryDate) / secondToDay))
+            remainingDays = roundingDay
+        }
+        print("\(remainingDays)")
+        return remainingDays
+    }
 }

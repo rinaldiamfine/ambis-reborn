@@ -36,6 +36,7 @@ class InventoryViewModel: ObservableObject {
         inventory.name = name
         inventory.total = Double(total)!
         inventory.totalType = totalType
+        inventory.expiryDate = expiryDate
         PersistenceController.shared.saveData()
     }
 }

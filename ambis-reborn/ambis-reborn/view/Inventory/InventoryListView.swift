@@ -25,7 +25,16 @@ struct InventoryListView: View {
                 Text(formatSubtitle()).font(.system(size: 13))
             }
             Spacer()
-            Text("3 Days Remaining").font(.system(size: 15))
+            if inventory.remainingDays == 0 {
+                Text("Today").font(.system(size: 15))
+            } else if inventory.remainingDays == 1 {
+                Text("\(inventory.remainingDays) Day Left").font(.system(size: 15))
+            } else if inventory.remainingDays > 1 {
+                Text("\(inventory.remainingDays) Days Left").font(.system(size: 15))
+            } else {
+                Text("Expired").font(.system(size: 15)).foregroundColor(.red)
+            }
+            
         }
     }
 }
