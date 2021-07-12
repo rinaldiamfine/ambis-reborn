@@ -10,6 +10,8 @@ import SwiftUI
 struct InventoryFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
     @Binding var isPresented: Bool
+    @Binding var status: String
+    @Binding var selectedIndex: Int
     @State var previewSelectedCategory = "Choose Category"
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     

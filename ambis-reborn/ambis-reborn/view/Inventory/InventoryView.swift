@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import UIKit
 import CoreData
 
 struct InventoryView: View {
     @StateObject private var inventoryViewModel = InventoryViewModel()
     @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
     @State var isPresented = false
+    @State var selectedIndex = 0
+    @State var status = ""
     @ObservedObject var searchBar: SearchBar = SearchBar()
     
     func loadList() {
@@ -24,7 +27,20 @@ struct InventoryView: View {
     func gettabName() -> Text {
         return Text("List")
     }
+    func editData(index: InventoryModel) {
+        var count = 0
+        for data in inventoryViewModel.inventory {
+            if data.id == index.id {
+                break
+            }
+            count += 1
+        }
+        self.selectedIndex = count
+        self.status = "edit"
+        self.isPresented = true
+    }
     func createData() {
+        self.status = "create"
         self.isPresented = true
     }
     
@@ -61,7 +77,9 @@ struct InventoryView: View {
                             inventory in InventoryListView(inventory: inventory)
                                 .contextMenu {
                                     Button {
+                                        editData(index: inventory)
                                         print("edit")
+                                        
                                     } label: {
                                         Label("Update Inventory", systemImage: "square.and.pencil")
                                     }
@@ -70,11 +88,12 @@ struct InventoryView: View {
                                     } label: {
                                         Label("Share", systemImage: "arrowshape.turn.up.forward")
                                     }
+                                    Divider()
                                     Button {
-                                        print("delete", inventory.id)
                                         deleteItemByContextMenu(index: inventory)
                                     } label: {
-                                        Label("Delete", systemImage: "trash")
+                                        Text("Remove")
+                                        Image(systemName: "trash")
                                     }
                                 }
                         }
@@ -92,7 +111,7 @@ struct InventoryView: View {
             .add(self.searchBar)
         }
         .sheet(isPresented: $isPresented) {
-            InventoryFormView(inventoryViewModel: self.inventoryViewModel, isPresented: $isPresented, foodCategoryViewModel: self.foodCategoryViewModel)
+            InventoryFormView(inventoryViewModel: self.inventoryViewModel, isPresented: $isPresented, status: $status, selectedIndex: $selectedIndex, foodCategoryViewModel: self.foodCategoryViewModel)
         }
         .onAppear(perform: {
             loadList()
