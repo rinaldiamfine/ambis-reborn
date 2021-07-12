@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct InventoryView: View {
     @StateObject private var inventoryViewModel = InventoryViewModel()
@@ -24,7 +25,6 @@ struct InventoryView: View {
         return Text("List")
     }
     func createData() {
-        print("Yuk create data inventory", self.isPresented)
         self.isPresented = true
     }
     
@@ -32,6 +32,19 @@ struct InventoryView: View {
         offsets.forEach { index in
             let inventory = inventoryViewModel.inventory[index]
             inventoryViewModel.deleteData(inventory)
+        }
+        inventoryViewModel.getData()
+    }
+    
+    func deleteItemByContextMenu(index: InventoryModel) {
+        var count = 0
+        for data in inventoryViewModel.inventory {
+            if data.id == index.id {
+                let inventory = inventoryViewModel.inventory[count]
+                inventoryViewModel.deleteData(inventory)
+                break
+            }
+            count += 1
         }
         inventoryViewModel.getData()
     }
@@ -52,15 +65,14 @@ struct InventoryView: View {
                                     } label: {
                                         Label("Update Inventory", systemImage: "square.and.pencil")
                                     }
-                                    
                                     Button {
                                         print("share")
                                     } label: {
                                         Label("Share", systemImage: "arrowshape.turn.up.forward")
                                     }
-                                    
                                     Button {
-                                        print("delete")
+                                        print("delete", inventory.id)
+                                        deleteItemByContextMenu(index: inventory)
                                     } label: {
                                         Label("Delete", systemImage: "trash")
                                     }

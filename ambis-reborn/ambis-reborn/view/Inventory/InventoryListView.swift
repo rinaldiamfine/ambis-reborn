@@ -12,7 +12,6 @@ struct InventoryListView: View {
     
     func formatSubtitle() -> String {
         var format = ""
-        print(inventory.totalType, "-", inventory.total)
         format = String(self.inventory.total) + " " + self.inventory.totalType
         return format
     }

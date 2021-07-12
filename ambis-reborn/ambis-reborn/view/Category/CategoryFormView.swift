@@ -24,6 +24,7 @@ struct CategoryFormView: View {
             Text(foodCategory.name)
                 .font(.system(size: 22))
                 .bold()
+                .padding()
             Text(foodCategory.subtitle)
                 .font(.system(size: 14))
                 .multilineTextAlignment(.center)
@@ -35,6 +36,7 @@ struct CategoryFormView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.init(UIColor.systemGreen))
                 .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                .padding()
             Spacer()
         }
         .navigationBarTitle("Category", displayMode: .inline)
