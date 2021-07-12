@@ -14,7 +14,6 @@ struct InventoryFormView: View {
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     func actionDone() {
-//        inventoryViewModel.addFoodCategoryToInventory()
         inventoryViewModel.saveData()
         inventoryViewModel.getData()
         isPresented = false

@@ -45,12 +45,4 @@ class InventoryViewModel: ObservableObject {
         }
         PersistenceController.shared.saveData()
     }
-    
-    func addFoodCategoryToInventory() {
-        let inventory = Inventory(context: PersistenceController.shared.container.viewContext)
-        let foodCategory = FoodCategory(context: PersistenceController.shared.container.viewContext)
-        print(toInventory, "FOOD CATEGORY", name)
-//        inventory.toFoodCategory = [FoodCategory[0]]
-    }
-    
 }
