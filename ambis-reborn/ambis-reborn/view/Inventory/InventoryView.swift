@@ -69,7 +69,7 @@ struct InventoryView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 50) {
                 if inventoryViewModel.inventoryCount > 0 {
                     List {
                         ForEach (inventoryViewModel.inventory.filter {
