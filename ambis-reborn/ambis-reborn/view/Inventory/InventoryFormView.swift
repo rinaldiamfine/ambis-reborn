@@ -10,55 +10,62 @@ import UserNotifications
 
 struct InventoryFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
+    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
+    
     @Binding var isPresented: Bool
     @Binding var status: String
     @Binding var selectedIndex: Int
+    
+    @State var presentSelectCategory: Bool = false
     @State var previewSelectedCategory = "Choose Category"
     @State var detailDisclaimer = ""
-    @State private var textQty = "Total "
-    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
-    
     @State var expiryEstimation: Int = 0
+    @State private var textQty = "Total "
     
     func prepareData() {
+        print(presentSelectCategory, "PRESENT")
         if status == "edit" {
+            //EDIT MODE - AUTO FILL TEXTFIELD DATA
             inventoryViewModel.prepareDataEdit(index: selectedIndex)
-            self.previewSelectedCategory = inventoryViewModel.inventory[selectedIndex].foodCategory.imageString ?? "" + " " + inventoryViewModel.inventory[selectedIndex].foodCategory.name!
-            self.detailDisclaimer = inventoryViewModel.inventory[selectedIndex].foodCategory.estimation!
+            let inventorySelected = inventoryViewModel.inventory[selectedIndex]
+            previewSelectedCategory = String(inventorySelected.foodCategory.imageString ?? "") + " " + String(inventorySelected.foodCategory.name!)
+            detailDisclaimer = inventoryViewModel.inventory[selectedIndex].foodCategory.estimation!
         } else {
-//            inventoryViewModel.prepareDataCreate()
+            
         }
     }
     
     func actionDone() {
         if status == "create" {
+            //CREATE ITEM
             inventoryViewModel.saveData()
             inventoryViewModel.getData()
             inventoryViewModel.prepareDataCreate()
         } else {
+            //EDIT ITEM
             let inventory = inventoryViewModel.inventory[selectedIndex]
             inventoryViewModel.editData(inventory)
             inventoryViewModel.getData()
         }
+        //SET NOTIF
         Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
+        //POP VIEW
         isPresented = false
     }
     
     func actionCancel() {
-        //inventoryViewModel.resetData()
+        inventoryViewModel.resetData()
+        //POP VIEW
         isPresented = false
     }
-    func incrementQty() {
-        let qty = Int(inventoryViewModel.total) ?? 0
-        print(qty, "TOTAL")
-        inventoryViewModel.total = String(qty + 1)
-        print(inventoryViewModel.total, "TOTAL")
-    }
-    func decrementQty() {
-        let qty = Int(inventoryViewModel.total) ?? 0
-        print(qty, "TOTAL")
-        inventoryViewModel.total = String(qty - 1)
-        print(inventoryViewModel.total, "TOTAL")
+    
+    func categoryOnTap(category: FoodCategoryModel) {
+        previewSelectedCategory = category.imageString + " " + category.name
+        detailDisclaimer = category.estimation
+        inventoryViewModel.toInventory = [category.foodCategory]
+        inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
+        expiryEstimation = Int(category.expiryEstimation)
+        presentSelectCategory = false
     }
     
     var body: some View {
@@ -68,23 +75,16 @@ struct InventoryFormView: View {
                     TextField("Name", text: $inventoryViewModel.name)
                 }
                 Section(header: Text("Total Product")) {
-//                    Text("1 Pcs")
-//                    Stepper("Total", onIncrement: incrementQty, onDecrement: decrementQty)
                     TextField("Qty", text: $inventoryViewModel.total)
                     TextField("Type", text: $inventoryViewModel.totalType)
                 }
                 Section(header: Text("Product Category")) {
                     Picker(selection: $inventoryViewModel.toInventory, label: Text(previewSelectedCategory)) {
-                        ForEach(foodCategoryViewModel.foodCategories, id:\.id) {
-                                category in
-                            CategoryListView(foodCategory: category)
+                        ForEach(foodCategoryViewModel.foodCategories, id:\.id) { category in
+                            InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $previewSelectedCategory)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    self.previewSelectedCategory = category.imageString + " " + category.name
-                                    self.detailDisclaimer = category.estimation
-                                    inventoryViewModel.toInventory = [category.foodCategory]
-                                    inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
-                                    self.expiryEstimation = Int(category.expiryEstimation)
+                                    categoryOnTap(category: category)
                                 }
                         }
                     }
@@ -93,7 +93,6 @@ struct InventoryFormView: View {
                     DatePicker("Buy", selection: $inventoryViewModel.purchaseDate, displayedComponents: .date)
                     let adjustableDate: Date = Calendar.current.date(byAdding: .day, value: expiryEstimation, to: inventoryViewModel.purchaseDate)!
                     DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, in: adjustableDate..., displayedComponents: .date)
-                    
                 }
                 Section(header: Text("Disclaimer")) {
                     Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")
@@ -126,9 +125,12 @@ struct InventoryFormView: View {
                         Text("Done")
                     })
             )
-            .onAppear(perform: {
-                prepareData()
-            })
+//            .onAppear(perform: {
+//                prepareData()
+//            })
+//            .onDisappear(perform: {
+//                prepareData()
+//            })
         }
     }
 }

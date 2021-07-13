@@ -19,6 +19,7 @@
 		905DE8CE2693334A00E7011C /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8CD2693334A00E7011C /* CategoryView.swift */; };
 		905DE8D12693E54F00E7011C /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8CF2693E54F00E7011C /* CoreData.xcdatamodeld */; };
 		905DE8D72693E93B00E7011C /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8D62693E93B00E7011C /* CategoryListView.swift */; };
+		9070148B269E160200F8981A /* InventoryCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9070148A269E160200F8981A /* InventoryCategoryListView.swift */; };
 		9082AE9B2693F479009A7161 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9082AE9A2693F479009A7161 /* SearchBar.swift */; };
 		9082AE9D2693F4AB009A7161 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9082AE9C2693F4AB009A7161 /* Extension.swift */; };
 		9082AE9F2693F4F5009A7161 /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9082AE9E2693F4F5009A7161 /* ViewControllerResolver.swift */; };
@@ -49,6 +50,7 @@
 		905DE8CD2693334A00E7011C /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		905DE8D02693E54F00E7011C /* ambis-reborn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ambis-reborn.xcdatamodel"; sourceTree = "<group>"; };
 		905DE8D62693E93B00E7011C /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		9070148A269E160200F8981A /* InventoryCategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCategoryListView.swift; sourceTree = "<group>"; };
 		9082AE9A2693F479009A7161 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		9082AE9C2693F4AB009A7161 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9082AE9E2693F4F5009A7161 /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				9090AC9B269948E3008AF935 /* InventoryFormView.swift */,
 				9090AC9D269948F0008AF935 /* InventoryListView.swift */,
 				9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */,
+				9070148A269E160200F8981A /* InventoryCategoryListView.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				905DE8CE2693334A00E7011C /* CategoryView.swift in Sources */,
 				90905AD2269D386600D8A500 /* Notification.swift in Sources */,
 				9090AC9826993F6C008AF935 /* InventoryViewModel.swift in Sources */,
+				9070148B269E160200F8981A /* InventoryCategoryListView.swift in Sources */,
 				9090ACA226997208008AF935 /* FoodCategoryModel.swift in Sources */,
 				9090AC9C269948E3008AF935 /* InventoryFormView.swift in Sources */,
 			);

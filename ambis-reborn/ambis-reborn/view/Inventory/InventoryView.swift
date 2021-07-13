@@ -115,7 +115,7 @@ struct InventoryView: View {
             .add(self.searchBar)
         }
         .sheet(isPresented: $isPresented) {
-            InventoryFormView(inventoryViewModel: self.inventoryViewModel, isPresented: $isPresented, status: $status, selectedIndex: $selectedIndex, foodCategoryViewModel: self.foodCategoryViewModel)
+            InventoryFormView(inventoryViewModel: self.inventoryViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, status: $status, selectedIndex: $selectedIndex)
         }
         .onAppear(perform: {
             loadList()

@@ -30,6 +30,15 @@ class InventoryViewModel: ObservableObject {
         purchaseDate = Date()
     }
     
+    func resetData() {
+        name = ""
+        total = ""
+        totalType = ""
+        expiryDate = Date()
+        purchaseDate = Date()
+        toInventory = []
+    }
+    
     func prepareDataEdit(index: Int) {
         name = inventory[index].name
         total = String(inventory[index].total)
