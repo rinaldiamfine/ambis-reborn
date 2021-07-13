@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		307C551A269E070F00DD6FC3 /* ShoppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C5519269E070F00DD6FC3 /* ShoppingView.swift */; };
+		307C551C269E076B00DD6FC3 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C551B269E076B00DD6FC3 /* ShoppingViewModel.swift */; };
+		307C551E269E077700DD6FC3 /* ShoppingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C551D269E077700DD6FC3 /* ShoppingModel.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
 		905DE8B82693311600E7011C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B72693311600E7011C /* ContentView.swift */; };
 		905DE8BA2693311700E7011C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 905DE8B92693311700E7011C /* Assets.xcassets */; };
@@ -32,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		307C5519269E070F00DD6FC3 /* ShoppingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingView.swift; sourceTree = "<group>"; };
+		307C551B269E076B00DD6FC3 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
+		307C551D269E077700DD6FC3 /* ShoppingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingModel.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		905DE8B52693311600E7011C /* ambis_rebornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ambis_rebornApp.swift; sourceTree = "<group>"; };
 		905DE8B72693311600E7011C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 				9090AC952699222D008AF935 /* Persistence.swift */,
 				905DE8CF2693E54F00E7011C /* CoreData.xcdatamodeld */,
 				9090AC9926993FA7008AF935 /* InventoryModel.swift */,
+				307C551D269E077700DD6FC3 /* ShoppingModel.swift */,
 				9090ACA126997208008AF935 /* FoodCategoryModel.swift */,
 			);
 			path = model;
@@ -140,6 +147,7 @@
 			children = (
 				90AD5F012697736900E98152 /* CategoryViewModel.swift */,
 				9090AC9726993F6C008AF935 /* InventoryViewModel.swift */,
+				307C551B269E076B00DD6FC3 /* ShoppingViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -175,6 +183,7 @@
 		90905AD4269D66FA00D8A500 /* Shopping */ = {
 			isa = PBXGroup;
 			children = (
+				307C5519269E070F00DD6FC3 /* ShoppingView.swift */,
 			);
 			path = Shopping;
 			sourceTree = "<group>";
@@ -256,10 +265,13 @@
 				905DE8C8269332D300E7011C /* TabBarView.swift in Sources */,
 				90AD5F022697736900E98152 /* CategoryViewModel.swift in Sources */,
 				905DE8D72693E93B00E7011C /* CategoryListView.swift in Sources */,
+				307C551C269E076B00DD6FC3 /* ShoppingViewModel.swift in Sources */,
 				905DE8D12693E54F00E7011C /* CoreData.xcdatamodeld in Sources */,
 				9090AC962699222D008AF935 /* Persistence.swift in Sources */,
 				9090AC9A26993FA7008AF935 /* InventoryModel.swift in Sources */,
+				307C551A269E070F00DD6FC3 /* ShoppingView.swift in Sources */,
 				905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */,
+				307C551E269E077700DD6FC3 /* ShoppingModel.swift in Sources */,
 				9082AE9F2693F4F5009A7161 /* ViewControllerResolver.swift in Sources */,
 				9082AE9B2693F479009A7161 /* SearchBar.swift in Sources */,
 				905DE8CC2693333C00E7011C /* InventoryView.swift in Sources */,
