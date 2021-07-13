@@ -122,6 +122,8 @@
 		905DE8C5269331FF00E7011C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				90905AD4269D66FA00D8A500 /* Shopping */,
+				90905AD3269D66EF00D8A500 /* Summary */,
 				905DE8CA2693332C00E7011C /* Category */,
 				905DE8C92693332000E7011C /* Inventory */,
 				905DE8C7269332D300E7011C /* TabBarView.swift */,
@@ -161,6 +163,20 @@
 				90AD5EFF26976BF000E98152 /* CategoryFormView.swift */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		90905AD3269D66EF00D8A500 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		90905AD4269D66FA00D8A500 /* Shopping */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shopping;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

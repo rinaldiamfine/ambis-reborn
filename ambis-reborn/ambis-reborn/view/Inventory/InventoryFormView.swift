@@ -16,7 +16,6 @@ struct InventoryFormView: View {
     @State var previewSelectedCategory = "Choose Category"
     @State var detailDisclaimer = ""
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
-    @State var inventorySelected: InventoryModel
     
     func prepareData() {
         if status == "edit" {
@@ -25,16 +24,20 @@ struct InventoryFormView: View {
             self.detailDisclaimer = inventoryViewModel.inventory[selectedIndex].foodCategory.estimation!
         }
     }
+    
     func actionDone() {
         if status == "create" {
             inventoryViewModel.saveData()
             inventoryViewModel.getData()
         } else {
+            let inventory = inventoryViewModel.inventory[selectedIndex]
+            inventoryViewModel.editData(inventory)
             inventoryViewModel.getData()
         }
         Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
         isPresented = false
     }
+    
     func actionCancel() {
         isPresented = false
     }

@@ -35,6 +35,22 @@ struct PersistenceController {
         saveData()
     }
     
+    func editInventoryData(inventory: Inventory, model: InventoryModel) {
+        let context = container.viewContext
+        print(model, "MODEL LIST")
+        inventory.setValue(model.name, forKey: "name")
+        inventory.setValue(model.total, forKey: "total")
+        inventory.setValue(model.totalType, forKey: "totalType")
+        inventory.setValue(model.purchaseDate, forKey: "purchaseDate")
+        inventory.setValue(model.expiryDate, forKey: "expiryDate")
+        inventory.setValue(model.foodCategory, forKey: "toFoodCategory")
+        do {
+            try context.save()
+        } catch {
+            
+        }
+    }
+    
     func getInventoryData() -> [Inventory] {
         let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
         do {

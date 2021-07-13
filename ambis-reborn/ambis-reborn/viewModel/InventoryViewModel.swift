@@ -43,6 +43,19 @@ class InventoryViewModel: ObservableObject {
         inventoryCount = inventory.count
     }
     
+    func editData(_ inventory: InventoryModel) {
+        let existingInventory = PersistenceController.shared.getInventoryDataById(id: inventory.id)
+        if let existingInventory = existingInventory {
+            existingInventory.name = name
+            existingInventory.total = Double(total)!
+            existingInventory.totalType = totalType
+            existingInventory.purchaseDate = purchaseDate
+            existingInventory.expiryDate = expiryDate
+            existingInventory.toFoodCategory = toInventory.first
+            PersistenceController.shared.editInventoryData(inventory: existingInventory, model: inventory)
+        }
+    }
+    
     func saveData() {
         let inventory = Inventory(context: PersistenceController.shared.container.viewContext)
         inventory.name = name
