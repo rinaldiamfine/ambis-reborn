@@ -18,6 +18,8 @@ struct InventoryFormView: View {
     @State private var textQty = "Total "
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
+    @State var expiryEstimation: Int = 0
+    
     func prepareData() {
         if status == "edit" {
             inventoryViewModel.prepareDataEdit(index: selectedIndex)
@@ -40,7 +42,7 @@ struct InventoryFormView: View {
     }
     
     func actionCancel() {
-        inventoryViewModel.resetData()
+        //inventoryViewModel.resetData()
         isPresented = false
     }
     func incrementQty() {
@@ -79,13 +81,16 @@ struct InventoryFormView: View {
                                     self.detailDisclaimer = category.estimation
                                     inventoryViewModel.toInventory = [category.foodCategory]
                                     inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
+                                    self.expiryEstimation = Int(category.expiryEstimation)
                                 }
                         }
                     }
                 }
                 Section(header: Text("Date Information")) {
                     DatePicker("Buy", selection: $inventoryViewModel.purchaseDate, displayedComponents: .date)
-                    DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, in: inventoryViewModel.purchaseDate..., displayedComponents: .date)
+                    let adjustableDate: Date = Calendar.current.date(byAdding: .day, value: expiryEstimation, to: inventoryViewModel.purchaseDate)!
+                    DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, in: adjustableDate..., displayedComponents: .date)
+                    
                 }
                 Section(header: Text("Disclaimer")) {
                     Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")
