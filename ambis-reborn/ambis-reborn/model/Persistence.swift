@@ -30,8 +30,22 @@ struct PersistenceController {
             return nil
         }
     }
+    
+    func getShoppingDataById(id: NSManagedObjectID) -> Shopping? {
+        do {
+            return try container.viewContext.existingObject(with: id) as? Shopping
+        } catch {
+            return nil
+        }
+    }
+    
     func deleteInventoryData(inventory: Inventory) {
         container.viewContext.delete(inventory)
+        saveData()
+    }
+    
+    func deleteShoppingData(shopping: Shopping) {
+        container.viewContext.delete(shopping)
         saveData()
     }
     
@@ -59,6 +73,7 @@ struct PersistenceController {
             return []
         }
     }
+    
     func getCategoryData() -> [FoodCategory] {
         let request: NSFetchRequest<FoodCategory> = FoodCategory.fetchRequest()
         do {

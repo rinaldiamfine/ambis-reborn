@@ -17,10 +17,14 @@ struct TabBarView: View {
                 InventoryView().getIconName()
                 InventoryView().gettabName()
             }.tag(1)
+            ShoppingView().tabItem {
+                ShoppingView().getIconName()
+                ShoppingView().gettabName()
+            }.tag(2)
             CategoryView().tabItem {
                 CategoryView().getIconName()
                 CategoryView().gettabName()
-            }.tag(2)
+            }.tag(3)
         }.accentColor(defaultAccentColor)
     }
 }
