@@ -25,6 +25,8 @@ struct InventoryFormView: View {
             inventoryViewModel.prepareDataEdit(index: selectedIndex)
             self.previewSelectedCategory = inventoryViewModel.inventory[selectedIndex].foodCategory.imageString ?? "" + " " + inventoryViewModel.inventory[selectedIndex].foodCategory.name!
             self.detailDisclaimer = inventoryViewModel.inventory[selectedIndex].foodCategory.estimation!
+        } else {
+//            inventoryViewModel.prepareDataCreate()
         }
     }
     
@@ -32,6 +34,7 @@ struct InventoryFormView: View {
         if status == "create" {
             inventoryViewModel.saveData()
             inventoryViewModel.getData()
+            inventoryViewModel.prepareDataCreate()
         } else {
             let inventory = inventoryViewModel.inventory[selectedIndex]
             inventoryViewModel.editData(inventory)

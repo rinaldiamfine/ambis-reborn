@@ -22,6 +22,14 @@ class InventoryViewModel: ObservableObject {
     @Published var inventory: [InventoryModel] = []
     @Published var inventoryCount: Int = 0
     
+    func prepareDataCreate() {
+        name = ""
+        total = ""
+        totalType = ""
+        expiryDate = Date()
+        purchaseDate = Date()
+    }
+    
     func prepareDataEdit(index: Int) {
         name = inventory[index].name
         total = String(inventory[index].total)
