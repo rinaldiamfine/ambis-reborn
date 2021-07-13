@@ -15,7 +15,7 @@ struct InventoryModel {
         return inventory.objectID
     }
     var foodCategory: FoodCategory {
-        return inventory.toFoodCategory!
+        return inventory.toFoodCategory ?? FoodCategory()
     }
     var name: String {
         return inventory.name ?? ""

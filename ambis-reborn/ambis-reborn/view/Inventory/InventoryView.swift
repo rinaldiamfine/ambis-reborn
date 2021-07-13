@@ -46,13 +46,14 @@ struct InventoryView: View {
         self.isPresented = true
     }
     
-    func deleteItem(at offsets: IndexSet) {
-        offsets.forEach { index in
-            let inventory = inventoryViewModel.inventory[index]
-            inventoryViewModel.deleteData(inventory)
-        }
-        inventoryViewModel.getData()
-    }
+//    func deleteItem(at offsets: IndexSet) {
+//        offsets.forEach { index in
+//            let inventory = inventoryViewModel.inventory[index]
+//            inventoryViewModel.deleteData(inventory)
+//        }
+//        inventoryViewModel.getData()
+//        foodCategoryViewModel.getData()
+//    }
     
     func deleteItemByContextMenu(index: InventoryModel) {
         var count = 0
@@ -65,6 +66,7 @@ struct InventoryView: View {
             count += 1
         }
         inventoryViewModel.getData()
+        foodCategoryViewModel.getData()
     }
     
     var body: some View {
@@ -99,7 +101,7 @@ struct InventoryView: View {
                                     }
                                 }
                         }
-                        .onDelete(perform: deleteItem)
+//                        .onDelete(perform: deleteItem)
                     }
                     .listStyle(InsetGroupedListStyle())
                 } else {

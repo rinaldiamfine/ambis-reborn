@@ -15,12 +15,13 @@ struct InventoryFormView: View {
     @Binding var selectedIndex: Int
     @State var previewSelectedCategory = "Choose Category"
     @State var detailDisclaimer = ""
+    @State private var textQty = "Total "
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     func prepareData() {
         if status == "edit" {
             inventoryViewModel.prepareDataEdit(index: selectedIndex)
-            self.previewSelectedCategory = inventoryViewModel.inventory[selectedIndex].foodCategory.imageString! + " " + inventoryViewModel.inventory[selectedIndex].foodCategory.name!
+            self.previewSelectedCategory = inventoryViewModel.inventory[selectedIndex].foodCategory.imageString ?? "" + " " + inventoryViewModel.inventory[selectedIndex].foodCategory.name!
             self.detailDisclaimer = inventoryViewModel.inventory[selectedIndex].foodCategory.estimation!
         }
     }
@@ -39,7 +40,20 @@ struct InventoryFormView: View {
     }
     
     func actionCancel() {
+        inventoryViewModel.resetData()
         isPresented = false
+    }
+    func incrementQty() {
+        let qty = Int(inventoryViewModel.total) ?? 0
+        print(qty, "TOTAL")
+        inventoryViewModel.total = String(qty + 1)
+        print(inventoryViewModel.total, "TOTAL")
+    }
+    func decrementQty() {
+        let qty = Int(inventoryViewModel.total) ?? 0
+        print(qty, "TOTAL")
+        inventoryViewModel.total = String(qty - 1)
+        print(inventoryViewModel.total, "TOTAL")
     }
     
     var body: some View {
@@ -49,6 +63,8 @@ struct InventoryFormView: View {
                     TextField("Name", text: $inventoryViewModel.name)
                 }
                 Section(header: Text("Total Product")) {
+//                    Text("1 Pcs")
+//                    Stepper("Total", onIncrement: incrementQty, onDecrement: decrementQty)
                     TextField("Qty", text: $inventoryViewModel.total)
                     TextField("Type", text: $inventoryViewModel.totalType)
                 }

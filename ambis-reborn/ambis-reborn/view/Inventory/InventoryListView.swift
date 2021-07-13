@@ -18,7 +18,9 @@ struct InventoryListView: View {
     
     var body: some View {
         HStack {
-            Text(inventory.foodCategory.imageString ?? "").font(.system(size: 18))
+            if inventory.foodCategory != FoodCategory() {
+                Text(inventory.foodCategory.imageString ?? "").font(.system(size: 18))
+            }
             VStack(alignment: .leading) {
                 Text(inventory.name).font(.system(size: 15))
                 Text(formatSubtitle()).font(.system(size: 13))
