@@ -14,12 +14,25 @@ struct InventoryFormView: View {
     @Binding var status: String
     @Binding var selectedIndex: Int
     @State var previewSelectedCategory = "Choose Category"
+    @State var detailDisclaimer = ""
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
+    @State var inventorySelected: InventoryModel
     
+    func prepareData() {
+        if status == "edit" {
+            inventoryViewModel.prepareDataEdit(index: selectedIndex)
+            self.previewSelectedCategory = inventoryViewModel.inventory[selectedIndex].foodCategory.imageString! + " " + inventoryViewModel.inventory[selectedIndex].foodCategory.name!
+            self.detailDisclaimer = inventoryViewModel.inventory[selectedIndex].foodCategory.estimation!
+        }
+    }
     func actionDone() {
-        inventoryViewModel.saveData()
+        if status == "create" {
+            inventoryViewModel.saveData()
+            inventoryViewModel.getData()
+        } else {
+            inventoryViewModel.getData()
+        }
         Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
-        inventoryViewModel.getData()
         isPresented = false
     }
     func actionCancel() {
@@ -44,6 +57,7 @@ struct InventoryFormView: View {
                                 .contentShape(Rectangle())
                                 .onTapGesture {
                                     self.previewSelectedCategory = category.imageString + " " + category.name
+                                    self.detailDisclaimer = category.estimation
                                     inventoryViewModel.toInventory = [category.foodCategory]
                                     inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
                                 }
@@ -59,6 +73,19 @@ struct InventoryFormView: View {
                         .font(.system(size: 14))
                         .foregroundColor(.gray)
                         .padding(.top, 10).padding(.bottom, 10)
+                    if detailDisclaimer != "" {
+                        HStack {
+                            Spacer()
+                            Text(detailDisclaimer)
+                                .lineLimit(nil).contentShape(Rectangle())
+                                .multilineTextAlignment(.center)
+                                .font(.system(size: 14))
+                                .foregroundColor(Color.init(UIColor.systemGreen))
+                                .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                                .padding(.top, 10).padding(.bottom, 10)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .navigationBarTitle("Add Product", displayMode: .inline)
@@ -72,6 +99,9 @@ struct InventoryFormView: View {
                         Text("Done")
                     })
             )
+            .onAppear(perform: {
+                prepareData()
+            })
         }
     }
 }

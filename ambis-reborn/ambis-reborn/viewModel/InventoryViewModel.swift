@@ -14,12 +14,22 @@ class InventoryViewModel: ObservableObject {
     var total: String = ""
     var totalType: String = ""
     var toInventory: [FoodCategory] = []
+    @Published var selectedInventory = 0
     
     @Published var purchaseDate: Date = Date()
     @Published var expiryDate: Date = Date()
     
     @Published var inventory: [InventoryModel] = []
     @Published var inventoryCount: Int = 0
+    
+    func prepareDataEdit(index: Int) {
+        name = inventory[index].name
+        total = String(inventory[index].total)
+        totalType = inventory[index].totalType
+        expiryDate = inventory[index].expiryDate
+        purchaseDate = inventory[index].purchaseDate
+        toInventory = [inventory[index].foodCategory]
+    }
     
     func deleteData(_ inventory: InventoryModel) {
         let existingInventory = PersistenceController.shared.getInventoryDataById(id: inventory.id)
