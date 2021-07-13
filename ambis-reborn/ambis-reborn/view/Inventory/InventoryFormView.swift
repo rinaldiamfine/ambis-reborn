@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct InventoryFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
@@ -17,6 +18,7 @@ struct InventoryFormView: View {
     
     func actionDone() {
         inventoryViewModel.saveData()
+        Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
         inventoryViewModel.getData()
         isPresented = false
     }

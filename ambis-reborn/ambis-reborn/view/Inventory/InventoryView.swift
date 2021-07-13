@@ -8,6 +8,7 @@
 import SwiftUI
 import UIKit
 import CoreData
+import UserNotifications
 
 struct InventoryView: View {
     @StateObject private var inventoryViewModel = InventoryViewModel()
@@ -20,6 +21,7 @@ struct InventoryView: View {
     func loadList() {
         inventoryViewModel.getData()
         foodCategoryViewModel.getData()
+        Notification.instance.requestAuthorization()
     }
     func getIconName() -> Image {
         return Image(systemName: "list.dash")
