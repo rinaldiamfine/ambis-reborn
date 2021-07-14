@@ -24,36 +24,70 @@ struct InventoryView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 50) {
+            VStack {
                 if inventoryViewModel.inventoryCount > 0 {
                     List {
-                        ForEach (inventoryViewModel.inventory.filter {
-                            searchBar.text.isEmpty ||
-                                $0.name.localizedStandardContains(searchBar.text)
-                        }, id:\.id) {
-                            inventory in InventoryListView(inventory: inventory)
-                                .environmentObject(InventoryViewModel())
-                                .contextMenu {
-                                    Button {
-                                        inventoryViewModel.editData(index: inventory)
-                                    } label: {
-                                        Label("Update Inventory", systemImage: "square.and.pencil")
+                        //NEAR EXPIRY
+                        Section(header: Text("Expired Soon")) {
+                            ForEach (inventoryViewModel.inventory.filter {
+                                searchBar.text.isEmpty ||
+                                    $0.name.localizedStandardContains(searchBar.text)
+                            }, id:\.id) {
+                                inventory in InventoryListView(inventory: inventory)
+                                    .environmentObject(InventoryViewModel())
+                                    .contextMenu {
+                                        Button {
+                                            inventoryViewModel.editData(index: inventory)
+                                        } label: {
+                                            Label("Update Inventory", systemImage: "square.and.pencil")
+                                        }
+                                        
+                                        Button {
+                                            print("share")
+                                        } label: {
+                                            Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                        }
+                                        
+                                        Divider()
+                                        Button {
+                                            inventoryViewModel.deleteItemByContextMenu(index: inventory)
+                                        } label: {
+                                            Text("Remove")
+                                            Image(systemName: "trash")
+                                        }
                                     }
-                                    
-                                    Button {
-                                        print("share")
-                                    } label: {
-                                        Label("Share", systemImage: "arrowshape.turn.up.forward")
+                            }
+                        }
+                        
+                        Section(header: Text("Fridge")) {
+                            ForEach (inventoryViewModel.inventory.filter {
+                                searchBar.text.isEmpty ||
+                                    $0.name.localizedStandardContains(searchBar.text)
+                            }, id:\.id) {
+                                inventory in InventoryListView(inventory: inventory)
+                                    .environmentObject(InventoryViewModel())
+                                    .contextMenu {
+                                        Button {
+                                            inventoryViewModel.editData(index: inventory)
+                                        } label: {
+                                            Label("Update Inventory", systemImage: "square.and.pencil")
+                                        }
+                                        
+                                        Button {
+                                            print("share")
+                                        } label: {
+                                            Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                        }
+                                        
+                                        Divider()
+                                        Button {
+                                            inventoryViewModel.deleteItemByContextMenu(index: inventory)
+                                        } label: {
+                                            Text("Remove")
+                                            Image(systemName: "trash")
+                                        }
                                     }
-                                    
-                                    Divider()
-                                    Button {
-                                        inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                                    } label: {
-                                        Text("Remove")
-                                        Image(systemName: "trash")
-                                    }
-                                }
+                            }
                         }
                     }
                     .listStyle(InsetGroupedListStyle())

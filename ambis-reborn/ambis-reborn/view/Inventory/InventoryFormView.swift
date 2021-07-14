@@ -17,11 +17,11 @@ struct InventoryFormView: View {
     @State private var showingActionSheet = false
     @State private var selection = "None"
     
-    var typeAvailable = ["Kg", "Pcs", "Pack(s)", "Bunch(es)", "Litre", "Bag(s)", "Set(s)", "Box(es)", "Gallon(s)"]
+    var typeAvailable = AppGlobalData.generateDataType()
     @State private var selectedType = "Kg"
     @State private var isShowPickerType = false
     
-    var storeAvailable = ["Fridge", "Freezer", "Other"]
+    var storeAvailable = AppGlobalData.generateDataStore()
     @State private var selectedStore = "Fridge"
     
     func actionDone() {
@@ -78,8 +78,8 @@ struct InventoryFormView: View {
                     }
                     if isShowPickerType {
                         Picker("", selection: $selectedType) {
-                            ForEach(typeAvailable, id: \.self) {
-                                Text($0)
+                            ForEach(typeAvailable, id: \.self.name) {
+                                Text($0.name)
                             }
                         }.pickerStyle(WheelPickerStyle())
                     }
@@ -98,8 +98,8 @@ struct InventoryFormView: View {
                 
                 Section(header: Text("Storing Type")) {
                     Picker("", selection: $selectedStore) {
-                        ForEach(storeAvailable, id: \.self) {
-                            Text($0)
+                        ForEach(storeAvailable, id: \.self.name) {
+                            Text($0.name)
                         }
                     }.pickerStyle(SegmentedPickerStyle())
                     if inventoryViewModel.detailDisclaimer != "" {

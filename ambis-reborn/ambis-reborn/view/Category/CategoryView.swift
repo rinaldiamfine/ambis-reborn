@@ -10,9 +10,19 @@ import CoreData
 
 struct CategoryView: View {
     @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
-    
     @State var isPresented = false
-    @ObservedObject var searchBar: SearchBar = SearchBar()
+    @State private var selectCategory: Int = 0
+    
+    func getSelectedCategory(index: FoodCategoryModel) {
+        var count = 0
+        for data in foodCategoryViewModel.foodCategories {
+            if data.id == index.id {
+                break
+            }
+            count += 1
+        }
+        selectCategory = count
+    }
     
     var body: some View {
         NavigationView {
@@ -22,16 +32,22 @@ struct CategoryView: View {
                         Text("Food Category")) {
                             ForEach(foodCategoryViewModel.foodCategories, id:\.id) {
                                 category in
-                                NavigationLink(destination: CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, foodCategory: category)
-                                    .navigationBarTitleDisplayMode(.inline)) {
-                                    CategoryListView(foodCategory: category)
-                                }
+                                CategoryListView(foodCategory: category)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        isPresented = true
+//                                        selectCategory = 0
+                                        getSelectedCategory(index: category)
+                                    }
                             }
                         }
                 }
                 .listStyle(InsetGroupedListStyle())
             }
             .navigationBarTitle("Category")
+            .sheet(isPresented: $isPresented) {
+                CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, selectedCategory: $selectCategory)
+            }
         }
         .onAppear(perform: {
             foodCategoryViewModel.getData()
@@ -46,8 +62,8 @@ struct CategoryView: View {
     }
 }
 
-struct CategoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryView()
-    }
-}
+//struct CategoryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CategoryView()
+//    }
+//}
