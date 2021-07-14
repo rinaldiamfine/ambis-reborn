@@ -12,10 +12,12 @@ struct CategoryListView: View {
     
     var body: some View {
         HStack {
-//            Image(uiImage: icon.symbolToImage())
             Text(foodCategory.imageString).font(.system(size: 18))
             Text(foodCategory.name).font(.body)
             Spacer()
+            Image(systemName: "chevron.right")
+                .font(.system(size: 13, weight: .bold))
+            .foregroundColor(Color.init(UIColor.systemGray2))
         }
     }
 }

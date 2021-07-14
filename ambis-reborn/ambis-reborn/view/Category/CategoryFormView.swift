@@ -10,37 +10,48 @@ import SwiftUI
 struct CategoryFormView: View {
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     @Binding var isPresented: Bool
-    var foodCategory: FoodCategoryModel
+    @Binding var selectedCategory : Int
+    
+    func actionClose() {
+        isPresented.toggle()
+    }
     
     var body: some View {
-        VStack {
-            ZStack {
-                Ellipse()
-                    .fill(Color.init(UIColor.systemGray5))
-                    .frame(width: 86, height: 86)
-                Text(foodCategory.imageString)
-                    .font(.system(size: 38))
-            }.padding()
-            Text(foodCategory.name)
-                .font(.system(size: 22))
-                .bold()
-                .padding()
-            Text(foodCategory.subtitle)
-                .font(.system(size: 14))
-                .multilineTextAlignment(.center)
-                .foregroundColor(Color.init(UIColor.systemGray))
-                .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                .padding()
-            Text(foodCategory.estimation)
-                .font(.system(size: 17))
-                .multilineTextAlignment(.center)
-                .foregroundColor(Color.init(UIColor.systemGreen))
-                .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                .padding()
-            Spacer()
+        NavigationView {
+            VStack {
+                ZStack {
+                    Ellipse()
+                        .fill(Color.init(UIColor.systemGray5))
+                        .frame(width: 86, height: 86)
+                    Text(foodCategoryViewModel.foodCategories[selectedCategory].imageString)
+                        .font(.system(size: 38))
+                }.padding()
+                Text(foodCategoryViewModel.foodCategories[selectedCategory].name)
+                    .font(.system(size: 22))
+                    .bold()
+                    .padding()
+                Text(foodCategoryViewModel.foodCategories[selectedCategory].subtitle)
+                    .font(.system(size: 14))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color.init(UIColor.systemGray))
+                    .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                    .padding()
+                Text(foodCategoryViewModel.foodCategories[selectedCategory].estimation)
+                    .font(.system(size: 17))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color.init(UIColor.systemGreen))
+                    .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                    .padding()
+                Spacer()
+            }
+            .navigationBarTitle("Category", displayMode: .inline)
+            .navigationBarItems(
+                trailing:
+                    Button(action: actionClose, label: {
+                        Text("Close")
+                    })
+            )
         }
-        .navigationBarTitle("Category", displayMode: .inline)
-        .padding(.top, 20)
     }
 }
 

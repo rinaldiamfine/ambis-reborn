@@ -21,9 +21,9 @@ struct InventoryListView: View {
             if inventory.foodCategory != FoodCategory() {
                 Text(inventory.foodCategory.imageString ?? "").font(.system(size: 18))
             }
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(inventory.name).font(.system(size: 15))
-                Text(formatSubtitle()).font(.system(size: 13))
+                Text(formatSubtitle()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
             }
             Spacer()
             if inventory.remainingDays == 0 {

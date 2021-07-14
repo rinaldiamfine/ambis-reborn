@@ -18,7 +18,7 @@ struct InventoryCategoryListView: View {
             Spacer()
             let formatName = foodCategory.imageString + " " + foodCategory.name
             if previewSelectedCategory == formatName {
-                Image(systemName: "checkmark.circle").foregroundColor(Color.init(UIColor.systemGreen))
+                Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
             }
         }
     }
