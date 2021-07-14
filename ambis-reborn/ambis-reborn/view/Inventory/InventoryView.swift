@@ -13,60 +13,13 @@ import UserNotifications
 struct InventoryView: View {
     @StateObject private var inventoryViewModel = InventoryViewModel()
     @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
-    @State var isPresented = false
-    @State var selectedIndex = 0
-    @State var status = ""
     @ObservedObject var searchBar: SearchBar = SearchBar()
     
-    func loadList() {
-        inventoryViewModel.getData()
-        foodCategoryViewModel.getData()
-        Notification.instance.requestAuthorization()
-    }
     func getIconName() -> Image {
         return Image(systemName: "list.dash")
     }
     func gettabName() -> Text {
         return Text("List")
-    }
-    func editData(index: InventoryModel) {
-        var count = 0
-        for data in inventoryViewModel.inventory {
-            if data.id == index.id {
-                break
-            }
-            count += 1
-        }
-        self.selectedIndex = count
-        self.status = "edit"
-        self.isPresented = true
-    }
-    func createData() {
-        self.status = "create"
-        self.isPresented = true
-    }
-    
-//    func deleteItem(at offsets: IndexSet) {
-//        offsets.forEach { index in
-//            let inventory = inventoryViewModel.inventory[index]
-//            inventoryViewModel.deleteData(inventory)
-//        }
-//        inventoryViewModel.getData()
-//        foodCategoryViewModel.getData()
-//    }
-    
-    func deleteItemByContextMenu(index: InventoryModel) {
-        var count = 0
-        for data in inventoryViewModel.inventory {
-            if data.id == index.id {
-                let inventory = inventoryViewModel.inventory[count]
-                inventoryViewModel.deleteData(inventory)
-                break
-            }
-            count += 1
-        }
-        inventoryViewModel.getData()
-        foodCategoryViewModel.getData()
     }
     
     var body: some View {
@@ -79,29 +32,29 @@ struct InventoryView: View {
                                 $0.name.localizedStandardContains(searchBar.text)
                         }, id:\.id) {
                             inventory in InventoryListView(inventory: inventory)
+                                .environmentObject(InventoryViewModel())
                                 .contextMenu {
                                     Button {
-                                        editData(index: inventory)
-                                        print("edit")
-                                        
+                                        inventoryViewModel.editData(index: inventory)
                                     } label: {
                                         Label("Update Inventory", systemImage: "square.and.pencil")
                                     }
+                                    
                                     Button {
                                         print("share")
                                     } label: {
                                         Label("Share", systemImage: "arrowshape.turn.up.forward")
                                     }
+                                    
                                     Divider()
                                     Button {
-                                        deleteItemByContextMenu(index: inventory)
+                                        inventoryViewModel.deleteItemByContextMenu(index: inventory)
                                     } label: {
                                         Text("Remove")
                                         Image(systemName: "trash")
                                     }
                                 }
                         }
-//                        .onDelete(perform: deleteItem)
                     }
                     .listStyle(InsetGroupedListStyle())
                 } else {
@@ -109,22 +62,27 @@ struct InventoryView: View {
                 }
             }
             .navigationBarTitle("Inventory")
-            .navigationBarItems(trailing: Button(action: createData, label: {
+            .navigationBarItems(trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
                 Image(systemName: "plus")
             }))
             .add(self.searchBar)
         }
-        .sheet(isPresented: $isPresented) {
-            InventoryFormView(inventoryViewModel: self.inventoryViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, status: $status, selectedIndex: $selectedIndex)
+        .sheet(isPresented: $inventoryViewModel.isPresented) {
+            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented)
         }
         .onAppear(perform: {
-            loadList()
+            inventoryViewModel.loadList()
+            foodCategoryViewModel.getData()
+        })
+        .onDisappear(perform: {
+            inventoryViewModel.loadList()
+            foodCategoryViewModel.getData()
         })
     }
 }
 
-struct InventoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        InventoryView()
-    }
-}
+//struct InventoryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InventoryView()
+//    }
+//}

@@ -1,45 +1,58 @@
 //
-//  InventoryFormView.swift
+//  InventoryFormEditView.swift
 //  ambis-reborn
 //
-//  Created by Rinaldi LNU on 10/07/21.
+//  Created by Rinaldi LNU on 14/07/21.
 //
 
 import SwiftUI
-import UserNotifications
 
-struct InventoryFormView: View {
-//    @Binding var listInventoryViewModel: InventoryViewModel
-    
+struct InventoryFormEditView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     @Binding var isPresented: Bool
+    @Binding var status: String
+    @Binding var selectedIndex: Int
+    
+    @State var presentSelectCategory: Bool = false
+    @State var previewSelectedCategory = "Choose Category"
+    @State var detailDisclaimer = ""
+    @State var expiryEstimation: Int = 0
+    @State private var textQty = "Total "
+    
+    func prepareData() {
+        //EDIT MODE - AUTO FILL TEXTFIELD DATA
+        inventoryViewModel.prepareDataEdit(index: selectedIndex)
+        let inventorySelected = inventoryViewModel.inventory[selectedIndex]
+        previewSelectedCategory = String(inventorySelected.foodCategory.imageString ?? "") + " " + String(inventorySelected.foodCategory.name!)
+        detailDisclaimer = inventoryViewModel.inventory[selectedIndex].foodCategory.estimation!
+    }
     
     func actionDone() {
-        if inventoryViewModel.status == "edit" {
-            inventoryViewModel.editData(inventoryViewModel.inventory[inventoryViewModel.selectedIndex])
-        } else {
-            inventoryViewModel.saveData()
-        }
-        
+        //EDIT ITEM
+        let inventory = inventoryViewModel.inventory[selectedIndex]
+        inventoryViewModel.editData(inventory)
         inventoryViewModel.getData()
+        //SET NOTIF
         Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
-        inventoryViewModel.resetData()
+        //POP VIEW
         isPresented = false
     }
     
     func actionCancel() {
-        isPresented = false
         inventoryViewModel.resetData()
+        //POP VIEW
+        isPresented = false
     }
     
     func categoryOnTap(category: FoodCategoryModel) {
-        inventoryViewModel.previewSelectedCategory = category.imageString + " " + category.name
-        inventoryViewModel.detailDisclaimer = category.estimation
+        previewSelectedCategory = category.imageString + " " + category.name
+        detailDisclaimer = category.estimation
         inventoryViewModel.toInventory = [category.foodCategory]
         inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
-        inventoryViewModel.expiryEstimation = Int(category.expiryEstimation)
+        expiryEstimation = Int(category.expiryEstimation)
+        presentSelectCategory = false
     }
     
     var body: some View {
@@ -53,9 +66,9 @@ struct InventoryFormView: View {
                     TextField("Type", text: $inventoryViewModel.totalType)
                 }
                 Section(header: Text("Product Category")) {
-                    Picker(selection: $inventoryViewModel.toInventory, label: Text(inventoryViewModel.previewSelectedCategory)) {
-                        ForEach(inventoryViewModel.foodCategories, id:\.id) { category in
-                            InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $inventoryViewModel.previewSelectedCategory)
+                    Picker(selection: $inventoryViewModel.toInventory, label: Text(previewSelectedCategory)) {
+                        ForEach(foodCategoryViewModel.foodCategories, id:\.id) { category in
+                            InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $previewSelectedCategory)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
                                     categoryOnTap(category: category)
@@ -70,7 +83,7 @@ struct InventoryFormView: View {
                             if inventoryViewModel.expiryDate < $0 {
                                 inventoryViewModel.expiryDate = $0
                             }
-                            inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: inventoryViewModel.expiryEstimation, to: $0)!
+                            inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: expiryEstimation, to: $0)!
                         }), displayedComponents: .date)
                     DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, in: inventoryViewModel.purchaseDate..., displayedComponents: .date)
                 }
@@ -79,10 +92,10 @@ struct InventoryFormView: View {
                         .font(.system(size: 14))
                         .foregroundColor(.gray)
                         .padding(.top, 10).padding(.bottom, 10)
-                    if inventoryViewModel.detailDisclaimer != "" {
+                    if detailDisclaimer != "" {
                         HStack {
                             Spacer()
-                            Text(inventoryViewModel.detailDisclaimer)
+                            Text(detailDisclaimer)
                                 .lineLimit(nil).contentShape(Rectangle())
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 14))
@@ -94,7 +107,7 @@ struct InventoryFormView: View {
                     }
                 }
             }
-            .navigationBarTitle("Add Product", displayMode: .inline)
+            .navigationBarTitle("Edit Product", displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button(action: actionCancel, label: {
@@ -105,6 +118,12 @@ struct InventoryFormView: View {
                         Text("Done")
                     })
             )
+            .onAppear(perform: {
+                prepareData()
+            })
+//            .onDisappear(perform: {
+//                prepareData()
+//            })
         }
     }
 }
