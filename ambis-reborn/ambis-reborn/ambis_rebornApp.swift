@@ -17,6 +17,7 @@ struct ambis_rebornApp: App {
         WindowGroup {
             TabBarView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
