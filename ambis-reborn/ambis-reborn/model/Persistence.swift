@@ -83,6 +83,15 @@ struct PersistenceController {
         }
     }
     
+    func getShoppingData() -> [Shopping] {
+        let request: NSFetchRequest<Shopping> = Shopping.fetchRequest()
+        do {
+            return try container.viewContext.fetch(request)
+        } catch {
+            return []
+        }
+    }
+    
     func saveData(completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
         if context.hasChanges {

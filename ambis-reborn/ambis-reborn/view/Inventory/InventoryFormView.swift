@@ -90,9 +90,15 @@ struct InventoryFormView: View {
                     }
                 }
                 Section(header: Text("Date Information")) {
-                    DatePicker("Buy", selection: $inventoryViewModel.purchaseDate, displayedComponents: .date)
-                    let adjustableDate: Date = Calendar.current.date(byAdding: .day, value: expiryEstimation, to: inventoryViewModel.purchaseDate)!
-                    DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, in: adjustableDate..., displayedComponents: .date)
+                    DatePicker("Buy", selection: Binding<Date> (
+                        get: { inventoryViewModel.purchaseDate },
+                        set: { inventoryViewModel.purchaseDate = $0
+                            if inventoryViewModel.expiryDate < $0 {
+                                inventoryViewModel.expiryDate = $0
+                            }
+                            inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: expiryEstimation, to: $0)!
+                        }), displayedComponents: .date)
+                    DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, in: inventoryViewModel.purchaseDate..., displayedComponents: .date)
                 }
                 Section(header: Text("Disclaimer")) {
                     Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")

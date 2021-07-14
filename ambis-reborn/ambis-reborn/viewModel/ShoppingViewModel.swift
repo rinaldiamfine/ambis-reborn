@@ -14,12 +14,21 @@ class ShoppingViewModel: ObservableObject {
     var name: String = ""
     var total: String = ""
     var totalType: String = ""
-    var toInventory: [FoodCategory] = []
+    var toShopping: [FoodCategory] = []
     
     @Published var selectedShopping = 0
     
     @Published var shopping: [ShoppingModel] = []
     @Published var shoppingCount: Int = 0
+    
+    
+    func resetData() {
+        name = ""
+        total = ""
+        totalType = ""
+        toShopping = []
+    }
+    
     
     func deleteData(_ shopping: ShoppingModel) {
         let existingShopping = PersistenceController.shared.getShoppingDataById(id: shopping.id)
@@ -33,11 +42,15 @@ class ShoppingViewModel: ObservableObject {
         shopping.name = name
         shopping.total = Double(total)!
         shopping.totalType = totalType
-        if toInventory.count > 0 {
-            shopping.toFoodCategory = toInventory.first
+        if toShopping.count > 0 {
+            shopping.toFoodCategory = toShopping.first
         }
         PersistenceController.shared.saveData()
     }
     
+    func getData() {
+        shopping = PersistenceController.shared.getShoppingData().map(ShoppingModel.init)
+        shoppingCount = shopping.count
+    }
     
 }
