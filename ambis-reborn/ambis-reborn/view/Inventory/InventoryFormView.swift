@@ -9,12 +9,14 @@ import SwiftUI
 import UserNotifications
 
 struct InventoryFormView: View {
-//    @Binding var listInventoryViewModel: InventoryViewModel
-    
     @ObservedObject var inventoryViewModel: InventoryViewModel
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     @Binding var isPresented: Bool
+    
+    @State private var showingActionSheet = false
+    @State private var selection = "None"
+    
     var typeAvailable = ["Kg", "Pcs", "Pack(s)", "Bunch(es)", "Litre", "Bag(s)", "Set(s)", "Box(es)", "Gallon(s)"]
     @State private var selectedType = "Kg"
     @State private var isShowPickerType = false
@@ -36,8 +38,7 @@ struct InventoryFormView: View {
     }
     
     func actionCancel() {
-        isPresented = false
-        inventoryViewModel.resetData()
+        showingActionSheet.toggle()
     }
     
     func categoryOnTap(category: FoodCategoryModel) {
@@ -144,6 +145,19 @@ struct InventoryFormView: View {
                     Button(action: actionDone, label: {
                         Text("Done")
                     })
+            )
+        }
+        .actionSheet(isPresented: $showingActionSheet) {
+            ActionSheet(
+                title: Text("Are you kulu kulu?"),
+                buttons: [
+                    .destructive(Text("Discard Changes")) {
+                        selection = "discard"
+                        isPresented = false
+                        inventoryViewModel.resetData()
+                    },
+                    .cancel()
+                ]
             )
         }
     }
