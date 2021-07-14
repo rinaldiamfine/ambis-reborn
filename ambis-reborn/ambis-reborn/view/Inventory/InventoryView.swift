@@ -96,9 +96,11 @@ struct InventoryView: View {
                 }
             }
             .navigationBarTitle("Inventory")
-            .navigationBarItems(trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
-                Image(systemName: "plus")
-            }))
+            .navigationBarItems(
+                trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
+                    Image(systemName: "plus").imageScale(.large)
+                }).contentShape(Circle())
+            )
             .add(self.searchBar)
         }
         .sheet(isPresented: $inventoryViewModel.isPresented) {
