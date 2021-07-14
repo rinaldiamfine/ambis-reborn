@@ -15,6 +15,12 @@ struct InventoryFormView: View {
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     @Binding var isPresented: Bool
+    var typeAvailable = ["Kg", "Pcs", "Pack(s)", "Bunch(es)", "Litre", "Bag(s)", "Set(s)", "Box(es)", "Gallon(s)"]
+    @State private var selectedType = "Kg"
+    @State private var isShowPickerType = false
+    
+    var storeAvailable = ["Fridge", "Freezer", "Other"]
+    @State private var selectedStore = "Fridge"
     
     func actionDone() {
         if inventoryViewModel.status == "edit" {
@@ -50,7 +56,32 @@ struct InventoryFormView: View {
                 }
                 Section(header: Text("Total Product")) {
                     TextField("Qty", text: $inventoryViewModel.total)
-                    TextField("Type", text: $inventoryViewModel.totalType)
+                        .keyboardType(.decimalPad)
+                    HStack {
+                        Text("Type")
+                        Spacer()
+                        Text(selectedType)
+                        if isShowPickerType {
+                            Image(systemName: "chevron.down")
+                                .font(.system(size: 12, weight: .bold))
+                            .foregroundColor(Color.init(UIColor.systemGray2))
+                        } else {
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(Color.init(UIColor.systemGray2))
+                        }
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        isShowPickerType.toggle()
+                    }
+                    if isShowPickerType {
+                        Picker("", selection: $selectedType) {
+                            ForEach(typeAvailable, id: \.self) {
+                                Text($0)
+                            }
+                        }.pickerStyle(WheelPickerStyle())
+                    }
                 }
                 Section(header: Text("Product Category")) {
                     Picker(selection: $inventoryViewModel.toInventory, label: Text(inventoryViewModel.previewSelectedCategory)) {
@@ -63,6 +94,28 @@ struct InventoryFormView: View {
                         }
                     }
                 }
+                
+                Section(header: Text("Storing Type")) {
+                    Picker("", selection: $selectedStore) {
+                        ForEach(storeAvailable, id: \.self) {
+                            Text($0)
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
+                    if inventoryViewModel.detailDisclaimer != "" {
+                        HStack {
+                            Spacer()
+                            Text(inventoryViewModel.detailDisclaimer)
+                                .lineLimit(nil).contentShape(Rectangle())
+                                .multilineTextAlignment(.center)
+                                .font(.system(size: 14))
+                                .foregroundColor(Color.init(UIColor.systemGreen))
+                                .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                                .padding(.top, 10).padding(.bottom, 10)
+                            Spacer()
+                        }
+                    }
+                }
+                
                 Section(header: Text("Date Information")) {
                     DatePicker("Buy", selection: Binding<Date> (
                         get: { inventoryViewModel.purchaseDate },
@@ -79,19 +132,6 @@ struct InventoryFormView: View {
                         .font(.system(size: 14))
                         .foregroundColor(.gray)
                         .padding(.top, 10).padding(.bottom, 10)
-                    if inventoryViewModel.detailDisclaimer != "" {
-                        HStack {
-                            Spacer()
-                            Text(inventoryViewModel.detailDisclaimer)
-                                .lineLimit(nil).contentShape(Rectangle())
-                                .multilineTextAlignment(.center)
-                                .font(.system(size: 14))
-                                .foregroundColor(Color.init(UIColor.systemGreen))
-                                .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                                .padding(.top, 10).padding(.bottom, 10)
-                            Spacer()
-                        }
-                    }
                 }
             }
             .navigationBarTitle("Add Product", displayMode: .inline)
