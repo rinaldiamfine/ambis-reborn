@@ -31,6 +31,19 @@ class ShoppingViewModel: ObservableObject {
     
     
     //DELETE
+    func deleteItemByContextMenu(index: ShoppingModel) {
+        var count = 0
+        for data in shopping {
+            if data.id == index.id {
+                let shopping = shopping[count]
+                deleteData(shopping)
+                break
+            }
+            count += 1
+        }
+        getData()
+    }
+    
     func deleteData(_ shopping: ShoppingModel) {
         let existingShopping = PersistenceController.shared.getShoppingDataById(id: shopping.id)
         if let existingShopping = existingShopping {

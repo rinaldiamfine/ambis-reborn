@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @State private var selectedTab = 1
+    @State private var selectedTab = 2
     var defaultAccentColor = Color("AccentColor")
     
     var body: some View {

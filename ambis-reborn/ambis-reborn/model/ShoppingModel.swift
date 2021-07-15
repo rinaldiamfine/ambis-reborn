@@ -26,5 +26,8 @@ struct ShoppingModel {
     var totalType: String {
         return shopping.totalType ?? ""
     }
+    var isShowDetail: Bool {
+        return true
+    }
     
 }

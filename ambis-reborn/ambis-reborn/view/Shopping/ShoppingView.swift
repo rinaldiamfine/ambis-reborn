@@ -13,24 +13,57 @@ struct ShoppingView: View {
     @StateObject private var shoppingViewModel = ShoppingViewModel()
     @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
     
+    @State var isMovedToInventory = false
+    
     func getIconName() -> Image {
         return Image(systemName: "bag.fill")
     }
     func gettabName() -> Text {
         return Text("Shopping List")
     }
-    
+        
     var body: some View {
         NavigationView {
-            VStack(spacing: 50) {
+            VStack(spacing: 0) {
                 if shoppingViewModel.shoppingCount > 0 {
                     List {
                         ForEach(shoppingViewModel.shopping, id:\.id) {
                             shopping in ShoppingListView(shopping: shopping)
-                            //context menu
+                                .contextMenu {
+                                    Button {
+                                        
+                                    } label: {
+                                        Label("Update Inventory", systemImage: "square.and.pencil")
+                                    }
+                                    
+                                    Divider()
+                                    Button {
+                                        shoppingViewModel.deleteItemByContextMenu(index: shopping)
+                                    } label: {
+                                        Text("Remove")
+                                        Image(systemName: "trash")
+                                    }
+                                }
+                            
                         }
                     }
                     .listStyle(InsetGroupedListStyle())
+                    
+                    //Spacer()
+                    
+                    Button {
+                        isMovedToInventory = true
+                    } label: {
+                        Text("Move all to inventory")
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 350, height: 50, alignment: .center)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                    .padding()
+
+                    
                 } else {
                     ShoppingListEmptyView()
                 }
@@ -43,6 +76,9 @@ struct ShoppingView: View {
         .sheet(isPresented: $shoppingViewModel.isPresented) {
             ShoppingFormView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $shoppingViewModel.isPresented)
         }
+        .sheet(isPresented: $isMovedToInventory, content: {
+            ShoppingToInventoryView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isShowDetail: false, activeShopping: [])
+        })
         .onAppear(perform: {
             shoppingViewModel.loadList()
             foodCategoryViewModel.getData()
@@ -53,7 +89,7 @@ struct ShoppingView: View {
         }
     }
     
-
+    
 }
 
 //struct ShoppingView_Previews: PreviewProvider {
