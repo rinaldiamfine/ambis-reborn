@@ -12,7 +12,9 @@ import CoreData
 class InventoryViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var total: String = ""
-    @Published var totalType: String = ""
+    @Published var totalType: String = "Kg"
+    @Published var store: String = "Fridge"
+    
     @Published var toInventory: [FoodCategory] = []
     @Published var selectedInventory = 0
     
@@ -24,13 +26,16 @@ class InventoryViewModel: ObservableObject {
     @Published var foodCategories: [FoodCategoryModel] = []
     @Published var foodCategoryCount: Int = 0
     
-    @Published var isPresented = false
-    @Published var selectedIndex = 0
-    @Published var status = ""
+    @Published var isPresented: Bool = false
+    @Published var selectedIndex: Int = 0
+    @Published var status: String = ""
     
-    @Published var previewSelectedCategory = "Choose Category"
-    @Published var detailDisclaimer = ""
+    @Published var previewSelectedCategory: String = "Choose Category"
+    @Published var detailDisclaimer: String = ""
     @Published var expiryEstimation: Int = 0
+    
+//    @Published var selectedType = "Select Type"
+//    @Published var selectedStore = "Fridge"
     
     //EDIT
     func editData(index: InventoryModel) {
@@ -50,6 +55,7 @@ class InventoryViewModel: ObservableObject {
         name = inventory[index].name
         total = String(inventory[index].total)
         totalType = inventory[index].totalType
+        store = inventory[index].store
         expiryDate = inventory[index].expiryDate
         purchaseDate = inventory[index].purchaseDate
         toInventory = [inventory[index].foodCategory]
@@ -90,7 +96,8 @@ class InventoryViewModel: ObservableObject {
     func resetData() {
         name = ""
         total = ""
-        totalType = ""
+        totalType = "Kg"
+        store = "Fridge"
         expiryDate = Date()
         purchaseDate = Date()
         toInventory = []
@@ -119,10 +126,12 @@ class InventoryViewModel: ObservableObject {
             existingInventory.name = name
             existingInventory.total = Double(total)!
             existingInventory.totalType = totalType
+            existingInventory.store = store
             existingInventory.purchaseDate = purchaseDate
             existingInventory.expiryDate = expiryDate
             existingInventory.toFoodCategory = toInventory.first
             PersistenceController.shared.editInventoryData(inventory: existingInventory, model: inventory)
+            getData()
         }
     }
     
@@ -133,6 +142,7 @@ class InventoryViewModel: ObservableObject {
         inventory.totalType = totalType
         inventory.purchaseDate = purchaseDate
         inventory.expiryDate = expiryDate
+        inventory.store = store
         if toInventory.count > 0 {
             inventory.toFoodCategory = toInventory.first
         }

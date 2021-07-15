@@ -26,6 +26,9 @@ struct InventoryModel {
     var totalType: String {
         return inventory.totalType ?? ""
     }
+    var store: String {
+        return inventory.store ?? ""
+    }
     var purchaseDate: Date {
         return inventory.purchaseDate ?? Date()
     }

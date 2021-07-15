@@ -11,9 +11,12 @@ import CoreData
 import UserNotifications
 
 struct InventoryView: View {
-    @StateObject private var inventoryViewModel = InventoryViewModel()
-    @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
+    @ObservedObject var inventoryViewModel = InventoryViewModel()
+    @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     @ObservedObject var searchBar: SearchBar = SearchBar()
+    
+    var storeAvailable = AppGlobalData.generateDataStore()
+    @State private var selectedStore = "Fridge"
     
     func getIconName() -> Image {
         return Image(systemName: "list.dash")
@@ -27,8 +30,14 @@ struct InventoryView: View {
             VStack {
                 if inventoryViewModel.inventoryCount > 0 {
                     List {
-                        //NEAR EXPIRY
-                        Section(header: Text("Expired Soon")) {
+                        Picker("", selection: $selectedStore) {
+                            ForEach(storeAvailable, id: \.self.name) {
+                                Text($0.name)
+                            }
+                        }.pickerStyle(SegmentedPickerStyle())
+                        
+                        //Fridge
+                        Section(header: Text(selectedStore)) {
                             ForEach (inventoryViewModel.inventory.filter {
                                 searchBar.text.isEmpty ||
                                     $0.name.localizedStandardContains(searchBar.text)
@@ -59,36 +68,6 @@ struct InventoryView: View {
                             }
                         }
                         
-                        Section(header: Text("Fridge")) {
-                            ForEach (inventoryViewModel.inventory.filter {
-                                searchBar.text.isEmpty ||
-                                    $0.name.localizedStandardContains(searchBar.text)
-                            }, id:\.id) {
-                                inventory in InventoryListView(inventory: inventory)
-                                    .environmentObject(InventoryViewModel())
-                                    .contextMenu {
-                                        Button {
-                                            inventoryViewModel.editData(index: inventory)
-                                        } label: {
-                                            Label("Update Inventory", systemImage: "square.and.pencil")
-                                        }
-                                        
-                                        Button {
-                                            print("share")
-                                        } label: {
-                                            Label("Share", systemImage: "arrowshape.turn.up.forward")
-                                        }
-                                        
-                                        Divider()
-                                        Button {
-                                            inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                                        } label: {
-                                            Text("Remove")
-                                            Image(systemName: "trash")
-                                        }
-                                    }
-                            }
-                        }
                     }
                     .listStyle(InsetGroupedListStyle())
                 } else {

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct InventoryListView: View {
-    var inventory: InventoryModel
+//    @ObservedObject var inventoryViewModel:
+    @State var inventory: InventoryModel
     
     func formatSubtitle() -> String {
         var format = ""
