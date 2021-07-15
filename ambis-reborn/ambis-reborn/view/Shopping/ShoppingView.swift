@@ -12,25 +12,12 @@ import CoreData
 struct ShoppingView: View {
     @StateObject private var shoppingViewModel = ShoppingViewModel()
     @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
-    @State var selectedIndex = 0
-    @State var status = ""
-    @State var isPresented = false
     
-    func loadList() {
-        shoppingViewModel.getData()
-        foodCategoryViewModel.getData()
-    }
     func getIconName() -> Image {
         return Image(systemName: "bag.fill")
     }
     func gettabName() -> Text {
         return Text("Shopping List")
-    }
-    
-    
-    func createData() {
-        self.status = "create"
-        self.isPresented = true
     }
     
     var body: some View {
@@ -49,16 +36,21 @@ struct ShoppingView: View {
                 }
             }
             .navigationBarTitle("Shopping List")
-            .navigationBarItems(trailing: Button(action: createData, label: {
+            .navigationBarItems(trailing: Button(action: shoppingViewModel.prepareCreateData, label: {
                 Image(systemName: "plus")
             }))
         }
-        .sheet(isPresented: $isPresented) {
-            ShoppingFormView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, status: $status, selectedIndex: $selectedIndex)
+        .sheet(isPresented: $shoppingViewModel.isPresented) {
+            ShoppingFormView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $shoppingViewModel.isPresented)
         }
         .onAppear(perform: {
-            loadList()
+            shoppingViewModel.loadList()
+            foodCategoryViewModel.getData()
         })
+        .onDisappear {
+            shoppingViewModel.loadList()
+            foodCategoryViewModel.getData()
+        }
     }
     
 

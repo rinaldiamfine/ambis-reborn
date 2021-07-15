@@ -11,31 +11,49 @@ import CoreData
 import SwiftUI
 
 class ShoppingViewModel: ObservableObject {
-    var name: String = ""
-    var total: String = ""
-    var totalType: String = ""
-    var toShopping: [FoodCategory] = []
-    
+    @Published var name: String = ""
+    @Published var total: String = ""
+    @Published var totalType: String = ""
+    @Published var toShopping: [FoodCategory] = []
     @Published var selectedShopping = 0
     
     @Published var shopping: [ShoppingModel] = []
     @Published var shoppingCount: Int = 0
+    @Published var foodCategories: [FoodCategoryModel] = []
+    @Published var foodCategoryCount: Int = 0
+    
+    @Published var isPresented = false
+    @Published var selectedIndex = 0
+    @Published var status = ""
+    
+    @Published var previewSelectedCategory = "Choose Category"
+    @Published var detailDisclaimer = ""
     
     
-    func resetData() {
-        name = ""
-        total = ""
-        totalType = ""
-        toShopping = []
-    }
-    
-    
+    //DELETE
     func deleteData(_ shopping: ShoppingModel) {
         let existingShopping = PersistenceController.shared.getShoppingDataById(id: shopping.id)
         if let existingShopping = existingShopping {
             PersistenceController.shared.deleteShoppingData(shopping: existingShopping)
         }
     }
+    
+    //CREATE
+    func prepareCreateData() {
+        resetData()
+        isPresented.toggle()
+        status = "create"
+    }
+    
+    func resetData() {
+        name = ""
+        total = ""
+        totalType = ""
+        toShopping = []
+        previewSelectedCategory = "Choose Category"
+        detailDisclaimer = ""
+    }
+    
     
     func saveData() {
         let shopping = Shopping(context: PersistenceController.shared.container.viewContext)
@@ -48,9 +66,16 @@ class ShoppingViewModel: ObservableObject {
         PersistenceController.shared.saveData()
     }
     
+    func loadList() {
+        getData()
+    }
+    
     func getData() {
         shopping = PersistenceController.shared.getShoppingData().map(ShoppingModel.init)
         shoppingCount = shopping.count
+        
+        foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
+        foodCategoryCount = foodCategories.count
     }
     
 }

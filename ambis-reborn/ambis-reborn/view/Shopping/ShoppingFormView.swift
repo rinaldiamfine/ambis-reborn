@@ -12,26 +12,21 @@ struct ShoppingFormView: View {
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     @Binding var isPresented: Bool
-    @Binding var status: String
-    @Binding var selectedIndex: Int
     
     @State var presentSelectCategory: Bool = false
     @State var previewSelectedCategory = "Choose Category"
     @State var detailDisclaimer = ""
     
-    func prepareData() {
-        //kosong
-    }
-    
     func actionDone() {
-        if status == "create" {
+        if shoppingViewModel.status == "create" {
             //CREATE ITEM
             shoppingViewModel.saveData()
-            shoppingViewModel.getData()
         } else {
             //EDIT ITEM
         }
         
+        shoppingViewModel.getData()
+        shoppingViewModel.resetData()
         //POP VIEW
         isPresented = false
     }
