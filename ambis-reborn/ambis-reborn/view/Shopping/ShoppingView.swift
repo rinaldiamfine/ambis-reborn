@@ -15,6 +15,8 @@ struct ShoppingView: View {
     
     @State var isMovedToInventory = false
     
+    @State var shoppingToBeMoved: [NSManagedObjectID] = []
+    
     func getIconName() -> Image {
         return Image(systemName: "bag.fill")
     }
@@ -28,7 +30,7 @@ struct ShoppingView: View {
                 if shoppingViewModel.shoppingCount > 0 {
                     List {
                         ForEach(shoppingViewModel.shopping, id:\.id) {
-                            shopping in ShoppingListView(shopping: shopping)
+                            shopping in ShoppingListView(shopping: shopping, shoppingToBeMoved: $shoppingToBeMoved)
                                 .contextMenu {
                                     Button {
                                         
@@ -44,6 +46,14 @@ struct ShoppingView: View {
                                         Image(systemName: "trash")
                                     }
                                 }
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    if shoppingToBeMoved.contains(shopping.id) {
+                                        shoppingToBeMoved = shoppingToBeMoved.filter{$0 != shopping.id}
+                                    } else {
+                                        shoppingToBeMoved.append(shopping.id)
+                                    }
+                                }
                             
                         }
                     }
@@ -51,18 +61,19 @@ struct ShoppingView: View {
                     
                     //Spacer()
                     
-                    Button {
-                        isMovedToInventory = true
-                    } label: {
-                        Text("Move all to inventory")
-                            .font(.system(size: 18))
-                            .foregroundColor(.white)
+                    if !shoppingToBeMoved.isEmpty {
+                        Button {
+                            isMovedToInventory = true
+                        } label: {
+                            Text("Move selected item(s) to inventory")
+                                .font(.system(size: 18))
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: 350, height: 50, alignment: .center)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding()
                     }
-                    .frame(width: 350, height: 50, alignment: .center)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                    .padding()
-
                     
                 } else {
                     ShoppingListEmptyView()
@@ -77,7 +88,7 @@ struct ShoppingView: View {
             ShoppingFormView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $shoppingViewModel.isPresented)
         }
         .sheet(isPresented: $isMovedToInventory, content: {
-            ShoppingToInventoryView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isShowDetail: false, activeShopping: [])
+            ShoppingToInventoryView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isShowDetail: false, shoppingToBeMoved: $shoppingToBeMoved)
         })
         .onAppear(perform: {
             shoppingViewModel.loadList()

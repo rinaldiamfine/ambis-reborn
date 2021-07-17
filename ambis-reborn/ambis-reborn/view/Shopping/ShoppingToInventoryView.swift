@@ -14,8 +14,8 @@ struct ShoppingToInventoryView: View {
     
     @State var isShowDetail = false
     
+    @Binding var shoppingToBeMoved: [NSManagedObjectID]
     
-    @State var activeShopping: [NSManagedObjectID]
     
     func actionCancel() {
         
@@ -29,16 +29,11 @@ struct ShoppingToInventoryView: View {
             VStack {
                 if shoppingViewModel.shoppingCount > 0 {
                     List {
-                        ForEach(shoppingViewModel.shopping, id:\.id) {
-                            shopping in ShoppingToInventoryListView(shopping: shopping, testDate: Date(), activeShopping: $activeShopping)
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    if activeShopping.contains(shopping.id) {
-                                       activeShopping = activeShopping.filter{$0 != shopping.id}
-                                    } else {
-                                        activeShopping.append(shopping.id)
-                                    }
-                                }
+                        ForEach(shoppingViewModel.shopping, id:\.id) { shopping in
+                            if shoppingToBeMoved.contains(shopping.id) {
+                                ShoppingToInventoryListView(shopping: shopping, testDate: Date())
+                                    .contentShape(Rectangle())
+                            }
                         }
                     }
                     .listStyle(InsetGroupedListStyle())

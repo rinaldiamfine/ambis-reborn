@@ -25,7 +25,9 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="Shopping" representedClassName="Shopping" syncable="YES" codeGenerationType="class">
+        <attribute name="expiryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="purchaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="total" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="totalType" optional="YES" attributeType="String"/>
         <relationship name="toFoodCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FoodCategory" inverseName="toShopping" inverseEntity="FoodCategory"/>
@@ -34,6 +36,6 @@
         <element name="FoodCategory" positionX="191.70361328125" positionY="-14.79122924804688" width="128" height="179"/>
         <element name="Inventory" positionX="-41.131103515625" positionY="-15.9132080078125" width="128" height="134"/>
         <element name="Item" positionX="-191.2103881835938" positionY="-34.45909118652344" width="128" height="44"/>
-        <element name="Shopping" positionX="-69.84466552734375" positionY="184.8369140625" width="128" height="89"/>
+        <element name="Shopping" positionX="-69.84466552734375" positionY="184.8369140625" width="128" height="119"/>
     </elements>
 </model>

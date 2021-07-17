@@ -176,7 +176,6 @@
 				9090AC9B269948E3008AF935 /* InventoryFormView.swift */,
 				9070148C269ECC0B00F8981A /* InventoryFormEditView.swift */,
 				9090AC9D269948F0008AF935 /* InventoryListView.swift */,
-				9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */,
 				9070148A269E160200F8981A /* InventoryCategoryListView.swift */,
 			);
 			path = Inventory;
@@ -187,6 +186,7 @@
 			children = (
 				905DE8CD2693334A00E7011C /* CategoryView.swift */,
 				905DE8D62693E93B00E7011C /* CategoryListView.swift */,
+				9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */,
 				90AD5EFF26976BF000E98152 /* CategoryFormView.swift */,
 			);
 			path = Category;

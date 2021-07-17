@@ -17,6 +17,9 @@ class ShoppingViewModel: ObservableObject {
     @Published var toShopping: [FoodCategory] = []
     @Published var selectedShopping = 0
     
+    @Published var purchaseDate: Date = Date()
+    @Published var expiryDate: Date = Date()
+    
     @Published var shopping: [ShoppingModel] = []
     @Published var shoppingCount: Int = 0
     @Published var foodCategories: [FoodCategoryModel] = []
@@ -28,7 +31,6 @@ class ShoppingViewModel: ObservableObject {
     
     @Published var previewSelectedCategory = "Choose Category"
     @Published var detailDisclaimer = ""
-    
     
     //DELETE
     func deleteItemByContextMenu(index: ShoppingModel) {

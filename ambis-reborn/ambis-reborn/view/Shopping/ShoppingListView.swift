@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ShoppingListView: View {
     var shopping: ShoppingModel
+    @Binding var shoppingToBeMoved: [NSManagedObjectID]
     
     func formatSubtitle() -> String {
         var format = ""
@@ -18,9 +20,15 @@ struct ShoppingListView: View {
     
     var body: some View {
         HStack {
-            if shopping.foodCategory != FoodCategory() {
-                Text(shopping.foodCategory.imageString ?? "")
-                    .font(.system(size: 18))
+//            if shopping.foodCategory != FoodCategory() {
+//                Text(shopping.foodCategory.imageString ?? "")
+//                    .font(.system(size: 18))
+//            }
+            if shoppingToBeMoved.contains(shopping.id) {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.green)
+            } else {
+                Image(systemName: "checkmark.circle")
             }
             VStack(alignment: .leading) {
                 Text(shopping.name).font(.system(size: 15))

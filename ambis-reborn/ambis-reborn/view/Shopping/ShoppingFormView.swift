@@ -20,9 +20,6 @@ struct ShoppingFormView: View {
     @State private var selectedType = "Kg"
     @State private var isShowPickerType = false
     
-    var storeAvailable = AppGlobalData.generateDataStore()
-    @State private var selectedStore = "Fridge"
-    
     func actionDone() {
         if shoppingViewModel.status == "create" {
             //CREATE ITEM
@@ -94,27 +91,6 @@ struct ShoppingFormView: View {
                                 .onTapGesture {
                                     categoryOnTap(category: category)
                                 }
-                        }
-                    }
-                }
-                
-                Section(header: Text("Storing Type")) {
-                    Picker("", selection: $selectedStore) {
-                        ForEach(storeAvailable, id: \.self.name) {
-                            Text($0.name)
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
-                    if shoppingViewModel.detailDisclaimer != "" {
-                        HStack {
-                            Spacer()
-                            Text(shoppingViewModel.detailDisclaimer)
-                                .lineLimit(nil).contentShape(Rectangle())
-                                .multilineTextAlignment(.center)
-                                .font(.system(size: 14))
-                                .foregroundColor(Color.init(UIColor.systemGreen))
-                                .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                                .padding(.top, 10).padding(.bottom, 10)
-                            Spacer()
                         }
                     }
                 }
