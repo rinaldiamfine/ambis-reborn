@@ -32,6 +32,21 @@ class InventoryViewModel: ObservableObject {
     @Published var detailDisclaimer = ""
     @Published var expiryEstimation: Int = 0
     
+    //DATA FROM SHOPPING LIST
+    func readDataFromShopping(shopping: ShoppingModel) {
+        let inventory = Inventory(context: PersistenceController.shared.container.viewContext)
+        inventory.name = shopping.name
+        inventory.total = shopping.total
+        inventory.totalType = shopping.totalType
+        inventory.purchaseDate = shopping.purchaseDate
+        inventory.expiryDate = shopping.expiryDate
+        toInventory = [shopping.foodCategory]
+        if toInventory.count > 0 {
+            inventory.toFoodCategory = toInventory.first
+        }
+        PersistenceController.shared.saveData()
+    }
+    
     //EDIT
     func editData(index: InventoryModel) {
         var count = 0

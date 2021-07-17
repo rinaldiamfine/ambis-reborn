@@ -11,7 +11,6 @@ import CoreData
 struct ShoppingToInventoryListView: View {
     @ObservedObject var shoppingViewModel = ShoppingViewModel()
     var shopping: ShoppingModel
-    @State var testDate: Date
     
     var storeAvailable = AppGlobalData.generateDataStore()
     @State private var selectedStore = "Fridge"

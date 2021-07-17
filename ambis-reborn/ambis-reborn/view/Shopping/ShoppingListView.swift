@@ -20,22 +20,21 @@ struct ShoppingListView: View {
     
     var body: some View {
         HStack {
-//            if shopping.foodCategory != FoodCategory() {
-//                Text(shopping.foodCategory.imageString ?? "")
-//                    .font(.system(size: 18))
-//            }
-            if shoppingToBeMoved.contains(shopping.id) {
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
-            } else {
-                Image(systemName: "checkmark.circle")
+            if shopping.foodCategory != FoodCategory() {
+                Text(shopping.foodCategory.imageString ?? "")
+                    .font(.system(size: 18))
             }
             VStack(alignment: .leading) {
                 Text(shopping.name).font(.system(size: 15))
                 Text(formatSubtitle()).font(.system(size: 13))
             }
             Spacer()
-            Text("Day").font(.system(size: 15))
+            if shoppingToBeMoved.contains(shopping.id) {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.green)
+            } else {
+                Image(systemName: "checkmark.circle")
+            }
         }
     }
 }

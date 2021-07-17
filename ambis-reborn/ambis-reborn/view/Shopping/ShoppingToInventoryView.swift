@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ShoppingToInventoryView: View {
+    @ObservedObject var inventoryViewModel = InventoryViewModel()
     @ObservedObject var shoppingViewModel = ShoppingViewModel()
     @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     
@@ -20,8 +21,14 @@ struct ShoppingToInventoryView: View {
     func actionCancel() {
         
     }
+    
     func actionDone() {
-        
+        for shopping in shoppingViewModel.shopping {
+            if shoppingToBeMoved.contains(shopping.id) {
+                print(shopping)
+                inventoryViewModel.readDataFromShopping(shopping: shopping)
+            }
+        }
     }
     
     var body: some View {
@@ -31,7 +38,7 @@ struct ShoppingToInventoryView: View {
                     List {
                         ForEach(shoppingViewModel.shopping, id:\.id) { shopping in
                             if shoppingToBeMoved.contains(shopping.id) {
-                                ShoppingToInventoryListView(shopping: shopping, testDate: Date())
+                                ShoppingToInventoryListView(shopping: shopping)
                                     .contentShape(Rectangle())
                             }
                         }
