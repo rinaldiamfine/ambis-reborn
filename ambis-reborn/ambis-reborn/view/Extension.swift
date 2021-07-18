@@ -16,13 +16,11 @@ extension View {
 extension UINavigationController {
     override open func viewDidLoad() {
         super.viewDidLoad()
-        
-        let colors = UINavigationBarAppearance()
-        colors.backgroundColor = UIColor.init(Color("Gradient1"))
-        
-        navigationBar.standardAppearance = colors
-        navigationBar.scrollEdgeAppearance = colors
-        navigationBar.compactAppearance = colors
+//        let colors = UINavigationBarAppearance()
+//        colors.backgroundColor = UIColor.init(Color("Gradient1"))
+//        navigationBar.standardAppearance = colors
+//        navigationBar.scrollEdgeAppearance = colors
+//        navigationBar.compactAppearance = colors
     }
 }
 

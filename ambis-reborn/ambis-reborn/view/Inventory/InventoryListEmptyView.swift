@@ -10,6 +10,7 @@ import SwiftUI
 struct InventoryListEmptyView: View {
     var body: some View {
         VStack {
+            Spacer()
             ZStack {
                 Ellipse()
                     .fill(Color.init(UIColor.systemGray5))
@@ -21,6 +22,14 @@ struct InventoryListEmptyView: View {
                 .foregroundColor(Color.init(UIColor.systemGray))
                 .padding()
         }
+    }
+}
+
+struct InventoryEmptyView: View {
+    var body: some View {
+        VStack{
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        }.background(Color.yellow)
     }
 }
 

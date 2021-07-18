@@ -9,11 +9,15 @@ import SwiftUI
 
 struct InventoryFilterView: View {
     @Binding var defaultFilter: String
-    
     @State var isExpirySoon: Bool = false
     @State var isFridge: Bool = false
     @State var isFreezer: Bool = false
     @State var isOther: Bool = false
+    @State private var boxBackground = Color("BoxBackground")
+    @State private var boxColor = Color("BoxColor")
+    @State private var colorBrand1 = Color("GradientBar1")
+    @State private var colorBrand2 = Color("GradientBar2")
+    @Environment(\.colorScheme) var colorScheme
     
     func removeFilter() {
         isExpirySoon = false
@@ -23,85 +27,135 @@ struct InventoryFilterView: View {
     }
     
     var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                if defaultFilter == "Expiry Soon" {
-                    Ellipse()
-                        .fill(Color.init(UIColor.red))
-                        .frame(width: 32, height: 32)
-                } else {
-                    Ellipse()
-                        .fill(Color.init(UIColor.systemGray5))
-                        .frame(width: 32, height: 32)
+        VStack {
+            HStack {
+                Spacer()
+                VStack {
+                    if defaultFilter == "Expiry Soon" {
+                        ZStack {
+                            Ellipse()
+                                .fill(LinearGradient(
+                                      gradient: .init(colors: [colorBrand1, colorBrand2]),
+                                    startPoint: .init(x: 0, y: 0.5),
+                                      endPoint: .init(x: 0.5, y: 0.5)
+                                ))
+                                .frame(width: 46, height: 46)
+                            Image("BtnExpirySoonActive")
+                        }
+                    } else {
+                        ZStack {
+                            Ellipse()
+//                                    .strokeBorder(boxColor)
+                                .fill(boxBackground)
+                                .frame(width: 46, height: 46)
+                            Image("BtnExpirySoon")
+                        }
+                    }
+                    Text("Expiry Soon")
+                        .font(.system(size: 12))
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                }.onTapGesture {
+                    defaultFilter = "Expiry Soon"
                 }
-                Text("Expiry Soon")
-                    .font(.system(size: 15))
-            }.onTapGesture {
-                defaultFilter = "Expiry Soon"
-            }
-            .padding(.top)
-            .padding(.bottom)
-            Spacer()
-            VStack {
-                if defaultFilter == "Fridge" {
-                    Ellipse()
-                        .fill(Color.init(UIColor.red))
-                        .frame(width: 32, height: 32)
-                } else {
-                    Ellipse()
-                        .fill(Color.init(UIColor.systemGray5))
-                        .frame(width: 32, height: 32)
+                .padding(.top)
+                .padding(.bottom)
+                Spacer()
+                VStack {
+                    if defaultFilter == "Fridge" {
+                        ZStack {
+                            Ellipse()
+                                .fill(LinearGradient(
+                                      gradient: .init(colors: [colorBrand1, colorBrand2]),
+                                    startPoint: .init(x: 0, y: 0.5),
+                                      endPoint: .init(x: 0.5, y: 0.5)
+                                ))
+                                .frame(width: 46, height: 46)
+                            Image("BtnFridgeActive")
+                        }
+                    } else {
+                        ZStack {
+                            Ellipse()
+//                                    .strokeBorder(boxColor)
+                                .fill(boxBackground)
+                                .frame(width: 46, height: 46)
+                            Image("BtnFridge")
+                        }
+                    }
+                    Text("   Fridge   ")
+                        .font(.system(size: 12))
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                }.onTapGesture {
+                    removeFilter()
+                    isFridge = true
+                    defaultFilter = "Fridge"
                 }
-                Text("   Fridge   ")
-                    .font(.system(size: 15))
-            }.onTapGesture {
-                removeFilter()
-                isFridge = true
-                defaultFilter = "Fridge"
-            }
-            .padding(.top)
-            .padding(.bottom)
-            Spacer()
-            VStack {
-                if defaultFilter == "Freezer" {
-                    Ellipse()
-                        .fill(Color.init(UIColor.red))
-                        .frame(width: 32, height: 32)
-                } else {
-                    Ellipse()
-                        .fill(Color.init(UIColor.systemGray5))
-                        .frame(width: 32, height: 32)
+                .padding(.top)
+                .padding(.bottom)
+                Spacer()
+                VStack {
+                    if defaultFilter == "Freezer" {
+                        ZStack {
+                            Ellipse()
+                                .fill(LinearGradient(
+                                      gradient: .init(colors: [colorBrand1, colorBrand2]),
+                                    startPoint: .init(x: 0, y: 0.5),
+                                      endPoint: .init(x: 0.5, y: 0.5)
+                                ))
+                                .frame(width: 46, height: 46)
+                            Image("BtnFreezerActive")
+                        }
+                    } else {
+                        ZStack {
+                            Ellipse()
+//                                    .strokeBorder(boxColor)
+                                .fill(boxBackground)
+                                .frame(width: 46, height: 46)
+                            Image("BtnFreezer")
+                        }
+                    }
+                    Text("   Freezer   ")
+                        .font(.system(size: 12))
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                }.onTapGesture {
+                    defaultFilter = "Freezer"
                 }
-                Text("   Freezer   ")
-                    .font(.system(size: 15))
-            }.onTapGesture {
-                defaultFilter = "Freezer"
-            }
-            .padding(.top)
-            .padding(.bottom)
-            Spacer()
-            VStack {
-                if defaultFilter == "Other" {
-                    Ellipse()
-                        .fill(Color.init(UIColor.red))
-                        .frame(width: 32, height: 32)
-                } else {
-                    Ellipse()
-                        .fill(Color.init(UIColor.systemGray5))
-                        .frame(width: 32, height: 32)
+                .padding(.top)
+                .padding(.bottom)
+                Spacer()
+                VStack {
+                    if defaultFilter == "Other" {
+                        ZStack {
+                            Ellipse()
+                                .fill(LinearGradient(
+                                      gradient: .init(colors: [colorBrand1, colorBrand2]),
+                                    startPoint: .init(x: 0, y: 0.5),
+                                      endPoint: .init(x: 0.5, y: 0.5)
+                                ))
+                                .frame(width: 46, height: 46)
+                            Image("BtnOtherActive")
+                        }
+                    } else {
+                        ZStack {
+                            Ellipse()
+//                                    .strokeBorder(boxColor)
+                                .fill(boxBackground)
+                                .frame(width: 46, height: 46)
+                            Image("BtnOther")
+                        }
+                    }
+                    Text("   Other   ")
+                        .font(.system(size: 12))
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                }.onTapGesture {
+                    defaultFilter = "Other"
                 }
-                Text("   Other   ")
-                    .font(.system(size: 15))
-            }.onTapGesture {
-                defaultFilter = "Other"
+                .padding(.top)
+                .padding(.bottom)
+                Spacer()
             }
-            .padding(.top)
-            .padding(.bottom)
-            Spacer()
+            .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
         }
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color.init(UIColor.systemGray6)))
-        .padding()
+        Text(defaultFilter).font(.system(size: 20, weight: .semibold)).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
     }
 }
 
