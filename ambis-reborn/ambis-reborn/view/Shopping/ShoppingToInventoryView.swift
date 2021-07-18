@@ -14,6 +14,7 @@ struct ShoppingToInventoryView: View {
     @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     
     @State var isShowDetail = false
+    @State var arrayExpiryDate: [Date] = []
     
     @Binding var shoppingToBeMoved: [NSManagedObjectID]
     
@@ -23,13 +24,16 @@ struct ShoppingToInventoryView: View {
     }
     
     func actionDone() {
-        
+        var counter = 0
         for shopping in shoppingViewModel.shopping {
             if shoppingToBeMoved.contains(shopping.id) {
                 print( shoppingViewModel.arrayExpiryDate, "TESST")
-                //shopping.purchaseDate = shoppingViewModel.purchaseDate
-                inventoryViewModel.readDataFromShopping(shopping: shopping)
+                inventoryViewModel.expiryDate = arrayExpiryDate[counter]
+                print(inventoryViewModel.purchaseDate, "LIST PURCH")
+                print(inventoryViewModel.expiryDate, "LIST EXp")
+                inventoryViewModel.readDataFromShopping(shopping: shopping, expiryDate: inventoryViewModel.expiryDate)
             }
+            counter += 1
         }
         
     }
@@ -41,7 +45,7 @@ struct ShoppingToInventoryView: View {
                     List {
                         ForEach(shoppingViewModel.shopping, id:\.id) { shopping in
                             if shoppingToBeMoved.contains(shopping.id) {
-                                ShoppingToInventoryListView(shopping: shopping)
+                                ShoppingToInventoryListView(shopping: shopping, arrayExpiryDate: $arrayExpiryDate)
                                     .contentShape(Rectangle())
                             }
                         }

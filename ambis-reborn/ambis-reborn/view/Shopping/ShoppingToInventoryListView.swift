@@ -15,6 +15,8 @@ struct ShoppingToInventoryListView: View {
     var storeAvailable = AppGlobalData.generateDataStore()
     @State private var selectedStore = "Fridge"
     @State var isClicked = false
+    @Binding var arrayExpiryDate: [Date]
+//    @Published var arrayExpiryDate: [Date] = []
     
     @State var counterToAdjustExpDate: Int = 0
     
@@ -51,9 +53,8 @@ struct ShoppingToInventoryListView: View {
                 counterToAdjustExpDate += 1
                 if counterToAdjustExpDate == 1 {
                     shoppingViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
-//                    shoppingViewModel.purchaseDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
-                    shoppingViewModel.arrayExpiryDate.append(Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!)
-                    print("TEST", shoppingViewModel.arrayExpiryDate)
+                    arrayExpiryDate.append(Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!)
+                    print("TEST", arrayExpiryDate)
                 }
                 isClicked.toggle()
             }
