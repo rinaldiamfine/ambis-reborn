@@ -10,7 +10,6 @@ import SwiftUI
 struct InventoryListEmptyView: View {
     var body: some View {
         VStack {
-            Spacer()
             ZStack {
                 Ellipse()
                     .fill(Color.init(UIColor.systemGray5))

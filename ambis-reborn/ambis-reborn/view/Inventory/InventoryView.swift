@@ -107,7 +107,9 @@ struct InventoryView: View {
                     .listStyle(InsetGroupedListStyle())
                     
                 } else {
+                    Spacer()
                     InventoryListEmptyView()
+                    Spacer()
                 }
             }
             .navigationBarTitle("Inventory")
