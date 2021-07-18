@@ -23,12 +23,15 @@ struct ShoppingToInventoryView: View {
     }
     
     func actionDone() {
+        
         for shopping in shoppingViewModel.shopping {
             if shoppingToBeMoved.contains(shopping.id) {
-                print(shopping)
+                print( shoppingViewModel.arrayExpiryDate, "TESST")
+                //shopping.purchaseDate = shoppingViewModel.purchaseDate
                 inventoryViewModel.readDataFromShopping(shopping: shopping)
             }
         }
+        
     }
     
     var body: some View {

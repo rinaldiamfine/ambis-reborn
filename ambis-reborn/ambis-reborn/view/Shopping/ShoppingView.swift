@@ -28,51 +28,55 @@ struct ShoppingView: View {
         NavigationView {
             VStack(spacing: 0) {
                 if shoppingViewModel.shoppingCount > 0 {
-                    List {
-                        ForEach(shoppingViewModel.shopping, id:\.id) {
-                            shopping in ShoppingListView(shopping: shopping, shoppingToBeMoved: $shoppingToBeMoved)
-                                .contextMenu {
-                                    Button {
+                    ZStack {
+                        List {
+                            ForEach(shoppingViewModel.shopping, id:\.id) {
+                                shopping in ShoppingListView(shopping: shopping, shoppingToBeMoved: $shoppingToBeMoved)
+                                    .contextMenu {
+                                        Button {
+                                            
+                                        } label: {
+                                            Label("Update Inventory", systemImage: "square.and.pencil")
+                                        }
                                         
-                                    } label: {
-                                        Label("Update Inventory", systemImage: "square.and.pencil")
+                                        Divider()
+                                        Button {
+                                            shoppingViewModel.deleteItemByContextMenu(index: shopping)
+                                        } label: {
+                                            Text("Remove")
+                                            Image(systemName: "trash")
+                                        }
                                     }
-                                    
-                                    Divider()
-                                    Button {
-                                        shoppingViewModel.deleteItemByContextMenu(index: shopping)
-                                    } label: {
-                                        Text("Remove")
-                                        Image(systemName: "trash")
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        if shoppingToBeMoved.contains(shopping.id) {
+                                            shoppingToBeMoved = shoppingToBeMoved.filter{$0 != shopping.id}
+                                        } else {
+                                            shoppingToBeMoved.append(shopping.id)
+                                        }
                                     }
-                                }
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    if shoppingToBeMoved.contains(shopping.id) {
-                                        shoppingToBeMoved = shoppingToBeMoved.filter{$0 != shopping.id}
-                                    } else {
-                                        shoppingToBeMoved.append(shopping.id)
-                                    }
-                                }
+                                
+                            }
+                        }
+                        .listStyle(InsetGroupedListStyle())
+                        
+                        VStack {
+                            Spacer()
                             
+                            if !shoppingToBeMoved.isEmpty {
+                                Button {
+                                    isMovedToInventory = true
+                                } label: {
+                                    Text("Move selected item(s) to inventory")
+                                        .font(.system(size: 18))
+                                        .foregroundColor(.white)
+                                }
+                                .frame(width: 350, height: 50, alignment: .center)
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                                .padding()
+                            }
                         }
-                    }
-                    .listStyle(InsetGroupedListStyle())
-                    
-                    //Spacer()
-                    
-                    if !shoppingToBeMoved.isEmpty {
-                        Button {
-                            isMovedToInventory = true
-                        } label: {
-                            Text("Move selected item(s) to inventory")
-                                .font(.system(size: 18))
-                                .foregroundColor(.white)
-                        }
-                        .frame(width: 350, height: 50, alignment: .center)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding()
                     }
                     
                 } else {

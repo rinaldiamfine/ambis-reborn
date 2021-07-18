@@ -36,6 +36,9 @@ struct ShoppingModel {
         return shopping.expiryDate ?? Date()
     }
     
+//    var editPurchaseDate: Date = Date()
+//    var editExpiryDate: Date = Date()
+    
     var remainingDays: Int {
         var remainingDays: Int = 0
         let currentDate = Date()

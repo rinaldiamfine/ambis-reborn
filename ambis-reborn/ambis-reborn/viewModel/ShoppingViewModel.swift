@@ -20,6 +20,9 @@ class ShoppingViewModel: ObservableObject {
     @Published var purchaseDate: Date = Date()
     @Published var expiryDate: Date = Date()
     
+    @Published var arrayPurchaseDate: [Date] = []
+    @Published var arrayExpiryDate: [Date] = []
+    
     @Published var shopping: [ShoppingModel] = []
     @Published var shoppingCount: Int = 0
     @Published var foodCategories: [FoodCategoryModel] = []
@@ -34,18 +37,18 @@ class ShoppingViewModel: ObservableObject {
     
     
     //UPDATE (before moving to inventory)
-//    func updateShoppingDetails(shoppingItem: ShoppingModel) {
-//        let shopping = Shopping(context: PersistenceController.shared.container.viewContext)
-//        shopping.name = shoppingItem.name
-//        shopping.total = shoppingItem.total
-//        shopping.totalType = shoppingItem.totalType
-//        shopping.purchaseDate = shoppingItem.purchaseDate
-//        shopping.expiryDate = shoppingItem.expiryDate
-//        if toShopping.count > 0 {
-//            shopping.toFoodCategory = toShopping.first
-//        }
-//        PersistenceController.shared.saveData()
-//    }
+    func updateShoppingDetails(shoppingItem: ShoppingModel) {
+        let shopping = Shopping(context: PersistenceController.shared.container.viewContext)
+        shopping.name = shoppingItem.name
+        shopping.total = shoppingItem.total
+        shopping.totalType = shoppingItem.totalType
+        shopping.purchaseDate = shoppingItem.purchaseDate
+        shopping.expiryDate = shoppingItem.expiryDate
+        if toShopping.count > 0 {
+            shopping.toFoodCategory = toShopping.first
+        }
+        PersistenceController.shared.saveData()
+    }
     
     //DELETE
     func deleteItemByContextMenu(index: ShoppingModel) {

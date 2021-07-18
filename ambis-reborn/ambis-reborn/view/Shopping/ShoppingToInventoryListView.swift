@@ -51,6 +51,9 @@ struct ShoppingToInventoryListView: View {
                 counterToAdjustExpDate += 1
                 if counterToAdjustExpDate == 1 {
                     shoppingViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
+//                    shoppingViewModel.purchaseDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
+                    shoppingViewModel.arrayExpiryDate.append(Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!)
+                    print("TEST", shoppingViewModel.arrayExpiryDate)
                 }
                 isClicked.toggle()
             }
