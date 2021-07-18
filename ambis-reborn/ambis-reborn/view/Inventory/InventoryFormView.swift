@@ -15,14 +15,12 @@ struct InventoryFormView: View {
     @Binding var isPresented: Bool
     
     @State private var showingActionSheet = false
-    @State private var selection = "None"
-    
-    var typeAvailable = AppGlobalData.generateDataType()
-    @State private var selectedType = "Kg"
     @State private var isShowPickerType = false
     
+    var typeAvailable = AppGlobalData.generateDataType()
+    
     var storeAvailable = AppGlobalData.generateDataStore()
-    @State private var selectedStore = "Fridge"
+    
     
     func actionDone() {
         if inventoryViewModel.status == "edit" {
@@ -61,7 +59,7 @@ struct InventoryFormView: View {
                     HStack {
                         Text("Type")
                         Spacer()
-                        Text(selectedType)
+                        Text(inventoryViewModel.totalType)
                         if isShowPickerType {
                             Image(systemName: "chevron.down")
                                 .font(.system(size: 12, weight: .bold))
@@ -77,7 +75,7 @@ struct InventoryFormView: View {
                         isShowPickerType.toggle()
                     }
                     if isShowPickerType {
-                        Picker("", selection: $selectedType) {
+                        Picker("", selection: $inventoryViewModel.totalType) {
                             ForEach(typeAvailable, id: \.self.name) {
                                 Text($0.name)
                             }
@@ -97,7 +95,7 @@ struct InventoryFormView: View {
                 }
                 
                 Section(header: Text("Storing Type")) {
-                    Picker("", selection: $selectedStore) {
+                    Picker("", selection: $inventoryViewModel.store) {
                         ForEach(storeAvailable, id: \.self.name) {
                             Text($0.name)
                         }
@@ -152,7 +150,6 @@ struct InventoryFormView: View {
                 title: Text("Are you kulu kulu?"),
                 buttons: [
                     .destructive(Text("Discard Changes")) {
-                        selection = "discard"
                         isPresented = false
                         inventoryViewModel.resetData()
                     },
