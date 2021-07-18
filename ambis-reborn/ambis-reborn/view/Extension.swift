@@ -7,6 +7,36 @@
 
 import SwiftUI
 
+//struct ListBackgroundColor: ViewModifier {
+//    let color: UIColor
+//    func body(content: Content) -> some View {
+//        content
+//            .onAppear() {
+//                UITableView.appearance().backgroundColor = self.color
+//                UITableViewCell.appearance().backgroundColor = self.color
+//            }
+//    }
+//}
+//
+//extension View {
+//    func listBackgroundColor(color: UIColor) -> some View {
+//        ModifiedContent(content: self, modifier: ListBackgroundColor(color: color))
+//    }
+//}
+
+extension UINavigationController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let colors = UINavigationBarAppearance()
+        colors.backgroundColor = UIColor.init(Color("Gradient1"))
+        
+        navigationBar.standardAppearance = colors
+        navigationBar.scrollEdgeAppearance = colors
+        navigationBar.compactAppearance = colors
+    }
+}
+
 extension View {
     func add(_ searchBar: SearchBar) -> some View {
         return self.modifier(SearchBarModifier(searchBar: searchBar))

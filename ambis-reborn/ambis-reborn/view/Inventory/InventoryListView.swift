@@ -36,7 +36,6 @@ struct InventoryListView: View {
             } else {
                 Text("Expired").font(.system(size: 15)).foregroundColor(.red)
             }
-            
         }
     }
 }

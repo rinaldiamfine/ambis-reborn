@@ -14,9 +14,10 @@ struct InventoryView: View {
     @ObservedObject var inventoryViewModel = InventoryViewModel()
     @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     @ObservedObject var searchBar: SearchBar = SearchBar()
+    @State private var defaultFilter = "Expiry Soon"
+    @Environment(\.colorScheme) var colorScheme
     
     var storeAvailable = AppGlobalData.generateDataStore()
-    @State private var selectedStore = "Fridge"
     
     func getIconName() -> Image {
         return Image(systemName: "list.dash")
@@ -25,22 +26,30 @@ struct InventoryView: View {
         return Text("List")
     }
     
+//    searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text) && $0.store.localizedStandardContains(defaultFilter)
+    init() {
+//        UINavigationBar.appearance().backgroundColor = .red
+        let nav = UINavigationBarAppearance()
+        nav.backgroundColor = .red
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 if inventoryViewModel.inventoryCount > 0 {
+                    InventoryFilterView(defaultFilter: $defaultFilter)
                     List {
-                        Picker("", selection: $selectedStore) {
-                            ForEach(storeAvailable, id: \.self.name) {
-                                Text($0.name)
-                            }
-                        }.pickerStyle(SegmentedPickerStyle())
-                        
-                        //Fridge
-                        Section(header: Text(selectedStore)) {
+                        Section(header: Text(defaultFilter).font(.system(size: 20, weight: .semibold)).foregroundColor(colorScheme == .dark ? Color.white : Color.black)) {
                             ForEach (inventoryViewModel.inventory.filter {
-                                searchBar.text.isEmpty ||
-                                    $0.name.localizedStandardContains(searchBar.text)
+                                if defaultFilter == "Expiry Soon" {
+                                    return true
+                                } else {
+                                    if searchBar.text.isEmpty {
+                                        return $0.store.localizedStandardContains(defaultFilter)
+                                    } else {
+                                        return $0.name.localizedStandardContains(searchBar.text) && $0.store.localizedStandardContains(defaultFilter)
+                                    }
+                                }
                             }, id:\.id) {
                                 inventory in InventoryListView(inventory: inventory)
                                     .environmentObject(InventoryViewModel())
@@ -66,8 +75,7 @@ struct InventoryView: View {
                                         }
                                     }
                             }
-                        }
-                        
+                        }.textCase(nil)
                     }
                     .listStyle(InsetGroupedListStyle())
                 } else {
