@@ -29,16 +29,6 @@ struct InventoryView: View {
         return Text("Inventory")
     }
     
-//    searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text) && $0.store.localizedStandardContains(defaultFilter)
-//    init() {
-//        let nav = UINavigationBarAppearance()
-//        nav.backgroundColor = .red
-//    }
-    
-    func filterByText() {
-        
-    }
-    
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
@@ -73,15 +63,10 @@ struct InventoryView: View {
                 .navigationBarHidden(showCancelButton)
                 
                 if inventoryViewModel.inventoryCount > 0 {
-                    List {
-//                        Section(header: Text(defaultFilter).font(.system(size: 20, weight: .semibold)).foregroundColor(colorScheme == .dark ? Color.white : Color.black))
-//                        Section {
-//                            InventoryFilterView(defaultFilter: $defaultFilter)
-//                        }
+                    ScrollView {
                         Section(header: InventoryFilterView(defaultFilter: $defaultFilter)) {
                             ForEach (inventoryViewModel.inventory.filter {
                                 if defaultFilter == "Expiry Soon" {
-//                                    return $0.name.localizedStandardContains(searchText)
                                     return true
                                 } else {
                                     if searchText.isEmpty {
@@ -89,11 +74,6 @@ struct InventoryView: View {
                                     } else {
                                         return $0.name.localizedStandardContains(searchText) && $0.store.localizedStandardContains(defaultFilter)
                                     }
-//                                    if searchBar.text.isEmpty {
-//                                        return $0.store.localizedStandardContains(defaultFilter)
-//                                    } else {
-//                                        return $0.name.localizedStandardContains(searchBar.text) && $0.store.localizedStandardContains(defaultFilter)
-//                                    }
                                 }
                             }, id:\.id) {
                                 inventory in InventoryListView(inventory: inventory)
@@ -122,7 +102,10 @@ struct InventoryView: View {
                             }
                         }.textCase(nil)
                     }
+                    .padding()
+                    .background(Color("AppBackground"))
                     .listStyle(InsetGroupedListStyle())
+                    
                 } else {
                     InventoryListEmptyView()
                 }

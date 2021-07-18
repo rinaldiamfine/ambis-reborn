@@ -27,7 +27,7 @@ struct InventoryFilterView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Spacer()
                 VStack {
@@ -35,9 +35,9 @@ struct InventoryFilterView: View {
                         ZStack {
                             Ellipse()
                                 .fill(LinearGradient(
-                                      gradient: .init(colors: [colorBrand1, colorBrand2]),
+                                    gradient: .init(colors: [colorBrand1, colorBrand2]),
                                     startPoint: .init(x: 0, y: 0.5),
-                                      endPoint: .init(x: 0.5, y: 0.5)
+                                    endPoint: .init(x: 0.8, y: 0.5)
                                 ))
                                 .frame(width: 46, height: 46)
                             Image("BtnExpirySoonActive")
@@ -65,9 +65,9 @@ struct InventoryFilterView: View {
                         ZStack {
                             Ellipse()
                                 .fill(LinearGradient(
-                                      gradient: .init(colors: [colorBrand1, colorBrand2]),
+                                    gradient: .init(colors: [colorBrand1, colorBrand2]),
                                     startPoint: .init(x: 0, y: 0.5),
-                                      endPoint: .init(x: 0.5, y: 0.5)
+                                    endPoint: .init(x: 0.8, y: 0.5)
                                 ))
                                 .frame(width: 46, height: 46)
                             Image("BtnFridgeActive")
@@ -97,9 +97,9 @@ struct InventoryFilterView: View {
                         ZStack {
                             Ellipse()
                                 .fill(LinearGradient(
-                                      gradient: .init(colors: [colorBrand1, colorBrand2]),
+                                    gradient: .init(colors: [colorBrand1, colorBrand2]),
                                     startPoint: .init(x: 0, y: 0.5),
-                                      endPoint: .init(x: 0.5, y: 0.5)
+                                    endPoint: .init(x: 0.8, y: 0.5)
                                 ))
                                 .frame(width: 46, height: 46)
                             Image("BtnFreezerActive")
@@ -127,9 +127,9 @@ struct InventoryFilterView: View {
                         ZStack {
                             Ellipse()
                                 .fill(LinearGradient(
-                                      gradient: .init(colors: [colorBrand1, colorBrand2]),
+                                    gradient: .init(colors: [colorBrand1, colorBrand2]),
                                     startPoint: .init(x: 0, y: 0.5),
-                                      endPoint: .init(x: 0.5, y: 0.5)
+                                    endPoint: .init(x: 0.8, y: 0.5)
                                 ))
                                 .frame(width: 46, height: 46)
                             Image("BtnOtherActive")
@@ -155,7 +155,10 @@ struct InventoryFilterView: View {
             }
             .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
         }
-        Text(defaultFilter).font(.system(size: 20, weight: .semibold)).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+        HStack {
+            Text(defaultFilter).font(.system(size: 20, weight: .semibold)).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+            Spacer()
+        }
     }
 }
 
