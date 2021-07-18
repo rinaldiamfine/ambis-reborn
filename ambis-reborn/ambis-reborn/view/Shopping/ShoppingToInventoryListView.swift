@@ -16,6 +16,8 @@ struct ShoppingToInventoryListView: View {
     @State private var selectedStore = "Fridge"
     @State var isClicked = false
     
+    @State var counterToAdjustExpDate: Int = 0
+    
     func formatSubtitle() -> String {
         var format = ""
         format = String(self.shopping.total) + " " + self.shopping.totalType
@@ -46,6 +48,10 @@ struct ShoppingToInventoryListView: View {
             }
             .contentShape(Rectangle())
             .onTapGesture {
+                counterToAdjustExpDate += 1
+                if counterToAdjustExpDate == 1 {
+                    shoppingViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
+                }
                 isClicked.toggle()
             }
             

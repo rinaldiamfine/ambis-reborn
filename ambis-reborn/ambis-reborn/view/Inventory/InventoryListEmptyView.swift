@@ -24,8 +24,8 @@ struct InventoryListEmptyView: View {
     }
 }
 
-struct InventoryListEmptyView_Previews: PreviewProvider {
-    static var previews: some View {
-        InventoryListEmptyView()
-    }
-}
+//struct InventoryListEmptyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InventoryListEmptyView()
+//    }
+//}
