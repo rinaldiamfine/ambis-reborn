@@ -15,6 +15,7 @@
 		307C5524269E9C2E00DD6FC3 /* ShoppingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C5523269E9C2E00DD6FC3 /* ShoppingFormView.swift */; };
 		30CD65CB26A03F4D003CA34A /* ShoppingToInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CD65CA26A03F4D003CA34A /* ShoppingToInventoryView.swift */; };
 		30CD65CD26A04263003CA34A /* ShoppingToInventoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CD65CC26A04263003CA34A /* ShoppingToInventoryListView.swift */; };
+		9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047D1E526A488F200511A25 /* InventoryFilterView.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
 		905DE8B82693311600E7011C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B72693311600E7011C /* ContentView.swift */; };
 		905DE8BA2693311700E7011C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 905DE8B92693311700E7011C /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		307C5523269E9C2E00DD6FC3 /* ShoppingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingFormView.swift; sourceTree = "<group>"; };
 		30CD65CA26A03F4D003CA34A /* ShoppingToInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToInventoryView.swift; sourceTree = "<group>"; };
 		30CD65CC26A04263003CA34A /* ShoppingToInventoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToInventoryListView.swift; sourceTree = "<group>"; };
+		9047D1E526A488F200511A25 /* InventoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFilterView.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		905DE8B52693311600E7011C /* ambis_rebornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ambis_rebornApp.swift; sourceTree = "<group>"; };
 		905DE8B72693311600E7011C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				9090AC9D269948F0008AF935 /* InventoryListView.swift */,
 				9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */,
 				9070148A269E160200F8981A /* InventoryCategoryListView.swift */,
+				9047D1E526A488F200511A25 /* InventoryFilterView.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				30CD65CB26A03F4D003CA34A /* ShoppingToInventoryView.swift in Sources */,
 				9082AE9D2693F4AB009A7161 /* Extension.swift in Sources */,
 				905DE8B82693311600E7011C /* ContentView.swift in Sources */,
+				9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */,
 				9090AC9E269948F0008AF935 /* InventoryListView.swift in Sources */,
 				9090ACA026994AB1008AF935 /* InventoryListEmptyView.swift in Sources */,
 				90AD5F0026976BF000E98152 /* CategoryFormView.swift in Sources */,

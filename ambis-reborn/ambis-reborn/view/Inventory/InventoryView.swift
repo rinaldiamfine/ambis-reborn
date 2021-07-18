@@ -11,9 +11,13 @@ import CoreData
 import UserNotifications
 
 struct InventoryView: View {
-    @StateObject private var inventoryViewModel = InventoryViewModel()
-    @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
+    @ObservedObject var inventoryViewModel = InventoryViewModel()
+    @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     @ObservedObject var searchBar: SearchBar = SearchBar()
+    @State private var defaultFilter = "Expiry Soon"
+    @Environment(\.colorScheme) var colorScheme
+    
+    var storeAvailable = AppGlobalData.generateDataStore()
     
     func getIconName() -> Image {
         return Image(systemName: "list.dash")
@@ -22,16 +26,30 @@ struct InventoryView: View {
         return Text("List")
     }
     
+//    searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text) && $0.store.localizedStandardContains(defaultFilter)
+    init() {
+//        UINavigationBar.appearance().backgroundColor = .red
+        let nav = UINavigationBarAppearance()
+        nav.backgroundColor = .red
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 if inventoryViewModel.inventoryCount > 0 {
+                    InventoryFilterView(defaultFilter: $defaultFilter)
                     List {
-                        //NEAR EXPIRY
-                        Section(header: Text("Expired Soon")) {
+                        Section(header: Text(defaultFilter).font(.system(size: 20, weight: .semibold)).foregroundColor(colorScheme == .dark ? Color.white : Color.black)) {
                             ForEach (inventoryViewModel.inventory.filter {
-                                searchBar.text.isEmpty ||
-                                    $0.name.localizedStandardContains(searchBar.text)
+                                if defaultFilter == "Expiry Soon" {
+                                    return true
+                                } else {
+                                    if searchBar.text.isEmpty {
+                                        return $0.store.localizedStandardContains(defaultFilter)
+                                    } else {
+                                        return $0.name.localizedStandardContains(searchBar.text) && $0.store.localizedStandardContains(defaultFilter)
+                                    }
+                                }
                             }, id:\.id) {
                                 inventory in InventoryListView(inventory: inventory)
                                     .environmentObject(InventoryViewModel())
@@ -57,38 +75,7 @@ struct InventoryView: View {
                                         }
                                     }
                             }
-                        }
-                        
-                        Section(header: Text("Fridge")) {
-                            ForEach (inventoryViewModel.inventory.filter {
-                                searchBar.text.isEmpty ||
-                                    $0.name.localizedStandardContains(searchBar.text)
-                            }, id:\.id) {
-                                inventory in InventoryListView(inventory: inventory)
-                                    .environmentObject(InventoryViewModel())
-                                    .contextMenu {
-                                        Button {
-                                            inventoryViewModel.editData(index: inventory)
-                                        } label: {
-                                            Label("Update Inventory", systemImage: "square.and.pencil")
-                                        }
-                                        
-                                        Button {
-                                            print("share")
-                                        } label: {
-                                            Label("Share", systemImage: "arrowshape.turn.up.forward")
-                                        }
-                                        
-                                        Divider()
-                                        Button {
-                                            inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                                        } label: {
-                                            Text("Remove")
-                                            Image(systemName: "trash")
-                                        }
-                                    }
-                            }
-                        }
+                        }.textCase(nil)
                     }
                     .listStyle(InsetGroupedListStyle())
                 } else {
@@ -122,3 +109,4 @@ struct InventoryView: View {
 //        InventoryView()
 //    }
 //}
+

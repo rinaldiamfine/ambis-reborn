@@ -13,6 +13,19 @@ extension View {
     }
 }
 
+extension UINavigationController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let colors = UINavigationBarAppearance()
+        colors.backgroundColor = UIColor.init(Color("Gradient1"))
+        
+        navigationBar.standardAppearance = colors
+        navigationBar.scrollEdgeAppearance = colors
+        navigationBar.compactAppearance = colors
+    }
+}
+
 extension UIScreen{
    static let screenWidth = UIScreen.main.bounds.size.width
    static let screenHeight = UIScreen.main.bounds.size.height
