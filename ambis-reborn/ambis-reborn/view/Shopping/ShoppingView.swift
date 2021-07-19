@@ -14,10 +14,10 @@ struct ShoppingView: View {
     @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
     
     @State var isMovedToInventory = false
-    
     @State var shoppingToBeMoved: [NSManagedObjectID] = []
     
-    @State private var sampleArray: [String] = []
+    @State var arrayStore: [String] = []
+    @State var arrayPurchaseDate: [Date] = []
     @State var arrayExpiryDate: [Date] = []
     
     func getIconName() -> Image {
@@ -28,15 +28,14 @@ struct ShoppingView: View {
     }
     
     func setArrayDate() {
-        for i in shoppingViewModel.shopping {
-            if shoppingToBeMoved.contains(i.id) {
-//                sampleArray.append(i.name)
-                arrayExpiryDate.append(i.expiryDate)
-                print("SET DATA", arrayExpiryDate)
+        for i in 0..<shoppingViewModel.shopping.count {
+            arrayPurchaseDate.append(Date())
+            arrayExpiryDate.append(Date())
+            arrayStore.append("Fridge")
+            if shoppingToBeMoved.contains(shoppingViewModel.shopping[i].id) {
+                arrayPurchaseDate[i] = shoppingViewModel.shopping[i].purchaseDate
+                arrayExpiryDate[i] =  Calendar.current.date(byAdding: .day, value: Int(shoppingViewModel.shopping[i].foodCategory.expiryEstimation), to: Date())!
             }
-//            for j in shoppingToBeMoved {
-//                print(i ,"LIHAT ISI")
-//            }
         }
     }
         
@@ -84,7 +83,7 @@ struct ShoppingView: View {
                                     //shoppingToBeMoved
                                     setArrayDate()
                                 } label: {
-                                    Text("Move selected item(s) to inventory")
+                                    Text("Move to inventory")
                                         .font(.system(size: 18))
                                         .foregroundColor(.white)
                                 }
@@ -106,11 +105,11 @@ struct ShoppingView: View {
             }))
         }
         .sheet(isPresented: $shoppingViewModel.isPresented) {
-            ShoppingFormView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $shoppingViewModel.isPresented)
+            ShoppingFormView(shoppingViewModel: shoppingViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $shoppingViewModel.isPresented)
         }
         .sheet(isPresented: $isMovedToInventory, content: {
             //
-            ShoppingToInventoryView(shoppingViewModel: self.shoppingViewModel, foodCategoryViewModel: self.foodCategoryViewModel, isShowDetail: false, arrayExpiryDate: $arrayExpiryDate, shoppingToBeMoved: $shoppingToBeMoved)
+            ShoppingToInventoryView(shoppingViewModel: shoppingViewModel, foodCategoryViewModel: foodCategoryViewModel, shoppingToBeMoved: $shoppingToBeMoved, isMovedToInventory: $isMovedToInventory, arrayExpiryDate: $arrayExpiryDate, arrayPurchaseDate: $arrayPurchaseDate, arrayStore: $arrayStore)
         })
         .onAppear(perform: {
             shoppingViewModel.loadList()

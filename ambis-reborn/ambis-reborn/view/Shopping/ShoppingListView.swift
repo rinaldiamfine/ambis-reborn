@@ -24,22 +24,6 @@ struct ShoppingListView: View {
     
     var body: some View {
         HStack {
-            if shoppingToBeMoved.contains(shopping.id) {
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(Color.init(red: 63/255, green: 154/255, blue: 142/255))
-                    .font(.system(size: 30))
-            } else {
-                Image(systemName: "circle")
-                    .foregroundColor(Color.init(.systemGray))
-                    .font(.system(size: 30))
-            }
-            VStack(alignment: .leading, spacing: 5) {
-                Text(shopping.name).font(.system(size: 15))
-                Text(formatSubtitle()).font(.system(size: 13))
-                    .foregroundColor(Color.init(.systemGray))
-            }
-            .padding(.leading, 10)
-            Spacer()
             if shopping.foodCategory != FoodCategory() {
                 ZStack {
                     Ellipse()
@@ -50,10 +34,26 @@ struct ShoppingListView: View {
                         ))
                         .frame(width: 46, height: 46)
                     Text(shopping.foodCategory.imageString ?? "").font(.system(size: 18))
-                }.padding(.trailing, 10)
+                }
+                //.padding(.leading, 10)
+            }
+            VStack(alignment: .leading, spacing: 5) {
+                Text(shopping.name).font(.system(size: 15))
+                Text(formatSubtitle()).font(.system(size: 13))
+                    .foregroundColor(Color.init(.systemGray))
+            }
+            .padding(.leading, 10)
+            Spacer()
+            if shoppingToBeMoved.contains(shopping.id) {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(Color.init(red: 63/255, green: 154/255, blue: 142/255))
+                    .font(.system(size: 30))
+            } else {
+                Image(systemName: "circle")
+                    .foregroundColor(Color.init(.systemGray))
+                    .font(.system(size: 30))
             }
         }
-        .padding(.all, 8)
         .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
     }
 }
