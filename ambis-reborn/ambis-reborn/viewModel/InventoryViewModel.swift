@@ -153,7 +153,7 @@ class InventoryViewModel: ObservableObject {
     func saveData() {
         let inventory = Inventory(context: PersistenceController.shared.container.viewContext)
         inventory.name = name
-        inventory.total = Double(total)!
+        inventory.total = Double(total) ?? Double(0)
         inventory.totalType = totalType
         inventory.purchaseDate = purchaseDate
         inventory.expiryDate = expiryDate
