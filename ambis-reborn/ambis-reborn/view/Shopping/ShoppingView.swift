@@ -83,7 +83,7 @@ struct ShoppingView: View {
                                     //shoppingToBeMoved
                                     setArrayDate()
                                 } label: {
-                                    Text("Move selected item(s) to inventory")
+                                    Text("Move to inventory")
                                         .font(.system(size: 18))
                                         .foregroundColor(.white)
                                 }
