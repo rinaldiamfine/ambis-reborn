@@ -75,6 +75,17 @@ class ShoppingViewModel: ObservableObject{
         }
     }
     
+    func deleteMovedShoppingList(ids: [NSManagedObjectID]) {
+        for data in shopping {
+            for id in ids {
+                if data.id == id {
+                    deleteData(data)
+                }
+            }
+        }
+        getData()
+    }
+    
     //CREATE
     func prepareCreateData() {
         resetData()

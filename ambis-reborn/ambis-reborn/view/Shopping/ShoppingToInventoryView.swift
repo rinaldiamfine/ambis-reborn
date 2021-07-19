@@ -21,8 +21,6 @@ struct ShoppingToInventoryView: View {
     @Binding var arrayPurchaseDate: [Date]
     @Binding var arrayStore: [String]
     
-    @State var indexToRemove: [Int] = []
-    
     func actionCancel() {
         //shoppingViewModel.resetData()
         //POP VIEW
@@ -40,17 +38,11 @@ struct ShoppingToInventoryView: View {
                 
                 //CREATE
                 inventoryViewModel.readDataFromShopping(shopping: shopping, purchaseDate: arrayPurchaseDate[counter], expiryDate: arrayExpiryDate[counter], store: arrayStore[counter])
-                
-//                shoppingViewModel.deleteItemByContextMenu(index: shopping)
-//                shoppingToBeMoved.remove(at: counter)
-//                arrayPurchaseDate.remove(at: counter)
-//                arrayExpiryDate.remove(at: counter)
-//                arrayStore.remove(at: counter)
-                indexToRemove.append(counter)
             }
             counter += 1
         }
         isMovedToInventory = false
+        shoppingViewModel.status = "move"
     }
     
     var body: some View {
@@ -81,6 +73,16 @@ struct ShoppingToInventoryView: View {
                         Text("Done")
                     })
             )
+        }
+        .onDisappear() {
+            print("Dissappear")
+            if shoppingViewModel.status == "move" {
+                shoppingViewModel.deleteMovedShoppingList(ids: shoppingToBeMoved)
+//               shoppingToBeMoved = []
+//                arrayPurchaseDate = []
+//                arrayExpiryDate = []
+//                arrayStore = []
+            }
         }
         
     }

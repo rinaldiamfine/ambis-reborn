@@ -16,7 +16,6 @@ struct ShoppingView: View {
     @State var isMovedToInventory = false
     @State var shoppingToBeMoved: [NSManagedObjectID] = []
     
-    
     @State var arrayStore: [String] = []
     @State var arrayPurchaseDate: [Date] = []
     @State var arrayExpiryDate: [Date] = []
@@ -29,23 +28,13 @@ struct ShoppingView: View {
     }
     
     func setArrayDate() {
-//        for i in shoppingViewModel.shopping {
-//            if shoppingToBeMoved.contains(i.id) {
-//
-//                arrayPurchaseDate.append(i.purchaseDate)
-//                arrayExpiryDate.append(i.expiryDate)
-//                arrayStore.append("Fridge")
-//
-//                print("SET DATA", arrayExpiryDate)
-//            }
-//        }
         for i in 0..<shoppingViewModel.shopping.count {
             arrayPurchaseDate.append(Date())
             arrayExpiryDate.append(Date())
             arrayStore.append("Fridge")
             if shoppingToBeMoved.contains(shoppingViewModel.shopping[i].id) {
                 arrayPurchaseDate[i] = shoppingViewModel.shopping[i].purchaseDate
-                arrayExpiryDate[i] = shoppingViewModel.shopping[i].expiryDate
+                arrayExpiryDate[i] =  Calendar.current.date(byAdding: .day, value: Int(shoppingViewModel.shopping[i].foodCategory.expiryEstimation), to: Date())!
             }
         }
     }
