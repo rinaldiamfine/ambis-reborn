@@ -12,6 +12,7 @@ struct InventoryListView: View {
     @State private var boxBackground = Color("BoxBackground")
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
+    @State private var expiryColor = Color("ExpiryColor")
     
     func formatSubtitle() -> String {
         var format = ""
@@ -49,7 +50,7 @@ struct InventoryListView: View {
                 Text("\(inventory.remainingDays) Days Left").font(.system(size: 15))
                     .padding(.trailing, 10)
             } else {
-                Text("Expired").font(.system(size: 15)).foregroundColor(.red)
+                Text("Expired").font(.system(size: 15)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             }
             

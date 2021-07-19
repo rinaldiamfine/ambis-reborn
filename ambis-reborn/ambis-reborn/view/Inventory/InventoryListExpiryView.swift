@@ -12,6 +12,7 @@ struct InventoryListExpiryView: View {
     @State private var boxBackground = Color("BoxBackground")
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
+    @State private var expiryColor = Color("ExpiryColor")
     
     func formatSubtitle() -> String {
         var format = ""
@@ -44,16 +45,16 @@ struct InventoryListExpiryView: View {
             }.padding(.leading, 10)
             Spacer()
             if inventory.remainingDays == 0 {
-                Text("Today").font(.system(size: 15))
+                Text("Today").font(.system(size: 15)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             } else if inventory.remainingDays == 1 {
-                Text("\(inventory.remainingDays) Day Left").font(.system(size: 15))
+                Text("\(inventory.remainingDays) Day Left").font(.system(size: 15)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             } else if inventory.remainingDays > 1 {
-                Text("\(inventory.remainingDays) Days Left").font(.system(size: 15))
+                Text("\(inventory.remainingDays) Days Left").font(.system(size: 15)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             } else {
-                Text("Expired").font(.system(size: 15)).foregroundColor(.red)
+                Text("Expired").font(.system(size: 15)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             }
             
