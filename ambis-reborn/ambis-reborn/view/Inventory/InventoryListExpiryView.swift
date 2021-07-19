@@ -1,13 +1,13 @@
 //
-//  InventoryListView.swift
+//  InventoryListExpiryView.swift
 //  ambis-reborn
 //
-//  Created by Rinaldi LNU on 10/07/21.
+//  Created by Rinaldi LNU on 19/07/21.
 //
 
 import SwiftUI
 
-struct InventoryListView: View {
+struct InventoryListExpiryView: View {
     var inventory: InventoryModel
     @State private var boxBackground = Color("BoxBackground")
     @State private var iconBackground1 = Color("IconBackground1")
@@ -36,7 +36,11 @@ struct InventoryListView: View {
             }
             VStack(alignment: .leading, spacing: 5) {
                 Text(inventory.name).font(.system(size: 15))
-                Text(formatSubtitle()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
+                HStack {
+                    Text(inventory.store).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
+                    Text("・").font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
+                    Text(formatSubtitle()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
+                }
             }.padding(.leading, 10)
             Spacer()
             if inventory.remainingDays == 0 {
@@ -58,3 +62,9 @@ struct InventoryListView: View {
         .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
     }
 }
+
+//struct InventoryListExpiryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InventoryListExpiryView()
+//    }
+//}

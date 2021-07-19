@@ -76,29 +76,54 @@ struct InventoryView: View {
                                     }
                                 }
                             }, id:\.id) {
-                                inventory in InventoryListView(inventory: inventory)
-                                    .environmentObject(InventoryViewModel())
-                                    .contextMenu {
-                                        Button {
-                                            inventoryViewModel.editData(index: inventory)
-                                        } label: {
-                                            Label("Update Inventory", systemImage: "square.and.pencil")
+                                inventory in
+                                if defaultFilter == "Expiry Soon" {
+                                    InventoryListExpiryView(inventory: inventory)
+                                        .contextMenu {
+                                            Button {
+                                                inventoryViewModel.editData(index: inventory)
+                                            } label: {
+                                                Label("Update Inventory", systemImage: "square.and.pencil")
+                                            }
+                                            
+                                            Button {
+                                                print("share")
+                                            } label: {
+                                                Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                            }
+                                            
+                                            Divider()
+                                            Button {
+                                                inventoryViewModel.deleteItemByContextMenu(index: inventory)
+                                            } label: {
+                                                Text("Remove")
+                                                Image(systemName: "trash")
+                                            }
                                         }
-                                        
-                                        Button {
-                                            print("share")
-                                        } label: {
-                                            Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                } else {
+                                    InventoryListView(inventory: inventory)
+                                        .contextMenu {
+                                            Button {
+                                                inventoryViewModel.editData(index: inventory)
+                                            } label: {
+                                                Label("Update Inventory", systemImage: "square.and.pencil")
+                                            }
+                                            
+                                            Button {
+                                                print("share")
+                                            } label: {
+                                                Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                            }
+                                            
+                                            Divider()
+                                            Button {
+                                                inventoryViewModel.deleteItemByContextMenu(index: inventory)
+                                            } label: {
+                                                Text("Remove")
+                                                Image(systemName: "trash")
+                                            }
                                         }
-                                        
-                                        Divider()
-                                        Button {
-                                            inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                                        } label: {
-                                            Text("Remove")
-                                            Image(systemName: "trash")
-                                        }
-                                    }
+                                }
                             }
                         }.textCase(nil)
                     }
