@@ -10,18 +10,22 @@ import UIKit
 import CoreData
 import SwiftUI
 
-class ShoppingViewModel: ObservableObject {
+class ShoppingViewModel: ObservableObject{
+    
     @Published var name: String = ""
     @Published var total: String = ""
-    @Published var totalType: String = ""
+    @Published var totalType: String = "Kg"
+    @Published var store: String = "Fridge"
+    
     @Published var toShopping: [FoodCategory] = []
     @Published var selectedShopping = 0
     
     @Published var purchaseDate: Date = Date()
     @Published var expiryDate: Date = Date()
     
-    @Published var arrayPurchaseDate: [Date] = []
-    @Published var arrayExpiryDate: [Date] = []
+//    @Published var arrayPurchaseDate: [Date] = []
+//    @Published var arrayExpiryDate: [Date] = []
+//    @Published var arrayStore: [String] = []
     
     @Published var shopping: [ShoppingModel] = []
     @Published var shoppingCount: Int = 0

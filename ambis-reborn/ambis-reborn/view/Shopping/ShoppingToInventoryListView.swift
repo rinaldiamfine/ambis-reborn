@@ -13,11 +13,13 @@ struct ShoppingToInventoryListView: View {
     var shopping: ShoppingModel
     
     var storeAvailable = AppGlobalData.generateDataStore()
-    @State private var selectedStore = "Fridge"
     @State var isClicked = false
-//    @Binding var arrayExpiryDate: [Date]
+    @Binding var expiryDate: Date
+    @Binding var purchaseDate: Date
+    @Binding var store: String
     
     @State var counterToAdjustExpDate: Int = 0
+    @State var expiryDatePickerChangeCounter: Int = 0
     
     func formatSubtitle() -> String {
         var format = ""
@@ -51,7 +53,8 @@ struct ShoppingToInventoryListView: View {
             .onTapGesture {
                 counterToAdjustExpDate += 1
                 if counterToAdjustExpDate == 1 {
-                    shoppingViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
+//                    shoppingViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
+                    expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
 //                    arrayExpiryDate.append(Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!)
 //                    print("TEST", arrayExpiryDate)
                 }
@@ -60,7 +63,7 @@ struct ShoppingToInventoryListView: View {
             
             if isClicked {
                 Section(header: Text("Storing Type")) {
-                    Picker("", selection: $selectedStore) {
+                    Picker("", selection: $store) {
                         ForEach(storeAvailable, id: \.self.name) {
                             Text($0.name)
                         }
@@ -82,14 +85,15 @@ struct ShoppingToInventoryListView: View {
                 
                 Section(header: Text("Date Information")) {
                     DatePicker("Buy", selection: Binding<Date> (
-                                get: { shoppingViewModel.purchaseDate },
-                                set: { shoppingViewModel.purchaseDate = $0
-                                    if shoppingViewModel.expiryDate < $0 {
-                                        shoppingViewModel.expiryDate = $0
+                                get: { purchaseDate },
+                                set: { purchaseDate = $0
+                                    if expiryDate < $0 {
+                                        expiryDate = $0
                                     }
-                                    shoppingViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: $0)!
+                                    expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: $0)!
                                 }), displayedComponents: .date)
-                    DatePicker("Expiry", selection: $shoppingViewModel.expiryDate, in: shoppingViewModel.purchaseDate..., displayedComponents: .date)
+//                    DatePicker("Expiry", selection: $shoppingViewModel.expiryDate, in: shoppingViewModel.purchaseDate..., displayedComponents: .date)
+                    DatePicker("Expiry", selection: $expiryDate, in: purchaseDate..., displayedComponents: .date)
                 }
             }
         }

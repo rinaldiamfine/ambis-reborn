@@ -17,7 +17,6 @@ struct ShoppingFormView: View {
     @State private var selection = "None"
     
     var typeAvailable = AppGlobalData.generateDataType()
-    @State private var selectedType = "Kg"
     @State private var isShowPickerType = false
     
     func actionDone() {
@@ -35,9 +34,8 @@ struct ShoppingFormView: View {
     }
     
     func actionCancel() {
-        shoppingViewModel.resetData()
-        //POP VIEW
-        isPresented = false
+        showingActionSheet.toggle()
+        print(shoppingViewModel.totalType, "Test 1")
     }
     
     func categoryOnTap(category: FoodCategoryModel) {
@@ -55,20 +53,18 @@ struct ShoppingFormView: View {
                 Section(header: Text("Total Product")) {
                     TextField("Qty", text: $shoppingViewModel.total)
                         .keyboardType(.decimalPad)
-                    
-                    //TextField("Type", text: $shoppingViewModel.totalType)
                     HStack {
                         Text("Type")
                         Spacer()
-                        Text(selectedType)
+                        Text(shoppingViewModel.totalType)
                         if isShowPickerType {
                             Image(systemName: "chevron.down")
                                 .font(.system(size: 12, weight: .bold))
-                            .foregroundColor(Color.init(UIColor.systemGray2))
+                                .foregroundColor(Color.init(UIColor.systemGray2))
                         } else {
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 13, weight: .bold))
-                            .foregroundColor(Color.init(UIColor.systemGray2))
+                                .foregroundColor(Color.init(UIColor.systemGray2))
                         }
                     }
                     .contentShape(Rectangle())
@@ -77,7 +73,7 @@ struct ShoppingFormView: View {
                     }
                     
                     if isShowPickerType {
-                        Picker("", selection: $selectedType) {
+                        Picker("", selection: $shoppingViewModel.totalType) {
                             ForEach(typeAvailable, id: \.self.name) {
                                 Text($0.name)
                             }
@@ -101,16 +97,28 @@ struct ShoppingFormView: View {
                         .foregroundColor(.gray)
                         .padding(.top, 10).padding(.bottom, 10)
                 }            }
-            .navigationBarTitle("Add Shopping", displayMode: .inline)
-            .navigationBarItems(
-                leading:
-                    Button(action: actionCancel, label: {
-                        Text("Cancel")
-                    }),
-                trailing:
-                    Button(action: actionDone, label: {
-                        Text("Done")
-                    })
+                .navigationBarTitle("Add Product", displayMode: .inline)
+                .navigationBarItems(
+                    leading:
+                        Button(action: actionCancel, label: {
+                            Text("Cancel")
+                        }),
+                    trailing:
+                        Button(action: actionDone, label: {
+                            Text("Done")
+                        })
+                )
+        }
+        .actionSheet(isPresented: $showingActionSheet) {
+            ActionSheet(
+                title: Text("Are you kulu kulu?"),
+                buttons: [
+                    .destructive(Text("Discard Changes")) {
+                        isPresented = false
+                        shoppingViewModel.resetData()
+                    },
+                    .cancel()
+                ]
             )
         }
     }
