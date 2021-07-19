@@ -155,6 +155,7 @@ struct InventoryFilterView: View {
             }
             .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
         }
+        .padding(.bottom)
         HStack {
             Text(defaultFilter).font(.system(size: 20, weight: .semibold)).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
             Spacer()
