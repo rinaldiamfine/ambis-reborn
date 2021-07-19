@@ -14,6 +14,20 @@ struct InventoryListExpiryView: View {
     @State private var iconBackground2 = Color("IconBackground2")
     @State private var expiryColor = Color("ExpiryColor")
     
+    @State private var limitChar: Int = 20
+    @State private var startLimit: Int = 17
+    
+    func formatTitle() -> String {
+        var format = ""
+        let nameCount = inventory.name.count
+        if nameCount > limitChar {
+            format = String(inventory.name.prefix(startLimit)) + "..."
+        } else {
+            format = inventory.name
+        }
+        return format
+    }
+    
     func formatSubtitle() -> String {
         var format = ""
         format = String(self.inventory.total) + " " + self.inventory.totalType
@@ -36,7 +50,7 @@ struct InventoryListExpiryView: View {
                 
             }
             VStack(alignment: .leading, spacing: 5) {
-                Text(inventory.name).font(.system(size: 15))
+                Text(formatTitle()).font(.system(size: 15))
                 HStack {
                     Text(inventory.store).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
                     Text("・").font(.system(size: 13)).foregroundColor(Color.init(.systemGray))

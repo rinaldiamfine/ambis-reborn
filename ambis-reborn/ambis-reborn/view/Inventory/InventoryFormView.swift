@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UserNotifications
+import Combine
 
 struct InventoryFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
@@ -16,6 +17,7 @@ struct InventoryFormView: View {
     
     @State private var showingActionSheet = false
     @State private var isShowPickerType = false
+    @State private var characterLimit = 30
     
     var typeAvailable = AppGlobalData.generateDataType()
     
@@ -47,14 +49,21 @@ struct InventoryFormView: View {
         inventoryViewModel.expiryEstimation = Int(category.expiryEstimation)
     }
     
+    func limitText(_ upper: Int) {
+        if inventoryViewModel.name.count > upper {
+            inventoryViewModel.name = String(inventoryViewModel.name.prefix(upper))
+        }
+    }
+    
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Product Name")) {
-                    TextField("Name", text: $inventoryViewModel.name)
+                    TextField("E.g. Chicken Wings", text: $inventoryViewModel.name)
+                        .onReceive(Just(inventoryViewModel.name)) { _ in limitText(characterLimit) }
                 }
                 Section(header: Text("Total Product")) {
-                    TextField("Qty", text: $inventoryViewModel.total)
+                    TextField("Quantity", text: $inventoryViewModel.total)
                         .keyboardType(.decimalPad)
                     HStack {
                         Text("Type")
