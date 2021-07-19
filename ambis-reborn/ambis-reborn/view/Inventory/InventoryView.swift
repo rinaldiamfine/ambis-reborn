@@ -129,8 +129,6 @@ struct InventoryView: View {
                     }
                     .padding()
                     .background(Color("AppBackground"))
-                    .listStyle(InsetGroupedListStyle())
-                    
                 } else {
                     Spacer()
                     InventoryListEmptyView()
