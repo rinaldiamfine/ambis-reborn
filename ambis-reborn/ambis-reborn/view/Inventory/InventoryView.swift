@@ -67,7 +67,19 @@ struct InventoryView: View {
                         Section(header: InventoryFilterView(defaultFilter: $defaultFilter)) {
                             ForEach (inventoryViewModel.inventory.filter {
                                 if defaultFilter == "Expiry Soon" {
-                                    return true
+                                    if searchText.isEmpty {
+                                        if $0.expiryDate <= Date().addingTimeInterval(24 * 60 * 60) {
+                                            return true
+                                        } else {
+                                            return false
+                                        }
+                                    } else {
+                                        if $0.name.localizedStandardContains(searchText) && $0.expiryDate <= Date().addingTimeInterval(24 * 60 * 60) {
+                                            return true
+                                        } else {
+                                            return false
+                                        }
+                                    }
                                 } else {
                                     if searchText.isEmpty {
                                         return $0.store.localizedStandardContains(defaultFilter)
