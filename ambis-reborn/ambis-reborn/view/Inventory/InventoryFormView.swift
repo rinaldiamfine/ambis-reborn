@@ -10,10 +10,11 @@ import UserNotifications
 import Combine
 
 struct InventoryFormView: View {
-    @ObservedObject var inventoryViewModel: InventoryViewModel
+    @EnvironmentObject var inventoryViewModel: InventoryViewModel
     @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     @Binding var isPresented: Bool
+    var formName = "Add Inventory"
     
     @State private var showingActionSheet = false
     @State private var isShowPickerType = false
@@ -27,10 +28,10 @@ struct InventoryFormView: View {
     func actionDone() {
         if inventoryViewModel.status == "edit" {
             inventoryViewModel.editData(inventoryViewModel.inventory[inventoryViewModel.selectedIndex])
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "inventoryUpdated"), object: inventoryViewModel)
         } else {
             inventoryViewModel.saveData()
         }
-        
         inventoryViewModel.getData()
         Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
         inventoryViewModel.resetData()
@@ -156,7 +157,7 @@ struct InventoryFormView: View {
         }
         .actionSheet(isPresented: $showingActionSheet) {
             ActionSheet(
-                title: Text("Are you kulu kulu?"),
+                title: Text("Changes you made may not be saved."),
                 buttons: [
                     .destructive(Text("Discard Changes")) {
                         isPresented = false

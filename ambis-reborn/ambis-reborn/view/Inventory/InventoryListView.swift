@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InventoryListView: View {
     var inventory: InventoryModel
+    @EnvironmentObject var inventoryViewModel: InventoryViewModel
     @State private var boxBackground = Color("BoxBackground")
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
@@ -16,21 +17,46 @@ struct InventoryListView: View {
     
     @State private var limitChar: Int = 20
     @State private var startLimit: Int = 17
+    private var remainingDays: Int {
+        var format = 0
+        for i in filterInvent() {
+            format = i.remainingDays
+        }
+        return format
+    }
+    
+    func filterInvent() -> [InventoryModel] {
+        return inventoryViewModel.inventory.filter{
+            $0.id.isEqual(inventory.id)
+        }
+    }
     
     func formatTitle() -> String {
         var format = ""
-        let nameCount = inventory.name.count
-        if nameCount > limitChar {
-            format = String(inventory.name.prefix(startLimit)) + "..."
-        } else {
-            format = inventory.name
+        for i in filterInvent() {
+            let nameCount = i.name.count
+            if nameCount > limitChar {
+                format = String(i.name.prefix(startLimit)) + "..."
+            } else {
+                format = i.name
+            }
         }
         return format
     }
     
     func formatSubtitle() -> String {
         var format = ""
-        format = String(self.inventory.total) + " " + self.inventory.totalType
+        for i in filterInvent() {
+            format = String(i.total) + " " + i.totalType
+        }
+        return format
+    }
+    
+    func formatIcon() -> String {
+        var format = ""
+        for i in filterInvent() {
+            format = i.foodCategory.imageString ?? ""
+        }
         return format
     }
     
@@ -45,7 +71,7 @@ struct InventoryListView: View {
                             endPoint: .init(x: 0.8, y: 0.5)
                         ))
                         .frame(width: 46, height: 46)
-                    Text(inventory.foodCategory.imageString ?? "").font(.system(size: 18))
+                    Text(formatIcon()).font(.system(size: 18))
                 }.padding(.leading, 10)
                 
             }
@@ -54,14 +80,15 @@ struct InventoryListView: View {
                 Text(formatSubtitle()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
             }.padding(.leading, 10)
             Spacer()
-            if inventory.remainingDays == 0 {
-                Text("Today").font(.system(size: 15))
+            
+            if remainingDays == 0 {
+                Text("Today").font(.system(size: 15)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
-            } else if inventory.remainingDays == 1 {
-                Text("\(inventory.remainingDays) Day Left").font(.system(size: 15))
+            } else if remainingDays == 1 {
+                Text("\(remainingDays) Day Left").font(.system(size: 15))
                     .padding(.trailing, 10)
-            } else if inventory.remainingDays > 1 {
-                Text("\(inventory.remainingDays) Days Left").font(.system(size: 15))
+            } else if remainingDays > 1 {
+                Text("\(remainingDays) Days Left").font(.system(size: 15))
                     .padding(.trailing, 10)
             } else {
                 Text("Expired").font(.system(size: 15)).foregroundColor(expiryColor)
