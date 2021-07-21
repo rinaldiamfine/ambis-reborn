@@ -10,8 +10,8 @@ import UIKit
 import CoreData
 
 struct ShoppingView: View {
-    @StateObject private var shoppingViewModel = ShoppingViewModel()
-    @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
+    @ObservedObject var shoppingViewModel = ShoppingViewModel()
+    @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     
     @State var isMovedToInventory = false
     @State var shoppingToBeMoved: [NSManagedObjectID] = []
@@ -49,9 +49,10 @@ struct ShoppingView: View {
                                 shopping in ShoppingListView(shopping: shopping, shoppingToBeMoved: $shoppingToBeMoved)
                                     .contextMenu {
                                         Button {
-                                            
+                                            shoppingViewModel.editData(index: shopping)
+                                            print(shopping)
                                         } label: {
-                                            Label("Update Inventory", systemImage: "square.and.pencil")
+                                            Label("Update Item", systemImage: "square.and.pencil")
                                         }
                                         
                                         Divider()

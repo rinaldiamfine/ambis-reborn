@@ -86,6 +86,40 @@ class ShoppingViewModel: ObservableObject{
         getData()
     }
     
+    //EDIT
+    func editData(index: ShoppingModel) {
+        var count = 0
+        for data in shopping {
+            if data.id == index.id {
+                prepareDataEdit(index: count)
+                break
+            }
+            count += 1
+        }
+        selectedIndex = count
+        status = "edit"
+        isPresented = true
+    }
+    func prepareDataEdit(index: Int) {
+        name = shopping[index].name
+        total = String(shopping[index].total)
+        totalType = shopping[index].totalType
+        toShopping = [shopping[index].foodCategory]
+        previewSelectedCategory = (shopping[index].foodCategory.imageString! + " " + shopping[index].foodCategory.name!)
+        detailDisclaimer = shopping[index].foodCategory.estimation!
+    }
+    func editData(_ shopping: ShoppingModel) {
+        let existingShopping = PersistenceController.shared.getShoppingDataById(id: shopping.id)
+        if let existingShopping = existingShopping {
+            existingShopping.name = name
+            existingShopping.total = Double(total)!
+            existingShopping.totalType = totalType
+            existingShopping.toFoodCategory = toShopping.first
+            PersistenceController.shared.editShoppingData(shopping: existingShopping, model: shopping)
+            getData()
+        }
+    }
+    
     //CREATE
     func prepareCreateData() {
         resetData()

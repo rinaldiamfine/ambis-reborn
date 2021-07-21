@@ -14,17 +14,17 @@ struct ShoppingFormView: View {
     @Binding var isPresented: Bool
     
     @State private var showingActionSheet = false
-    @State private var selection = "None"
     
     var typeAvailable = AppGlobalData.generateDataType()
     @State private var isShowPickerType = false
     
     func actionDone() {
-        if shoppingViewModel.status == "create" {
-            //CREATE ITEM
-            shoppingViewModel.saveData()
+        if shoppingViewModel.status == "edit" {
+            //EDIT
+            shoppingViewModel.editData(shoppingViewModel.shopping[shoppingViewModel.selectedIndex])
         } else {
-            //EDIT ITEM
+            //CREATE
+            shoppingViewModel.saveData()
         }
         
         shoppingViewModel.getData()
