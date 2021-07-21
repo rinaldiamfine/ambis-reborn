@@ -172,7 +172,7 @@ struct InventoryFilterView: View {
                 .padding(.bottom)
                 Spacer()
             }
-            .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
+            .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
         }
         .padding(.bottom)
         HStack {

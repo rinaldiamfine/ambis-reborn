@@ -103,6 +103,6 @@ struct InventoryListView: View {
         .padding(.top, 8)
         .padding(.bottom, 8)
         .padding(.trailing, 8)
-        .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
+        .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
     }
 }
