@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InventoryListView: View {
     var inventory: InventoryModel
-    @EnvironmentObject var inventoryViewModel: InventoryViewModel
+    @ObservedObject var inventoryViewModel: InventoryViewModel
     @State private var boxBackground = Color("BoxBackground")
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
@@ -55,7 +55,9 @@ struct InventoryListView: View {
     func formatIcon() -> String {
         var format = ""
         for i in filterInvent() {
-            format = i.foodCategory.imageString ?? ""
+            if i.inventory.toFoodCategory != nil {
+                format = i.foodCategory.imageString ?? ""
+            }
         }
         return format
     }
@@ -72,13 +74,15 @@ struct InventoryListView: View {
                         ))
                         .frame(width: 46, height: 46)
                     Text(formatIcon()).font(.system(size: 18))
-                }.padding(.leading, 10)
-                
+                }
+                .padding(.leading, 10)
             }
+            
             VStack(alignment: .leading, spacing: 5) {
                 Text(formatTitle()).font(.system(size: 15))
                 Text(formatSubtitle()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
-            }.padding(.leading, 10)
+            }
+            .padding(.leading, 2)
             Spacer()
             
             if remainingDays == 0 {
@@ -96,7 +100,9 @@ struct InventoryListView: View {
             }
             
         }
-        .padding(.all, 8)
+        .padding(.top, 8)
+        .padding(.bottom, 8)
+        .padding(.trailing, 8)
         .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
     }
 }

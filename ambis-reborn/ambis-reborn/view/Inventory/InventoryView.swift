@@ -11,15 +11,16 @@ import CoreData
 import UserNotifications
 
 struct InventoryView: View {
-    @EnvironmentObject var inventoryViewModel: InventoryViewModel
+    @ObservedObject var inventoryViewModel = InventoryViewModel()
     @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     @ObservedObject var searchBar: SearchBar = SearchBar()
-    @State private var defaultFilter = "Expiry Soon"
+    @State private var defaultFilter = "Expire Soon"
     @Environment(\.colorScheme) var colorScheme
     
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     @State private var needRefresh = true
+    @State var totalInventSearch: Int = 0
     
     var storeAvailable = AppGlobalData.generateDataStore()
     
@@ -28,6 +29,10 @@ struct InventoryView: View {
     }
     func gettabName() -> Text {
         return Text("Inventory")
+    }
+    func checkFunc(inventoryCount: Int) {
+        print("WORKS")
+        print(inventoryCount)
     }
     
     var body: some View {
@@ -43,6 +48,7 @@ struct InventoryView: View {
                         }).foregroundColor(.primary)
                         Button(action: {
                             self.searchText = ""
+                            totalInventSearch = 0
                         }) {
                             Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
                         }
@@ -65,71 +71,95 @@ struct InventoryView: View {
                 
                 if inventoryViewModel.inventoryCount > 0 {
                     ScrollView {
-                        Section(header: InventoryFilterView(defaultFilter: $defaultFilter)) {
+                        Section(header: InventoryFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton)) {
                             ForEach (inventoryViewModel.inventory.filter {
-                                if defaultFilter == "Expiry Soon" {
-                                    if searchText.isEmpty {
-                                        if $0.expiryDate <= Date().addingTimeInterval(24 * 60 * 60) {
+                                if defaultFilter == "Expire Soon" {
+                                    if !showCancelButton {
+                                        if $0.expiryDate <= Date().addingTimeInterval(24 * 60 * 60 * 3) {
                                             return true
                                         } else {
                                             return false
                                         }
                                     } else {
-                                        if $0.name.localizedStandardContains(searchText) && $0.expiryDate <= Date().addingTimeInterval(24 * 60 * 60) {
-                                            return true
-                                        } else {
-                                            return false
-                                        }
+                                        return $0.name.localizedStandardContains(searchText)
                                     }
                                 } else {
-                                    if searchText.isEmpty {
+                                    if !showCancelButton  {
                                         return $0.store.localizedStandardContains(defaultFilter)
                                     } else {
-                                        return $0.name.localizedStandardContains(searchText) && $0.store.localizedStandardContains(defaultFilter)
+                                        return $0.name.localizedStandardContains(searchText)
                                     }
                                 }
                             }, id:\.id) {
                                 inventory in
-                                if defaultFilter == "Expiry Soon" {
-                                    InventoryListExpiryView(inventory: inventory)
-                                        .environmentObject(inventoryViewModel)
-                                        .contextMenu {
-                                            Button {
-                                                inventoryViewModel.editData(index: inventory)
-                                            } label: {
-                                                Label("Update Inventory", systemImage: "square.and.pencil")
+                                if !showCancelButton {
+                                    //EXPIRE SOON
+                                    if defaultFilter == "Expire Soon" {
+                                        InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
+                                            .contextMenu {
+                                                Button {
+                                                    inventoryViewModel.editData(index: inventory)
+                                                } label: {
+                                                    Label("Update Inventory", systemImage: "square.and.pencil")
+                                                }
+
+                                                Button {
+                                                    print("share")
+                                                } label: {
+                                                    Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                                }
+
+                                                Divider()
+                                                Button {
+                                                    inventoryViewModel.deleteItemByContextMenu(index: inventory)
+                                                } label: {
+                                                    Text("Remove")
+                                                    Image(systemName: "trash")
+                                                }
                                             }
-                                            
-                                            Button {
-                                                print("share")
-                                            } label: {
-                                                Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                    }
+                                    
+                                    //NOT EXPIRE SOON
+                                    else {
+//                                        InventoryListSearchEmptyView()
+                                        InventoryListView(inventory: inventory, inventoryViewModel: inventoryViewModel)
+                                            .contextMenu {
+                                                Button {
+                                                    inventoryViewModel.editData(index: inventory)
+                                                } label: {
+                                                    Label("Update Inventory", systemImage: "square.and.pencil")
+                                                }
+
+                                                Button {
+                                                    print("share")
+                                                } label: {
+                                                    Label("Share", systemImage: "arrowshape.turn.up.forward")
+                                                }
+
+                                                Divider()
+                                                Button {
+                                                    inventoryViewModel.deleteItemByContextMenu(index: inventory)
+                                                } label: {
+                                                    Text("Remove")
+                                                    Image(systemName: "trash")
+                                                }
                                             }
-                                            
-                                            Divider()
-                                            Button {
-                                                inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                                            } label: {
-                                                Text("Remove")
-                                                Image(systemName: "trash")
-                                            }
-                                        }
+                                    }
                                 } else {
-                                    InventoryListView(inventory: inventory)
-                                        .environmentObject(inventoryViewModel)
+                                    InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
                                         .contextMenu {
                                             Button {
                                                 inventoryViewModel.editData(index: inventory)
                                             } label: {
                                                 Label("Update Inventory", systemImage: "square.and.pencil")
                                             }
-                                            
+
                                             Button {
                                                 print("share")
                                             } label: {
                                                 Label("Share", systemImage: "arrowshape.turn.up.forward")
                                             }
-                                            
+
                                             Divider()
                                             Button {
                                                 inventoryViewModel.deleteItemByContextMenu(index: inventory)
@@ -144,10 +174,14 @@ struct InventoryView: View {
                         .textCase(nil)
                     }
                     .padding()
+                    .frame(width: UIScreen.screenWidth)
                     .background(Color("AppBackground"))
                 } else {
                     Spacer()
                     InventoryListEmptyView()
+                        .onTapGesture {
+                            inventoryViewModel.isPresented = true
+                        }
                     Spacer()
                 }
             }
@@ -159,7 +193,8 @@ struct InventoryView: View {
             )
         }
         .sheet(isPresented: $inventoryViewModel.isPresented) {
-            InventoryFormView(foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented).environmentObject(inventoryViewModel)
+            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented)
+//                .environmentObject(inventoryViewModel)
         }
         .onAppear(perform: {
             inventoryViewModel.loadList()
