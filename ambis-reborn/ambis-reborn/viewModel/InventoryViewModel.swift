@@ -135,8 +135,8 @@ class InventoryViewModel: ObservableObject {
         inventoryCount = inventory.count
     }
     
-    func editData(_ inventory: InventoryModel) {
-        let existingInventory = PersistenceController.shared.getInventoryDataById(id: inventory.id)
+    func editData(_ inventoryData: InventoryModel) {
+        let existingInventory = PersistenceController.shared.getInventoryDataById(id: inventoryData.id)
         if let existingInventory = existingInventory {
             existingInventory.name = name
             existingInventory.total = Double(total)!
@@ -145,15 +145,20 @@ class InventoryViewModel: ObservableObject {
             existingInventory.purchaseDate = purchaseDate
             existingInventory.expiryDate = expiryDate
             existingInventory.toFoodCategory = toInventory.first
-            PersistenceController.shared.editInventoryData(inventory: existingInventory, model: inventory)
+            PersistenceController.shared.editInventoryData(inventory: existingInventory, model: inventoryData)
             getData()
         }
+    }
+    
+    @objc func refresh() {
+        print("REFRESHER ORB'S")
+        loadList()
     }
     
     func saveData() {
         let inventory = Inventory(context: PersistenceController.shared.container.viewContext)
         inventory.name = name
-        inventory.total = Double(total)!
+        inventory.total = Double(total) ?? Double(0)
         inventory.totalType = totalType
         inventory.purchaseDate = purchaseDate
         inventory.expiryDate = expiryDate

@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @State private var selectedTab = 2
+    @State private var selectedTab = 1
     var defaultAccentColor = Color("BrandColor")
+    @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
     
     var body: some View {
         TabView(selection: $selectedTab) {
             InventoryView().tabItem {
                 InventoryView().getIconName()
                 InventoryView().gettabName()
-            }.tag(1)
+            }.tag(1).environmentObject(inventoryViewModel)
             ShoppingView().tabItem {
                 ShoppingView().getIconName()
                 ShoppingView().gettabName()

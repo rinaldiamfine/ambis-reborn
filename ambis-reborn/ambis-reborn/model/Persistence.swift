@@ -49,7 +49,7 @@ struct PersistenceController {
         saveData()
     }
     
-    func editInventoryData(inventory: Inventory, model: InventoryModel) {
+    func editInventoryData(inventory: Inventory, model: InventoryModel, completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
         print(model, "MODEL LIST")
         inventory.setValue(model.name, forKey: "name")
@@ -59,9 +59,13 @@ struct PersistenceController {
         inventory.setValue(model.expiryDate, forKey: "expiryDate")
         inventory.setValue(model.foodCategory, forKey: "toFoodCategory")
         do {
-            try context.save()
+            try saveData()
+//            try context.save()
+//            context.refresh(inventory, mergeChanges: true)
+//            saveData(completion: completion)
+            completion(nil)
         } catch {
-            
+            completion(error)
         }
     }
     

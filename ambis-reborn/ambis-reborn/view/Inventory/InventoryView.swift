@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-import UIKit
+//import UIKit
 import CoreData
 import UserNotifications
 
 struct InventoryView: View {
-    @ObservedObject var inventoryViewModel = InventoryViewModel()
+    @EnvironmentObject var inventoryViewModel: InventoryViewModel
     @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     @ObservedObject var searchBar: SearchBar = SearchBar()
     @State private var defaultFilter = "Expiry Soon"
@@ -19,6 +19,7 @@ struct InventoryView: View {
     
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
+    @State private var needRefresh = true
     
     var storeAvailable = AppGlobalData.generateDataStore()
     
@@ -67,7 +68,19 @@ struct InventoryView: View {
                         Section(header: InventoryFilterView(defaultFilter: $defaultFilter)) {
                             ForEach (inventoryViewModel.inventory.filter {
                                 if defaultFilter == "Expiry Soon" {
-                                    return true
+                                    if searchText.isEmpty {
+                                        if $0.expiryDate <= Date().addingTimeInterval(24 * 60 * 60) {
+                                            return true
+                                        } else {
+                                            return false
+                                        }
+                                    } else {
+                                        if $0.name.localizedStandardContains(searchText) && $0.expiryDate <= Date().addingTimeInterval(24 * 60 * 60) {
+                                            return true
+                                        } else {
+                                            return false
+                                        }
+                                    }
                                 } else {
                                     if searchText.isEmpty {
                                         return $0.store.localizedStandardContains(defaultFilter)
@@ -79,6 +92,7 @@ struct InventoryView: View {
                                 inventory in
                                 if defaultFilter == "Expiry Soon" {
                                     InventoryListExpiryView(inventory: inventory)
+                                        .environmentObject(inventoryViewModel)
                                         .contextMenu {
                                             Button {
                                                 inventoryViewModel.editData(index: inventory)
@@ -102,6 +116,7 @@ struct InventoryView: View {
                                         }
                                 } else {
                                     InventoryListView(inventory: inventory)
+                                        .environmentObject(inventoryViewModel)
                                         .contextMenu {
                                             Button {
                                                 inventoryViewModel.editData(index: inventory)
@@ -125,7 +140,8 @@ struct InventoryView: View {
                                         }
                                 }
                             }
-                        }.textCase(nil)
+                        }
+                        .textCase(nil)
                     }
                     .padding()
                     .background(Color("AppBackground"))
@@ -141,18 +157,15 @@ struct InventoryView: View {
                     Image(systemName: "plus").imageScale(.large)
                 }).contentShape(Circle())
             )
-//            .add(self.searchBar)
         }
         .sheet(isPresented: $inventoryViewModel.isPresented) {
-            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented)
+            InventoryFormView(foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented).environmentObject(inventoryViewModel)
         }
         .onAppear(perform: {
             inventoryViewModel.loadList()
             foodCategoryViewModel.getData()
-        })
-        .onDisappear(perform: {
-            inventoryViewModel.loadList()
-            foodCategoryViewModel.getData()
+            print("APPEAR")
+            NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
         })
     }
 }
