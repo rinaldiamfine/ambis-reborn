@@ -46,7 +46,8 @@ struct ShoppingView: View {
                     ZStack {
                         List {
                             ForEach(shoppingViewModel.shopping, id:\.id) {
-                                shopping in ShoppingListView(shopping: shopping, shoppingViewModel: shoppingViewModel, shoppingToBeMoved: $shoppingToBeMoved)
+                                shopping in
+                                ShoppingListView(shopping: shopping, shoppingViewModel: shoppingViewModel, shoppingToBeMoved: $shoppingToBeMoved)
                                     .contextMenu {
                                         Button {
                                             shoppingViewModel.editData(index: shopping)

@@ -90,13 +90,7 @@ struct ShoppingFormView: View {
                         }
                     }
                 }
-                
-                Section(header: Text("Disclaimer")) {
-                    Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")
-                        .font(.system(size: 14))
-                        .foregroundColor(.gray)
-                        .padding(.top, 10).padding(.bottom, 10)
-                }            }
+            }
                 .navigationBarTitle("Add Product", displayMode: .inline)
                 .navigationBarItems(
                     leading:
@@ -111,7 +105,7 @@ struct ShoppingFormView: View {
         }
         .actionSheet(isPresented: $showingActionSheet) {
             ActionSheet(
-                title: Text("Are you kulu kulu?"),
+                title: Text("Changes you made may not be saved"),
                 buttons: [
                     .destructive(Text("Discard Changes")) {
                         isPresented = false

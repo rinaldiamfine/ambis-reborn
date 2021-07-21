@@ -8,10 +8,8 @@
 import Foundation
 import UIKit
 import CoreData
-import SwiftUI
 
 class ShoppingViewModel: ObservableObject{
-    
     @Published var name: String = ""
     @Published var total: String = ""
     @Published var totalType: String = "Kg"
@@ -149,15 +147,17 @@ class ShoppingViewModel: ObservableObject{
     }
     
     func loadList() {
-        getData()
-    }
-    
-    func getData() {
         shopping = PersistenceController.shared.getShoppingData().map(ShoppingModel.init)
         shoppingCount = shopping.count
         
         foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
         foodCategoryCount = foodCategories.count
+        
+    }
+    
+    func getData() {
+        shopping = PersistenceController.shared.getShoppingData().map(ShoppingModel.init)
+        shoppingCount = shopping.count
     }
     
 }
