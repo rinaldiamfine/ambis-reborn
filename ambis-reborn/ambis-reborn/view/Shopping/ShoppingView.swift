@@ -97,9 +97,11 @@ struct ShoppingView: View {
                 }
             }
             .navigationBarTitle("Shopping List")
-            .navigationBarItems(trailing: Button(action: shoppingViewModel.prepareCreateData, label: {
-                Image(systemName: "plus")
-            }))
+            .navigationBarItems(
+                trailing: Button(action: shoppingViewModel.prepareCreateData, label: {
+                    Image(systemName: "plus")
+                }).contentShape(Circle())
+            )
         }
         .sheet(isPresented: $shoppingViewModel.isPresented) {
             ShoppingFormView(shoppingViewModel: shoppingViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $shoppingViewModel.isPresented)
