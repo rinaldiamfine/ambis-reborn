@@ -73,7 +73,7 @@ struct InventoryListView: View {
                             endPoint: .init(x: 0.8, y: 0.5)
                         ))
                         .frame(width: 46, height: 46)
-                    Text(formatIcon()).font(.system(size: 18))
+                    Text(formatIcon()).font(.system(size: 28))
                 }
                 .padding(.leading, 10)
             }
