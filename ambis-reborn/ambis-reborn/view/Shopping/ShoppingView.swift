@@ -85,7 +85,7 @@ struct ShoppingView: View {
                                         .foregroundColor(.white)
                                 }
                                 .frame(width: 350, height: 50, alignment: .center)
-                                .background(Color.blue)
+                                .background(Color("BrandColor"))
                                 .cornerRadius(10)
                                 .padding()
                             }

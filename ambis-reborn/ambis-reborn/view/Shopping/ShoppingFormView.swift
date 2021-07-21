@@ -48,10 +48,10 @@ struct ShoppingFormView: View {
         NavigationView {
             Form {
                 Section(header: Text("Product Name")) {
-                    TextField("Name", text: $shoppingViewModel.name)
+                    TextField("E.g. Chicken Wings", text: $shoppingViewModel.name)
                 }
                 Section(header: Text("Total Product")) {
-                    TextField("Qty", text: $shoppingViewModel.total)
+                    TextField("Quantity", text: $shoppingViewModel.total)
                         .keyboardType(.decimalPad)
                     HStack {
                         Text("Type")
