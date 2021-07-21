@@ -11,7 +11,6 @@ import CoreData
 struct ShoppingListView: View {
     var shopping: ShoppingModel
     @ObservedObject var shoppingViewModel: ShoppingViewModel
-    @Binding var shoppingToBeMoved: [NSManagedObjectID]
     
     @State private var boxBackground = Color("BoxBackground")
     @State private var iconBackground1 = Color("IconBackground1")
@@ -78,7 +77,7 @@ struct ShoppingListView: View {
             }
             .padding(.leading, 10)
             Spacer()
-            if shoppingToBeMoved.contains(shopping.id) {
+            if shoppingViewModel.shoppingToBeMoved.contains(shopping.id) {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundColor(Color.init(red: 63/255, green: 154/255, blue: 142/255))
                     .font(.system(size: 30))

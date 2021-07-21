@@ -21,10 +21,6 @@ class ShoppingViewModel: ObservableObject{
     @Published var purchaseDate: Date = Date()
     @Published var expiryDate: Date = Date()
     
-//    @Published var arrayPurchaseDate: [Date] = []
-//    @Published var arrayExpiryDate: [Date] = []
-//    @Published var arrayStore: [String] = []
-    
     @Published var shopping: [ShoppingModel] = []
     @Published var shoppingCount: Int = 0
     @Published var foodCategories: [FoodCategoryModel] = []
@@ -36,6 +32,12 @@ class ShoppingViewModel: ObservableObject{
     
     @Published var previewSelectedCategory = "Choose Category"
     @Published var detailDisclaimer = ""
+    
+    //For moving to inventory
+    @Published var shoppingToBeMoved: [NSManagedObjectID] = []
+    @Published var arrayPurchaseDate: [Date] = []
+    @Published var arrayExpiryDate: [Date] = []
+    @Published var arrayStore: [String] = []
     
     
     //UPDATE (before moving to inventory)

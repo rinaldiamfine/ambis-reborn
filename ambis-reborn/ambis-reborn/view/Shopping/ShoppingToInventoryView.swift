@@ -15,11 +15,7 @@ struct ShoppingToInventoryView: View {
     
     //@State var isShowDetail = false
     
-    @Binding var shoppingToBeMoved: [NSManagedObjectID]
     @Binding var isMovedToInventory: Bool
-    @Binding var arrayExpiryDate: [Date]
-    @Binding var arrayPurchaseDate: [Date]
-    @Binding var arrayStore: [String]
     
     func actionCancel() {
         //shoppingViewModel.resetData()
@@ -30,14 +26,14 @@ struct ShoppingToInventoryView: View {
     func actionDone() {
         var counter = 0
         for shopping in shoppingViewModel.shopping {
-            if shoppingToBeMoved.contains(shopping.id) {
-                shoppingViewModel.purchaseDate = arrayPurchaseDate[counter]
-                shoppingViewModel.expiryDate = arrayExpiryDate[counter]
-                shoppingViewModel.store = arrayStore[counter]
+            if shoppingViewModel.shoppingToBeMoved.contains(shopping.id) {
+                shoppingViewModel.purchaseDate = shoppingViewModel.arrayPurchaseDate[counter]
+                shoppingViewModel.expiryDate = shoppingViewModel.arrayExpiryDate[counter]
+                shoppingViewModel.store = shoppingViewModel.arrayStore[counter]
                 print( shoppingViewModel.expiryDate, "TESST")
                 
                 //CREATE
-                inventoryViewModel.readDataFromShopping(shopping: shopping, purchaseDate: arrayPurchaseDate[counter], expiryDate: arrayExpiryDate[counter], store: arrayStore[counter])
+                inventoryViewModel.readDataFromShopping(shopping: shopping, purchaseDate: shoppingViewModel.arrayPurchaseDate[counter], expiryDate: shoppingViewModel.arrayExpiryDate[counter], store: shoppingViewModel.arrayStore[counter])
             }
             counter += 1
         }
@@ -51,8 +47,8 @@ struct ShoppingToInventoryView: View {
                 if shoppingViewModel.shoppingCount > 0 {
                     List {
                         ForEach(0..<shoppingViewModel.shopping.count) { i in
-                            if shoppingToBeMoved.contains(shoppingViewModel.shopping[i].id) {
-                                ShoppingToInventoryListView(shopping: shoppingViewModel.shopping[i], expiryDate: $arrayExpiryDate[i], purchaseDate: $arrayPurchaseDate[i], store: $arrayStore[i])
+                            if shoppingViewModel.shoppingToBeMoved.contains(shoppingViewModel.shopping[i].id) {
+                                ShoppingToInventoryListView(shopping: shoppingViewModel.shopping[i], expiryDate: $shoppingViewModel.arrayExpiryDate[i], purchaseDate: $shoppingViewModel.arrayPurchaseDate[i], store: $shoppingViewModel.arrayStore[i])
                                     .contentShape(Rectangle())
                             } else {
                                 
@@ -77,11 +73,7 @@ struct ShoppingToInventoryView: View {
         .onDisappear() {
             print("Dissappear")
             if shoppingViewModel.status == "move" {
-                shoppingViewModel.deleteMovedShoppingList(ids: shoppingToBeMoved)
-//               shoppingToBeMoved = []
-//                arrayPurchaseDate = []
-//                arrayExpiryDate = []
-//                arrayStore = []
+                shoppingViewModel.deleteMovedShoppingList(ids: shoppingViewModel.shoppingToBeMoved)
             }
         }
         
