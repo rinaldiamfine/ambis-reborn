@@ -73,9 +73,11 @@ class InventoryViewModel: ObservableObject {
         store = inventory[index].store
         expiryDate = inventory[index].expiryDate
         purchaseDate = inventory[index].purchaseDate
-        toInventory = [inventory[index].foodCategory]
-        previewSelectedCategory = (inventory[index].foodCategory.imageString! + " " + inventory[index].foodCategory.name!)
-        detailDisclaimer = inventory[index].foodCategory.estimation!
+        if inventory[index].inventory.toFoodCategory != nil {
+            toInventory = [inventory[index].foodCategory]
+            previewSelectedCategory = (inventory[index].foodCategory.imageString! + " " + inventory[index].foodCategory.name!)
+            detailDisclaimer = inventory[index].foodCategory.estimation!
+        }
     }
     //EDIT
     
@@ -151,7 +153,6 @@ class InventoryViewModel: ObservableObject {
     }
     
     @objc func refresh() {
-        print("REFRESHER ORB'S")
         loadList()
     }
     

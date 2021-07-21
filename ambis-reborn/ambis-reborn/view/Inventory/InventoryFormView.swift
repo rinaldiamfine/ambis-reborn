@@ -10,8 +10,8 @@ import UserNotifications
 import Combine
 
 struct InventoryFormView: View {
-    @EnvironmentObject var inventoryViewModel: InventoryViewModel
-    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
+    @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
+    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel = FoodCategoryViewModel()
     
     @Binding var isPresented: Bool
     var formName = "Add Inventory"

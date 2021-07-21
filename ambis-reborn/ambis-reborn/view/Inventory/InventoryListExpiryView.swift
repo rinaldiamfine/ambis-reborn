@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InventoryListExpiryView: View {
     var inventory: InventoryModel
-    @EnvironmentObject var inventoryViewModel: InventoryViewModel
+    @ObservedObject var inventoryViewModel: InventoryViewModel
     @State private var boxBackground = Color("BoxBackground")
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
@@ -17,6 +17,7 @@ struct InventoryListExpiryView: View {
     
     @State private var limitChar: Int = 20
     @State private var startLimit: Int = 17
+    var counterGate: Int
     
     private var remainingDays: Int {
         var format = 0
@@ -56,7 +57,9 @@ struct InventoryListExpiryView: View {
     func formatIcon() -> String {
         var format = ""
         for i in filterInvent() {
-            format = i.foodCategory.imageString ?? ""
+            if i.inventory.toFoodCategory != nil {
+                format = i.foodCategory.imageString ?? ""
+            }
         }
         return format
     }
@@ -85,13 +88,14 @@ struct InventoryListExpiryView: View {
                 
             }
             VStack(alignment: .leading, spacing: 5) {
+//                Text(String(counterGate))
                 Text(formatTitle()).font(.system(size: 15))
                 HStack {
                     Text(formatStore()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
                     Text("・").font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
                     Text(formatSubtitle()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
                 }
-            }.padding(.leading, 10)
+            }.padding(.leading, 2)
             Spacer()
             if remainingDays == 0 {
                 Text("Today").font(.system(size: 15)).foregroundColor(expiryColor)
@@ -108,7 +112,9 @@ struct InventoryListExpiryView: View {
             }
             
         }
-        .padding(.all, 8)
+        .padding(.top, 8)
+        .padding(.bottom, 8)
+        .padding(.trailing, 8)
         .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
     }
 }

@@ -10,6 +10,9 @@ import SwiftUI
 struct InventoryFilterView: View {
     @Binding var defaultFilter: String
     @State var isExpirySoon: Bool = false
+    @Binding var isSearchActive: Bool
+    
+    
     @State var isFridge: Bool = false
     @State var isFreezer: Bool = false
     @State var isOther: Bool = false
@@ -27,11 +30,12 @@ struct InventoryFilterView: View {
     }
     
     var body: some View {
+        if !isSearchActive {
         VStack(alignment: .leading) {
             HStack {
                 Spacer()
                 VStack {
-                    if defaultFilter == "Expiry Soon" {
+                    if defaultFilter == "Expire Soon" {
                         ZStack {
                             Ellipse()
                                 .fill(LinearGradient(
@@ -41,6 +45,7 @@ struct InventoryFilterView: View {
                                 ))
                                 .frame(width: 46, height: 46)
                             Image("BtnExpirySoonActive")
+                                .resizable().frame(width: 26, height: 26)
                         }
                     } else {
                         ZStack {
@@ -49,13 +54,15 @@ struct InventoryFilterView: View {
                                 .fill(boxBackground)
                                 .frame(width: 46, height: 46)
                             Image("BtnExpirySoon")
+                                .resizable()
+                                .frame(width: 26, height: 26)
                         }
                     }
-                    Text("Expiry Soon")
+                    Text("Expire Soon")
                         .font(.system(size: 12))
                         .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                 }.onTapGesture {
-                    defaultFilter = "Expiry Soon"
+                    defaultFilter = "Expire Soon"
                 }
                 .padding(.top)
                 .padding(.bottom)
@@ -71,6 +78,8 @@ struct InventoryFilterView: View {
                                 ))
                                 .frame(width: 46, height: 46)
                             Image("BtnFridgeActive")
+                                .resizable()
+                                .frame(width: 26, height: 26)
                         }
                     } else {
                         ZStack {
@@ -79,6 +88,8 @@ struct InventoryFilterView: View {
                                 .fill(boxBackground)
                                 .frame(width: 46, height: 46)
                             Image("BtnFridge")
+                                .resizable()
+                                .frame(width: 26, height: 26)
                         }
                     }
                     Text("   Fridge   ")
@@ -103,6 +114,8 @@ struct InventoryFilterView: View {
                                 ))
                                 .frame(width: 46, height: 46)
                             Image("BtnFreezerActive")
+                                .resizable()
+                                .frame(width: 26, height: 26)
                         }
                     } else {
                         ZStack {
@@ -111,6 +124,8 @@ struct InventoryFilterView: View {
                                 .fill(boxBackground)
                                 .frame(width: 46, height: 46)
                             Image("BtnFreezer")
+                                .resizable()
+                                .frame(width: 26, height: 26)
                         }
                     }
                     Text("   Freezer   ")
@@ -133,6 +148,8 @@ struct InventoryFilterView: View {
                                 ))
                                 .frame(width: 46, height: 46)
                             Image("BtnOtherActive")
+                                .resizable()
+                                .frame(width: 26, height: 26)
                         }
                     } else {
                         ZStack {
@@ -141,6 +158,8 @@ struct InventoryFilterView: View {
                                 .fill(boxBackground)
                                 .frame(width: 46, height: 46)
                             Image("BtnOther")
+                                .resizable()
+                                .frame(width: 26, height: 26)
                         }
                     }
                     Text("   Other   ")
@@ -159,6 +178,7 @@ struct InventoryFilterView: View {
         HStack {
             Text(defaultFilter).font(.system(size: 20, weight: .semibold)).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
             Spacer()
+        }
         }
     }
 }
