@@ -86,7 +86,7 @@ struct ShoppingView: View {
                                 }
                                 .frame(width: 350, height: 50, alignment: .center)
                                 .background(Color("BrandColor"))
-                                .cornerRadius(10)
+                                .cornerRadius(15)
                                 .padding()
                             }
                         }
@@ -99,7 +99,7 @@ struct ShoppingView: View {
             .navigationBarTitle("Shopping List")
             .navigationBarItems(
                 trailing: Button(action: shoppingViewModel.prepareCreateData, label: {
-                    Image(systemName: "plus")
+                    Image(systemName: "plus").imageScale(.large)
                 }).contentShape(Circle())
             )
         }
