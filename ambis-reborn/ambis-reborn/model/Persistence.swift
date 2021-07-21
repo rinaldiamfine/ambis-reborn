@@ -69,6 +69,19 @@ struct PersistenceController {
         }
     }
     
+    func editShoppingData(shopping: Shopping, model: ShoppingModel) {
+        let context = container.viewContext
+        shopping.setValue(model.name, forKey: "name")
+        shopping.setValue(model.total, forKey: "total")
+        shopping.setValue(model.totalType, forKey: "totalType")
+        shopping.setValue(model.foodCategory, forKey: "toFoodCategory")
+        do {
+            try context.save()
+        } catch {
+            
+        }
+    }
+    
     func getInventoryData() -> [Inventory] {
         let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
         do {

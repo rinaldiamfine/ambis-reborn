@@ -14,17 +14,17 @@ struct ShoppingFormView: View {
     @Binding var isPresented: Bool
     
     @State private var showingActionSheet = false
-    @State private var selection = "None"
     
     var typeAvailable = AppGlobalData.generateDataType()
     @State private var isShowPickerType = false
     
     func actionDone() {
-        if shoppingViewModel.status == "create" {
-            //CREATE ITEM
-            shoppingViewModel.saveData()
+        if shoppingViewModel.status == "edit" {
+            //EDIT
+            shoppingViewModel.editData(shoppingViewModel.shopping[shoppingViewModel.selectedIndex])
         } else {
-            //EDIT ITEM
+            //CREATE
+            shoppingViewModel.saveData()
         }
         
         shoppingViewModel.getData()
@@ -48,10 +48,10 @@ struct ShoppingFormView: View {
         NavigationView {
             Form {
                 Section(header: Text("Product Name")) {
-                    TextField("Name", text: $shoppingViewModel.name)
+                    TextField("E.g. Chicken Wings", text: $shoppingViewModel.name)
                 }
                 Section(header: Text("Total Product")) {
-                    TextField("Qty", text: $shoppingViewModel.total)
+                    TextField("Quantity", text: $shoppingViewModel.total)
                         .keyboardType(.decimalPad)
                     HStack {
                         Text("Type")
@@ -90,13 +90,7 @@ struct ShoppingFormView: View {
                         }
                     }
                 }
-                
-                Section(header: Text("Disclaimer")) {
-                    Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")
-                        .font(.system(size: 14))
-                        .foregroundColor(.gray)
-                        .padding(.top, 10).padding(.bottom, 10)
-                }            }
+            }
                 .navigationBarTitle("Add Product", displayMode: .inline)
                 .navigationBarItems(
                     leading:
@@ -111,7 +105,7 @@ struct ShoppingFormView: View {
         }
         .actionSheet(isPresented: $showingActionSheet) {
             ActionSheet(
-                title: Text("Are you kulu kulu?"),
+                title: Text("Changes you made may not be saved"),
                 buttons: [
                     .destructive(Text("Discard Changes")) {
                         isPresented = false

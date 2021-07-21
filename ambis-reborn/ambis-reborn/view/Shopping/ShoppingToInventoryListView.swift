@@ -53,14 +53,10 @@ struct ShoppingToInventoryListView: View {
             .onTapGesture {
                 counterToAdjustExpDate += 1
                 if counterToAdjustExpDate == 1 {
-//                    shoppingViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
                     expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
-//                    arrayExpiryDate.append(Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!)
-//                    print("TEST", arrayExpiryDate)
+                    isClicked.toggle()
                 }
-                isClicked.toggle()
             }
-            
             if isClicked {
                 Section(header: Text("Storing Type")) {
                     Picker("", selection: $store) {
@@ -92,16 +88,18 @@ struct ShoppingToInventoryListView: View {
                                     }
                                     expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: $0)!
                                 }), displayedComponents: .date)
-//                    DatePicker("Expiry", selection: $shoppingViewModel.expiryDate, in: shoppingViewModel.purchaseDate..., displayedComponents: .date)
                     DatePicker("Expiry", selection: $expiryDate, in: purchaseDate..., displayedComponents: .date)
                 }
+//                Section(header: Text("Disclaimer")) {
+//                    Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")
+//                        .font(.system(size: 14))
+//                        .foregroundColor(.gray)
+//                        .padding(.top, 10).padding(.bottom, 10)
+//                }
             }
         }
-        
-        
     }
 }
-
 //struct ShoppingToInventoryListView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ShoppingToInventoryListView()

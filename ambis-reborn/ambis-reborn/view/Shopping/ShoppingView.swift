@@ -10,15 +10,10 @@ import UIKit
 import CoreData
 
 struct ShoppingView: View {
-    @StateObject private var shoppingViewModel = ShoppingViewModel()
-    @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
+    @ObservedObject var shoppingViewModel = ShoppingViewModel()
+    @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     
     @State var isMovedToInventory = false
-    @State var shoppingToBeMoved: [NSManagedObjectID] = []
-    
-    @State var arrayStore: [String] = []
-    @State var arrayPurchaseDate: [Date] = []
-    @State var arrayExpiryDate: [Date] = []
     
     func getIconName() -> Image {
         return Image(systemName: "bag.fill")
@@ -29,12 +24,12 @@ struct ShoppingView: View {
     
     func setArrayDate() {
         for i in 0..<shoppingViewModel.shopping.count {
-            arrayPurchaseDate.append(Date())
-            arrayExpiryDate.append(Date())
-            arrayStore.append("Fridge")
-            if shoppingToBeMoved.contains(shoppingViewModel.shopping[i].id) {
-                arrayPurchaseDate[i] = shoppingViewModel.shopping[i].purchaseDate
-                arrayExpiryDate[i] =  Calendar.current.date(byAdding: .day, value: Int(shoppingViewModel.shopping[i].foodCategory.expiryEstimation), to: Date())!
+            shoppingViewModel.arrayPurchaseDate.append(Date())
+            shoppingViewModel.arrayExpiryDate.append(Date())
+            shoppingViewModel.arrayStore.append("Fridge")
+            if shoppingViewModel.shoppingToBeMoved.contains(shoppingViewModel.shopping[i].id) {
+                shoppingViewModel.arrayPurchaseDate[i] = shoppingViewModel.shopping[i].purchaseDate
+                shoppingViewModel.arrayExpiryDate[i] =  Calendar.current.date(byAdding: .day, value: Int(shoppingViewModel.shopping[i].foodCategory.expiryEstimation), to: Date())!
             }
         }
     }
@@ -46,12 +41,14 @@ struct ShoppingView: View {
                     ZStack {
                         List {
                             ForEach(shoppingViewModel.shopping, id:\.id) {
-                                shopping in ShoppingListView(shopping: shopping, shoppingToBeMoved: $shoppingToBeMoved)
+                                shopping in
+                                ShoppingListView(shopping: shopping, shoppingViewModel: shoppingViewModel)
                                     .contextMenu {
                                         Button {
-                                            
+                                            shoppingViewModel.editData(index: shopping)
+                                            print(shopping)
                                         } label: {
-                                            Label("Update Inventory", systemImage: "square.and.pencil")
+                                            Label("Update Item", systemImage: "square.and.pencil")
                                         }
                                         
                                         Divider()
@@ -64,10 +61,10 @@ struct ShoppingView: View {
                                     }
                                     .contentShape(Rectangle())
                                     .onTapGesture {
-                                        if shoppingToBeMoved.contains(shopping.id) {
-                                            shoppingToBeMoved = shoppingToBeMoved.filter{$0 != shopping.id}
+                                        if shoppingViewModel.shoppingToBeMoved.contains(shopping.id) {
+                                            shoppingViewModel.shoppingToBeMoved = shoppingViewModel.shoppingToBeMoved.filter{$0 != shopping.id}
                                         } else {
-                                            shoppingToBeMoved.append(shopping.id)
+                                            shoppingViewModel.shoppingToBeMoved.append(shopping.id)
                                         }
                                     }
                                 
@@ -77,7 +74,7 @@ struct ShoppingView: View {
                         VStack {
                             Spacer()
                             
-                            if !shoppingToBeMoved.isEmpty {
+                            if !shoppingViewModel.shoppingToBeMoved.isEmpty {
                                 Button {
                                     isMovedToInventory = true
                                     //shoppingToBeMoved
@@ -88,7 +85,7 @@ struct ShoppingView: View {
                                         .foregroundColor(.white)
                                 }
                                 .frame(width: 350, height: 50, alignment: .center)
-                                .background(Color.blue)
+                                .background(Color("BrandColor"))
                                 .cornerRadius(10)
                                 .padding()
                             }
@@ -109,7 +106,7 @@ struct ShoppingView: View {
         }
         .sheet(isPresented: $isMovedToInventory, content: {
             //
-            ShoppingToInventoryView(shoppingViewModel: shoppingViewModel, foodCategoryViewModel: foodCategoryViewModel, shoppingToBeMoved: $shoppingToBeMoved, isMovedToInventory: $isMovedToInventory, arrayExpiryDate: $arrayExpiryDate, arrayPurchaseDate: $arrayPurchaseDate, arrayStore: $arrayStore)
+            ShoppingToInventoryView(shoppingViewModel: shoppingViewModel, foodCategoryViewModel: foodCategoryViewModel, isMovedToInventory: $isMovedToInventory)
         })
         .onAppear(perform: {
             shoppingViewModel.loadList()

@@ -73,11 +73,11 @@ struct InventoryFormView: View {
                         if isShowPickerType {
                             Image(systemName: "chevron.down")
                                 .font(.system(size: 12, weight: .bold))
-                            .foregroundColor(Color.init(UIColor.systemGray2))
+                                .foregroundColor(Color.init(UIColor.systemGray2))
                         } else {
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 13, weight: .bold))
-                            .foregroundColor(Color.init(UIColor.systemGray2))
+                                .foregroundColor(Color.init(UIColor.systemGray2))
                         }
                     }
                     .contentShape(Rectangle())

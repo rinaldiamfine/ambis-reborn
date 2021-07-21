@@ -8,10 +8,8 @@
 import Foundation
 import UIKit
 import CoreData
-import SwiftUI
 
 class ShoppingViewModel: ObservableObject{
-    
     @Published var name: String = ""
     @Published var total: String = ""
     @Published var totalType: String = "Kg"
@@ -22,10 +20,6 @@ class ShoppingViewModel: ObservableObject{
     
     @Published var purchaseDate: Date = Date()
     @Published var expiryDate: Date = Date()
-    
-//    @Published var arrayPurchaseDate: [Date] = []
-//    @Published var arrayExpiryDate: [Date] = []
-//    @Published var arrayStore: [String] = []
     
     @Published var shopping: [ShoppingModel] = []
     @Published var shoppingCount: Int = 0
@@ -38,6 +32,12 @@ class ShoppingViewModel: ObservableObject{
     
     @Published var previewSelectedCategory = "Choose Category"
     @Published var detailDisclaimer = ""
+    
+    //For moving to inventory
+    @Published var shoppingToBeMoved: [NSManagedObjectID] = []
+    @Published var arrayPurchaseDate: [Date] = []
+    @Published var arrayExpiryDate: [Date] = []
+    @Published var arrayStore: [String] = []
     
     
     //UPDATE (before moving to inventory)
@@ -86,6 +86,40 @@ class ShoppingViewModel: ObservableObject{
         getData()
     }
     
+    //EDIT
+    func editData(index: ShoppingModel) {
+        var count = 0
+        for data in shopping {
+            if data.id == index.id {
+                prepareDataEdit(index: count)
+                break
+            }
+            count += 1
+        }
+        selectedIndex = count
+        status = "edit"
+        isPresented = true
+    }
+    func prepareDataEdit(index: Int) {
+        name = shopping[index].name
+        total = String(shopping[index].total)
+        totalType = shopping[index].totalType
+        toShopping = [shopping[index].foodCategory]
+        previewSelectedCategory = (shopping[index].foodCategory.imageString! + " " + shopping[index].foodCategory.name!)
+        detailDisclaimer = shopping[index].foodCategory.estimation!
+    }
+    func editData(_ shopping: ShoppingModel) {
+        let existingShopping = PersistenceController.shared.getShoppingDataById(id: shopping.id)
+        if let existingShopping = existingShopping {
+            existingShopping.name = name
+            existingShopping.total = Double(total)!
+            existingShopping.totalType = totalType
+            existingShopping.toFoodCategory = toShopping.first
+            PersistenceController.shared.editShoppingData(shopping: existingShopping, model: shopping)
+            getData()
+        }
+    }
+    
     //CREATE
     func prepareCreateData() {
         resetData()
@@ -115,15 +149,17 @@ class ShoppingViewModel: ObservableObject{
     }
     
     func loadList() {
-        getData()
-    }
-    
-    func getData() {
         shopping = PersistenceController.shared.getShoppingData().map(ShoppingModel.init)
         shoppingCount = shopping.count
         
         foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
         foodCategoryCount = foodCategories.count
+        
+    }
+    
+    func getData() {
+        shopping = PersistenceController.shared.getShoppingData().map(ShoppingModel.init)
+        shoppingCount = shopping.count
     }
     
 }
