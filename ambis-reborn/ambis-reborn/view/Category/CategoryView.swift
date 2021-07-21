@@ -44,7 +44,7 @@ struct CategoryView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
             }
-            .navigationBarTitle("Settings")
+            .navigationBarTitle("Category")
             .sheet(isPresented: $isPresented) {
                 CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, selectedCategory: $selectCategory)
             }
@@ -55,10 +55,10 @@ struct CategoryView: View {
     }
     
     func getIconName() -> Image {
-        return Image(systemName: "gearshape.fill")
+        return Image(systemName: "square.grid.2x2.fill")
     }
     func gettabName() -> Text {
-        return Text("Settings")
+        return Text("Category")
     }
 }
 
