@@ -11,8 +11,8 @@ import CoreData
 import UserNotifications
 
 struct InventoryView: View {
-    @ObservedObject var inventoryViewModel = InventoryViewModel()
-    @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
+    @StateObject var inventoryViewModel = InventoryViewModel()
+    @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
     @ObservedObject var searchBar: SearchBar = SearchBar()
     @State private var defaultFilter = "Expire Soon"
     @Environment(\.colorScheme) var colorScheme
@@ -197,9 +197,10 @@ struct InventoryView: View {
 //                .environmentObject(inventoryViewModel)
         }
         .onAppear(perform: {
+            print("APPEAR GET DATA")
+            inventoryViewModel.getData()
             inventoryViewModel.loadList()
             foodCategoryViewModel.getData()
-            print("APPEAR")
             NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
         })
     }

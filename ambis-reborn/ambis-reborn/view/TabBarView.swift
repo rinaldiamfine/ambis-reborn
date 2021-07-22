@@ -17,7 +17,7 @@ struct TabBarView: View {
             InventoryView().tabItem {
                 InventoryView().getIconName()
                 InventoryView().gettabName()
-            }.tag(1).environmentObject(inventoryViewModel)
+            }.tag(1)
             ShoppingView().tabItem {
                 ShoppingView().getIconName()
                 ShoppingView().gettabName()
