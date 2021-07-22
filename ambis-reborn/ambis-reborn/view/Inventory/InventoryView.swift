@@ -21,6 +21,7 @@ struct InventoryView: View {
     @State private var showCancelButton: Bool = false
     @State private var needRefresh = true
     @State var totalInventSearch: Int = 0
+    @State private var dropCloseModal: Bool = false
     
     var storeAvailable = AppGlobalData.generateDataStore()
     
@@ -33,6 +34,10 @@ struct InventoryView: View {
     func checkFunc(inventoryCount: Int) {
         print("WORKS")
         print(inventoryCount)
+    }
+    func didDismiss() {
+        dropCloseModal.toggle()
+        print("DID DISSMISSS")
     }
     
     var body: some View {
@@ -192,8 +197,8 @@ struct InventoryView: View {
                 }).contentShape(Circle())
             )
         }
-        .sheet(isPresented: $inventoryViewModel.isPresented) {
-            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented)
+        .sheet(isPresented: $inventoryViewModel.isPresented, onDismiss: didDismiss) {
+            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, dropCloseModal: $dropCloseModal)
 //                .environmentObject(inventoryViewModel)
         }
         .onAppear(perform: {

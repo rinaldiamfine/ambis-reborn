@@ -68,14 +68,14 @@ struct ShoppingListView: View {
                         .frame(width: 46, height: 46)
                     Text(formatIcon()).font(.system(size: 28))
                 }
-                //.padding(.leading, 10)
+                .padding(.leading, 10)
             }
             VStack(alignment: .leading, spacing: 5) {
                 Text(formatTitle()).font(.system(size: 15))
                 Text(formatSubtitle()).font(.system(size: 13))
                     .foregroundColor(Color.init(.systemGray))
             }
-            .padding(.leading, 10)
+            .padding(.leading, 2)
             Spacer()
             if shoppingViewModel.shoppingToBeMoved.contains(shopping.id) {
                 Image(systemName: "checkmark.circle.fill")
@@ -87,6 +87,9 @@ struct ShoppingListView: View {
                     .font(.system(size: 30))
             }
         }
+        .padding(.top, 8)
+        .padding(.bottom, 8)
+        .padding(.trailing, 8)
         .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
     }
 }

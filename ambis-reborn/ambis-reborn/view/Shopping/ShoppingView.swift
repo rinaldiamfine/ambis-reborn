@@ -39,7 +39,7 @@ struct ShoppingView: View {
             VStack(spacing: 0) {
                 if shoppingViewModel.shoppingCount > 0 {
                     ZStack {
-                        List {
+                        ScrollView {
                             ForEach(shoppingViewModel.shopping, id:\.id) {
                                 shopping in
                                 ShoppingListView(shopping: shopping, shoppingViewModel: shoppingViewModel)
@@ -70,7 +70,10 @@ struct ShoppingView: View {
                                 
                             }
                         }
-                        .listStyle(InsetGroupedListStyle())
+                        .padding()
+                        .frame(width: UIScreen.screenWidth)
+                        .background(Color("AppBackground"))
+//                        .listStyle(InsetGroupedListStyle())
                         VStack {
                             Spacer()
                             
