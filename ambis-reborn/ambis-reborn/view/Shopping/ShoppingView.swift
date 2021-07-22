@@ -10,8 +10,8 @@ import UIKit
 import CoreData
 
 struct ShoppingView: View {
-    @ObservedObject var shoppingViewModel = ShoppingViewModel()
-    @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
+    @StateObject var shoppingViewModel = ShoppingViewModel()
+    @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
     
     @State var isMovedToInventory = false
     
