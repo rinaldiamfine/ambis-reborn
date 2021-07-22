@@ -11,7 +11,7 @@ import Combine
 
 struct InventoryFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
-    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel = FoodCategoryViewModel()
+    @StateObject var foodCategoryViewModel: FoodCategoryViewModel = FoodCategoryViewModel()
     
     @Binding var isPresented: Bool
     @Binding var dropCloseModal: Bool

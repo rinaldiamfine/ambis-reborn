@@ -151,7 +151,7 @@ struct InventoryView: View {
                                             }
                                     }
                                 } else {
-                                    InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
+                                    InventoryListFilterView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
                                         .contextMenu {
                                             Button {
                                                 inventoryViewModel.editData(index: inventory)
