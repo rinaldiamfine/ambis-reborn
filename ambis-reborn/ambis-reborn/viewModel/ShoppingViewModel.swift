@@ -104,15 +104,17 @@ class ShoppingViewModel: ObservableObject{
         name = shopping[index].name
         total = String(shopping[index].total)
         totalType = shopping[index].totalType
-        toShopping = [shopping[index].foodCategory]
-        previewSelectedCategory = (shopping[index].foodCategory.imageString! + " " + shopping[index].foodCategory.name!)
-        detailDisclaimer = shopping[index].foodCategory.estimation!
+        if shopping[index].shopping.toFoodCategory != nil {
+            toShopping = [shopping[index].foodCategory]
+            previewSelectedCategory = (shopping[index].foodCategory.imageString! + " " + shopping[index].foodCategory.name!)
+            detailDisclaimer = shopping[index].foodCategory.estimation!
+        }
     }
     func editData(_ shopping: ShoppingModel) {
         let existingShopping = PersistenceController.shared.getShoppingDataById(id: shopping.id)
         if let existingShopping = existingShopping {
             existingShopping.name = name
-            existingShopping.total = Double(total)!
+            existingShopping.total = Double(total) ?? Double(0)
             existingShopping.totalType = totalType
             existingShopping.toFoodCategory = toShopping.first
             PersistenceController.shared.editShoppingData(shopping: existingShopping, model: shopping)
@@ -130,7 +132,7 @@ class ShoppingViewModel: ObservableObject{
     func resetData() {
         name = ""
         total = ""
-        totalType = ""
+        totalType = "Kg"
         toShopping = []
         previewSelectedCategory = "Choose Category"
         detailDisclaimer = ""
@@ -140,7 +142,7 @@ class ShoppingViewModel: ObservableObject{
     func saveData() {
         let shopping = Shopping(context: PersistenceController.shared.container.viewContext)
         shopping.name = name
-        shopping.total = Double(total)!
+        shopping.total = Double(total) ?? Double(0)
         shopping.totalType = totalType
         if toShopping.count > 0 {
             shopping.toFoodCategory = toShopping.first

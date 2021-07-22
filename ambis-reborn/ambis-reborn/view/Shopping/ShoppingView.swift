@@ -29,7 +29,9 @@ struct ShoppingView: View {
             shoppingViewModel.arrayStore.append("Fridge")
             if shoppingViewModel.shoppingToBeMoved.contains(shoppingViewModel.shopping[i].id) {
                 shoppingViewModel.arrayPurchaseDate[i] = shoppingViewModel.shopping[i].purchaseDate
-                shoppingViewModel.arrayExpiryDate[i] =  Calendar.current.date(byAdding: .day, value: Int(shoppingViewModel.shopping[i].foodCategory.expiryEstimation), to: Date())!
+                if shoppingViewModel.shopping[i].shopping.toFoodCategory != nil {
+                    shoppingViewModel.arrayExpiryDate[i] =  Calendar.current.date(byAdding: .day, value: Int(shoppingViewModel.shopping[i].foodCategory.expiryEstimation), to: Date())!
+                }
             }
         }
     }

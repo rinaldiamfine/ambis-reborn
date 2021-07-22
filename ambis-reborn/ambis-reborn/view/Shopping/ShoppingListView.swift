@@ -16,7 +16,7 @@ struct ShoppingListView: View {
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
     
-    @State private var limitChar: Int = 27
+    @State private var limitChar: Int = 20
     @State private var startLimit: Int = 17
     
 
@@ -50,7 +50,9 @@ struct ShoppingListView: View {
     func formatIcon() -> String {
         var format = ""
         for i in filterShopping() {
-            format = i.foodCategory.imageString ?? ""
+            if i.shopping.toFoodCategory != nil {
+                format = i.foodCategory.imageString ?? ""
+            }
         }
         return format
     }
