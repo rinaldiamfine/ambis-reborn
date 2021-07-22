@@ -130,7 +130,7 @@ class ShoppingViewModel: ObservableObject{
     func resetData() {
         name = ""
         total = ""
-        totalType = ""
+        totalType = "Kg"
         toShopping = []
         previewSelectedCategory = "Choose Category"
         detailDisclaimer = ""
@@ -140,7 +140,7 @@ class ShoppingViewModel: ObservableObject{
     func saveData() {
         let shopping = Shopping(context: PersistenceController.shared.container.viewContext)
         shopping.name = name
-        shopping.total = Double(total)!
+        shopping.total = Double(total) ?? Double(0)
         shopping.totalType = totalType
         if toShopping.count > 0 {
             shopping.toFoodCategory = toShopping.first

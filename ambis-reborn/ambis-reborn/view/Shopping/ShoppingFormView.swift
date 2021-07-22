@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ShoppingFormView: View {
-    @ObservedObject var shoppingViewModel: ShoppingViewModel
-    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
+    @ObservedObject var shoppingViewModel = ShoppingViewModel()
+    @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
     
     @Binding var isPresented: Bool
     
