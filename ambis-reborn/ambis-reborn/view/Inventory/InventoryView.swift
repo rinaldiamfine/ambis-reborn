@@ -34,40 +34,14 @@ struct InventoryView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
-                HStack {
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                        TextField("Search", text: $searchText, onEditingChanged: { isEditing in
-                            self.showCancelButton = true
-                        }, onCommit: {
-                            print("onCommit")
-                        }).foregroundColor(.primary)
-                        Button(action: {
-                            self.searchText = ""
-                            totalInventSearch = 0
-                        }) {
-                            Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                        }
-                    }
-                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                    .foregroundColor(.secondary)
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(10.0)
-                    if showCancelButton  {
-                        Button("Cancel") {
-                            UIApplication.shared.endEditing(true)
-                            self.searchText = ""
-                            self.showCancelButton = false
-                        }
-                        .foregroundColor(Color("BrandColor"))
-                    }
-                }
-                .padding(.horizontal)
-                .navigationBarHidden(showCancelButton)
-                
                 if inventoryViewModel.inventoryCount > 0 {
                     ScrollView {
-                        Section(header: InventoryFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton)) {
+                        VStack(spacing: 10) {
+                            InventoryFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton, searchText: $searchText, showCancelButton: $showCancelButton)
+                        }
+                        .padding(.horizontal)
+                        
+                        Section {
                             ForEach (inventoryViewModel.inventory.filter {
                                 if defaultFilter == "Expire Soon" {
                                     if !showCancelButton {
@@ -88,25 +62,25 @@ struct InventoryView: View {
                                 }
                             }, id:\.id) {
                                 inventory in
-                                if !showCancelButton {
-                                    // EXPIRE SOON
-                                    if defaultFilter == "Expire Soon" {
-                                        InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
+                                VStack(spacing: 10) {
+                                    if !showCancelButton {
+                                        // EXPIRE SOON
+                                        if defaultFilter == "Expire Soon" {
+                                            InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
+                                        }
+                                        //NOT EXPIRE SOON
+                                        else {
+                                            InventoryListView(inventory: inventory, inventoryViewModel: inventoryViewModel)
+                                        }
+                                    } else {
+                                        //ON FILTER
+                                        InventoryListFilterView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
                                     }
-                                    
-                                    //NOT EXPIRE SOON
-                                    else {
-                                        InventoryListView(inventory: inventory, inventoryViewModel: inventoryViewModel)
-                                    }
-                                } else {
-                                    //ON FILTER
-                                    InventoryListFilterView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
                                 }
+                                .padding(.horizontal)
                             }
                         }
-                        .textCase(nil)
                     }
-                    .padding()
                     .frame(width: UIScreen.screenWidth)
                     .background(Color("AppBackground"))
                 } else {
@@ -119,7 +93,6 @@ struct InventoryView: View {
                 }
             }
             .navigationBarTitle("Inventory")
-//            .navigationBarTitle("Inventorys", displayMode: .inline)
             .navigationBarItems(
                 trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
                     Image(systemName: "plus").imageScale(.large)
