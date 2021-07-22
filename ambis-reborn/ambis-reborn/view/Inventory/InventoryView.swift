@@ -30,36 +30,41 @@ struct InventoryView: View {
     func gettabName() -> Text {
         return Text("Inventory")
     }
+    func filterList(expiryDate: Date, name: String, store: String) -> Bool {
+        if defaultFilter == "Expire Soon" {
+            if !showCancelButton {
+                if expiryDate <= Date().addingTimeInterval(24 * 60 * 60 * 3) {
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                return name.localizedStandardContains(searchText)
+            }
+        } else {
+            if !showCancelButton  {
+                return store.localizedStandardContains(defaultFilter)
+            } else {
+                return name.localizedStandardContains(searchText)
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
                 if inventoryViewModel.inventoryCount > 0 {
                     ScrollView {
+                        //SETUP SEARCH AND FILTER
                         VStack(spacing: 10) {
                             InventoryFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton, searchText: $searchText, showCancelButton: $showCancelButton)
                         }
                         .padding(.horizontal)
                         
+                        //SETUP LIST
                         Section {
                             ForEach (inventoryViewModel.inventory.filter {
-                                if defaultFilter == "Expire Soon" {
-                                    if !showCancelButton {
-                                        if $0.expiryDate <= Date().addingTimeInterval(24 * 60 * 60 * 3) {
-                                            return true
-                                        } else {
-                                            return false
-                                        }
-                                    } else {
-                                        return $0.name.localizedStandardContains(searchText)
-                                    }
-                                } else {
-                                    if !showCancelButton  {
-                                        return $0.store.localizedStandardContains(defaultFilter)
-                                    } else {
-                                        return $0.name.localizedStandardContains(searchText)
-                                    }
-                                }
+                                filterList(expiryDate: $0.expiryDate, name: $0.name, store: $0.store)
                             }, id:\.id) {
                                 inventory in
                                 VStack(spacing: 10) {
@@ -111,32 +116,8 @@ struct InventoryView: View {
     }
 }
 
-//struct InventoryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InventoryView()
-//    }
-//}
-
-extension UIApplication {
-    func endEditing(_ force: Bool) {
-        self.windows
-            .filter{$0.isKeyWindow}
-            .first?
-            .endEditing(force)
-    }
-}
-
-struct ResignKeyboardOnDragGesture: ViewModifier {
-    var gesture = DragGesture().onChanged{_ in
-        UIApplication.shared.endEditing(true)
-    }
-    func body(content: Content) -> some View {
-        content.gesture(gesture)
-    }
-}
-
-extension View {
-    func resignKeyboardOnDragGesture() -> some View {
-        return modifier(ResignKeyboardOnDragGesture())
+struct InventoryView_Previews: PreviewProvider {
+    static var previews: some View {
+        InventoryView()
     }
 }
