@@ -81,7 +81,7 @@ struct ShoppingToInventoryListView: View {
                             Spacer()
                         }
                     }
-                }
+                }.padding(.top, 10)
                 
                 Section(header: Text("Date Information")) {
                     DatePicker("Buy", selection: Binding<Date> (
