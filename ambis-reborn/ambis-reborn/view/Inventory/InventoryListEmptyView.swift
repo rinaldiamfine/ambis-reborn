@@ -21,7 +21,7 @@ struct InventoryListEmptyView: View {
             Text("There are no items in your inventory.")
                 .foregroundColor(Color.init(UIColor.systemGray))
                 .padding(.top, 15)
-            Text("Press + button to add.")
+            Text("Press the + button to add.")
                 .foregroundColor(Color.init(UIColor.systemGray))
         }
     }
