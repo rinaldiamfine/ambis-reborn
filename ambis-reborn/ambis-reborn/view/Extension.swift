@@ -18,6 +18,7 @@ extension UINavigationController {
         super.viewDidLoad()
 //        let colors = UINavigationBarAppearance()
 //        colors.backgroundColor = UIColor.init(Color("Gradient1"))
+//        colors.shadowColor = .clear
 //        navigationBar.standardAppearance = colors
 //        navigationBar.scrollEdgeAppearance = colors
 //        navigationBar.compactAppearance = colors
@@ -58,5 +59,29 @@ extension UIApplication {
 extension UIApplication: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true // set to `false` if you don't want to detect tap during other gestures
+    }
+}
+
+extension UIApplication {
+    func endEditing(_ force: Bool) {
+        self.windows
+            .filter{$0.isKeyWindow}
+            .first?
+            .endEditing(force)
+    }
+}
+
+struct ResignKeyboardOnDragGesture: ViewModifier {
+    var gesture = DragGesture().onChanged{_ in
+        UIApplication.shared.endEditing(true)
+    }
+    func body(content: Content) -> some View {
+        content.gesture(gesture)
+    }
+}
+
+extension View {
+    func resignKeyboardOnDragGesture() -> some View {
+        return modifier(ResignKeyboardOnDragGesture())
     }
 }

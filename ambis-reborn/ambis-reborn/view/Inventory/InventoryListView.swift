@@ -112,7 +112,7 @@ struct InventoryListView: View {
             }
 
             Button {
-                print("share")
+                actionShare(data: inventory)
             } label: {
                 Label("Share", systemImage: "arrowshape.turn.up.forward")
             }
@@ -125,5 +125,14 @@ struct InventoryListView: View {
                 Image(systemName: "trash")
             }
         }
+    }
+    
+    func actionShare(data: InventoryModel) {
+        let total = String(format: "%.0f", data.total)
+        let type = String(describing: data.totalType)
+        let name = data.name
+        let formatShare = ["Hey. I have about \(total) \(type) of \(name) that I will not be using. Would you like to take it?"]
+        let activityView = UIActivityViewController(activityItems: formatShare, applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
 }

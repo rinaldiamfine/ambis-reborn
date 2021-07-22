@@ -32,35 +32,40 @@ struct InventoryFilterView: View {
     }
     
     var body: some View {
+        HStack {
             HStack {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                    TextField("Search", text: $searchText, onEditingChanged: { isEditing in
-                        self.showCancelButton = true
-                    }, onCommit: {
-                        print("onCommit")
-                    }).foregroundColor(.primary)
-                    Button(action: {
-                        self.searchText = ""
-                    }) {
-                        Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                    }
-                }
-                .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                .foregroundColor(.secondary)
-                .background(boxBackground)
-                .cornerRadius(10.0)
-                if showCancelButton  {
-                    Button("Cancel") {
-                        UIApplication.shared.endEditing(true)
-                        self.searchText = ""
-                        self.showCancelButton = false
-                    }
-                    .foregroundColor(Color("BrandColor"))
+                Image(systemName: "magnifyingglass")
+                TextField("Search", text: $searchText, onEditingChanged: { isEditing in
+                    self.showCancelButton = true
+                }, onCommit: {
+                    print("onCommit")
+                }).foregroundColor(.primary)
+                Button(action: {
+                    self.searchText = ""
+                }) {
+                    Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
                 }
             }
-            .navigationBarHidden(showCancelButton)
-            .padding(.vertical)
+            .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+            .foregroundColor(.secondary)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(boxBackground)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10).stroke(Color.secondary, lineWidth: 0.1)
+                    )
+            )
+            if showCancelButton  {
+                Button("Cancel") {
+                    UIApplication.shared.endEditing(true)
+                    self.searchText = ""
+                    self.showCancelButton = false
+                }
+                .foregroundColor(Color("BrandColor"))
+            }
+        }
+        .navigationBarHidden(showCancelButton)
+        .padding(.vertical)
         
         if !isSearchActive {
             VStack(alignment: .leading) {

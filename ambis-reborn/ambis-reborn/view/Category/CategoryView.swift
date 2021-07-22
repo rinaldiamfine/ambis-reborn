@@ -36,7 +36,6 @@ struct CategoryView: View {
                                     .contentShape(Rectangle())
                                     .onTapGesture {
                                         isPresented = true
-//                                        selectCategory = 0
                                         getSelectedCategory(index: category)
                                     }
                             }

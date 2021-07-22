@@ -58,8 +58,16 @@ struct InventoryView: View {
                         //SETUP SEARCH AND FILTER
                         VStack(spacing: 10) {
                             InventoryFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton, searchText: $searchText, showCancelButton: $showCancelButton)
+                                .padding(.horizontal)
                         }
-                        .padding(.horizontal)
+//                        .background(
+//                            Rectangle()
+//                                .fill(LinearGradient(
+//                                    gradient: .init(colors: !showCancelButton ? [Color("Gradient1"), Color("Gradient2")] : [Color(UIColor.systemBackground)]),
+//                                    startPoint: .init(x: 0, y: 0),
+//                                    endPoint: .init(x: 0, y: 0.5)
+//                                ))
+//                        )
                         
                         //SETUP LIST
                         Section {
@@ -100,7 +108,9 @@ struct InventoryView: View {
             .navigationBarTitle("Inventory")
             .navigationBarItems(
                 trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
-                    Image(systemName: "plus").imageScale(.large)
+                    Image(systemName: "plus")
+                        .imageScale(.large)
+                        .foregroundColor(Color("BackgroundInverse"))
                 }).contentShape(Circle())
             )
         }
