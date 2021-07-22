@@ -14,7 +14,8 @@ struct InventoryFormView: View {
     @StateObject var foodCategoryViewModel: FoodCategoryViewModel = FoodCategoryViewModel()
     
     @Binding var isPresented: Bool
-    @Binding var dropCloseModal: Bool
+    @Binding var defaultFilter: String
+    
     var formName = "Add Inventory"
     
     @State private var showingActionSheet = false
@@ -31,9 +32,11 @@ struct InventoryFormView: View {
     func actionDone() {
         if inventoryViewModel.status == "edit" {
             inventoryViewModel.editData(inventoryViewModel.inventory[inventoryViewModel.selectedIndex])
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "inventoryUpdated"), object: inventoryViewModel)
+            defaultFilter = inventoryViewModel.inventory[inventoryViewModel.selectedIndex].store
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "inventoryUpdated"), object: inventoryViewModel)
         } else {
             inventoryViewModel.saveData()
+            defaultFilter = inventoryViewModel.store
         }
         inventoryViewModel.getData()
         Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
@@ -189,20 +192,6 @@ struct InventoryFormView: View {
                 }
         )
         .offset(x: 0, y: offset.height)
-        //DRAG DROP
-        .actionSheet(isPresented: $dropCloseModal) {
-            ActionSheet(
-                title: Text("Changes you made may not be saved."),
-                buttons: [
-                    .destructive(Text("Discard Changes")) {
-                        isPresented = false
-                        inventoryViewModel.resetData()
-                    },
-                    .cancel()
-                ]
-            )
-        }
-        // CANCEL BUTTON
         .actionSheet(isPresented: $showingActionSheet) {
             ActionSheet(
                 title: Text("Changes you made may not be saved."),

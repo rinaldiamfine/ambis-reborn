@@ -21,7 +21,6 @@ struct InventoryView: View {
     @State private var showCancelButton: Bool = false
     @State private var needRefresh = true
     @State var totalInventSearch: Int = 0
-    @State private var dropCloseModal: Bool = false
     
     var storeAvailable = AppGlobalData.generateDataStore()
     
@@ -30,14 +29,6 @@ struct InventoryView: View {
     }
     func gettabName() -> Text {
         return Text("Inventory")
-    }
-    func checkFunc(inventoryCount: Int) {
-        print("WORKS")
-        print(inventoryCount)
-    }
-    func didDismiss() {
-        dropCloseModal.toggle()
-        print("DID DISSMISSS")
     }
     
     var body: some View {
@@ -98,81 +89,18 @@ struct InventoryView: View {
                             }, id:\.id) {
                                 inventory in
                                 if !showCancelButton {
-                                    //EXPIRE SOON
+                                    // EXPIRE SOON
                                     if defaultFilter == "Expire Soon" {
                                         InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
-                                            .contextMenu {
-                                                Button {
-                                                    inventoryViewModel.editData(index: inventory)
-                                                } label: {
-                                                    Label("Update Inventory", systemImage: "square.and.pencil")
-                                                }
-
-                                                Button {
-                                                    print("share")
-                                                } label: {
-                                                    Label("Share", systemImage: "arrowshape.turn.up.forward")
-                                                }
-
-                                                Divider()
-                                                Button {
-                                                    inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                                                } label: {
-                                                    Text("Remove")
-                                                    Image(systemName: "trash")
-                                                }
-                                            }
                                     }
                                     
                                     //NOT EXPIRE SOON
                                     else {
-//                                        InventoryListSearchEmptyView()
                                         InventoryListView(inventory: inventory, inventoryViewModel: inventoryViewModel)
-                                            .contextMenu {
-                                                Button {
-                                                    inventoryViewModel.editData(index: inventory)
-                                                } label: {
-                                                    Label("Update Inventory", systemImage: "square.and.pencil")
-                                                }
-
-                                                Button {
-                                                    print("share")
-                                                } label: {
-                                                    Label("Share", systemImage: "arrowshape.turn.up.forward")
-                                                }
-
-                                                Divider()
-                                                Button {
-                                                    inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                                                } label: {
-                                                    Text("Remove")
-                                                    Image(systemName: "trash")
-                                                }
-                                            }
                                     }
                                 } else {
+                                    //ON FILTER
                                     InventoryListFilterView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
-                                        .contextMenu {
-                                            Button {
-                                                inventoryViewModel.editData(index: inventory)
-                                            } label: {
-                                                Label("Update Inventory", systemImage: "square.and.pencil")
-                                            }
-
-                                            Button {
-                                                print("share")
-                                            } label: {
-                                                Label("Share", systemImage: "arrowshape.turn.up.forward")
-                                            }
-
-                                            Divider()
-                                            Button {
-                                                inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                                            } label: {
-                                                Text("Remove")
-                                                Image(systemName: "trash")
-                                            }
-                                        }
                                 }
                             }
                         }
@@ -191,18 +119,17 @@ struct InventoryView: View {
                 }
             }
             .navigationBarTitle("Inventory")
+//            .navigationBarTitle("Inventorys", displayMode: .inline)
             .navigationBarItems(
                 trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
                     Image(systemName: "plus").imageScale(.large)
                 }).contentShape(Circle())
             )
         }
-        .sheet(isPresented: $inventoryViewModel.isPresented, onDismiss: didDismiss) {
-            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, dropCloseModal: $dropCloseModal)
-//                .environmentObject(inventoryViewModel)
+        .sheet(isPresented: $inventoryViewModel.isPresented) {
+            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
         }
         .onAppear(perform: {
-            print("APPEAR GET DATA")
             inventoryViewModel.getData()
             inventoryViewModel.loadList()
             foodCategoryViewModel.getData()

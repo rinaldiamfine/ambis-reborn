@@ -104,5 +104,26 @@ struct InventoryListView: View {
         .padding(.bottom, 8)
         .padding(.trailing, 8)
         .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
+        .contextMenu {
+            Button {
+                inventoryViewModel.editData(index: inventory)
+            } label: {
+                Label("Update Inventory", systemImage: "square.and.pencil")
+            }
+
+            Button {
+                print("share")
+            } label: {
+                Label("Share", systemImage: "arrowshape.turn.up.forward")
+            }
+
+            Divider()
+            Button {
+                inventoryViewModel.deleteItemByContextMenu(index: inventory)
+            } label: {
+                Text("Remove")
+                Image(systemName: "trash")
+            }
+        }
     }
 }
