@@ -74,6 +74,7 @@ struct ShoppingToInventoryView: View {
             print("Dissappear")
             if shoppingViewModel.status == "move" {
                 shoppingViewModel.deleteMovedShoppingList(ids: shoppingViewModel.shoppingToBeMoved)
+                shoppingViewModel.shoppingToBeMoved = []
             }
         }
         

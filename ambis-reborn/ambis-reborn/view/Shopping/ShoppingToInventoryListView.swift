@@ -31,8 +31,10 @@ struct ShoppingToInventoryListView: View {
         VStack(alignment: .leading) {
             HStack {
                 if shopping.foodCategory != FoodCategory() {
-                    Text(shopping.foodCategory.imageString ?? "")
-                        .font(.system(size: 18))
+                    if shopping.shopping.toFoodCategory != nil {
+                        Text(shopping.foodCategory.imageString ?? "")
+                            .font(.system(size: 18))
+                    }
                 }
                 VStack(alignment: .leading) {
                     Text(shopping.name).font(.system(size: 15))
@@ -53,7 +55,9 @@ struct ShoppingToInventoryListView: View {
             .onTapGesture {
                 counterToAdjustExpDate += 1
                 if counterToAdjustExpDate == 1 {
-                    expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: Date())!
+                    if shopping.shopping.toFoodCategory != nil {
+                        expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation ), to: Date())!
+                    }
                     isClicked.toggle()
                 }
             }
@@ -86,7 +90,9 @@ struct ShoppingToInventoryListView: View {
                                     if expiryDate < $0 {
                                         expiryDate = $0
                                     }
-                                    expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: $0)!
+                                    if shopping.shopping.toFoodCategory != nil {
+                                        expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: $0)!
+                                    }
                                 }), displayedComponents: .date)
                     DatePicker("Expiry", selection: $expiryDate, in: purchaseDate..., displayedComponents: .date)
                 }

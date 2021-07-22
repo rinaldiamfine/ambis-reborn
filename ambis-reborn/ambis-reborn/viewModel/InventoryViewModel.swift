@@ -45,9 +45,11 @@ class InventoryViewModel: ObservableObject {
         //
         inventory.store = store
         //
-        toInventory = [shopping.foodCategory]
-        if toInventory.count > 0 {
-            inventory.toFoodCategory = toInventory.first
+        if shopping.shopping.toFoodCategory != nil {
+            toInventory = [shopping.foodCategory]
+            if toInventory.count > 0 {
+                inventory.toFoodCategory = toInventory.first
+            }
         }
         PersistenceController.shared.saveData()
     }

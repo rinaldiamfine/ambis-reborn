@@ -104,15 +104,17 @@ class ShoppingViewModel: ObservableObject{
         name = shopping[index].name
         total = String(shopping[index].total)
         totalType = shopping[index].totalType
-        toShopping = [shopping[index].foodCategory]
-        previewSelectedCategory = (shopping[index].foodCategory.imageString! + " " + shopping[index].foodCategory.name!)
-        detailDisclaimer = shopping[index].foodCategory.estimation!
+        if shopping[index].shopping.toFoodCategory != nil {
+            toShopping = [shopping[index].foodCategory]
+            previewSelectedCategory = (shopping[index].foodCategory.imageString! + " " + shopping[index].foodCategory.name!)
+            detailDisclaimer = shopping[index].foodCategory.estimation!
+        }
     }
     func editData(_ shopping: ShoppingModel) {
         let existingShopping = PersistenceController.shared.getShoppingDataById(id: shopping.id)
         if let existingShopping = existingShopping {
             existingShopping.name = name
-            existingShopping.total = Double(total)!
+            existingShopping.total = Double(total) ?? Double(0)
             existingShopping.totalType = totalType
             existingShopping.toFoodCategory = toShopping.first
             PersistenceController.shared.editShoppingData(shopping: existingShopping, model: shopping)
