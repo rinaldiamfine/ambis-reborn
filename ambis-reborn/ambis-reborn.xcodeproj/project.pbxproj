@@ -26,6 +26,13 @@
 		905DE8D12693E54F00E7011C /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8CF2693E54F00E7011C /* CoreData.xcdatamodeld */; };
 		905DE8D72693E93B00E7011C /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8D62693E93B00E7011C /* CategoryListView.swift */; };
 		9065A5F926A9738800BAD3A6 /* InventoryListFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A5F826A9738800BAD3A6 /* InventoryListFilterView.swift */; };
+		9065A60126AA25EC00BAD3A6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9065A60026AA25EC00BAD3A6 /* WidgetKit.framework */; };
+		9065A60326AA25EC00BAD3A6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9065A60226AA25EC00BAD3A6 /* SwiftUI.framework */; };
+		9065A60626AA25EC00BAD3A6 /* widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A60526AA25EC00BAD3A6 /* widget.swift */; };
+		9065A60926AA25EE00BAD3A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9065A60826AA25EE00BAD3A6 /* Assets.xcassets */; };
+		9065A60B26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9065A60726AA25EC00BAD3A6 /* widget.intentdefinition */; };
+		9065A60C26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9065A60726AA25EC00BAD3A6 /* widget.intentdefinition */; };
+		9065A60F26AA25EE00BAD3A6 /* widgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9065A5FE26AA25EC00BAD3A6 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9070148B269E160200F8981A /* InventoryCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9070148A269E160200F8981A /* InventoryCategoryListView.swift */; };
 		9070148D269ECC0B00F8981A /* InventoryFormEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9070148C269ECC0B00F8981A /* InventoryFormEditView.swift */; };
 		9070148F269F5D4200F8981A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9070148E269F5D4200F8981A /* Global.swift */; };
@@ -44,6 +51,30 @@
 		90AD5F0026976BF000E98152 /* CategoryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5EFF26976BF000E98152 /* CategoryFormView.swift */; };
 		90AD5F022697736900E98152 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5F012697736900E98152 /* CategoryViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9065A60D26AA25EE00BAD3A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 905DE8AA2693311500E7011C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9065A5FD26AA25EC00BAD3A6;
+			remoteInfo = widgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9065A61026AA25EE00BAD3A6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9065A60F26AA25EE00BAD3A6 /* widgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		307C5519269E070F00DD6FC3 /* ShoppingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingView.swift; sourceTree = "<group>"; };
@@ -67,6 +98,13 @@
 		905DE8D02693E54F00E7011C /* ambis-reborn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ambis-reborn.xcdatamodel"; sourceTree = "<group>"; };
 		905DE8D62693E93B00E7011C /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		9065A5F826A9738800BAD3A6 /* InventoryListFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListFilterView.swift; sourceTree = "<group>"; };
+		9065A5FE26AA25EC00BAD3A6 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9065A60026AA25EC00BAD3A6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		9065A60226AA25EC00BAD3A6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		9065A60526AA25EC00BAD3A6 /* widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = widget.swift; sourceTree = "<group>"; };
+		9065A60726AA25EC00BAD3A6 /* widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = widget.intentdefinition; sourceTree = "<group>"; };
+		9065A60826AA25EE00BAD3A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9065A60A26AA25EE00BAD3A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9070148A269E160200F8981A /* InventoryCategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCategoryListView.swift; sourceTree = "<group>"; };
 		9070148C269ECC0B00F8981A /* InventoryFormEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFormEditView.swift; sourceTree = "<group>"; };
 		9070148E269F5D4200F8981A /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -94,6 +132,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9065A5FB26AA25EC00BAD3A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9065A60326AA25EC00BAD3A6 /* SwiftUI.framework in Frameworks */,
+				9065A60126AA25EC00BAD3A6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -101,6 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				905DE8B42693311500E7011C /* ambis-reborn */,
+				9065A60426AA25EC00BAD3A6 /* widget */,
+				9065A5FF26AA25EC00BAD3A6 /* Frameworks */,
 				905DE8B32693311500E7011C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				905DE8B22693311500E7011C /* ambis-reborn.app */,
+				9065A5FE26AA25EC00BAD3A6 /* widgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +251,26 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		9065A5FF26AA25EC00BAD3A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9065A60026AA25EC00BAD3A6 /* WidgetKit.framework */,
+				9065A60226AA25EC00BAD3A6 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9065A60426AA25EC00BAD3A6 /* widget */ = {
+			isa = PBXGroup;
+			children = (
+				9065A60526AA25EC00BAD3A6 /* widget.swift */,
+				9065A60726AA25EC00BAD3A6 /* widget.intentdefinition */,
+				9065A60826AA25EE00BAD3A6 /* Assets.xcassets */,
+				9065A60A26AA25EE00BAD3A6 /* Info.plist */,
+			);
+			path = widget;
+			sourceTree = "<group>";
+		};
 		90905AD3269D66EF00D8A500 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,15 +301,34 @@
 				905DE8AE2693311500E7011C /* Sources */,
 				905DE8AF2693311500E7011C /* Frameworks */,
 				905DE8B02693311500E7011C /* Resources */,
+				9065A61026AA25EE00BAD3A6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9065A60E26AA25EE00BAD3A6 /* PBXTargetDependency */,
 			);
 			name = "ambis-reborn";
 			productName = "ambis-reborn";
 			productReference = 905DE8B22693311500E7011C /* ambis-reborn.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9065A5FD26AA25EC00BAD3A6 /* widgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9065A61326AA25EE00BAD3A6 /* Build configuration list for PBXNativeTarget "widgetExtension" */;
+			buildPhases = (
+				9065A5FA26AA25EC00BAD3A6 /* Sources */,
+				9065A5FB26AA25EC00BAD3A6 /* Frameworks */,
+				9065A5FC26AA25EC00BAD3A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = widgetExtension;
+			productName = widgetExtension;
+			productReference = 9065A5FE26AA25EC00BAD3A6 /* widgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -251,6 +340,9 @@
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					905DE8B12693311500E7011C = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					9065A5FD26AA25EC00BAD3A6 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
 				};
@@ -269,6 +361,7 @@
 			projectRoot = "";
 			targets = (
 				905DE8B12693311500E7011C /* ambis-reborn */,
+				9065A5FD26AA25EC00BAD3A6 /* widgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -280,6 +373,14 @@
 			files = (
 				905DE8BD2693311700E7011C /* Preview Assets.xcassets in Resources */,
 				905DE8BA2693311700E7011C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9065A5FC26AA25EC00BAD3A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9065A60926AA25EE00BAD3A6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +417,7 @@
 				9082AE9B2693F479009A7161 /* SearchBar.swift in Sources */,
 				90706CB226A5726200471700 /* InventoryListExpiryView.swift in Sources */,
 				905DE8CC2693333C00E7011C /* InventoryView.swift in Sources */,
+				9065A60C26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
 				905DE8CE2693334A00E7011C /* CategoryView.swift in Sources */,
 				307C5520269E946500DD6FC3 /* ShoppingListEmptyView.swift in Sources */,
 				90905AD2269D386600D8A500 /* Notification.swift in Sources */,
@@ -327,7 +429,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9065A5FA26AA25EC00BAD3A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9065A60B26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
+				9065A60626AA25EC00BAD3A6 /* widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9065A60E26AA25EE00BAD3A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9065A5FD26AA25EC00BAD3A6 /* widgetExtension */;
+			targetProxy = 9065A60D26AA25EE00BAD3A6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		905DE8BF2693311700E7011C /* Debug */ = {
@@ -449,6 +568,7 @@
 		905DE8C22693311700E7011C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -473,6 +593,7 @@
 		905DE8C32693311700E7011C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -494,6 +615,48 @@
 			};
 			name = Release;
 		};
+		9065A61126AA25EE00BAD3A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				INFOPLIST_FILE = widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ambis-reborn.widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9065A61226AA25EE00BAD3A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				INFOPLIST_FILE = widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ambis-reborn.widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -511,6 +674,15 @@
 			buildConfigurations = (
 				905DE8C22693311700E7011C /* Debug */,
 				905DE8C32693311700E7011C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9065A61326AA25EE00BAD3A6 /* Build configuration list for PBXNativeTarget "widgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9065A61126AA25EE00BAD3A6 /* Debug */,
+				9065A61226AA25EE00BAD3A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
