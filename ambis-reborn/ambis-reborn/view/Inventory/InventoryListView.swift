@@ -104,5 +104,35 @@ struct InventoryListView: View {
         .padding(.bottom, 8)
         .padding(.trailing, 8)
         .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
+        .contextMenu {
+            Button {
+                inventoryViewModel.editData(index: inventory)
+            } label: {
+                Label("Update Inventory", systemImage: "square.and.pencil")
+            }
+
+            Button {
+                actionShare(data: inventory)
+            } label: {
+                Label("Share", systemImage: "arrowshape.turn.up.forward")
+            }
+
+            Divider()
+            Button {
+                inventoryViewModel.deleteItemByContextMenu(index: inventory)
+            } label: {
+                Text("Remove")
+                Image(systemName: "trash")
+            }
+        }
+    }
+    
+    func actionShare(data: InventoryModel) {
+        let total = String(format: "%.0f", data.total)
+        let type = String(describing: data.totalType)
+        let name = data.name
+        let formatShare = ["Hey. I have about \(total) \(type) of \(name) that I will not be using. Would you like to take it?"]
+        let activityView = UIActivityViewController(activityItems: formatShare, applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
 }

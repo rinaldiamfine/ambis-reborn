@@ -81,7 +81,7 @@ struct ShoppingToInventoryListView: View {
                             Spacer()
                         }
                     }
-                }
+                }.padding(.top, 10)
                 
                 Section(header: Text("Date Information")) {
                     DatePicker("Buy", selection: Binding<Date> (
@@ -95,7 +95,7 @@ struct ShoppingToInventoryListView: View {
                                     }
                                 }), displayedComponents: .date)
                     DatePicker("Expiry", selection: $expiryDate, in: purchaseDate..., displayedComponents: .date)
-                }
+                }.padding(.top, 10)
 //                Section(header: Text("Disclaimer")) {
 //                    Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")
 //                        .font(.system(size: 14))

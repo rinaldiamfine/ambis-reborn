@@ -104,7 +104,9 @@ struct ShoppingView: View {
             .navigationBarTitle("Shopping List")
             .navigationBarItems(
                 trailing: Button(action: shoppingViewModel.prepareCreateData, label: {
-                    Image(systemName: "plus").imageScale(.large)
+                    Image(systemName: "plus")
+                        .imageScale(.large)
+                        .foregroundColor(Color("BackgroundInverse"))
                 }).contentShape(Circle())
             )
         }

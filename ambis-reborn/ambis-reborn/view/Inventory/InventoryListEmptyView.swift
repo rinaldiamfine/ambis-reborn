@@ -21,7 +21,7 @@ struct InventoryListEmptyView: View {
             Text("There are no items in your inventory.")
                 .foregroundColor(Color.init(UIColor.systemGray))
                 .padding(.top, 15)
-            Text("Press + button to add.")
+            Text("Press the + button to add.")
                 .foregroundColor(Color.init(UIColor.systemGray))
         }
     }
@@ -31,26 +31,13 @@ struct  InventoryListSearchEmptyView: View {
 //    @Binding totalInventSearch: Int
     
     var body: some View {
-        HStack {
-//            if inventory.foodCategory != FoodCategory() {
-                ZStack {
-                    Ellipse()
-                        .fill(LinearGradient(
-                            gradient: .init(colors: [.red, .blue]),
-                            startPoint: .init(x: 0, y: 0.5),
-                            endPoint: .init(x: 0.8, y: 0.5)
-                        ))
-                        .frame(width: 46, height: 46)
-//                    Text(formatIcon()).font(.system(size: 18))
-                }
-                .padding(.leading, 10)
-//            }
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text("AASDASDASD").font(.system(size: 15))
-                Text("AASDASDASD").font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
-            }
-            .padding(.leading, 2)
+        VStack {
+            Spacer()
+                Text("There are no items in your inventory.")
+                    .foregroundColor(Color.init(UIColor.systemGray))
+                    .padding(.top, 15)
+                Text("Press the + button to add.")
+                    .foregroundColor(Color.init(UIColor.systemGray))
             Spacer()
         }
         .padding(.top, 8)
