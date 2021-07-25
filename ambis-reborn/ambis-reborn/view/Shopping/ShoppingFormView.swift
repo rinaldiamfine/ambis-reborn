@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ShoppingFormView: View {
     @ObservedObject var shoppingViewModel = ShoppingViewModel()
@@ -14,10 +15,10 @@ struct ShoppingFormView: View {
     @Binding var isPresented: Bool
     
     @State private var showingActionSheet = false
+    @State private var isShowPickerType = false
+    @State private var characterLimit = 30
     
     var typeAvailable = AppGlobalData.generateDataType()
-    @State private var isShowPickerType = false
-    
     func actionDone() {
         if shoppingViewModel.status == "edit" {
             //EDIT
@@ -35,7 +36,6 @@ struct ShoppingFormView: View {
     
     func actionCancel() {
         showingActionSheet.toggle()
-        print(shoppingViewModel.totalType, "Test 1")
     }
     
     func categoryOnTap(category: FoodCategoryModel) {
@@ -44,11 +44,20 @@ struct ShoppingFormView: View {
         shoppingViewModel.toShopping = [category.foodCategory]
     }
     
+    func limitText(_ upper: Int) {
+        if shoppingViewModel.name.count > upper {
+            shoppingViewModel.name = String(shoppingViewModel.name.prefix(upper))
+        }
+    }
+    
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Product Name")) {
                     TextField("E.g. Chicken Wings", text: $shoppingViewModel.name)
+                        .onReceive(Just(shoppingViewModel.name)) { _ in
+                            limitText(characterLimit)
+                        }
                 }
                 Section(header: Text("Total Product")) {
                     TextField("Quantity", text: $shoppingViewModel.total)

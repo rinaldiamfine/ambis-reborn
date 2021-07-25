@@ -98,7 +98,12 @@ struct ShoppingView: View {
                     }
                     
                 } else {
+                    Spacer()
                     ShoppingListEmptyView()
+                        .onTapGesture {
+                            shoppingViewModel.isPresented = true
+                        }
+                    Spacer()
                 }
             }
             .navigationBarTitle("Shopping List")
