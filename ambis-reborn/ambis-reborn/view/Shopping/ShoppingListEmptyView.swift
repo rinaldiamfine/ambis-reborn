@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ShoppingListEmptyView: View {
+    private var brandColor = Color("BrandColor")
     var body: some View {
         VStack {
-            Image(systemName: "bag")
-                .font(.system(size: 80))
-                .foregroundColor(Color.init(UIColor.systemGray))
+            ZStack {
+                Ellipse()
+                    .fill(Color.init(UIColor.systemGray5))
+                    .frame(width: 102, height: 102)
+                Image(systemName: "plus").font(.system(size: 42))
+                    .foregroundColor(brandColor)
+            }
             Text("There are no items in your shopping list.")
                 .foregroundColor(Color.init(UIColor.systemGray))
-                .padding()
+                .padding(.top, 15)
+            Text("Press the + button to add.")
+                .foregroundColor(Color.init(UIColor.systemGray))
         }
     }
 }

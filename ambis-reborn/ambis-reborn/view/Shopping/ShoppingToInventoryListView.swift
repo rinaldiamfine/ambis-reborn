@@ -58,8 +58,8 @@ struct ShoppingToInventoryListView: View {
                     if shopping.shopping.toFoodCategory != nil {
                         expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation ), to: Date())!
                     }
-                    isClicked.toggle()
                 }
+                isClicked.toggle()
             }
             if isClicked {
                 Section(header: Text("Storing Type")) {

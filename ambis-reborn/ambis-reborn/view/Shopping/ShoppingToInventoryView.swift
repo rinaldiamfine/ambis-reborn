@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import UserNotifications
 
 struct ShoppingToInventoryView: View {
     @ObservedObject var inventoryViewModel = InventoryViewModel()
@@ -34,6 +35,9 @@ struct ShoppingToInventoryView: View {
                 
                 //CREATE
                 inventoryViewModel.readDataFromShopping(shopping: shopping, purchaseDate: shoppingViewModel.arrayPurchaseDate[counter], expiryDate: shoppingViewModel.arrayExpiryDate[counter], store: shoppingViewModel.arrayStore[counter])
+                
+                //ADD Notification
+                Notification.instance.sendNotification(itemName: shopping.name, reminderDate: shoppingViewModel.expiryDate)
             }
             counter += 1
         }
