@@ -125,7 +125,7 @@ class InventoryViewModel: ObservableObject {
     }
     
     func loadList() {
-        inventory = PersistenceController.shared.getInventoryData().map(InventoryModel.init)
+        inventory = PersistenceController.shared.getInventoryData().map(InventoryModel.init).sorted { $0.expiryDate < $1.expiryDate }
         inventoryCount = inventory.count
         
         foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
