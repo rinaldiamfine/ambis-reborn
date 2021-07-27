@@ -160,21 +160,21 @@ struct InventoryFormView: View {
                         Text("Done")
                     })
             )
-            .gesture(
-                DragGesture()
-                    .onChanged({ gesture in
-                        self.offset = gesture.translation
-                        if gesture.translation.height > 5 {
-                            self.offset = .zero
-                            actionCancel()
-                        } else {
-                            self.offset = .zero
-                        }
-                    })
-                    .onEnded { gesture in
-                        self.offset = .zero
-                    }
-            )
+//            .gesture(
+//                DragGesture()
+//                    .onChanged({ gesture in
+//                        self.offset = gesture.translation
+//                        if gesture.translation.height > 5 {
+//                            self.offset = .zero
+//                            actionCancel()
+//                        } else {
+//                            self.offset = .zero
+//                        }
+//                    })
+//                    .onEnded { gesture in
+//                        self.offset = .zero
+//                    }
+//            )
         }
         .gesture(
             DragGesture()
