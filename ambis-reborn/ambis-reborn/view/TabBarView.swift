@@ -22,10 +22,14 @@ struct TabBarView: View {
                 ShoppingView().getIconName()
                 ShoppingView().gettabName()
             }.tag(2)
+            PrepareView().tabItem {
+                PrepareView().getIconName()
+                PrepareView().gettabName()
+            }.tag(3)
             CategoryView().tabItem {
                 CategoryView().getIconName()
                 CategoryView().gettabName()
-            }.tag(3)
+            }.tag(4)
         }.accentColor(defaultAccentColor)
     }
 }
