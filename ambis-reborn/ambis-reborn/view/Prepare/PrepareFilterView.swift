@@ -1,13 +1,13 @@
 //
-//  InventoryFilterView.swift
+//  PrepareFilterView.swift
 //  ambis-reborn
 //
-//  Created by Rinaldi LNU on 18/07/21.
+//  Created by Rinaldi LNU on 28/07/21.
 //
 
 import SwiftUI
 
-struct InventoryFilterView: View {
+struct PrepareFilterView: View {
     @Binding var defaultFilter: String
     @State var isExpirySoon: Bool = false
     @Binding var isSearchActive: Bool
@@ -211,8 +211,8 @@ struct InventoryFilterView: View {
     }
 }
 
-//struct InventoryFilterView_Previews: PreviewProvider {
+//struct PrepareFilterView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        InventoryFilterView()
+//        PrepareFilterView()
 //    }
 //}

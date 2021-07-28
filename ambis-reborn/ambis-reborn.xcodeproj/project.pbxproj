@@ -51,6 +51,7 @@
 		90AD5F0026976BF000E98152 /* CategoryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5EFF26976BF000E98152 /* CategoryFormView.swift */; };
 		90AD5F022697736900E98152 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5F012697736900E98152 /* CategoryViewModel.swift */; };
 		90E8F2E626B16563002BCBDE /* PrepareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8F2E526B16563002BCBDE /* PrepareView.swift */; };
+		90E8F2E826B17047002BCBDE /* PrepareFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8F2E726B17047002BCBDE /* PrepareFilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		90AD5EFF26976BF000E98152 /* CategoryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFormView.swift; sourceTree = "<group>"; };
 		90AD5F012697736900E98152 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		90E8F2E526B16563002BCBDE /* PrepareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareView.swift; sourceTree = "<group>"; };
+		90E8F2E726B17047002BCBDE /* PrepareFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareFilterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				90E8F2E526B16563002BCBDE /* PrepareView.swift */,
+				90E8F2E726B17047002BCBDE /* PrepareFilterView.swift */,
 			);
 			path = Prepare;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				9082AE9B2693F479009A7161 /* SearchBar.swift in Sources */,
 				90706CB226A5726200471700 /* InventoryListExpiryView.swift in Sources */,
 				905DE8CC2693333C00E7011C /* InventoryView.swift in Sources */,
+				90E8F2E826B17047002BCBDE /* PrepareFilterView.swift in Sources */,
 				9065A60C26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
 				905DE8CE2693334A00E7011C /* CategoryView.swift in Sources */,
 				307C5520269E946500DD6FC3 /* ShoppingListEmptyView.swift in Sources */,
