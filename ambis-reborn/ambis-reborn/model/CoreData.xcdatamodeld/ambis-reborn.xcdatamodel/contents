@@ -9,8 +9,17 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="subtitle" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="toIngredient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="toFoodCategory" inverseEntity="Ingredient"/>
         <relationship name="toInventory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Inventory" inverseName="toFoodCategory" inverseEntity="Inventory"/>
         <relationship name="toShopping" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Shopping" inverseName="toFoodCategory" inverseEntity="Shopping"/>
+    </entity>
+    <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
+        <attribute name="isAvailable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="total" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalType" optional="YES" attributeType="String"/>
+        <relationship name="toFoodCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FoodCategory" inverseName="toIngredient" inverseEntity="FoodCategory"/>
+        <relationship name="toRecipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="toIngredient" inverseEntity="Recipe"/>
     </entity>
     <entity name="Inventory" representedClassName="Inventory" syncable="YES" codeGenerationType="class">
         <attribute name="expiryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -25,6 +34,18 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="cookMethod" optional="YES" attributeType="String"/>
+        <attribute name="cookStep" optional="YES" attributeType="String"/>
+        <attribute name="cookTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="difficultyLevel" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="prepTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="recipeCategory" optional="YES" attributeType="String"/>
+        <attribute name="recipeImage" optional="YES" attributeType="Binary"/>
+        <attribute name="totalServes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="toIngredient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="toRecipe" inverseEntity="Ingredient"/>
+    </entity>
     <entity name="Shopping" representedClassName="Shopping" syncable="YES" codeGenerationType="class">
         <attribute name="expiryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -34,9 +55,11 @@
         <relationship name="toFoodCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FoodCategory" inverseName="toShopping" inverseEntity="FoodCategory"/>
     </entity>
     <elements>
-        <element name="FoodCategory" positionX="191.70361328125" positionY="-14.79122924804688" width="128" height="179"/>
+        <element name="FoodCategory" positionX="191.70361328125" positionY="-14.79122924804688" width="128" height="194"/>
         <element name="Inventory" positionX="-41.131103515625" positionY="-15.9132080078125" width="128" height="149"/>
         <element name="Item" positionX="-191.2103881835938" positionY="-34.45909118652344" width="128" height="44"/>
         <element name="Shopping" positionX="-69.84466552734375" positionY="184.8369140625" width="128" height="119"/>
+        <element name="Recipe" positionX="0" positionY="126" width="128" height="179"/>
+        <element name="Ingredient" positionX="9" positionY="135" width="128" height="119"/>
     </elements>
 </model>
