@@ -18,6 +18,8 @@ struct PrepareView: View {
     @State private var showCancelButton: Bool = false
     @State private var needRefresh = true
     @State var totalItemSelected: Int = 0
+    @State private var isMovedToRecipeList = false
+    @State private var action: Int? = 0
     
     func getIconName() -> Image {
         return Image(systemName: "flame.fill")
@@ -100,35 +102,13 @@ struct PrepareView: View {
                             }
                             .padding(.horizontal, 15)
                             .padding(.bottom, 5)
-                            if !inventoryViewModel.prepareSelectedInventory.isEmpty {
-                                Button {
-                                    print(inventoryViewModel.prepareSelectedInventory.count, "TOTAL SELECTED")
-        //                                isMovedToInventory = true
-        //                                setArrayDate()
-                                } label: {
-                                    Text("Find Recipe")
-                                        .font(.system(size: 18))
-                                        .foregroundColor(.white)
-                                }
-                                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
-                                .background(Color("BrandColor"))
-                                .cornerRadius(15)
-                                .padding(.horizontal, 15)
-                                .padding(.bottom, 15)
-                            } else {
-                                Button {
-                                    print(inventoryViewModel.prepareSelectedInventory.count, "TOTAL SELECTED")
-                                } label: {
-                                    Text("Find Recipe")
-                                        .font(.system(size: 18))
-                                        .foregroundColor(Color("BackgroundInverse"))
-                                }
-                                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
-                                .background(Color.init(.systemGray))
-                                .cornerRadius(15)
-                                .padding(.horizontal, 15)
-                                .padding(.bottom, 15)
-                            }
+                            ButtonView(inventoryViewModel: inventoryViewModel)
+//                            NavigationLink(
+//                                destination: RecipeListView(),
+//                                tag: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/,
+//                                selection: $action) {
+//                                ButtonView(inventoryViewModel: inventoryViewModel)
+//                            }.background(Color(.red))
                         }
                     }
                     
@@ -153,12 +133,57 @@ struct PrepareView: View {
         .sheet(isPresented: $inventoryViewModel.isPresented) {
             InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
         }
+//        .sheet(isPresented: $isMovedToRecipeList){
+//            RecipeListView()
+//        }
         .onAppear(perform: {
             inventoryViewModel.getData()
             inventoryViewModel.loadList()
             foodCategoryViewModel.getData()
         })
     }
+}
+
+struct ButtonView: View {
+    @StateObject var inventoryViewModel = InventoryViewModel()
+    
+    var body: some View {
+        if !inventoryViewModel.prepareSelectedInventory.isEmpty {
+            Button {
+                //Action
+            } label: {
+                NavigationLink(destination: RecipeListView()) {
+                    HStack {
+                        Spacer()
+                        Text("Find Recipe")
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                 }
+                .contentShape(Rectangle())
+            }
+            .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
+            .background(Color("BrandColor"))
+            .cornerRadius(15)
+            .padding(.horizontal, 15)
+            .padding(.bottom, 15)
+        } else {
+            Button {
+                //Action
+            } label: {
+                Text("Find Recipe")
+                    .font(.system(size: 18))
+                    .foregroundColor(Color("BackgroundInverse"))
+            }
+            .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
+            .background(Color.init(.systemGray))
+            .cornerRadius(15)
+            .padding(.horizontal, 15)
+            .padding(.bottom, 15)
+        }
+    }
+    
 }
 
 struct PrepareView_Previews: PreviewProvider {
