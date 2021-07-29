@@ -25,6 +25,9 @@ struct PrepareView: View {
     func gettabName() -> Text {
         return Text("Prepare")
     }
+    func getTotalItemSelected() -> Int {
+        return inventoryViewModel.prepareSelectedInventory.count
+    }
     
     var storeAvailable = AppGlobalData.generateDataStore()
     
@@ -52,40 +55,83 @@ struct PrepareView: View {
         NavigationView {
             VStack(spacing: 10) {
                 if inventoryViewModel.inventoryCount > 0 {
-                    ScrollView {
-                        //SETUP SEARCH AND FILTER
-                        VStack(spacing: 10) {
-                            PrepareFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton, searchText: $searchText, showCancelButton: $showCancelButton)
-                                .padding(.horizontal)
-                        }
-                        
-                        //SETUP LIST
-                        Section {
-                            ForEach (inventoryViewModel.inventory.filter {
-                                filterList(expiryDate: $0.expiryDate, name: $0.name, store: $0.store)
-                            }, id:\.id) {
-                                inventory in
-                                VStack(spacing: 10) {
-                                    if !showCancelButton {
-                                        // EXPIRE SOON
-                                        if defaultFilter == "Expire Soon" {
-                                            InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
+                    ZStack {
+                        ScrollView {
+                            //SETUP SEARCH AND FILTER
+                            VStack(spacing: 10) {
+                                PrepareFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton, searchText: $searchText, showCancelButton: $showCancelButton)
+                                    .padding(.horizontal)
+                            }
+                            
+                            //SETUP LIST
+                            Section {
+                                ForEach (inventoryViewModel.inventory.filter {
+                                    filterList(expiryDate: $0.expiryDate, name: $0.name, store: $0.store)
+                                }, id:\.id) {
+                                    inventory in
+                                    VStack(spacing: 10) {
+                                        if !showCancelButton {
+                                            // EXPIRE SOON
+                                            if defaultFilter == "Expire Soon" {
+                                                PrepareListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
+                                            }
+                                            //NOT EXPIRE SOON
+                                            else {
+                                                PrepareListView(inventory: inventory, inventoryViewModel: inventoryViewModel)
+                                            }
+                                        } else {
+                                            //ON FILTER
+                                            PrepareListFilterView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
                                         }
-                                        //NOT EXPIRE SOON
-                                        else {
-                                            InventoryListView(inventory: inventory, inventoryViewModel: inventoryViewModel)
-                                        }
-                                    } else {
-                                        //ON FILTER
-                                        InventoryListFilterView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
                                     }
+                                    .padding(.horizontal)
                                 }
-                                .padding(.horizontal)
+                            }
+                        }
+                        .frame(width: UIScreen.screenWidth)
+                        .background(Color("AppBackground"))
+                        
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Text("Item Selected:").font(.system(size: 12))
+                                Spacer()
+                                Text("\(getTotalItemSelected()) Items").font(.system(size: 12))
+                            }
+                            .padding(.horizontal, 15)
+                            .padding(.bottom, 5)
+                            if !inventoryViewModel.prepareSelectedInventory.isEmpty {
+                                Button {
+                                    print(inventoryViewModel.prepareSelectedInventory.count, "TOTAL SELECTED")
+        //                                isMovedToInventory = true
+        //                                setArrayDate()
+                                } label: {
+                                    Text("Find Recipe")
+                                        .font(.system(size: 18))
+                                        .foregroundColor(.white)
+                                }
+                                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
+                                .background(Color("BrandColor"))
+                                .cornerRadius(15)
+                                .padding(.horizontal, 15)
+                                .padding(.bottom, 15)
+                            } else {
+                                Button {
+                                    print(inventoryViewModel.prepareSelectedInventory.count, "TOTAL SELECTED")
+                                } label: {
+                                    Text("Find Recipe")
+                                        .font(.system(size: 18))
+                                        .foregroundColor(Color("BackgroundInverse"))
+                                }
+                                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
+                                .background(Color("BoxColor"))
+                                .cornerRadius(15)
+                                .padding(.horizontal, 15)
+                                .padding(.bottom, 15)
                             }
                         }
                     }
-                    .frame(width: UIScreen.screenWidth)
-                    .background(Color("AppBackground"))
+                    
                 } else {
                     Spacer()
                     InventoryListEmptyView()

@@ -34,6 +34,8 @@ class InventoryViewModel: ObservableObject {
     @Published var detailDisclaimer: String = ""
     @Published var expiryEstimation: Int = 0
     
+    @Published var prepareSelectedInventory: [NSManagedObjectID] = []
+    
     //DATA FROM SHOPPING LIST
     func readDataFromShopping(shopping: ShoppingModel, purchaseDate: Date ,expiryDate: Date, store: String) {
         let inventory = Inventory(context: PersistenceController.shared.container.viewContext)
