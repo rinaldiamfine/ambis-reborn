@@ -82,7 +82,7 @@ struct RecipeDescription: View {
             VStack {
                 ZStack {
                     Circle()
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("BrandColor"))
                         .frame(width: 40, height: 40)
                     Text("\(totalServes)")
                 }
@@ -93,7 +93,7 @@ struct RecipeDescription: View {
             VStack {
                 ZStack {
                     Circle()
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("BrandColor"))
                         .frame(width: 40, height: 40)
                     Text("\(prepTime)")
                 }
@@ -104,7 +104,7 @@ struct RecipeDescription: View {
             VStack {
                 ZStack {
                     Circle()
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("BrandColor"))
                         .frame(width: 40, height: 40)
                     Text("\(cookTime)")
                 }
