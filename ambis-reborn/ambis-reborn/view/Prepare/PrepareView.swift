@@ -102,12 +102,13 @@ struct PrepareView: View {
                             }
                             .padding(.horizontal, 15)
                             .padding(.bottom, 5)
-                            NavigationLink(
-                                destination: RecipeListView(),
-                                tag: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/,
-                                selection: $action){
-                                ButtonView(inventoryViewModel: inventoryViewModel)
-                            }
+                            ButtonView(inventoryViewModel: inventoryViewModel)
+//                            NavigationLink(
+//                                destination: RecipeListView(),
+//                                tag: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/,
+//                                selection: $action) {
+//                                ButtonView(inventoryViewModel: inventoryViewModel)
+//                            }.background(Color(.red))
                         }
                     }
                     
@@ -149,11 +150,18 @@ struct ButtonView: View {
     var body: some View {
         if !inventoryViewModel.prepareSelectedInventory.isEmpty {
             Button {
-                print(inventoryViewModel.prepareSelectedInventory.count, "TOTAL SELECTED")
+                //Action
             } label: {
-                Text("Find Recipe")
-                    .font(.system(size: 18))
-                    .foregroundColor(.white)
+                NavigationLink(destination: RecipeListView()) {
+                    HStack {
+                        Spacer()
+                        Text("Find Recipe")
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                 }
+                .contentShape(Rectangle())
             }
             .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
             .background(Color("BrandColor"))
@@ -162,8 +170,7 @@ struct ButtonView: View {
             .padding(.bottom, 15)
         } else {
             Button {
-                print(inventoryViewModel.prepareSelectedInventory.count, "TOTAL SELECTED")
-            
+                //Action
             } label: {
                 Text("Find Recipe")
                     .font(.system(size: 18))
