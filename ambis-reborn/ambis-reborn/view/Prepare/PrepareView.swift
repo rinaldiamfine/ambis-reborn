@@ -124,7 +124,7 @@ struct PrepareView: View {
                                         .foregroundColor(Color("BackgroundInverse"))
                                 }
                                 .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
-                                .background(Color("BoxColor"))
+                                .background(Color.init(.systemGray))
                                 .cornerRadius(15)
                                 .padding(.horizontal, 15)
                                 .padding(.bottom, 15)

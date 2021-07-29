@@ -101,7 +101,7 @@ struct PrepareListView: View {
             
             if inventoryViewModel.prepareSelectedInventory.contains(inventory.id) {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(Color.init(red: 63/255, green: 154/255, blue: 142/255))
+                    .foregroundColor(Color("BrandColor"))
                     .font(.system(size: 30))
             } else {
                 Image(systemName: "circle")
