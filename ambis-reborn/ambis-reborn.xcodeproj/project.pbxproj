@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E20A2AF26B285BF0012F3C6 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */; };
+		0E20A2B026B285BF0012F3C6 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */; };
 		307C551A269E070F00DD6FC3 /* ShoppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C5519269E070F00DD6FC3 /* ShoppingView.swift */; };
 		307C551C269E076B00DD6FC3 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C551B269E076B00DD6FC3 /* ShoppingViewModel.swift */; };
 		307C551E269E077700DD6FC3 /* ShoppingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C551D269E077700DD6FC3 /* ShoppingModel.swift */; };
@@ -82,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		307C5519269E070F00DD6FC3 /* ShoppingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingView.swift; sourceTree = "<group>"; };
 		307C551B269E076B00DD6FC3 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
 		307C551D269E077700DD6FC3 /* ShoppingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingModel.swift; sourceTree = "<group>"; };
@@ -318,6 +321,7 @@
 		90E8F2E426B16540002BCBDE /* Recipe */ = {
 			isa = PBXGroup;
 			children = (
+				0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -423,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30CD65CB26A03F4D003CA34A /* ShoppingToInventoryView.swift in Sources */,
+				0E20A2AF26B285BF0012F3C6 /* RecipeListView.swift in Sources */,
 				9082AE9D2693F4AB009A7161 /* Extension.swift in Sources */,
 				905DE8B82693311600E7011C /* ContentView.swift in Sources */,
 				9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */,
@@ -469,6 +474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E20A2B026B285BF0012F3C6 /* RecipeListView.swift in Sources */,
 				9065A60B26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
 				9065A60626AA25EC00BAD3A6 /* widget.swift in Sources */,
 			);
