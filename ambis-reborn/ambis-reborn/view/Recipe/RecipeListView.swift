@@ -20,7 +20,7 @@ struct RecipeListView: View {
             }
             ScrollView {
                 ForEach(0..<dummy.count) { data in
-                    NavigationLink(destination: RecipeListView()) {
+                    NavigationLink(destination: RecipeView()) {
                         RecipeListItemView(recipe: dummy[data])
                     }
                 }

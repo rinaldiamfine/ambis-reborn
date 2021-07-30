@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0E20A2AF26B285BF0012F3C6 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */; };
-		0E20A2B026B285BF0012F3C6 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */; };
 		0E20A2B226B2B23D0012F3C6 /* RecipeListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A2B126B2B23D0012F3C6 /* RecipeListItemView.swift */; };
 		0E20A2B326B2B23D0012F3C6 /* RecipeListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A2B126B2B23D0012F3C6 /* RecipeListItemView.swift */; };
 		3041C82126B28DB100E2B156 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C82026B28DB100E2B156 /* RecipeView.swift */; };
@@ -495,7 +494,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E20A2B026B285BF0012F3C6 /* RecipeListView.swift in Sources */,
 				0E20A2B326B2B23D0012F3C6 /* RecipeListItemView.swift in Sources */,
 				9065A60B26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
 				9065A60626AA25EC00BAD3A6 /* widget.swift in Sources */,
