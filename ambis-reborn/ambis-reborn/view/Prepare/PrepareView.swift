@@ -186,8 +186,8 @@ struct ButtonView: View {
     
 }
 
-struct PrepareView_Previews: PreviewProvider {
-    static var previews: some View {
-        PrepareView()
-    }
-}
+//struct PrepareView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PrepareView()
+//    }
+//}

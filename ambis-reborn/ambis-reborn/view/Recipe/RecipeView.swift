@@ -30,28 +30,27 @@ struct RecipeView: View {
                                                         IngredientSample(name: "Bawang", total: 2, totalType: "biji", isAvailable: true)])
     
     var body: some View {
-        NavigationView {
-            VStack {
-                RecipeTitle(name: defaultRecipeSample.name)
-                ImagePlaceholder()
-                RecipeDescription(totalServes: defaultRecipeSample.totalServes, prepTime: defaultRecipeSample.prepTime, cookTime: defaultRecipeSample.cookTime)
-                Picker(selection: $segmentedPicker, label: Text(""), content: {
-                    Text("Ingredients").tag(1)
-                    Text("How to cook").tag(2)
-                })
-                .pickerStyle(SegmentedPickerStyle())
-                if segmentedPicker == 1 {
-                    IngredientListView(ingredientsSample: defaultRecipeSample.ingredient)
-                } else {
-                    CookingStepListView(cookingStepSample: defaultRecipeSample.cookStep)
-                }
+        VStack {
+            RecipeTitle(name: defaultRecipeSample.name)
+            ImagePlaceholder()
+            RecipeDescription(totalServes: defaultRecipeSample.totalServes, prepTime: defaultRecipeSample.prepTime, cookTime: defaultRecipeSample.cookTime)
+            Picker(selection: $segmentedPicker, label: Text(""), content: {
+                Text("Ingredients").tag(1)
+                Text("How to cook").tag(2)
+            })
+            .pickerStyle(SegmentedPickerStyle())
+            if segmentedPicker == 1 {
+                IngredientListView(ingredientsSample: defaultRecipeSample.ingredient)
+            } else {
+                CookingStepListView(cookingStepSample: defaultRecipeSample.cookStep)
             }
-            .padding()
-            .navigationBarTitleDisplayMode(.inline)
-            //.navigationBarTitle(Text("Ayam Madu"))
         }
-        
+        .padding()
+        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitle(Text("Ayam Madu"))
     }
+        
+    
 }
 
 struct RecipeTitle: View {
@@ -82,7 +81,7 @@ struct RecipeDescription: View {
             VStack {
                 ZStack {
                     Circle()
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("BrandColor"))
                         .frame(width: 40, height: 40)
                     Text("\(totalServes)")
                 }
@@ -93,7 +92,7 @@ struct RecipeDescription: View {
             VStack {
                 ZStack {
                     Circle()
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("BrandColor"))
                         .frame(width: 40, height: 40)
                     Text("\(prepTime)")
                 }
@@ -104,7 +103,7 @@ struct RecipeDescription: View {
             VStack {
                 ZStack {
                     Circle()
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("BrandColor"))
                         .frame(width: 40, height: 40)
                     Text("\(cookTime)")
                 }
@@ -154,4 +153,8 @@ struct CookingStepListView: View {
     }
 }
 
-//tes
+struct RecipeView_Previews: PreviewProvider {
+    static var previews: some View {
+        RecipeView()
+    }
+}
