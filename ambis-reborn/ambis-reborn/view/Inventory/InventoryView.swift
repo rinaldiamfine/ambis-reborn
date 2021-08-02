@@ -65,7 +65,7 @@ struct InventoryView: View {
 //                                .fill(LinearGradient(
 //                                    gradient: .init(colors: !showCancelButton ? [Color("Gradient1"), Color("Gradient2")] : [Color(UIColor.systemBackground)]),
 //                                    startPoint: .init(x: 0, y: 0),
-//                                    endPoint: .init(x: 0, y: 0.5)
+//                                    endPoint: .init(x: 0, y: 0.7)
 //                                ))
 //                        )
                         
