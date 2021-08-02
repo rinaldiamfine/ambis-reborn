@@ -32,7 +32,7 @@ struct CategoryFormView: View {
                     .padding()
                 Text(foodCategoryViewModel.foodCategories[selectedCategory].subtitle)
                     .font(.system(size: 14, design: .rounded))
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.leading)
                     .foregroundColor(Color.init(UIColor.systemGray))
                     .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                     .padding()
@@ -49,6 +49,8 @@ struct CategoryFormView: View {
                 trailing:
                     Button(action: actionClose, label: {
                         Text("Close")
+                            .font(.system(.callout, design: .rounded))
+                            .accentColor(Color("BackgroundInverse"))
                     })
             )
         }
