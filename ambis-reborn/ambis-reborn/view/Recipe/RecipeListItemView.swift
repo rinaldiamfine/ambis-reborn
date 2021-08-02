@@ -21,38 +21,32 @@ struct RecipeListItemView: View {
                     .background(Color.gray)
                     .cornerRadius(10)
                 VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
-                    Text("Ayam Bumbu Kemenyan").font(.system(size: 14)).padding(.bottom, 16)
-                    Text("2 Ingredients Missing")
-                        .foregroundColor(.red)
-                        .font(.system(size: 12))
+                    Text("Ayam Bumbu Kemenyan").bold().font(.system(size: 14)).padding(.bottom, 16).foregroundColor(.primary)
+                    Text("Dessert")
+                        .font(.system(size: 12)).foregroundColor(.primary)
                 })
                 Spacer(minLength: 0)
                 VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
                     HStack{
-                        Circle()
-                            .foregroundColor(.gray)
-                            .frame(width: 24, height: 24)
-                        Text("Intermediate").font(.system(size: 14))
+                        Image(systemName: "person")
+                        Text("Intermediate").font(.system(size: 14)).foregroundColor(.primary)
                     }
                     HStack{
-                        Circle()
-                            .foregroundColor(.gray)
-                            .frame(width: 24, height: 24)
-                        Text("5 Min").font(.system(size: 14))
-                    }
+                        Image(systemName: "clock")
+                        Text("5 Min").font(.system(size: 14)).foregroundColor(.primary)
+                    }.padding(.vertical, 4)
                     HStack{
-                        Circle()
-                            .foregroundColor(.gray)
-                            .frame(width: 24, height: 24)
-                        Text("Stove, Pan").font(.system(size: 14))
+                        Image(systemName: "circle.grid.cross")
+                        Text("Stove, Pan").font(.system(size: 14)).foregroundColor(.primary)
                     }
                 })
             }
             .padding(.all, 8)
-            .background(Color.init(UIColor.systemGray5))
-            .cornerRadius(8)
-            .shadow(radius: 3)
-        }.padding(.all, 4)
+            .background(RoundedRectangle(cornerRadius:15).fill(Color("BoxBackground")))
+//            .shadow(radius: 3)
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 4)
     }
 }
 

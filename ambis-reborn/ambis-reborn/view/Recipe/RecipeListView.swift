@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RecipeListView: View {
     
+    @State var toSort = false
+    
     var dummy: [String] = ["", "", "", "", "", ""]
     
     var body: some View {
@@ -16,8 +18,13 @@ struct RecipeListView: View {
             HStack{
                 Text("5 Recipes Available")
                 Spacer()
-                Text("Filter")
-            }
+                HStack {
+                    Text("Sort").foregroundColor(Color("AccentColor"))
+                    Image(systemName: "arrow.up.arrow.down").foregroundColor(Color("AccentColor"))
+                }.onTapGesture {
+                    toSort = true
+                }
+            }.padding(.all, 12)
             ScrollView {
                 ForEach(0..<dummy.count) { data in
                     NavigationLink(destination: RecipeView()) {
@@ -26,9 +33,12 @@ struct RecipeListView: View {
                 }
             }
             Spacer()
+        }).sheet(isPresented: $toSort, content: {
+            RecipeSortView(toSort: $toSort)
         })
-        .padding(.all, 12)
-        .navigationBarTitle("Recipe", displayMode: .inline)
+        .background(Color("AppBackground"))
+        .navigationBarTitle("Recipe", displayMode: .automatic)
+       
     }
     
 }
