@@ -7,12 +7,18 @@
 
 import SwiftUI
 //import UIKit
+import WidgetKit
 import CoreData
 import UserNotifications
 
 struct InventoryView: View {
     @StateObject var inventoryViewModel = InventoryViewModel()
     @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
+    
+    @StateObject var widgetInventoryViewModel = WidgetInventoryViewModel()
+    
+    @AppStorage("expiry", store: UserDefaults(suiteName: "group.inventoryUD")) var inventoryData : Data = Data()
+    
     @ObservedObject var searchBar: SearchBar = SearchBar()
     @State private var defaultFilter = "Expire Soon"
     @Environment(\.colorScheme) var colorScheme
@@ -118,17 +124,28 @@ struct InventoryView: View {
             InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
         }
         .onAppear(perform: {
+            print("APPEAR FORM")
             inventoryViewModel.getData()
             inventoryViewModel.loadList()
             foodCategoryViewModel.getData()
             NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
+            
+            setupWidgetContent()
+            print(inventoryData, "INVEN DATA")
         })
         
     }
-}
-
-struct InventoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        InventoryView()
+    
+    func setupWidgetContent() {
+        guard let content = try? JSONEncoder().encode(WidgetInventoryModel.init(totalExpiry: inventoryViewModel.inventoryExpire, totalInventory: inventoryViewModel.inventoryCount, progressBar: inventoryViewModel.progressBar)) else {return}
+        inventoryData = content
+        print(inventoryViewModel.progressBar, "RELOAD")
+        WidgetCenter.shared.reloadTimelines(ofKind: "widget")
     }
 }
+
+//struct InventoryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InventoryView()
+//    }
+//}

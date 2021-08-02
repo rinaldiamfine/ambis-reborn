@@ -22,7 +22,11 @@ class InventoryViewModel: ObservableObject {
     @Published var expiryDate: Date = Date()
     
     @Published var inventory: [InventoryModel] = []
+    
     @Published var inventoryCount: Int = 0
+    @Published var inventoryExpire: Int = 0
+    @Published var progressBar: Float = 0.0
+    
     @Published var foodCategories: [FoodCategoryModel] = []
     @Published var foodCategoryCount: Int = 0
     
@@ -129,7 +133,18 @@ class InventoryViewModel: ObservableObject {
     func loadList() {
         inventory = PersistenceController.shared.getInventoryData().map(InventoryModel.init).sorted { $0.expiryDate < $1.expiryDate }
         inventoryCount = inventory.count
-        
+        let itemExpire = inventory.filter { inv in
+            if inv.expiryDate <= Date().addingTimeInterval(24 * 60 * 60 * 3) {
+                return true
+            } else {
+                return false
+            }
+        }
+        inventoryExpire = itemExpire.count
+        print(inventory.count, "INV COUNT")
+        if inventory.count != 0 {
+            progressBar = Float(itemExpire.count)/Float(inventory.count)
+        }
         foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
         foodCategoryCount = foodCategories.count
         
@@ -137,8 +152,19 @@ class InventoryViewModel: ObservableObject {
     }
     
     func getData() {
-        inventory = PersistenceController.shared.getInventoryData().map(InventoryModel.init)
+        inventory = PersistenceController.shared.getInventoryData().map(InventoryModel.init).sorted { $0.expiryDate < $1.expiryDate}
         inventoryCount = inventory.count
+        let itemExpire = inventory.filter { inv in
+            if inv.expiryDate <= Date().addingTimeInterval(24 * 60 * 60 * 3) {
+                return true
+            } else {
+                return false
+            }
+        }
+        inventoryExpire = itemExpire.count
+        if inventory.count != 0 {
+            progressBar = Float(itemExpire.count)/Float(inventory.count)
+        }
     }
     
     func editData(_ inventoryData: InventoryModel) {
