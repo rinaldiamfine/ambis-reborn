@@ -56,9 +56,13 @@ struct InventoryFormView: View {
                     .navigationBarTitle(inventoryViewModel.status == "create" ? "Add Inventory" : "Edit Inventory", displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: actionCancel, label: {
-                            Text("Cancel").accentColor(Color("BackgroundInverse"))}),
+                            Text("Cancel")
+                                .font(.system(.callout, design: .rounded))
+                                .accentColor(Color("BackgroundInverse"))}),
                     trailing: Button(action: actionDone, label: {
-                            Text("Done").accentColor(Color("BackgroundInverse"))})
+                            Text("Done")
+                                .font(.system(.callout, design: .rounded))
+                                .accentColor(Color("BackgroundInverse"))})
                 )
                 
                 ModalTotalType(isShowPickerType: $isShowPickerType, inventoryViewModel: inventoryViewModel)
@@ -67,7 +71,7 @@ struct InventoryFormView: View {
             }
             .actionSheet(isPresented: $showingActionSheet) {
                 ActionSheet(
-                    title: Text("Changes you made may not be saved."),
+                    title: Text("Changes you made may not be saved.").font(.system(.body, design: .rounded)),
                     buttons: [
                         .destructive(Text("Discard Changes")) {
                             isPresented = false
@@ -82,7 +86,6 @@ struct InventoryFormView: View {
 }
 
 struct InventoryModalForm: View {
-//    @StateObject
     @ObservedObject var inventoryViewModel: InventoryViewModel
     @State private var characterLimit = 30
     
@@ -106,17 +109,23 @@ struct InventoryModalForm: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Product Name")) {
+            Section(header: Text("Product Name")
+                        .font(.system(.caption, design: .rounded))) {
                 TextField("E.g. Chicken Wings", text: $inventoryViewModel.name)
                     .onReceive(Just(inventoryViewModel.name)) { _ in limitText(characterLimit) }
+                    .font(.system(.callout, design: .rounded))
             }
-            Section(header: Text("Total Product")) {
+            Section(header: Text("Total Product")
+                        .font(.system(.caption, design: .rounded))) {
                 TextField("Quantity", text: $inventoryViewModel.total)
                     .keyboardType(.decimalPad)
+                    .font(.system(.callout, design: .rounded))
                 HStack {
                     Text("Type")
+                        .font(.system(.callout, design: .rounded))
                     Spacer()
                     Text(inventoryViewModel.totalType)
+                        .font(.system(.callout, design: .rounded))
                         Image(systemName: "chevron.right")
                             .font(.system(size: 13, weight: .bold))
                             .foregroundColor(Color.init(UIColor.systemGray2))
@@ -126,8 +135,10 @@ struct InventoryModalForm: View {
                     isShowPickerType.toggle()
                 }
             }
-            Section(header: Text("Product Category")) {
-                Picker(selection: $inventoryViewModel.toInventory, label: Text(inventoryViewModel.previewSelectedCategory)) {
+            Section(header: Text("Product Category")
+                        .font(.system(.caption, design: .rounded))) {
+                Picker(selection: $inventoryViewModel.toInventory, label: Text(inventoryViewModel.previewSelectedCategory)
+                        .font(.system(.callout, design: .rounded))) {
                     ForEach(inventoryViewModel.foodCategories, id:\.id) { category in
                         InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $inventoryViewModel.previewSelectedCategory)
                             .contentShape(Rectangle())
@@ -138,8 +149,10 @@ struct InventoryModalForm: View {
                 }
                 HStack {
                     Text("Storing Type")
+                        .font(.system(.callout, design: .rounded))
                     Spacer()
                     Text(inventoryViewModel.store)
+                        .font(.system(.callout, design: .rounded))
                         Image(systemName: "chevron.right")
                             .font(.system(size: 13, weight: .bold))
                             .foregroundColor(Color.init(UIColor.systemGray2))
@@ -149,7 +162,8 @@ struct InventoryModalForm: View {
                     isShowPickerStore.toggle()
                 }
             }
-            Section(header: Text("Date Information")) {
+            Section(header: Text("Date Information")
+                        .font(.system(.caption, design: .rounded))) {
                 DatePicker("Buy", selection: Binding<Date> (
                     get: { inventoryViewModel.purchaseDate },
                     set: { inventoryViewModel.purchaseDate = $0
@@ -158,7 +172,9 @@ struct InventoryModalForm: View {
                         }
                         inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: inventoryViewModel.expiryEstimation, to: $0)!
                     }), displayedComponents: .date)
+                    .font(.system(.callout, design: .rounded))
                 DatePicker("Expiry", selection: $inventoryViewModel.expiryDate, in: inventoryViewModel.purchaseDate..., displayedComponents: .date)
+                    .font(.system(.callout, design: .rounded))
             }
         }
     }
@@ -177,6 +193,7 @@ struct ModalTotalType: View {
                     Picker("", selection: $inventoryViewModel.totalType) {
                         ForEach(typeAvailable, id: \.self.name) {
                             Text($0.name)
+                                .font(.system(.title3, design: .rounded))
                         }
                     }
                     .pickerStyle(WheelPickerStyle())
@@ -188,7 +205,7 @@ struct ModalTotalType: View {
                     isShowPickerType.toggle()
                 } label: {
                     Text("Close")
-                        .font(.system(size: 18))
+                        .font(.system(size: 18, design: .rounded))
                         .foregroundColor(Color("BrandColor"))
                         .bold()
                 }
@@ -220,6 +237,7 @@ struct ModalStore: View {
                     Picker("", selection: $inventoryViewModel.store) {
                         ForEach(storeAvailable, id: \.self.name) {
                             Text($0.name)
+                                .font(.system(.title3, design: .rounded))
                         }
                     }
                     .pickerStyle(WheelPickerStyle())
@@ -231,7 +249,7 @@ struct ModalStore: View {
                     isShowPickerStore.toggle()
                 } label: {
                     Text("Close")
-                        .font(.system(size: 18))
+                        .font(.system(size: 18, design: .rounded))
                         .foregroundColor(Color("BrandColor"))
                         .bold()
                 }

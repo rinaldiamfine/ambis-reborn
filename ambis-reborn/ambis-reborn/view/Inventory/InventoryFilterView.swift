@@ -29,7 +29,10 @@ struct InventoryFilterView: View {
                     self.showCancelButton = true
                 }, onCommit: {
                     print("onCommit")
-                }).foregroundColor(.primary)
+                })
+                .foregroundColor(.primary)
+                .font(.system(.body, design: .rounded))
+                
                 Button(action: {
                     self.searchText = ""
                 }) {
@@ -52,6 +55,7 @@ struct InventoryFilterView: View {
                     self.showCancelButton = false
                 }
                 .foregroundColor(Color("BrandColor"))
+                .font(.system(.body, design: .rounded))
             }
         }
         .navigationBarHidden(showCancelButton)
@@ -86,7 +90,7 @@ struct InventoryFilterView: View {
                             }
                         }
                         Text("Expire Soon")
-                            .font(.system(size: 12))
+                            .font(.system(size: 12, design: .rounded))
                             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                     }.onTapGesture {
                         defaultFilter = "Expire Soon"
@@ -120,7 +124,7 @@ struct InventoryFilterView: View {
                             }
                         }
                         Text("   Fridge   ")
-                            .font(.system(size: 12))
+                            .font(.system(size: 12, design: .rounded))
                             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                     }.onTapGesture {
                         defaultFilter = "Fridge"
@@ -154,7 +158,7 @@ struct InventoryFilterView: View {
                             }
                         }
                         Text("   Freezer   ")
-                            .font(.system(size: 12))
+                            .font(.system(size: 12, design: .rounded))
                             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                     }.onTapGesture {
                         defaultFilter = "Freezer"
@@ -188,7 +192,7 @@ struct InventoryFilterView: View {
                             }
                         }
                         Text("   Other   ")
-                            .font(.system(size: 12))
+                            .font(.system(size: 12, design: .rounded))
                             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                     }.onTapGesture {
                         defaultFilter = "Other"

@@ -123,6 +123,7 @@ struct InventoryView: View {
             foodCategoryViewModel.getData()
             NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
         })
+        
     }
 }
 
