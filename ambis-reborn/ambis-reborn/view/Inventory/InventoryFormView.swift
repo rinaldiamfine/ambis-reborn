@@ -145,6 +145,7 @@ struct InventoryModalForm: View {
                             .onTapGesture {
                                 categoryOnTap(category: category)
                             }
+                            .navigationTitle("Food Category")
                     }
                 }
                 HStack {

@@ -12,15 +12,20 @@ struct InventoryCategoryListView: View {
     @Binding var previewSelectedCategory: String
     
     var body: some View {
-        HStack {
-            Text(foodCategory.imageString).font(.system(size: 18))
-            Text(foodCategory.name).font(.body)
-            Spacer()
-            let formatName = foodCategory.imageString + " " + foodCategory.name
-            if previewSelectedCategory == formatName {
-                Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+//        NavigationView {
+            HStack {
+                Text(foodCategory.imageString).font(.system(size: 18))
+                Text(foodCategory.name).font(.system(.body, design: .rounded))
+                Spacer()
+                let formatName = foodCategory.imageString + " " + foodCategory.name
+                if previewSelectedCategory == formatName {
+                    Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                }
             }
-        }
+            .navigationBarBackButtonHidden(false)
+            .navigationBarHidden(false).accentColor(.red)
+//            .navigationTitle("Food Category").accentColor(Color("BackgroundInverse"))
+//        }.accentColor( .black)
     }
     
 //    @Binding var previewSelectedCategory: String

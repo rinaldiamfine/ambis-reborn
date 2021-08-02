@@ -79,23 +79,23 @@ struct PrepareListView: View {
             }
             
             VStack(alignment: .leading, spacing: 5) {
-                Text(formatTitle()).font(.system(size: 15))
-                Text(formatSubtitle()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
+                Text(formatTitle()).font(.system(size: 15, design: .rounded))
+                Text(formatSubtitle()).font(.system(size: 13, design: .rounded)).foregroundColor(Color.init(.systemGray))
             }
             .padding(.leading, 2)
             Spacer()
             
             if remainingDays == 0 {
-                Text("Today").font(.system(size: 15)).foregroundColor(expiryColor)
+                Text("Today").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             } else if remainingDays == 1 {
-                Text("\(remainingDays) Day Left").font(.system(size: 15))
+                Text("\(remainingDays) Day Left").font(.system(size: 15, design: .rounded))
                     .padding(.trailing, 10)
             } else if remainingDays > 1 {
-                Text("\(remainingDays) Days Left").font(.system(size: 15))
+                Text("\(remainingDays) Days Left").font(.system(size: 15, design: .rounded))
                     .padding(.trailing, 10)
             } else {
-                Text("Expired").font(.system(size: 15)).foregroundColor(expiryColor)
+                Text("Expired").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             }
             

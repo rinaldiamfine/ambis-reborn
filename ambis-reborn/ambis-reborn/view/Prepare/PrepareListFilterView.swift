@@ -88,25 +88,25 @@ struct PrepareListFilterView: View {
                 
             }
             VStack(alignment: .leading, spacing: 5) {
-                Text(formatTitle()).font(.system(size: 15))
+                Text(formatTitle()).font(.system(size: 15, design: .rounded))
                 HStack {
-                    Text(formatStore()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
+                    Text(formatStore()).font(.system(size: 13, design: .rounded)).foregroundColor(Color.init(.systemGray))
                     Text("・").font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
-                    Text(formatSubtitle()).font(.system(size: 13)).foregroundColor(Color.init(.systemGray))
+                    Text(formatSubtitle()).font(.system(size: 13, design: .rounded)).foregroundColor(Color.init(.systemGray))
                 }
             }.padding(.leading, 2)
             Spacer()
             if remainingDays == 0 {
-                Text("Today").font(.system(size: 15)).foregroundColor(expiryColor)
+                Text("Today").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             } else if remainingDays == 1 {
-                Text("\(remainingDays) Day Left").font(.system(size: 15)).foregroundColor(expiryColor)
+                Text("\(remainingDays) Day Left").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             } else if remainingDays > 1 {
-                Text("\(remainingDays) Days Left").font(.system(size: 15)).foregroundColor(expiryColor)
+                Text("\(remainingDays) Days Left").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             } else {
-                Text("Expired").font(.system(size: 15)).foregroundColor(expiryColor)
+                Text("Expired").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
                     .padding(.trailing, 10)
             }
 //            Spacer()
@@ -123,7 +123,7 @@ struct PrepareListFilterView: View {
         .padding(.top, 8)
         .padding(.bottom, 8)
         .padding(.trailing, 8)
-        .background(RoundedRectangle(cornerRadius: 10).fill(boxBackground))
+        .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
         .onTapGesture {
             if inventoryViewModel.prepareSelectedInventory.contains(inventory.id) {
                 inventoryViewModel.prepareSelectedInventory = inventoryViewModel.prepareSelectedInventory.filter{$0 != inventory.id}
