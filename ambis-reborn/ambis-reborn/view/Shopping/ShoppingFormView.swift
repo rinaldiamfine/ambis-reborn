@@ -52,65 +52,63 @@ struct ShoppingFormView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Product Name")) {
-                    TextField("E.g. Chicken Wings", text: $shoppingViewModel.name)
-                        .onReceive(Just(shoppingViewModel.name)) { _ in
-                            limitText(characterLimit)
-                        }
-                }
-                Section(header: Text("Total Product")) {
-                    TextField("Quantity", text: $shoppingViewModel.total)
-                        .keyboardType(.decimalPad)
-                    HStack {
-                        Text("Type")
-                        Spacer()
-                        Text(shoppingViewModel.totalType)
-                        if isShowPickerType {
-                            Image(systemName: "chevron.down")
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundColor(Color.init(UIColor.systemGray2))
-                        } else {
+            ZStack {
+                Form {
+                    Section(header: Text("Product Name")
+                                .font(.system(.caption, design: .rounded))) {
+                        TextField("E.g. Chicken Wings", text: $shoppingViewModel.name)
+                            .onReceive(Just(shoppingViewModel.name)) { _ in
+                                limitText(characterLimit) }
+                            .font(.system(.callout, design: .rounded))
+                    }
+                    Section(header: Text("Total Product")
+                                .font(.system(.caption, design: .rounded))) {
+                        TextField("Quantity", text: $shoppingViewModel.total)
+                            .keyboardType(.decimalPad)
+                            .font(.system(.callout, design: .rounded))
+                        HStack {
+                            Text("Type")
+                                .font(.system(.callout, design: .rounded))
+                            Spacer()
+                            Text(shoppingViewModel.totalType)
+                                .font(.system(.callout, design: .rounded))
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 13, weight: .bold))
                                 .foregroundColor(Color.init(UIColor.systemGray2))
                         }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            isShowPickerType.toggle()
+                        }
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        isShowPickerType.toggle()
-                    }
-                    
-                    if isShowPickerType {
-                        Picker("", selection: $shoppingViewModel.totalType) {
-                            ForEach(typeAvailable, id: \.self.name) {
-                                Text($0.name)
+                    Section(header: Text("Product Category")
+                                .font(.system(.caption, design: .rounded))) {
+                        Picker(selection: $shoppingViewModel.toShopping, label: Text(shoppingViewModel.previewSelectedCategory)) {
+                            ForEach(foodCategoryViewModel.foodCategories, id: \.id) {
+                                category in InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $shoppingViewModel.previewSelectedCategory).contentShape(Rectangle())
+                                    .onTapGesture {
+                                        categoryOnTap(category: category)
+                                    }
                             }
-                        }.pickerStyle(WheelPickerStyle())
-                    }
-                }
-                Section(header: Text("Product Category")) {
-                    Picker(selection: $shoppingViewModel.toShopping, label: Text(shoppingViewModel.previewSelectedCategory)) {
-                        ForEach(foodCategoryViewModel.foodCategories, id: \.id) {
-                            category in InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $shoppingViewModel.previewSelectedCategory).contentShape(Rectangle())
-                                .onTapGesture {
-                                    categoryOnTap(category: category)
-                                }
                         }
                     }
                 }
-            }
-                .navigationBarTitle("Add Product", displayMode: .inline)
+                .navigationBarTitle(shoppingViewModel.status == "create" ? "Add Product" : "Edit Product", displayMode: .inline)
                 .navigationBarItems(
                     leading:
                         Button(action: actionCancel, label: {
                             Text("Cancel")
+                                .font(.system(.callout, design: .rounded))
                         }),
                     trailing:
                         Button(action: actionDone, label: {
                             Text("Done")
+                                .font(.system(.callout, design: .rounded))
                         })
                 )
+                
+                ShoppingModalTotalType(isShowPickerType: $isShowPickerType, shoppingViewModel: shoppingViewModel)
+            }
         }
         .actionSheet(isPresented: $showingActionSheet) {
             ActionSheet(
@@ -132,3 +130,49 @@ struct ShoppingFormView: View {
 //        ShoppingFormView()
 //    }
 //}
+
+struct ShoppingModalTotalType: View {
+    @Binding var isShowPickerType: Bool
+    @ObservedObject var shoppingViewModel: ShoppingViewModel
+    var typeAvailable = AppGlobalData.generateDataType()
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            VStack(spacing: 15) {
+                HStack {
+                    Picker("", selection: $shoppingViewModel.totalType) {
+                        ForEach(typeAvailable, id: \.self.name) {
+                            Text($0.name)
+                                .font(.system(.title3, design: .rounded))
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .background(Color(.systemBackground))
+                }
+                .cornerRadius(15)
+                
+                Button {
+                    isShowPickerType.toggle()
+                } label: {
+                    Spacer()
+                    Text("Close")
+                        .font(.system(size: 18, design: .rounded))
+                        .foregroundColor(Color("BrandColor"))
+                        .bold()
+                    Spacer()
+                }
+                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
+                .background(Color(.systemBackground))
+                .cornerRadius(15)
+            }
+            .padding(.bottom, (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 10)
+            .padding(.horizontal)
+            .padding(.top, 15)
+            .background(Color.clear)
+            .cornerRadius(25)
+            .offset(y: isShowPickerType ? 0 : UIScreen.main.bounds.height)
+        }.background(isShowPickerType ? Color.black.opacity(0.7) : Color.clear).edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.bottom)
+    }
+}

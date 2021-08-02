@@ -25,30 +25,44 @@ struct CategoryFormView: View {
                         .frame(width: 86, height: 86)
                     Text(foodCategoryViewModel.foodCategories[selectedCategory].imageString)
                         .font(.system(size: 38))
-                }.padding()
-                Text(foodCategoryViewModel.foodCategories[selectedCategory].name)
-                    .font(.system(size: 22))
-                    .bold()
-                    .padding()
-                Text(foodCategoryViewModel.foodCategories[selectedCategory].subtitle)
-                    .font(.system(size: 14))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(Color.init(UIColor.systemGray))
-                    .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                    .padding()
-                Text(foodCategoryViewModel.foodCategories[selectedCategory].estimation)
-                    .font(.system(size: 17))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(Color.init(UIColor.systemGreen))
-                    .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                    .padding()
+                }
+                .padding(.horizontal)
+                .padding(.vertical)
+                HStack {
+                    Text(foodCategoryViewModel.foodCategories[selectedCategory].name)
+                        .font(.system(size: 22, design: .rounded))
+                        .bold()
+                }
+                .padding(.horizontal)
+                .padding(.vertical)
+                HStack {
+                    Text(foodCategoryViewModel.foodCategories[selectedCategory].subtitle)
+                        .font(.system(size: 14, design: .rounded))
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(Color.init(UIColor.systemGray))
+                        .lineSpacing(10)
+                }
+                .padding(.horizontal)
+                .padding(.vertical)
+                HStack {
+                    Text(foodCategoryViewModel.foodCategories[selectedCategory].estimation)
+                        .font(.system(size: 17, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color.init(UIColor.systemGreen))
+                        .lineSpacing(10)
+                }
+                .padding(.horizontal)
+                .padding(.vertical)
                 Spacer()
             }
+            .padding(.horizontal)
             .navigationBarTitle("Category", displayMode: .inline)
             .navigationBarItems(
                 trailing:
                     Button(action: actionClose, label: {
                         Text("Close")
+                            .font(.system(.callout, design: .rounded))
+                            .accentColor(Color("BackgroundInverse"))
                     })
             )
         }

@@ -13,7 +13,7 @@ struct CategoryListView: View {
     var body: some View {
         HStack {
             Text(foodCategory.imageString).font(.system(size: 18))
-            Text(foodCategory.name).font(.body)
+            Text(foodCategory.name).font(.system(.body, design: .rounded))
             Spacer()
             Image(systemName: "chevron.right")
                 .font(.system(size: 13, weight: .bold))

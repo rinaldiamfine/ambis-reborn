@@ -29,7 +29,7 @@ struct CategoryView: View {
             VStack {
                 List {
                     Section(header:
-                        Text("Food Category")) {
+                                Text("Food Category").font(.system(.caption, design: .rounded))) {
                             ForEach(foodCategoryViewModel.foodCategories, id:\.id) {
                                 category in
                                 CategoryListView(foodCategory: category)

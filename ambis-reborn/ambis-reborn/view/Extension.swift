@@ -32,9 +32,9 @@ extension UINavigationController {
         modalNavBar.largeTitleTextAttributes = [.font : fontLarge]
         modalNavBar.titleTextAttributes = [.font : fontSmall]
         
-//        navBar.backgroundColor = UIColor.init(Color("Gradient1"))
+        navBar.backgroundColor = UIColor.init(Color("Gradient1"))
 //        navBar.backgroundColor = UIColor.init(Color("AppBackground"))
-//        navBar.shadowColor = .clear
+        navBar.shadowColor = .clear
         
         navigationBar.standardAppearance = navBar
         navigationBar.scrollEdgeAppearance = navBar

@@ -43,8 +43,18 @@ struct SimpleEntry: TimelineEntry {
 
 struct widgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var family
 
     var body: some View {
+        switch family {
+        case .systemSmall:
+            smallWidget
+        default:
+            smallWidget
+        }
+    }
+    
+    var smallWidget: some View {
         GeometryReader(content: { geometry in
             HStack(spacing:10) {
                 ZStack {

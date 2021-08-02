@@ -64,6 +64,14 @@ struct PrepareView: View {
                                 PrepareFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton, searchText: $searchText, showCancelButton: $showCancelButton)
                                     .padding(.horizontal)
                             }
+                            .background(
+                                Rectangle()
+                                    .fill(LinearGradient(
+                                        gradient: .init(colors: !showCancelButton ? [Color("Gradient1"), Color("Gradient2")] : [Color(UIColor.systemBackground)]),
+                                        startPoint: .init(x: 0, y: 0),
+                                        endPoint: .init(x: 0, y: 0.7)
+                                    ))
+                            )
                             
                             //SETUP LIST
                             Section {
@@ -89,6 +97,10 @@ struct PrepareView: View {
                                     .padding(.horizontal)
                                 }
                             }
+                            
+                            VStack {
+                                SpaceView()
+                            }
                         }
                         .frame(width: UIScreen.screenWidth)
                         .background(Color("AppBackground"))
@@ -96,9 +108,9 @@ struct PrepareView: View {
                         VStack {
                             Spacer()
                             HStack {
-                                Text("Item Selected:").font(.system(size: 12))
+                                Text("Item Selected:").font(.system(size: 12, design: .rounded))
                                 Spacer()
-                                Text("\(getTotalItemSelected()) Items").font(.system(size: 12))
+                                Text("\(getTotalItemSelected()) Items").font(.system(size: 12, design: .rounded))
                             }
                             .padding(.horizontal, 15)
                             .padding(.bottom, 5)
@@ -156,8 +168,8 @@ struct ButtonView: View {
                     HStack {
                         Spacer()
                         Text("Find Recipe")
-                            .font(.system(size: 18))
-                            .foregroundColor(.white)
+                            .font(.system(size: 18, design: .rounded))
+                            .foregroundColor(Color("BackgroundInverse"))
                         Spacer()
                     }
                  }
@@ -173,7 +185,7 @@ struct ButtonView: View {
                 //Action
             } label: {
                 Text("Find Recipe")
-                    .font(.system(size: 18))
+                    .font(.system(size: 18, design: .rounded))
                     .foregroundColor(Color("BackgroundInverse"))
             }
             .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
