@@ -73,8 +73,8 @@ struct ShoppingListView: View {
                 .padding(.leading, 10)
             }
             VStack(alignment: .leading, spacing: 5) {
-                Text(formatTitle()).font(.system(size: 15))
-                Text(formatSubtitle()).font(.system(size: 13))
+                Text(formatTitle()).font(.system(size: 15, design: .rounded))
+                Text(formatSubtitle()).font(.system(size: 13, design: .rounded))
                     .foregroundColor(Color.init(.systemGray))
             }
             .padding(.leading, 2)

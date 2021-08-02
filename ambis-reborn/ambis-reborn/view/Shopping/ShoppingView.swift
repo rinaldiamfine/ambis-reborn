@@ -38,63 +38,90 @@ struct ShoppingView: View {
         
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            VStack(spacing: 10) {
                 if shoppingViewModel.shoppingCount > 0 {
                     ZStack {
                         ScrollView {
-                            ForEach(shoppingViewModel.shopping, id:\.id) {
-                                shopping in
-                                ShoppingListView(shopping: shopping, shoppingViewModel: shoppingViewModel)
-                                    .contextMenu {
-                                        Button {
-                                            shoppingViewModel.editData(index: shopping)
-                                            print(shopping)
-                                        } label: {
-                                            Label("Update Item", systemImage: "square.and.pencil")
+                            VStack {
+                                SpaceView()
+                            }.background(
+                                Rectangle()
+                                    .fill(LinearGradient(gradient: .init(colors: [Color("Gradient1"), Color("Gradient2")]), startPoint: .init(x: 0, y: 0.1), endPoint: .init(x: 0, y: 1)))
+                            )
+                            
+                            Section {
+                                ForEach(shoppingViewModel.shopping, id:\.id) {
+                                    shopping in
+                                    ShoppingListView(shopping: shopping, shoppingViewModel: shoppingViewModel)
+                                        .contextMenu {
+                                            Button {
+                                                shoppingViewModel.editData(index: shopping)
+                                                print(shopping)
+                                            } label: {
+                                                Label("Update Item", systemImage: "square.and.pencil")
+                                            }
+                                            
+                                            Divider()
+                                            Button {
+                                                shoppingViewModel.deleteItemByContextMenu(index: shopping)
+                                            } label: {
+                                                Text("Remove")
+                                                Image(systemName: "trash")
+                                            }
                                         }
-                                        
-                                        Divider()
-                                        Button {
-                                            shoppingViewModel.deleteItemByContextMenu(index: shopping)
-                                        } label: {
-                                            Text("Remove")
-                                            Image(systemName: "trash")
+                                        .contentShape(Rectangle())
+                                        .onTapGesture {
+                                            if shoppingViewModel.shoppingToBeMoved.contains(shopping.id) {
+                                                shoppingViewModel.shoppingToBeMoved = shoppingViewModel.shoppingToBeMoved.filter{$0 != shopping.id}
+                                            } else {
+                                                shoppingViewModel.shoppingToBeMoved.append(shopping.id)
+                                            }
                                         }
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        if shoppingViewModel.shoppingToBeMoved.contains(shopping.id) {
-                                            shoppingViewModel.shoppingToBeMoved = shoppingViewModel.shoppingToBeMoved.filter{$0 != shopping.id}
-                                        } else {
-                                            shoppingViewModel.shoppingToBeMoved.append(shopping.id)
-                                        }
-                                    }
+                                        .padding(.horizontal)
+                                }
                                 
                             }
+                            VStack {
+                                SpaceView()
+                            }
                         }
-                        .padding()
                         .frame(width: UIScreen.screenWidth)
                         .background(Color("AppBackground"))
-//                        .listStyle(InsetGroupedListStyle())
+                        
+                        
                         VStack {
                             Spacer()
-                            
                             if !shoppingViewModel.shoppingToBeMoved.isEmpty {
                                 Button {
                                     isMovedToInventory = true
-                                    //shoppingToBeMoved
                                     setArrayDate()
                                 } label: {
                                     Text("Move to inventory")
-                                        .font(.system(size: 18))
-                                        .foregroundColor(.white)
+                                        .font(.system(size: 18, design: .rounded))
+                                        .foregroundColor(Color("BackgroundInverse"))
                                 }
-                                .frame(width: 350, height: 50, alignment: .center)
+                                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
                                 .background(Color("BrandColor"))
                                 .cornerRadius(15)
-                                .padding()
+                                .padding(.horizontal, 15)
+                                .padding(.bottom, 15)
+                            } else {
+                                Button {
+                                    //Action
+                                } label: {
+                                    Text("Move to inventory")
+                                        .font(.system(size: 18, design: .rounded))
+                                        .foregroundColor(Color("BackgroundInverse"))
+                                }
+                                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
+                                .background(Color.init(.systemGray))
+                                .cornerRadius(15)
+                                .padding(.horizontal, 15)
+                                .padding(.bottom, 15)
                             }
                         }
+                        
+                        
                     }
                     
                 } else {
@@ -119,7 +146,6 @@ struct ShoppingView: View {
             ShoppingFormView(shoppingViewModel: shoppingViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $shoppingViewModel.isPresented)
         }
         .sheet(isPresented: $isMovedToInventory, content: {
-            //
             ShoppingToInventoryView(shoppingViewModel: shoppingViewModel, foodCategoryViewModel: foodCategoryViewModel, isMovedToInventory: $isMovedToInventory)
         })
         .onAppear(perform: {

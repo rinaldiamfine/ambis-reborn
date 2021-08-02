@@ -10,6 +10,11 @@ import CoreData
 
 struct ShoppingToInventoryListView: View {
     @ObservedObject var shoppingViewModel = ShoppingViewModel()
+    @Environment(\.colorScheme) var colorScheme
+    
+    @State private var iconBackground1 = Color("IconBackground1")
+    @State private var iconBackground2 = Color("IconBackground2")
+    
     var shopping: ShoppingModel
     
     var storeAvailable = AppGlobalData.generateDataStore()
@@ -17,6 +22,10 @@ struct ShoppingToInventoryListView: View {
     @Binding var expiryDate: Date
     @Binding var purchaseDate: Date
     @Binding var store: String
+    
+    @Binding var selectedArrayShowPicker: Int
+    @Binding var isShowPickerStore: Bool
+    var counterList : Int
     
     @State var counterToAdjustExpDate: Int = 0
     @State var expiryDatePickerChangeCounter: Int = 0
@@ -32,14 +41,23 @@ struct ShoppingToInventoryListView: View {
             HStack {
                 if shopping.foodCategory != FoodCategory() {
                     if shopping.shopping.toFoodCategory != nil {
-                        Text(shopping.foodCategory.imageString ?? "")
-                            .font(.system(size: 18))
+                        ZStack {
+                            Ellipse()
+                                .fill(LinearGradient(
+                                    gradient: .init(colors: [iconBackground1, iconBackground2]),
+                                    startPoint: .init(x: 0, y: 0.5),
+                                    endPoint: .init(x: 0.8, y: 0.5)
+                                ))
+                                .frame(width: 46, height: 46)
+                            Text(shopping.foodCategory.imageString ?? "").font(.system(size: 28))
+                        }
                     }
                 }
-                VStack(alignment: .leading) {
-                    Text(shopping.name).font(.system(size: 15))
-                    Text(formatSubtitle()).font(.system(size: 13))
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(shopping.name).font(.system(size: 15, design: .rounded))
+                    Text(formatSubtitle()).font(.system(size: 13, design: .rounded))
                 }
+                .padding(.leading, 2)
                 Spacer()
                 if isClicked {
                     Image(systemName: "chevron.down")
@@ -61,47 +79,63 @@ struct ShoppingToInventoryListView: View {
                 }
                 isClicked.toggle()
             }
+            
             if isClicked {
-                Section(header: Text("Storing Type")) {
-                    Picker("", selection: $store) {
-                        ForEach(storeAvailable, id: \.self.name) {
-                            Text($0.name)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Storing Type")
+                                    .font(.system(.caption, design: .rounded)).padding(.top, 5)
+                        VStack {
+                            HStack {
+                                Text("Storing Type")
+                                    .font(.system(.callout, design: .rounded))
+                                Spacer()
+                                Text(store)
+                                    .font(.system(.callout, design: .rounded))
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 13, weight: .bold))
+                                        .foregroundColor(Color.init(UIColor.systemGray2))
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                isShowPickerStore.toggle()
+                                selectedArrayShowPicker = counterList
+                            }
                         }
-                    }.pickerStyle(SegmentedPickerStyle())
-                    if shoppingViewModel.detailDisclaimer != "" {
-                        HStack {
-                            Spacer()
-                            Text(shoppingViewModel.detailDisclaimer)
-                                .lineLimit(nil).contentShape(Rectangle())
-                                .multilineTextAlignment(.center)
-                                .font(.system(size: 14))
-                                .foregroundColor(Color.init(UIColor.systemGreen))
-                                .lineSpacing(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                                .padding(.top, 10).padding(.bottom, 10)
-                            Spacer()
-                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(colorScheme == .dark ? Color("BoxBackground") : Color("BoxColor"))
+                        )
                     }
-                }.padding(.top, 10)
+                }
                 
-                Section(header: Text("Date Information")) {
-                    DatePicker("Buy", selection: Binding<Date> (
-                                get: { purchaseDate },
-                                set: { purchaseDate = $0
-                                    if expiryDate < $0 {
-                                        expiryDate = $0
-                                    }
-                                    if shopping.shopping.toFoodCategory != nil {
-                                        expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: $0)!
-                                    }
-                                }), displayedComponents: .date)
-                    DatePicker("Expiry", selection: $expiryDate, in: purchaseDate..., displayedComponents: .date)
-                }.padding(.top, 10)
-//                Section(header: Text("Disclaimer")) {
-//                    Text("The numbers provided below are rough estimates on how long an item in the category you have chosen can last in different situations.\n\nThe best indicators on whether a food has expired is to look for signs of spoilage, such as foul odor, fungi and mold growth, and sour taste")
-//                        .font(.system(size: 14))
-//                        .foregroundColor(.gray)
-//                        .padding(.top, 10).padding(.bottom, 10)
-//                }
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Date Information")
+                                    .font(.system(.caption, design: .rounded))
+                        VStack {
+                            DatePicker("Buy", selection: Binding<Date> (
+                                        get: { purchaseDate },
+                                        set: { purchaseDate = $0
+                                            if expiryDate < $0 {
+                                                expiryDate = $0
+                                            }
+                                            if shopping.shopping.toFoodCategory != nil {
+                                                expiryDate = Calendar.current.date(byAdding: .day, value: Int(shopping.foodCategory.expiryEstimation), to: $0)!
+                                            }
+                                        }), displayedComponents: .date)
+                                .font(.system(.callout, design: .rounded))
+                            DatePicker("Expiry", selection: $expiryDate, in: purchaseDate..., displayedComponents: .date)
+                                .font(.system(.callout, design: .rounded))
+                        }.padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(colorScheme == .dark ? Color("BoxBackground") : Color("BoxColor"))
+                        )
+                    }
+                    .padding(.bottom, 15)
+                }
             }
         }
     }

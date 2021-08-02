@@ -205,10 +205,12 @@ struct ModalTotalType: View {
                 Button {
                     isShowPickerType.toggle()
                 } label: {
+                    Spacer()
                     Text("Close")
                         .font(.system(size: 18, design: .rounded))
                         .foregroundColor(Color("BrandColor"))
                         .bold()
+                    Spacer()
                 }
                 .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
                 .background(Color(.systemBackground))
@@ -249,10 +251,12 @@ struct ModalStore: View {
                 Button {
                     isShowPickerStore.toggle()
                 } label: {
+                    Spacer()
                     Text("Close")
                         .font(.system(size: 18, design: .rounded))
                         .foregroundColor(Color("BrandColor"))
                         .bold()
+                    Spacer()
                 }
                 .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
                 .background(Color(.systemBackground))

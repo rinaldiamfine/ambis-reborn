@@ -97,6 +97,10 @@ struct PrepareView: View {
                                     .padding(.horizontal)
                                 }
                             }
+                            
+                            VStack {
+                                SpaceView()
+                            }
                         }
                         .frame(width: UIScreen.screenWidth)
                         .background(Color("AppBackground"))
@@ -165,7 +169,7 @@ struct ButtonView: View {
                         Spacer()
                         Text("Find Recipe")
                             .font(.system(size: 18, design: .rounded))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("BackgroundInverse"))
                         Spacer()
                     }
                  }
