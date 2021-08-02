@@ -25,6 +25,10 @@
 		30CD65CB26A03F4D003CA34A /* ShoppingToInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CD65CA26A03F4D003CA34A /* ShoppingToInventoryView.swift */; };
 		30CD65CD26A04263003CA34A /* ShoppingToInventoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CD65CC26A04263003CA34A /* ShoppingToInventoryListView.swift */; };
 		900D340D26B832500052CF5D /* GlobalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D340C26B832500052CF5D /* GlobalView.swift */; };
+		900D341326B855AE0052CF5D /* WidgetInventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */; };
+		900D341426B855F40052CF5D /* WidgetInventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */; };
+		900D341726B857C80052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
+		900D341826B857F50052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
 		9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047D1E526A488F200511A25 /* InventoryFilterView.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
 		905DE8B82693311600E7011C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B72693311600E7011C /* ContentView.swift */; };
@@ -109,6 +113,10 @@
 		30CD65CA26A03F4D003CA34A /* ShoppingToInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToInventoryView.swift; sourceTree = "<group>"; };
 		30CD65CC26A04263003CA34A /* ShoppingToInventoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToInventoryListView.swift; sourceTree = "<group>"; };
 		900D340C26B832500052CF5D /* GlobalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalView.swift; sourceTree = "<group>"; };
+		900D341026B8541F0052CF5D /* ambis-reborn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ambis-reborn.entitlements"; sourceTree = "<group>"; };
+		900D341126B854330052CF5D /* widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widgetExtension.entitlements; sourceTree = "<group>"; };
+		900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryModel.swift; sourceTree = "<group>"; };
+		900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryViewModel.swift; sourceTree = "<group>"; };
 		9047D1E526A488F200511A25 /* InventoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFilterView.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		905DE8B52693311600E7011C /* ambis_rebornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ambis_rebornApp.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 		905DE8A92693311500E7011C = {
 			isa = PBXGroup;
 			children = (
+				900D341126B854330052CF5D /* widgetExtension.entitlements */,
 				905DE8B42693311500E7011C /* ambis-reborn */,
 				9065A60426AA25EC00BAD3A6 /* widget */,
 				9065A5FF26AA25EC00BAD3A6 /* Frameworks */,
@@ -195,6 +204,7 @@
 		905DE8B42693311500E7011C /* ambis-reborn */ = {
 			isa = PBXGroup;
 			children = (
+				900D341026B8541F0052CF5D /* ambis-reborn.entitlements */,
 				905DE8C62693321200E7011C /* viewModel */,
 				905DE8C5269331FF00E7011C /* view */,
 				905DE8C4269331F900E7011C /* model */,
@@ -224,6 +234,7 @@
 				307C551D269E077700DD6FC3 /* ShoppingModel.swift */,
 				9090ACA126997208008AF935 /* FoodCategoryModel.swift */,
 				9070148E269F5D4200F8981A /* Global.swift */,
+				900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -253,6 +264,7 @@
 				90AD5F012697736900E98152 /* CategoryViewModel.swift */,
 				9090AC9726993F6C008AF935 /* InventoryViewModel.swift */,
 				307C551B269E076B00DD6FC3 /* ShoppingViewModel.swift */,
+				900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -454,6 +466,7 @@
 				30CD65CB26A03F4D003CA34A /* ShoppingToInventoryView.swift in Sources */,
 				0E20A2AF26B285BF0012F3C6 /* RecipeListView.swift in Sources */,
 				9082AE9D2693F4AB009A7161 /* Extension.swift in Sources */,
+				900D341726B857C80052CF5D /* WidgetInventoryViewModel.swift in Sources */,
 				905DE8B82693311600E7011C /* ContentView.swift in Sources */,
 				9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */,
 				9090AC9E269948F0008AF935 /* InventoryListView.swift in Sources */,
@@ -486,6 +499,7 @@
 				90E8F2EC26B21880002BCBDE /* PrepareListView.swift in Sources */,
 				9082AE9B2693F479009A7161 /* SearchBar.swift in Sources */,
 				90706CB226A5726200471700 /* InventoryListExpiryView.swift in Sources */,
+				900D341326B855AE0052CF5D /* WidgetInventoryModel.swift in Sources */,
 				0EE5F00B26B8086F00D81C8D /* RecipeSortSample.swift in Sources */,
 				905DE8CC2693333C00E7011C /* InventoryView.swift in Sources */,
 				90E8F2E826B17047002BCBDE /* PrepareFilterView.swift in Sources */,
@@ -506,7 +520,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				900D341426B855F40052CF5D /* WidgetInventoryModel.swift in Sources */,
 				0E20A2B326B2B23D0012F3C6 /* RecipeListItemView.swift in Sources */,
+				900D341826B857F50052CF5D /* WidgetInventoryViewModel.swift in Sources */,
 				9065A60B26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
 				9065A60626AA25EC00BAD3A6 /* widget.swift in Sources */,
 			);
@@ -645,6 +661,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ambis-reborn/ambis-reborn.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"ambis-reborn/Preview Content\"";
@@ -657,7 +674,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ambis-reborn";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ambis-reborn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -670,6 +687,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ambis-reborn/ambis-reborn.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"ambis-reborn/Preview Content\"";
@@ -682,7 +700,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ambis-reborn";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ambis-reborn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -694,6 +712,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = widgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				INFOPLIST_FILE = widget/Info.plist;
@@ -702,7 +721,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ambis-reborn.widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ambis-reborn.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -715,6 +734,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = widgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				INFOPLIST_FILE = widget/Info.plist;
@@ -723,7 +743,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ambis-reborn.widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ambis-reborn.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
