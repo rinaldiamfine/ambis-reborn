@@ -9,8 +9,8 @@ import Foundation
 
 struct IngredientSample {
     var name: String
-    var total: Int
-    var totalType: String
-    var isAvailable: Bool
+    var total: Int = 0
+    var totalType: String = ""
+    var isAvailable: Bool = false
 }
 
