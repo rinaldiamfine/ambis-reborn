@@ -10,64 +10,59 @@ import SwiftUI
 struct RecipeSortView: View {
     
     @Binding var toSort: Bool
-//    @Binding var sortDish: Array<RecipeSort>
-//    @Binding var sortPortion: [RecipeSort]
-//    @Binding var sortEquipment: [RecipeSort]
+    @Binding var sortDish: [RecipeSort]
+    @Binding var sortPortion: [RecipeSort]
+    @Binding var sortEquipment: [RecipeSort]
     
     var body: some View {
         NavigationView {
             
             List {
                 Section(header: viewHeader(title: "Dish Category")) {
-                    HStack{
-                        Text("Appetizer").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
-                    }
-                    HStack{
-                        Text("Main Dish").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
-                    }
-                    HStack{
-                        Text("Dessert").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                    ForEach(0..<sortDish.count) { data in
+                        HStack{
+                            Text(sortDish[data].name).font(.system(size: 16))
+                            Spacer()
+                            if sortDish[data].isChoose {
+                                Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            sortDish[data].isChoose = !sortDish[data].isChoose
+                        }
                     }
                 }
 //                .textCase(nil)
                 Section(header: viewHeader(title: "Dish Category")) {
-                    HStack{
-                        Text("Appetizer").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                    ForEach(0..<sortPortion.count) { data in
+                        HStack{
+                            Text(sortPortion[data].name).font(.system(size: 16))
+                            Spacer()
+                            if sortPortion[data].isChoose {
+                                Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            sortPortion[data].isChoose = !sortPortion[data].isChoose
+                        }
                     }
-                    HStack{
-                        Text("Main Dish").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
-                    }
-                    HStack{
-                        Text("Dessert").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
-                    }
+                    
                 }
                 Section(header: viewHeader(title: "Dish Category")) {
-                    HStack{
-                        Text("Appetizer").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
-                    }
-                    HStack{
-                        Text("Main Dish").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
-                    }
-                    HStack{
-                        Text("Dessert").font(.system(size: 16))
-                        Spacer()
-                        Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                    ForEach(0..<sortEquipment.count) { data in
+                        HStack{
+                            Text(sortEquipment[data].name).font(.system(size: 16))
+                            Spacer()
+                            if sortEquipment[data].isChoose {
+                                Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            sortEquipment[data].isChoose = !sortEquipment[data].isChoose
+                        }
                     }
                 }
             }

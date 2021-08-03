@@ -7,8 +7,8 @@
 
 import Foundation
 
-class RecipeSort: ObservableObject{
-    var id: String = ""
-    var name: String = ""
-    var isChoose: Bool = false
+struct RecipeSort {
+    var id: String
+    var name: String
+    var isChoose: Bool
 }
