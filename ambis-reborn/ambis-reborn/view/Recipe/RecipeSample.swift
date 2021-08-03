@@ -9,11 +9,16 @@ import Foundation
 
 struct RecipeSample {
     var name: String
-    var prepTime: Int
-    var cookTime: Int
-    var cookMethod: String
+    var prepTime: Int = 0
+    var cookTime: Int = 0
+    var cookMethod: String = ""
     var cookStep: [String]
-    var totalServes: Int
+    var totalServes: Int = 0
     
     var ingredient: [IngredientSample]
+    
+    //var defaultRecipes: [RecipeSample] = [RecipeSample(name: "Ayam Goreng Bawang Khas Batam", cookStep: <#T##[String]#>, ingredient: <#[IngredientSample]#>)]
+    
 }
+
+

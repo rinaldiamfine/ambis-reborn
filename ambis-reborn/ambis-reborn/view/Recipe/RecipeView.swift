@@ -36,6 +36,9 @@ struct RecipeView: View {
                 Text("How to cook").tag(2)
             })
             .pickerStyle(SegmentedPickerStyle())
+            .onAppear {
+                UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("BrandColor"))
+            }
             ImagePlaceholder()
             RecipeTitle(name: defaultRecipeSample.name)
             RecipeDescription(totalServes: defaultRecipeSample.totalServes, prepTime: defaultRecipeSample.prepTime, cookTime: defaultRecipeSample.cookTime)
