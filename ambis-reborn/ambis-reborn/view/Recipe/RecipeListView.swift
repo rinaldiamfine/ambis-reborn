@@ -10,6 +10,17 @@ import SwiftUI
 struct RecipeListView: View {
     
     @State var toSort = false
+    @State var sortDish: [RecipeSort] = [
+        RecipeSort(id: "", name: "Appetizer", isChoose: true),
+        RecipeSort(id: "", name: "Main Dish", isChoose: true),
+        RecipeSort(id: "", name: "Dessert", isChoose: true)]
+    @State var sortPortion: [RecipeSort] = [
+        RecipeSort(id: "", name: "From lowest to highest", isChoose: true),
+        RecipeSort(id: "", name: "From highest to lowest", isChoose: true)]
+    @State var sortEquipment: [RecipeSort] = [
+        RecipeSort(id: "", name: "Stove", isChoose: true),
+        RecipeSort(id: "", name: "Microwave", isChoose: true),
+        RecipeSort(id: "", name: "Oven", isChoose: true)]
     
     var dummy: [String] = ["", "", "", "", "", ""]
     
@@ -34,7 +45,7 @@ struct RecipeListView: View {
             }
             Spacer()
         }).sheet(isPresented: $toSort, content: {
-            RecipeSortView(toSort: $toSort)
+            RecipeSortView(toSort: $toSort, sortDish: $sortDish,sortPortion: $sortPortion, sortEquipment: $sortEquipment)
         })
         .background(Color("AppBackground"))
         .navigationBarTitle("Recipe", displayMode: .automatic)
@@ -43,8 +54,8 @@ struct RecipeListView: View {
     
 }
 
-struct RecipeListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeListView()
-    }
-}
+//struct RecipeListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecipeListView()
+//    }
+//}
