@@ -30,10 +30,10 @@ struct TabBarView: View {
                 CategoryView().getIconName()
                 CategoryView().gettabName()
             }.tag(4)
-            RecipeView().tabItem {
-                RecipeView().getIconName()
-                RecipeView().gettabName()
-            }.tag(5)
+//            RecipeView().tabItem {
+//                RecipeView().getIconName()
+//                RecipeView().gettabName()
+//            }.tag(5)
         }.accentColor(defaultAccentColor)
     }
 }
