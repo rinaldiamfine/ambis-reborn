@@ -31,14 +31,14 @@ struct RecipeView: View {
     
     var body: some View {
         VStack {
-            RecipeTitle(name: defaultRecipeSample.name)
-            ImagePlaceholder()
-            RecipeDescription(totalServes: defaultRecipeSample.totalServes, prepTime: defaultRecipeSample.prepTime, cookTime: defaultRecipeSample.cookTime)
             Picker(selection: $segmentedPicker, label: Text(""), content: {
                 Text("Ingredients").tag(1)
                 Text("How to cook").tag(2)
             })
             .pickerStyle(SegmentedPickerStyle())
+            ImagePlaceholder()
+            RecipeTitle(name: defaultRecipeSample.name)
+            RecipeDescription(totalServes: defaultRecipeSample.totalServes, prepTime: defaultRecipeSample.prepTime, cookTime: defaultRecipeSample.cookTime)
             if segmentedPicker == 1 {
                 IngredientListView(ingredientsSample: defaultRecipeSample.ingredient)
             } else {
@@ -47,7 +47,7 @@ struct RecipeView: View {
         }
         .padding()
         .navigationBarTitleDisplayMode(.inline)
-        //.navigationBarTitle(Text("Ayam Madu"))
+        .navigationBarTitle(Text("Recipe"))
     }
         
     
@@ -56,9 +56,13 @@ struct RecipeView: View {
 struct RecipeTitle: View {
     var name: String
     var body: some View {
-        Text(name)
-            .font(.system(size: 28))
-            .bold()
+        HStack {
+            Text(name)
+                .font(.system(size: 22))
+                .bold()
+                .multilineTextAlignment(.leading)
+            Spacer()
+        }
     }
 }
 
@@ -78,40 +82,58 @@ struct RecipeDescription: View {
     
     var body: some View {
         HStack {
-            VStack {
-                ZStack {
-                    Circle()
-                        .foregroundColor(Color("BrandColor"))
-                        .frame(width: 40, height: 40)
-                    Text("\(totalServes)")
-                }
-                Text("Serve")
+            HStack {
+                Image(systemName: "person")
+                Text("\(totalServes) serve")
                     .font(.system(size: 15))
-                    .frame(maxWidth: .infinity)
-            }
-            VStack {
-                ZStack {
-                    Circle()
-                        .foregroundColor(Color("BrandColor"))
-                        .frame(width: 40, height: 40)
-                    Text("\(prepTime)")
-                }
-                Text("Prep Time")
+            }.padding(.trailing)
+            HStack {
+                Image(systemName: "clock")
+                Text("\(prepTime) mins")
                     .font(.system(size: 15))
-                    .frame(maxWidth: .infinity)
-            }
-            VStack {
-                ZStack {
-                    Circle()
-                        .foregroundColor(Color("BrandColor"))
-                        .frame(width: 40, height: 40)
-                    Text("\(cookTime)")
-                }
-                Text("Cook Time")
+            }.padding(.trailing)
+            HStack {
+                Image(systemName: "clock")
+                Text("\(cookTime) mins")
                     .font(.system(size: 15))
-                    .frame(maxWidth: .infinity)
-            }
-        }
+            }.padding(.trailing)
+            Spacer()
+        }.padding([.vertical, .trailing])
+//        HStack {
+//            VStack {
+//                ZStack {
+//                    Circle()
+//                        .foregroundColor(Color("BrandColor"))
+//                        .frame(width: 40, height: 40)
+//                    Text("\(totalServes)")
+//                }
+//                Text("Serve")
+//                    .font(.system(size: 15))
+//                    .frame(maxWidth: .infinity)
+//            }
+//            VStack {
+//                ZStack {
+//                    Circle()
+//                        .foregroundColor(Color("BrandColor"))
+//                        .frame(width: 40, height: 40)
+//                    Text("\(prepTime)")
+//                }
+//                Text("Prep Time")
+//                    .font(.system(size: 15))
+//                    .frame(maxWidth: .infinity)
+//            }
+//            VStack {
+//                ZStack {
+//                    Circle()
+//                        .foregroundColor(Color("BrandColor"))
+//                        .frame(width: 40, height: 40)
+//                    Text("\(cookTime)")
+//                }
+//                Text("Cook Time")
+//                    .font(.system(size: 15))
+//                    .frame(maxWidth: .infinity)
+//            }
+//        }
     }
 }
 
@@ -119,9 +141,17 @@ struct IngredientListView: View {
     let ingredientsSample: [IngredientSample]
     
     var body: some View {
-        ScrollView {
-            ForEach(0..<ingredientsSample.count) { tes in
-                IngredientListCellView(ingredient: ingredientsSample[tes])
+        VStack {
+            HStack {
+                Text("Ingredients")
+                    .font(.system(size: 22))
+                    .bold()
+                Spacer()
+            }
+            ScrollView {
+                ForEach(0..<ingredientsSample.count) { tes in
+                    IngredientListCellView(ingredient: ingredientsSample[tes])
+                }
             }
         }
     }
@@ -131,25 +161,34 @@ struct CookingStepListView: View {
     let cookingStepSample: [String]
     
     var body: some View {
-        ScrollView {
-            ForEach(0..<cookingStepSample.count) { count in
-                HStack {
-                    VStack {
-                        Circle()
-                            .foregroundColor(.gray)
-                            .frame(width: 40, height: 40)
+        VStack {
+            HStack {
+                Text("Follow these steps")
+                    .font(.system(size: 22))
+                    .bold()
+                Spacer()
+            }
+            ScrollView {
+                ForEach(0..<cookingStepSample.count) { count in
+                    HStack {
+                        VStack {
+                            Circle()
+                                .foregroundColor(.gray)
+                                .frame(width: 40, height: 40)
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Step \(count + 1)")
+                                .font(.system(size: 28))
+                                .bold()
+                            Text(cookingStepSample[count])
+                                .multilineTextAlignment(.leading)
+                        }
+                        Spacer()
                     }
-                    VStack(alignment: .leading) {
-                        Text("Step \(count + 1)")
-                            .font(.system(size: 28))
-                            .bold()
-                        Text(cookingStepSample[count])
-                            .multilineTextAlignment(.leading)
-                    }
-                    Spacer()
                 }
             }
         }
+        
     }
 }
 
