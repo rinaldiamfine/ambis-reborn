@@ -18,16 +18,18 @@ struct RecipeView: View {
         return Text("Recipe (sementara)")
     }
     
-    let defaultRecipeSample = RecipeSample(name: "Ayam bumbu andaliman",
-                                           prepTime: 10,
-                                           cookTime: 30,
-                                           cookMethod: "Bakar",
-                                           cookStep: ["Siapkan bahan bahan",
-                                                      "Bakar ayam",
-                                                      "Beri bumbu"],
-                                           totalServes: 1,
-                                           ingredient: [IngredientSample(name: "Ayam", total: 1, totalType: "kg", isAvailable: false),
-                                                        IngredientSample(name: "Bawang", total: 2, totalType: "biji", isAvailable: true)])
+    let defaultRecipeSample = DataRecipe.recipes
+//
+//    let defaultRecipeSample = RecipeSample(name: "Ayam bumbu andaliman",
+//                                           prepTime: 10,
+//                                           cookTime: 30,
+//                                           cookMethod: "Bakar",
+//                                           cookStep: ["Siapkan bahan bahan",
+//                                                      "Bakar ayam",
+//                                                      "Beri bumbu"],
+//                                           totalServes: 1,
+//                                           ingredient: [IngredientSample(name: "Ayam", total: 1, totalType: "kg", isAvailable: false),
+//                                                        IngredientSample(name: "Bawang", total: 2, totalType: "biji", isAvailable: true)])
     
     var body: some View {
         VStack {
@@ -40,12 +42,12 @@ struct RecipeView: View {
                 UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("BrandColor"))
             }
             ImagePlaceholder()
-            RecipeTitle(name: defaultRecipeSample.name)
-            RecipeDescription(totalServes: defaultRecipeSample.totalServes, prepTime: defaultRecipeSample.prepTime, cookTime: defaultRecipeSample.cookTime)
+            RecipeTitle(name: defaultRecipeSample[0].name)
+            RecipeDescription(totalServes: defaultRecipeSample[0].totalServes, prepTime: defaultRecipeSample[0].prepTime, cookTime: defaultRecipeSample[0].cookTime)
             if segmentedPicker == 1 {
-                IngredientListView(ingredientsSample: defaultRecipeSample.ingredient)
+                IngredientListView(ingredientsSample: defaultRecipeSample[0].ingredient)
             } else {
-                CookingStepListView(cookingStepSample: defaultRecipeSample.cookStep)
+                CookingStepListView(cookingStepSample: defaultRecipeSample[0].cookStep)
             }
         }
         .padding()

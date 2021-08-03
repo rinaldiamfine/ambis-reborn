@@ -30,6 +30,7 @@
 		900D341726B857C80052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
 		900D341826B857F50052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
 		9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047D1E526A488F200511A25 /* InventoryFilterView.swift */; };
+		90505E1F26B9564E00F0415A /* DataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90505E1E26B9564E00F0415A /* DataRecipe.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
 		905DE8B82693311600E7011C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B72693311600E7011C /* ContentView.swift */; };
 		905DE8BA2693311700E7011C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 905DE8B92693311700E7011C /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 		900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryModel.swift; sourceTree = "<group>"; };
 		900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryViewModel.swift; sourceTree = "<group>"; };
 		9047D1E526A488F200511A25 /* InventoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFilterView.swift; sourceTree = "<group>"; };
+		90505E1E26B9564E00F0415A /* DataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecipe.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		905DE8B52693311600E7011C /* ambis_rebornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ambis_rebornApp.swift; sourceTree = "<group>"; };
 		905DE8B72693311600E7011C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				0E20A2B126B2B23D0012F3C6 /* RecipeListItemView.swift */,
 				0EE5F00626B7EBF000D81C8D /* RecipeSortView.swift */,
 				0EE5F00A26B8086F00D81C8D /* RecipeSortSample.swift */,
+				90505E1E26B9564E00F0415A /* DataRecipe.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				0EE5F00B26B8086F00D81C8D /* RecipeSortSample.swift in Sources */,
 				905DE8CC2693333C00E7011C /* InventoryView.swift in Sources */,
 				90E8F2E826B17047002BCBDE /* PrepareFilterView.swift in Sources */,
+				90505E1F26B9564E00F0415A /* DataRecipe.swift in Sources */,
 				9065A60C26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
 				905DE8CE2693334A00E7011C /* CategoryView.swift in Sources */,
 				307C5520269E946500DD6FC3 /* ShoppingListEmptyView.swift in Sources */,
