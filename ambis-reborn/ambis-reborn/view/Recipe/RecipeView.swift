@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipeView: View {
     
-    @State private var segmentedPicker = 1
+    @State var isCookingStepPresented: Bool = false
     
     func getIconName() -> Image {
         return Image(systemName: "bag.fill")
@@ -19,42 +19,42 @@ struct RecipeView: View {
     }
     
     let defaultRecipeSample = DataRecipe.recipes
-//
-//    let defaultRecipeSample = RecipeSample(name: "Ayam bumbu andaliman",
-//                                           prepTime: 10,
-//                                           cookTime: 30,
-//                                           cookMethod: "Bakar",
-//                                           cookStep: ["Siapkan bahan bahan",
-//                                                      "Bakar ayam",
-//                                                      "Beri bumbu"],
-//                                           totalServes: 1,
-//                                           ingredient: [IngredientSample(name: "Ayam", total: 1, totalType: "kg", isAvailable: false),
-//                                                        IngredientSample(name: "Bawang", total: 2, totalType: "biji", isAvailable: true)])
+    //
+    //    let defaultRecipeSample = RecipeSample(name: "Ayam bumbu andaliman",
+    //                                           prepTime: 10,
+    //                                           cookTime: 30,
+    //                                           cookMethod: "Bakar",
+    //                                           cookStep: ["Siapkan bahan bahan",
+    //                                                      "Bakar ayam",
+    //                                                      "Beri bumbu"],
+    //                                           totalServes: 1,
+    //                                           ingredient: [IngredientSample(name: "Ayam", total: 1, totalType: "kg", isAvailable: false),
+    //                                                        IngredientSample(name: "Bawang", total: 2, totalType: "biji", isAvailable: true)])
     
     var body: some View {
+        
         VStack {
-            Picker(selection: $segmentedPicker, label: Text(""), content: {
-                Text("Ingredients").tag(1)
-                Text("How to cook").tag(2)
-            })
-            .pickerStyle(SegmentedPickerStyle())
-            .onAppear {
-                UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("BrandColor"))
-            }
             ImagePlaceholder()
             RecipeTitle(name: defaultRecipeSample[0].name)
             RecipeDescription(totalServes: defaultRecipeSample[0].totalServes, prepTime: defaultRecipeSample[0].prepTime, cookTime: defaultRecipeSample[0].cookTime)
-            if segmentedPicker == 1 {
+            Divider()
+            ZStack {
                 IngredientListView(ingredientsSample: defaultRecipeSample[0].ingredient)
-            } else {
-                CookingStepListView(cookingStepSample: defaultRecipeSample[0].cookStep)
+                VStack {
+                    Spacer()
+                    CookingStepButtonView(cookingSteps: defaultRecipeSample[0].cookStep)
+                }
             }
         }
-        .padding()
+        .padding(.horizontal)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle(Text("Recipe"))
-    }
+        .sheet(isPresented: $isCookingStepPresented) {
+            CookingStepView(cookingStepSample: defaultRecipeSample[0].cookStep)
+        }
         
+    }
+    
     
 }
 
@@ -63,11 +63,12 @@ struct RecipeTitle: View {
     var body: some View {
         HStack {
             Text(name)
-                .font(.system(size: 22))
-                .bold()
+                .font(.system(size: 21))
+                .fontWeight(.semibold)
                 .multilineTextAlignment(.leading)
             Spacer()
         }
+        .padding(.top)
     }
 }
 
@@ -75,8 +76,9 @@ struct ImagePlaceholder: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10).stroke()
+                .frame(maxHeight: 220)
             Text("Image Placeholder")
-        }
+        }.padding(.top)
     }
 }
 
@@ -89,56 +91,25 @@ struct RecipeDescription: View {
         HStack {
             HStack {
                 Image(systemName: "person")
+                    .foregroundColor(Color(red: 253/255, green: 141/255, blue: 53/155))
                 Text("\(totalServes) serve")
                     .font(.system(size: 15))
             }.padding(.trailing)
             HStack {
                 Image(systemName: "clock")
+                    .foregroundColor(Color(red: 253/255, green: 141/255, blue: 53/155))
                 Text("\(prepTime) mins")
                     .font(.system(size: 15))
             }.padding(.trailing)
             HStack {
-                Image(systemName: "clock")
-                Text("\(cookTime) mins")
+                Image(systemName: "circle.grid.cross")
+                    .foregroundColor(Color(red: 253/255, green: 141/255, blue: 53/155))
+                Text("intermediate")
                     .font(.system(size: 15))
             }.padding(.trailing)
             Spacer()
         }.padding([.vertical, .trailing])
-//        HStack {
-//            VStack {
-//                ZStack {
-//                    Circle()
-//                        .foregroundColor(Color("BrandColor"))
-//                        .frame(width: 40, height: 40)
-//                    Text("\(totalServes)")
-//                }
-//                Text("Serve")
-//                    .font(.system(size: 15))
-//                    .frame(maxWidth: .infinity)
-//            }
-//            VStack {
-//                ZStack {
-//                    Circle()
-//                        .foregroundColor(Color("BrandColor"))
-//                        .frame(width: 40, height: 40)
-//                    Text("\(prepTime)")
-//                }
-//                Text("Prep Time")
-//                    .font(.system(size: 15))
-//                    .frame(maxWidth: .infinity)
-//            }
-//            VStack {
-//                ZStack {
-//                    Circle()
-//                        .foregroundColor(Color("BrandColor"))
-//                        .frame(width: 40, height: 40)
-//                    Text("\(cookTime)")
-//                }
-//                Text("Cook Time")
-//                    .font(.system(size: 15))
-//                    .frame(maxWidth: .infinity)
-//            }
-//        }
+        
     }
 }
 
@@ -152,6 +123,9 @@ struct IngredientListView: View {
                     .font(.system(size: 22))
                     .bold()
                 Spacer()
+                Text("\(ingredientsSample.count) item(s)")
+                    .foregroundColor(Color("BrandColor"))
+                    .font(.system(size: 15))
             }
             ScrollView {
                 ForEach(0..<ingredientsSample.count) { tes in
@@ -162,38 +136,29 @@ struct IngredientListView: View {
     }
 }
 
-struct CookingStepListView: View {
-    let cookingStepSample: [String]
+struct CookingStepButtonView: View {
+    var cookingSteps: [String]
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Follow these steps")
-                    .font(.system(size: 22))
-                    .bold()
-                Spacer()
-            }
-            ScrollView {
-                ForEach(0..<cookingStepSample.count) { count in
-                    HStack {
-                        VStack {
-                            Circle()
-                                .foregroundColor(.gray)
-                                .frame(width: 40, height: 40)
-                        }
-                        VStack(alignment: .leading) {
-                            Text("Step \(count + 1)")
-                                .font(.system(size: 28))
-                                .bold()
-                            Text(cookingStepSample[count])
-                                .multilineTextAlignment(.leading)
-                        }
-                        Spacer()
-                    }
+        Button {
+            //isCookingStepPresented = true
+        } label: {
+            NavigationLink(destination: CookingStepView(cookingStepSample: cookingSteps)) {
+                HStack {
+                    Spacer()
+                    Text("How to cook")
+                        .font(.system(size: 18, design: .rounded))
+                        .foregroundColor(Color("BackgroundInverse"))
+                    Spacer()
                 }
             }
+            .contentShape(Rectangle())
         }
-        
+        .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
+        .background(Color("BrandColor"))
+        .cornerRadius(15)
+        //.padding(.horizontal, 15)
+        .padding(.bottom, 15)
     }
 }
 
