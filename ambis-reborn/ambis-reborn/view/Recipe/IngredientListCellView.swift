@@ -16,7 +16,7 @@ struct IngredientListCellView: View {
                 .foregroundColor(.gray)
                 .frame(width: 46, height: 46)
             Text(ingredient.name)
-                .font(.system(size: 15))
+                .font(.system(size: 16))
             Spacer()
             Text("\(ingredient.total)  \(ingredient.totalType)")
                 .font(.system(size: 13))
