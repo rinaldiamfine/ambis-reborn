@@ -16,7 +16,6 @@ struct RecipeSortView: View {
     
     var body: some View {
         NavigationView {
-            
             List {
                 Section(header: viewHeader(title: "Dish Category")) {
                     ForEach(0..<sortDish.count) { data in
@@ -34,7 +33,7 @@ struct RecipeSortView: View {
                     }
                 }
 //                .textCase(nil)
-                Section(header: viewHeader(title: "Dish Category")) {
+                Section(header: viewHeader(title: "Portion")) {
                     ForEach(0..<sortPortion.count) { data in
                         HStack{
                             Text(sortPortion[data].name).font(.system(size: 16))
@@ -50,7 +49,7 @@ struct RecipeSortView: View {
                     }
                     
                 }
-                Section(header: viewHeader(title: "Dish Category")) {
+                Section(header: viewHeader(title: "Kitchen Equipment")) {
                     ForEach(0..<sortEquipment.count) { data in
                         HStack{
                             Text(sortEquipment[data].name).font(.system(size: 16))

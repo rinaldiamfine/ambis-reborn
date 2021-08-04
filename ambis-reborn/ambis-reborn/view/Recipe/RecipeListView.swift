@@ -25,30 +25,47 @@ struct RecipeListView: View {
     var dummy: [String] = ["", "", "", "", "", ""]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
-            HStack{
-                Text("5 Recipes Available")
+        ZStack {
+            VStack{
+                VStack {}
+                .frame(
+                      minWidth: 0,maxWidth: .infinity,
+                      minHeight: 0,maxHeight: 100,
+                      alignment: .topLeading
+                    )
+                .background(
+                    Rectangle()
+                        .fill(LinearGradient(gradient: .init(colors: [Color("Gradient1"), Color("Gradient2")]), startPoint: .init(x: 0, y: 0.1), endPoint: .init(x: 0, y: 1)))
+                    )
                 Spacer()
-                HStack {
-                    Text("Sort").foregroundColor(Color("AccentColor"))
-                    Image(systemName: "arrow.up.arrow.down").foregroundColor(Color("AccentColor"))
-                }.onTapGesture {
-                    toSort = true
-                }
-            }.padding(.all, 12)
-            ScrollView {
-                ForEach(0..<dummy.count) { data in
-                    NavigationLink(destination: RecipeView()) {
-                        RecipeListItemView(recipe: dummy[data])
+            }
+            VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+                HStack{
+                    Text("5 Recipes Available")
+                    Spacer()
+                    HStack {
+                        Text("Sort").foregroundColor(Color("AccentColor"))
+                        Image(systemName: "arrow.up.arrow.down").foregroundColor(Color("AccentColor"))
+                    }.onTapGesture {
+                        toSort = true
+                    }
+                }.padding(.all, 12)
+                ScrollView {
+                    ForEach(0..<dummy.count) { data in
+                        NavigationLink(destination: RecipeView()) {
+                            RecipeListItemView(recipe: dummy[data])
+                        }
                     }
                 }
-            }
-            Spacer()
-        }).sheet(isPresented: $toSort, content: {
-            RecipeSortView(toSort: $toSort, sortDish: $sortDish,sortPortion: $sortPortion, sortEquipment: $sortEquipment)
-        })
+                Spacer()
+            }).sheet(isPresented: $toSort, content: {
+                RecipeSortView(toSort: $toSort, sortDish: $sortDish,sortPortion: $sortPortion, sortEquipment: $sortEquipment)
+            })
+            
+        }
         .background(Color("AppBackground"))
         .navigationBarTitle("Recipe", displayMode: .automatic)
+        
        
     }
     
