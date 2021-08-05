@@ -47,7 +47,7 @@ struct RecipeView: View {
             }
         }
         .padding(.horizontal)
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.large)
         .navigationBarTitle(Text("Recipe"))
         .sheet(isPresented: $isCookingStepPresented) {
             CookingStepView(cookingStepSample: defaultRecipeSample[0].cookStep)
@@ -120,8 +120,8 @@ struct IngredientListView: View {
         VStack {
             HStack {
                 Text("Ingredients")
-                    .font(.system(size: 22))
-                    .bold()
+                    .font(.system(size: 19))
+                    .fontWeight(.medium)
                 Spacer()
                 Text("\(ingredientsSample.count) item(s)")
                     .foregroundColor(Color("BrandColor"))

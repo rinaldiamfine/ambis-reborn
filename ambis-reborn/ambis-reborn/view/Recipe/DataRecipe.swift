@@ -10,9 +10,133 @@ import Foundation
 struct DataRecipe {
     static var recipes : [RecipeSample] = {
         var recipes: [RecipeSample] = []
-        recipes = DataMeatRecipe.meatRecipes + DataSeafoodRecipe.seafoodRecipes
+        recipes = DataMeatRecipe.meatRecipes + DataSeafoodRecipe.seafoodRecipes + DataEggRecipe.eggRecipes
         return recipes
     }()
+}
+
+struct DataEggRecipe {
+    static var eggRecipes: [RecipeSample] = [
+        RecipeSample(
+            name: "Telur Kornet",
+            cookStep: [
+                "Campur kornet, telur, bawang prei dan cabe yg sudah di iris tipis.",
+                "Tambahkan garam merica saos tiram secukupnya dan tepung terigu.",
+                "Goreng 1 sdm dulu setelah matang baru cek rasa.",
+                "Dirasa sudah pas. Adonan siap di goreng.😊"],
+            ingredient: [
+                IngredientSample(name: "Kornet"),
+                IngredientSample(name: "Bawang Prei"),
+                IngredientSample(name: "Telur"),
+                IngredientSample(name: "Tepung Terigu"),
+                IngredientSample(name: "Cabe Rawit"),
+                IngredientSample(name: "Garam"),
+                IngredientSample(name: "Merica"),
+                IngredientSample(name: "Saus Tiram")]),
+        
+        RecipeSample(
+            name: "Telur Ceplok Kecap",
+            cookStep: [
+                "Ceplok telur lalu sisihkan",
+                "Iris tipis dua bawang, cabe dan tomat",
+                "Panaskan minyak tumis bumbu sampai harum",
+                "Tambahkan kecap masukan telur tambahkan air sampai bumbu meresap",
+                "Angkat dan sajikan dengan nasi panas"],
+            ingredient: [
+                IngredientSample(name: "Telur"),
+                IngredientSample(name: "Bawang Merah"),
+                IngredientSample(name: "Bawang Putih"),
+                IngredientSample(name: "Tomat"),
+                IngredientSample(name: "Cabe Merah Besar"),
+                IngredientSample(name: "Kecap Bango")]),
+        
+        RecipeSample(
+            name: "Telur Dadar Padang",
+            cookStep: [
+                "Kocok telur sebentar saja,jika kelamaan telurnya kempes saat didadar.",
+                "Masukkan bumbu halus,aduk rata.",
+                "Tambahkan bahan lainnya,beri garam dan kaldu bubuk,tes rasa.",
+                "Panaskan wajan datar anti lengket dengan api besar, beri minyak goreng secukupnya.",
+                "Setelah minyak panas,tuang kocokan telur,kecilkan api,tutup wajan.",
+                "Jika sudah kokoh,balik telur dan masak sisi lainnya hingga matang.",
+                "Angkat dan tiriskan.",
+                "Sajikan saat masih hangat dengan nasi panas..lamakk banaa..ngga perlu sambel lagi..karna ini udah pedess..😰😰"],
+            ingredient: [
+                IngredientSample(name: "Telur Ayam atau Bebek"),
+                IngredientSample(name: "Kelapa Parut"),
+                IngredientSample(name: "Tepung Beras"),
+                IngredientSample(name: "Air"),
+                IngredientSample(name: "Daun Kunyit"),
+                IngredientSample(name: "Daun Bawang"),
+                IngredientSample(name: "Garam dan Kaldu Bubuk"),
+                IngredientSample(name: "Bumbu Halus"),
+                IngredientSample(name: "Cabe Merah"),
+                IngredientSample(name: "Cabe Rawit"),
+                IngredientSample(name: "Bawang Merah"),
+                IngredientSample(name: "Bawang Putih"),
+                IngredientSample(name: "Kunyit"),
+                IngredientSample(name: "Kari Bubuk"),
+                IngredientSample(name: "Ketumbar Bubuk"),
+                IngredientSample(name: "Lada Bubuk")]),
+        
+        RecipeSample(
+            name: "Telor Ceplok Saus Asam Manis",
+            cookStep: [
+                "Ceplok telur sisihkan",
+                "Tumis bawang putih dan bawang bombay sampai harum lalu masukkan wortel",
+                "Tumis sampai agak layu",
+                "Kecilkan api",
+                "tambahkan air dan masukkan duo saus serta bumbu perasa lain",
+                "Aduk rata dan masak sampai meletup letup, lalu guyurkan ke telur ceplok"],
+            ingredient: [
+                IngredientSample(name: "Telur"),
+                IngredientSample(name: "Wortel"),
+                IngredientSample(name: "Bawang Putih"),
+                IngredientSample(name: "Bawang Bombay"),
+                IngredientSample(name: "Saus Tomat"),
+                IngredientSample(name: "Saus Sambel"),
+                IngredientSample(name: "Garam"),
+                IngredientSample(name: "Merica"),
+                IngredientSample(name: "Kaldu Bubuk"),
+                IngredientSample(name: "Gula"),
+                IngredientSample(name: "Air")]),
+        
+        RecipeSample(
+            name: "Semur Telur Ayam",
+            cookStep: [
+                "Panaskan 3 sdm minyak goreng.",
+                "Tumis bumbu halus sampai harum tambahkan tomat yg telah dihaluskan masak sampai matang",
+                "Masukan salam, pala, lengkuas, jahe, kayu manis, bunga lawang, cengkeh dan sereh.",
+                "Aduk2 sampai tercium aroma wangi rempahnya",
+                "Masukan 2 - 3 gelas air tunggu sampai mendidih baru tambahkan telur, garam, gula, kecap, penyedap rasa (Masako Sapi)",
+                "Masak terus sambil sesekali diaduk.",
+                "Sampai kuah agak menyusut.",
+                "Jika ingin berkuah banyak tinggal tambahkan air sesuai selera dan koreksi rasanya",
+                "Angkat dan siap dihidangkan dg taburan bawang goreng"],
+            ingredient: [
+                IngredientSample(name: "Telur Ayam"),
+                IngredientSample(name: "Daun Salam"),
+                IngredientSample(name: "Sereh"),
+                IngredientSample(name: "Kapulaga"),
+                IngredientSample(name: "Bunga Lawang"),
+                IngredientSample(name: "Cengkeh"),
+                IngredientSample(name: "Kayu Manis"),
+                IngredientSample(name: "Pala"),
+                IngredientSample(name: "Jahe"),
+                IngredientSample(name: "Lengkuas"),
+                IngredientSample(name: "Gula Pasir"),
+                IngredientSample(name: "Garam"),
+                IngredientSample(name: "Kecap Manis Bango"),
+                IngredientSample(name: "Bumbu Halus"),
+                IngredientSample(name: "Bawang Merah"),
+                IngredientSample(name: "Bawang Putih"),
+                IngredientSample(name: "Merica"),
+                IngredientSample(name: "Kemiri Sangrai"),
+                IngredientSample(name: "Tomat Merah")])
+        
+    ]
+    
+    
 }
 
 struct DataMeatRecipe {

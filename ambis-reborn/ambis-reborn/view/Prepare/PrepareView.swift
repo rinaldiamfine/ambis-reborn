@@ -134,6 +134,7 @@ struct PrepareView: View {
                 }
             }
             .navigationBarTitle("Prepare")
+            
 //            .navigationBarItems(
 //                trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
 //                    Image(systemName: "plus")
@@ -142,6 +143,7 @@ struct PrepareView: View {
 //                }).contentShape(Circle())
 //            )
         }
+        .accentColor(.primary)
         .sheet(isPresented: $inventoryViewModel.isPresented) {
             InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
         }

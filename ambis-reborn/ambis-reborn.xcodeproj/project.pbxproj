@@ -355,8 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				3041C82026B28DB100E2B156 /* RecipeView.swift */,
-				30C5329226BA6FE5004F1E3F /* CookingStepView.swift */,
 				3041C82426B29AC800E2B156 /* IngredientListCellView.swift */,
+				30C5329226BA6FE5004F1E3F /* CookingStepView.swift */,
 				3041C82226B2990500E2B156 /* IngredientSample.swift */,
 				3041C82626B2A07700E2B156 /* RecipeSample.swift */,
 				0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */,

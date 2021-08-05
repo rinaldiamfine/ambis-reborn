@@ -25,6 +25,8 @@ struct CookingStepView: View {
                                 Circle()
                                     .foregroundColor(.gray)
                                     .frame(width: 25, height: 25)
+                                    .padding(.top)
+                                Spacer()
                             }
                             VStack(alignment: .leading) {
                                 Text("Step \(count + 1)")
@@ -36,9 +38,11 @@ struct CookingStepView: View {
                             }
                             Spacer()
                         }
+                        .padding()
                     }
+                    .frame(maxHeight: .infinity)
                 }
-            }
+            }.padding(.top)
         }
         .navigationBarTitle("Cooking Steps")
         .padding(.horizontal)
