@@ -13,15 +13,19 @@ struct AppGlobalData: Hashable {
     
     static func generateDataType() -> [AppGlobalData] {
         var globalData = [AppGlobalData]()
-        globalData.append(AppGlobalData(name: "Kg", value: ""))
-        globalData.append(AppGlobalData(name: "Pcs", value: ""))
-        globalData.append(AppGlobalData(name: "Pack(s)", value: ""))
-        globalData.append(AppGlobalData(name: "Bunch(es)", value: ""))
-        globalData.append(AppGlobalData(name: "Litre", value: ""))
-        globalData.append(AppGlobalData(name: "Bag(s)", value: ""))
-        globalData.append(AppGlobalData(name: "Set(s)", value: ""))
-        globalData.append(AppGlobalData(name: "Box(es)", value: ""))
-        globalData.append(AppGlobalData(name: "Gallon(s)", value: ""))
+        globalData.append(AppGlobalData(name: "kg", value: ""))
+        globalData.append(AppGlobalData(name: "gram", value: ""))
+        globalData.append(AppGlobalData(name: "mg", value: ""))
+        globalData.append(AppGlobalData(name: "litre", value: ""))
+        globalData.append(AppGlobalData(name: "ml", value: ""))
+        globalData.append(AppGlobalData(name: "cc", value: ""))
+        globalData.append(AppGlobalData(name: "pcs", value: ""))
+        globalData.append(AppGlobalData(name: "pack(s)", value: ""))
+        globalData.append(AppGlobalData(name: "bunch(es)", value: ""))
+        globalData.append(AppGlobalData(name: "bag(s)", value: ""))
+        globalData.append(AppGlobalData(name: "set(s)", value: ""))
+        globalData.append(AppGlobalData(name: "box(es)", value: ""))
+        globalData.append(AppGlobalData(name: "gallon(s)", value: ""))
         return globalData
     }
     
