@@ -52,7 +52,7 @@ struct RecipeView: View {
         .sheet(isPresented: $isCookingStepPresented) {
             CookingStepView(cookingStepSample: defaultRecipeSample[0].cookStep)
         }
-        
+        .background(Color("AppBackground"))
     }
     
     
@@ -68,17 +68,20 @@ struct RecipeTitle: View {
                 .multilineTextAlignment(.leading)
             Spacer()
         }
-        .padding(.top)
+        //.padding(.top)
     }
 }
 
 struct ImagePlaceholder: View {
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10).stroke()
-                .frame(maxHeight: 220)
-            Text("Image Placeholder")
-        }.padding(.top)
+        Image("foodImageSample")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .mask(
+                RoundedRectangle(cornerRadius: 25)
+                    .frame(maxHeight: 220)
+            )
+            .padding(.top)
     }
 }
 
