@@ -202,19 +202,7 @@ struct ModalTotalType: View {
                 }
                 .cornerRadius(15)
                 
-                Button {
-                    isShowPickerType.toggle()
-                } label: {
-                    Spacer()
-                    Text("Close")
-                        .font(.system(size: 18, design: .rounded))
-                        .foregroundColor(Color("BrandColor"))
-                        .bold()
-                    Spacer()
-                }
-                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
-                .background(Color(.systemBackground))
-                .cornerRadius(15)
+                
             }
             .padding(.bottom, (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 10)
             .padding(.horizontal)
@@ -224,6 +212,9 @@ struct ModalTotalType: View {
             .offset(y: isShowPickerType ? 0 : UIScreen.main.bounds.height)
         }.background(isShowPickerType ? Color.black.opacity(0.7) : Color.clear).edgesIgnoringSafeArea(.all)
         .edgesIgnoringSafeArea(.bottom)
+        .onTapGesture {
+            isShowPickerType.toggle()
+        }
     }
 }
 
@@ -248,19 +239,7 @@ struct ModalStore: View {
                 }
                 .cornerRadius(15)
                 
-                Button {
-                    isShowPickerStore.toggle()
-                } label: {
-                    Spacer()
-                    Text("Close")
-                        .font(.system(size: 18, design: .rounded))
-                        .foregroundColor(Color("BrandColor"))
-                        .bold()
-                    Spacer()
-                }
-                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
-                .background(Color(.systemBackground))
-                .cornerRadius(15)
+                
             }
             .padding(.bottom, (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 10)
             .padding(.horizontal)
@@ -270,5 +249,8 @@ struct ModalStore: View {
             .offset(y: isShowPickerStore ? 0 : UIScreen.main.bounds.height)
         }.background(isShowPickerStore ? Color.black.opacity(0.7) : Color.clear).edgesIgnoringSafeArea(.all)
         .edgesIgnoringSafeArea(.bottom)
+        .onTapGesture {
+            isShowPickerStore.toggle()
+        }
     }
 }
