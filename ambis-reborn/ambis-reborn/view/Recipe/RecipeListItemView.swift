@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipeListItemView: View {
     
-    var recipe: String
+    var recipe: RecipeSample
     
     var body: some View {
         ZStack {
@@ -18,27 +18,51 @@ struct RecipeListItemView: View {
                 Text("Image")
                     .padding(.vertical, 40)
                     .padding(.horizontal,30)
-                    .background(Color.gray)
+                    .background(Color.init(.systemGray2))
                     .cornerRadius(10)
                 VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
-                    Text("Ayam Bumbu Kemenyan").bold().font(.system(size: 14)).padding(.bottom, 16).foregroundColor(.primary)
-                    Text("Dessert")
-                        .font(.system(size: 12)).foregroundColor(.primary)
+                    Text(recipe.name)
+//                        .lineLimit(3)
+//                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.system(size: 13))
+                        .padding(.trailing, 10)
+                        .padding(.bottom, 4)
+                        .padding(.top, 20)
+                        .foregroundColor(.primary)
+                    Text(recipe.category)
+                        .font(.system(size: 12))
+                        .foregroundColor(Color.init(.systemGray))
+                    Spacer()
                 })
                 Spacer(minLength: 0)
-                VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+                VStack(alignment: .leading, spacing: 2, content: {
+                    Spacer()
                     HStack{
                         Image(systemName: "person")
-                        Text("Intermediate").font(.system(size: 14)).foregroundColor(.primary)
-                    }
+                            .resizable()
+                            .frame(width: 12, height: 12, alignment: .center)
+                        
+                        Text("\(recipe.totalServes) serve").font(.system(size: 12))
+                        .foregroundColor(Color.init(.systemGray))
+                    }.padding(.bottom, 6)
                     HStack{
                         Image(systemName: "clock")
-                        Text("5 Min").font(.system(size: 14)).foregroundColor(.primary)
-                    }.padding(.vertical, 4)
+                            .resizable()
+                            .frame(width: 12, height: 12, alignment: .center)
+                            
+                        let time = recipe.prepTime + recipe.cookTime
+                        Text("\(time) mins").font(.system(size: 12))
+                        .foregroundColor(Color.init(.systemGray))
+                    }
                     HStack{
                         Image(systemName: "circle.grid.cross")
-                        Text("Stove, Pan").font(.system(size: 14)).foregroundColor(.primary)
-                    }
+                            .resizable()
+                            .frame(width: 12, height: 12, alignment: .center)
+                            
+                        Text(recipe.level).font(.system(size: 12))
+                        .foregroundColor(Color.init(.systemGray))
+                    }.padding(.top, 6)
+                    Spacer()
                 })
             }
             .padding(.all, 8)
@@ -50,8 +74,8 @@ struct RecipeListItemView: View {
     }
 }
 
-struct RecipeListItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeListItemView(recipe: "asd")
-    }
-}
+//struct RecipeListItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecipeListItemView(recipe: "asd")
+//    }
+//}
