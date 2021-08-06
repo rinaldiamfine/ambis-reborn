@@ -15,7 +15,7 @@ struct InventoryView: View {
     @StateObject var inventoryViewModel = InventoryViewModel()
     @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
     
-    @StateObject var widgetInventoryViewModel = WidgetInventoryViewModel()
+//    @StateObject var widgetInventoryViewModel = WidgetInventoryViewModel()
     
     @AppStorage("expiry", store: UserDefaults(suiteName: "group.inventoryUD")) var inventoryData : Data = Data()
     
@@ -137,9 +137,16 @@ struct InventoryView: View {
     }
     
     func setupWidgetContent() {
-        guard let content = try? JSONEncoder().encode(WidgetInventoryModel.init(totalExpiry: inventoryViewModel.inventoryExpire, totalInventory: inventoryViewModel.inventoryCount, progressBar: inventoryViewModel.progressBar)) else {return}
+        var widgetInventoryModel : [WidgetInventoryModelList] = []
+        for data in inventoryViewModel.inventory {
+            if data.remainingDays <= 3 {
+                widgetInventoryModel.append(
+                    WidgetInventoryModelList(name: data.name, store: data.store, total: data.total, totalType: data.totalType, icon: data.foodCategory.imageString ?? "", remainingDate: data.remainingDays)
+                )
+            }
+        }
+        guard let content = try? JSONEncoder().encode(WidgetInventoryModel.init(totalExpiry: inventoryViewModel.inventoryExpire, totalInventory: inventoryViewModel.inventoryCount, progressBar: inventoryViewModel.progressBar, inventory: widgetInventoryModel)) else {return}
         inventoryData = content
-        print(inventoryViewModel.progressBar, "RELOAD")
         WidgetCenter.shared.reloadTimelines(ofKind: "widget")
     }
 }
