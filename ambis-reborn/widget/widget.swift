@@ -222,29 +222,46 @@ struct widgetEntryView : View {
                 .background(Color("BrandColor"))
                 HStack{
                     VStack {
-                        Spacer()
-                        ZStack {
-                            Circle()
-                                .stroke(lineWidth: 10.0)
-                                .opacity(0.3)
-                                .foregroundColor(Color("BrandColor"))
-                                .frame(width: 70, height: 70)
-                            Circle()
-                                .trim(from: 0.0, to: CGFloat(entry.inventory.progressBar))
-                                .stroke(style: StrokeStyle(lineWidth: 10.0, lineCap: .round, lineJoin: .round))
-                                .foregroundColor(Color("BrandColor"))
-                                .frame(width: 70, height: 70)
-                            VStack {
-                                Text("\(entry.inventory.totalExpiry)/\(entry.inventory.totalInventory)").font(.system(size: 12, design: .rounded))
-                                Text("items").font(.system(size: 8, design: .rounded))
+                        if entry.inventory.inventory.count == 0 {
+                            ZStack {
+                                Ellipse()
+                                    .fill(Color.init(UIColor.systemGray5))
+                                    .frame(width: 60, height: 60)
+                                Image(systemName: "bag").font(.system(size: 20))
+                                    .foregroundColor(Color(.systemGray))
                             }
+                            HStack(alignment: .center) {
+                                Text("Great. None of your\nitems are expiring soon.")
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(Color.init(UIColor.systemGray))
+                                    .padding(10)
+                                    .font(.system(size: 12, design: .rounded))
+                            }
+                        } else {
+                            Spacer()
+                            ZStack {
+                                Circle()
+                                    .stroke(lineWidth: 10.0)
+                                    .opacity(0.3)
+                                    .foregroundColor(Color("BrandColor"))
+                                    .frame(width: 70, height: 70)
+                                Circle()
+                                    .trim(from: 0.0, to: CGFloat(entry.inventory.progressBar))
+                                    .stroke(style: StrokeStyle(lineWidth: 10.0, lineCap: .round, lineJoin: .round))
+                                    .foregroundColor(Color("BrandColor"))
+                                    .frame(width: 70, height: 70)
+                                VStack {
+                                    Text("\(entry.inventory.totalExpiry)/\(entry.inventory.totalInventory)").font(.system(size: 12, design: .rounded))
+                                    Text("items").font(.system(size: 8, design: .rounded))
+                                }
+                            }
+                            .frame(width: geometry.size.width)
+                            Spacer()
+                            Text("Expires in 3 days or less")
+                                .fontWeight(.semibold)
+                                .font(.system(size: 10, design: .rounded))
+                            Spacer()
                         }
-                        .frame(width: geometry.size.width)
-                        Spacer()
-                        Text("Expires in 3 days or less")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 10, design: .rounded))
-                        Spacer()
                     }
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height*85/100)
@@ -263,47 +280,72 @@ struct widgetEntryView : View {
                     .frame(width: geometry.size.width*10/100, height: geometry.size.height)
                     .background(Color("BrandColor"))
                     
-                    VStack {
-                        HStack {
-                            VStack {
-                                Spacer()
-                                ZStack {
-                                    Circle()
-                                        .stroke(lineWidth: 10.0)
-                                        .opacity(0.3)
-                                        .foregroundColor(Color("BrandColor"))
-                                        .frame(width: 70, height: 70)
-                                    Circle()
-                                        .trim(from: 0.0, to: CGFloat(entry.inventory.progressBar))
-                                        .stroke(style: StrokeStyle(lineWidth: 10.0, lineCap: .round, lineJoin: .round))
-                                        .foregroundColor(Color("BrandColor"))
-                                        .frame(width: 70, height: 70)
-                                    VStack {
-                                        Text("\(entry.inventory.totalExpiry)/\(entry.inventory.totalInventory)").font(.system(size: 12, design: .rounded))
-                                        Text("items").font(.system(size: 8, design: .rounded))
-                                    }
-                                }
-                                .frame(width: geometry.size.width/2)
-                                Spacer()
-                                Text("Expires in 3 days or less")
-                                    .fontWeight(.semibold)
-                                    .font(.system(size: 10, design: .rounded))
-                                Spacer()
+                    if entry.inventory.inventory.count == 0 {
+                        VStack {
+                            ZStack {
+                                Ellipse()
+                                    .fill(Color.init(UIColor.systemGray5))
+                                    .frame(width: 80, height: 80)
+                                Image(systemName: "bag").font(.system(size: 30))
+                                    .foregroundColor(Color(.systemGray))
                             }
-                            .frame(width: geometry.size.width/2-geometry.size.width*10/100)
-                            
-                            VStack(alignment: .leading) {
-                                ForEach (0..<entry.inventory.inventory.count) { data in
-                                    if data < 3 {
-                                        mediumListContentView(content: entry.inventory.inventory[data])
-                                            .frame(height: geometry.size.height/4)
-                                    }
-                                }
+                            HStack(alignment: .center) {
+                                Text("Great. None of your\nitems are expiring soon.")
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(Color.init(UIColor.systemGray))
+                                    .padding(10)
+                                    .font(.system(size: 14, design: .rounded))
                             }
-                            .frame(width: geometry.size.width/2, height: geometry.size.height)
                         }
+                        .frame(width: geometry.size.width*80/100, height: geometry.size.height)
+                        
+                        VStack {
+                            Text(" ")
+                        }
+                        .frame(width: geometry.size.width*10/100, height: geometry.size.height)
+                    } else {
+                        VStack {
+                            HStack {
+                                VStack {
+                                    Spacer()
+                                    ZStack {
+                                        Circle()
+                                            .stroke(lineWidth: 10.0)
+                                            .opacity(0.3)
+                                            .foregroundColor(Color("BrandColor"))
+                                            .frame(width: 70, height: 70)
+                                        Circle()
+                                            .trim(from: 0.0, to: CGFloat(entry.inventory.progressBar))
+                                            .stroke(style: StrokeStyle(lineWidth: 10.0, lineCap: .round, lineJoin: .round))
+                                            .foregroundColor(Color("BrandColor"))
+                                            .frame(width: 70, height: 70)
+                                        VStack {
+                                            Text("\(entry.inventory.totalExpiry)/\(entry.inventory.totalInventory)").font(.system(size: 12, design: .rounded))
+                                            Text("items").font(.system(size: 8, design: .rounded))
+                                        }
+                                    }
+                                    .frame(width: geometry.size.width/2)
+                                    Spacer()
+                                    Text("Expires in 3 days or less")
+                                        .fontWeight(.semibold)
+                                        .font(.system(size: 10, design: .rounded))
+                                    Spacer()
+                                }
+                                .frame(width: geometry.size.width/2-geometry.size.width*10/100)
+                                
+                                VStack(alignment: .leading, spacing: 0) {
+                                    ForEach (0..<entry.inventory.inventory.count) { data in
+                                        if data < 3 {
+                                            mediumListContentView(content: entry.inventory.inventory[data])
+                                                .frame(height: geometry.size.height/3)
+                                        }
+                                    }
+                                }
+                                .frame(width: geometry.size.width/2, height: geometry.size.height, alignment: .topLeading)
+                            }
+                        }
+                        .frame(width: geometry.size.width*90/100, height: geometry.size.height)
                     }
-                    .frame(width: geometry.size.width*90/100, height: geometry.size.height)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
             }
@@ -328,14 +370,33 @@ struct widgetEntryView : View {
                 .background(Color("BrandColor"))
                 
                 HStack(alignment: .top) {
-                    VStack(alignment: .leading) {
-                        ForEach (0..<entry.inventory.inventory.count) { data in
-                            if data < 4 {
-                                largeListContentView(content: entry.inventory.inventory[data])
-                                    .frame(width: geometry.size.width)
+                    if entry.inventory.inventory.count == 0 {
+                        VStack {
+                            ZStack {
+                                Ellipse()
+                                    .fill(Color.init(UIColor.systemGray5))
+                                    .frame(width: 100, height: 100)
+                                Image(systemName: "bag").font(.system(size: 40))
+                                    .foregroundColor(Color(.systemGray))
+                            }
+                            HStack(alignment: .center) {
+                                Text("Great. None of your\nitems are expiring soon.")
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(Color.init(UIColor.systemGray))
+                                    .padding(10)
+                                    .font(.system(size: 14, design: .rounded))
                             }
                         }
-                    }.frame(width: geometry.size.width, height: geometry.size.height-(2*geometry.size.height/8))
+                    } else {
+                        VStack(alignment: .leading, spacing: 0) {
+                            ForEach (0..<entry.inventory.inventory.count) { data in
+                                if data < 4 {
+                                    largeListContentView(content: entry.inventory.inventory[data])
+                                        .frame(width: geometry.size.width, height: (geometry.size.height-(2*geometry.size.height/8))/4)
+                                }
+                            }
+                        }.frame(width: geometry.size.width, height: (geometry.size.height-(2*geometry.size.height/8)), alignment: .topLeading)
+                    }
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height-(2*geometry.size.height/8))
                 .background(backgroundColor)
