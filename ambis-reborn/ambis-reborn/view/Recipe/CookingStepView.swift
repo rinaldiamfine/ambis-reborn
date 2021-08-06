@@ -18,14 +18,16 @@ struct CookingStepView: View {
                 ForEach(0..<cookingStepSample.count) { count in
                     ZStack {
                         RoundedRectangle(cornerRadius: 25)
-                            .stroke()
-                            .foregroundColor(Color("BrandColor"))
+                            .foregroundColor(.white)
+                        RoundedRectangle(cornerRadius: 25)
+                            .strokeBorder(Color("BrandColor"), lineWidth: 1)
                         HStack {
                             VStack {
                                 Circle()
                                     .foregroundColor(.gray)
                                     .frame(width: 25, height: 25)
                                     .padding(.top)
+                                    .offset(x: 0, y: -15)
                                 Spacer()
                             }
                             VStack(alignment: .leading) {
@@ -46,5 +48,6 @@ struct CookingStepView: View {
         }
         .navigationBarTitle("Cooking Steps")
         .padding(.horizontal)
+        .background(Color("AppBackground"))
     }
 }

@@ -22,7 +22,7 @@ struct RecipeListView: View {
         RecipeSort(id: "", name: "Microwave", isChoose: true),
         RecipeSort(id: "", name: "Oven", isChoose: true)]
     
-    var dummy: [String] = ["", "", "", "", "", ""]
+    var dataRecipe = DataRecipe.recipes
     
     var body: some View {
         ZStack {
@@ -51,9 +51,9 @@ struct RecipeListView: View {
                     }
                 }.padding(.all, 12)
                 ScrollView {
-                    ForEach(0..<dummy.count) { data in
+                    ForEach(0..<dataRecipe.count) { data in
                         NavigationLink(destination: RecipeView()) {
-                            RecipeListItemView(recipe: dummy[data])
+                            RecipeListItemView(recipe: dataRecipe[data])
                         }
                     }
                 }
@@ -65,7 +65,6 @@ struct RecipeListView: View {
         }
         .background(Color("AppBackground"))
         .navigationBarTitle("Recipe", displayMode: .automatic)
-        
        
     }
     
