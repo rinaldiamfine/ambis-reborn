@@ -171,7 +171,7 @@ struct ButtonView: View {
                         Spacer()
                         Text("Find Recipe")
                             .font(.system(size: 18, design: .rounded))
-                            .foregroundColor(Color("BackgroundInverse"))
+                            .foregroundColor(Color.white)
                         Spacer()
                     }
                  }
@@ -188,7 +188,7 @@ struct ButtonView: View {
             } label: {
                 Text("Find Recipe")
                     .font(.system(size: 18, design: .rounded))
-                    .foregroundColor(Color("BackgroundInverse"))
+                    .foregroundColor(Color.white)
             }
             .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
             .background(Color.init(.systemGray))

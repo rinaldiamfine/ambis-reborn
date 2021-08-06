@@ -53,7 +53,7 @@ struct InventoryFormView: View {
         NavigationView {
             ZStack {
                 InventoryModalForm(inventoryViewModel: inventoryViewModel, showingActionSheet: $showingActionSheet, isShowPickerType: $isShowPickerType, isShowPickerStore: $isShowPickerStore)
-                    .navigationBarTitle(inventoryViewModel.status == "create" ? "Add Inventory" : "Edit Inventory", displayMode: .inline)
+                    .navigationBarTitle(inventoryViewModel.status == "edit" ? "Edit Inventory" : "Add Inventory", displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: actionCancel, label: {
                             Text("Cancel")
