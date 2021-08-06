@@ -97,16 +97,48 @@ struct InventoryListExpiryView: View {
             }.padding(.leading, 2)
             Spacer()
             if remainingDays == 0 {
-                Text("Today").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
+                Text("Today")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(Color.white)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 98, height: 28)
+                    .background(
+                        Capsule().fill(Color("AlertBackground-1"))
+                    )
                     .padding(.trailing, 10)
             } else if remainingDays == 1 {
-                Text("\(remainingDays) Day Left").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
+                Text("\(remainingDays) Day Left")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(Color.white)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 98, height: 28)
+                    .background(
+                        Capsule().fill(Color("AlertBackground-2"))
+                    )
                     .padding(.trailing, 10)
             } else if remainingDays > 1 {
-                Text("\(remainingDays) Days Left").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
+                Text("\(remainingDays) Days Left")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(Color.white)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 98, height: 28)
+                    .background(
+                        Capsule().fill(Color("AlertBackground-3"))
+                    )
                     .padding(.trailing, 10)
             } else {
-                Text("Expired").font(.system(size: 15, design: .rounded)).foregroundColor(expiryColor)
+                Text("Expired")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(Color.white)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 98, height: 28)
+                    .background(
+                        Capsule().fill(Color("AlertBackground-1"))
+                    )
                     .padding(.trailing, 10)
             }
             

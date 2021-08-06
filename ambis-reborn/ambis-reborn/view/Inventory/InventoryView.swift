@@ -99,6 +99,9 @@ struct InventoryView: View {
                                 .padding(.horizontal)
                             }
                         }
+                        VStack {
+                            SpaceView()
+                        }
                     }
                     .frame(width: UIScreen.screenWidth)
                     .background(Color("AppBackground"))
