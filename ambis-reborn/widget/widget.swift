@@ -14,7 +14,7 @@ struct Provider: IntentTimelineProvider {
 //    guard let widgetGetExpiry = try? JSONDecoder().decode(WidgetInventoryModel.self, from: inventoryData) else { return }
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), inventory: WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0))
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), inventory: WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0, inventory: []))
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
@@ -43,7 +43,7 @@ struct Provider: IntentTimelineProvider {
     
     func setupExpireData() -> WidgetInventoryModel {
         guard let expire = try? JSONDecoder().decode(WidgetInventoryModel.self, from: inventoryData) else{
-            return WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0)
+            return WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0, inventory: [])
         }
         return expire
     }
@@ -64,9 +64,15 @@ struct widgetListDataFormat {
 }
 
 struct mediumListContentView: View {
-    @State var data : widgetListDataFormat
+    @State var content: WidgetInventoryModelList
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
+    
+    func setFormatSubtitle(store: String, total: Double, totalType: String) -> String {
+        var format : String = ""
+        format = store + "・" + String(total) + " " + totalType
+        return format
+    }
     
     var body: some View {
         HStack {
@@ -78,14 +84,12 @@ struct mediumListContentView: View {
                         endPoint: .init(x: 0.8, y: 0.5)
                     ))
                     .frame(width: 40, height: 40)
-                Text(data.icon).font(.system(size: 24))
+                Text(content.icon).font(.system(size: 20))
             }
-            .padding(.leading, 10)
-            VStack(alignment: .leading) {
-                Text(data.title).font(.system(size: 13, design: .rounded))
+            VStack(alignment: .leading, spacing: 5) {
+                Text(content.name).font(.system(size: 13, design: .rounded))
                 HStack {
-                    Text(data.store).font(.system(size: 10, design: .rounded))
-                    Text(data.formatQty).font(.system(size: 10, design: .rounded))
+                    Text(setFormatSubtitle(store: content.store,total: content.total, totalType: content.totalType)).font(.system(size: 10, design: .rounded)).foregroundColor(Color.init(.systemGray))
                 }
             }
         }
@@ -93,11 +97,17 @@ struct mediumListContentView: View {
 }
 
 struct largeListContentView: View {
-    @State var data : widgetListDataFormat
+    @State var content: WidgetInventoryModelList
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
-    
+    @State private var expiryColor = Color("ExpiryColor")
     @State private var cellColor = Color("IconBackground1")
+    
+    func setFormatSubtitle(total: Double, totalType: String) -> String {
+        var format : String = ""
+        format = String(total) + " " + totalType
+        return format
+    }
     
     var body: some View {
         HStack {
@@ -109,22 +119,62 @@ struct largeListContentView: View {
                         endPoint: .init(x: 0.8, y: 0.5)
                     ))
                     .frame(width: 40, height: 40)
-                Text(data.icon).font(.system(size: 24))
+                Text(content.icon).font(.system(size: 24))
             }
             .padding(.leading, 10)
-            VStack(alignment: .leading) {
-                Text(data.title).font(.system(size: 13, design: .rounded))
+            VStack(alignment: .leading, spacing: 5) {
+                Text(content.name).font(.system(size: 13, design: .rounded))
                 HStack {
-                    Text(data.store).font(.system(size: 10, design: .rounded))
-                    Text(data.formatQty).font(.system(size: 10, design: .rounded))
+                    Text(content.store).font(.system(size: 10, design: .rounded)).foregroundColor(Color.init(.systemGray))
+                    Text("・").font(.system(size: 10, design: .rounded)).foregroundColor(Color.init(.systemGray))
+                    Text(setFormatSubtitle(total: content.total, totalType: content.totalType)).font(.system(size: 10, design: .rounded)).foregroundColor(Color.init(.systemGray))
                 }
             }
             Spacer()
             HStack {
-                Text("EXPIRED")
-                    .font(.system(size: 13, design: .rounded))
-                    .padding(.horizontal, 10)
+                if content.remainingDate == 0 {
+                    Text("Today")
+                        .font(.system(size: 10, design: .rounded))
+                        .foregroundColor(Color.white)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 90, height: 25)
+                        .background(
+                            Capsule().fill(Color("ExpiryBackground"))
+                        )
+                } else if content.remainingDate == 1 {
+                    Text("\(content.remainingDate) Day Left")
+                        .font(.system(size: 10, design: .rounded))
+                        .foregroundColor(Color.white)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 90, height: 25)
+                        .background(
+                            Capsule().fill(Color("ExpiryBackground"))
+                        )
+                } else if content.remainingDate > 1 {
+                    Text("\(content.remainingDate) Days Left")
+                        .font(.system(size: 10, design: .rounded))
+                        .foregroundColor(Color.white)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 90, height: 25)
+                        .background(
+                            Capsule().fill(Color("ExpiryBackground"))
+                        )
+                } else {
+                    Text("Expired")
+                        .font(.system(size: 10, design: .rounded))
+                        .foregroundColor(Color.white)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 90, height: 25)
+                        .background(
+                            Capsule().fill(Color("ExpiryBackground"))
+                        )
+                }
             }
+            .padding(.horizontal, 15)
         }
         .padding(.vertical, 7)
         .background(RoundedRectangle(cornerRadius: 15).fill(cellColor))
@@ -243,11 +293,11 @@ struct widgetEntryView : View {
                             .frame(width: geometry.size.width/2-geometry.size.width*10/100)
                             
                             VStack(alignment: .leading) {
-                                //ONLY 3
-                                ForEach (0..<3) { data in
-                                    mediumListContentView(data: defaultData[data])
-                                        .frame(width: geometry.size.width*90/100/2, height: geometry.size.height/4)
-//                                        .background(Color(.red))
+                                ForEach (0..<entry.inventory.inventory.count) { data in
+                                    if data < 3 {
+                                        mediumListContentView(content: entry.inventory.inventory[data])
+                                            .frame(height: geometry.size.height/4)
+                                    }
                                 }
                             }
                             .frame(width: geometry.size.width/2, height: geometry.size.height)
@@ -269,29 +319,35 @@ struct widgetEntryView : View {
                         .padding(.horizontal, 15)
                         .font(.system(size: 25, design: .rounded))
                     Spacer()
-                    Image("WidgetImage")
-                        .resizable()
-                        .frame(width: 30, height: 30, alignment: .topTrailing)
-                        .padding(.horizontal, 15)
+//                    Image("WidgetImage")
+//                        .resizable()
+//                        .frame(width: 30, height: 30, alignment: .topTrailing)
+//                        .padding(.horizontal, 15)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height/8)
                 .background(Color("BrandColor"))
                 
                 HStack(alignment: .top) {
                     VStack(alignment: .leading) {
-                        ForEach (0..<defaultData.count) { data in
-                            largeListContentView(data: defaultData[data])
-                                .frame(width: geometry.size.width)
+                        ForEach (0..<entry.inventory.inventory.count) { data in
+                            if data < 4 {
+                                largeListContentView(content: entry.inventory.inventory[data])
+                                    .frame(width: geometry.size.width)
+                            }
                         }
-                        
-                    }.frame(width: geometry.size.width)
+                    }.frame(width: geometry.size.width, height: geometry.size.height-(2*geometry.size.height/8))
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height-(2*geometry.size.height/8))
                 .background(backgroundColor)
                 
                 HStack{
-                    Text("2 More items")
-                        .font(.system(size: 13, design: .rounded))
+                    if entry.inventory.inventory.count > 4 {
+                        Text("\(entry.inventory.inventory.count-4) More items")
+                            .font(.system(size: 13, design: .rounded))
+                    } else {
+                        Text(" ")
+                            .font(.system(size: 13, design: .rounded))
+                    }
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height/8)
                 .background(backgroundColor)
@@ -315,7 +371,7 @@ struct widget: Widget {
 
 struct widget_Previews: PreviewProvider {
     static var previews: some View {
-        widgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), inventory: WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0)))
+        widgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), inventory: WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0, inventory: [])))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
