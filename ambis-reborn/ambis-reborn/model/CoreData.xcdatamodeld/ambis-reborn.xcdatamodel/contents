@@ -36,7 +36,7 @@
     </entity>
     <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
         <attribute name="cookMethod" optional="YES" attributeType="String"/>
-        <attribute name="cookStep" optional="YES" attributeType="String"/>
+        <attribute name="cookStep" optional="YES" attributeType="Transformable"/>
         <attribute name="cookTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="difficultyLevel" optional="YES" attributeType="String"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -57,10 +57,10 @@
     </entity>
     <elements>
         <element name="FoodCategory" positionX="191.70361328125" positionY="-14.79122924804688" width="128" height="194"/>
+        <element name="Ingredient" positionX="9" positionY="135" width="128" height="119"/>
         <element name="Inventory" positionX="-41.131103515625" positionY="-15.9132080078125" width="128" height="149"/>
         <element name="Item" positionX="-191.2103881835938" positionY="-34.45909118652344" width="128" height="44"/>
-        <element name="Shopping" positionX="-69.84466552734375" positionY="184.8369140625" width="128" height="119"/>
         <element name="Recipe" positionX="0" positionY="126" width="128" height="194"/>
-        <element name="Ingredient" positionX="9" positionY="135" width="128" height="119"/>
+        <element name="Shopping" positionX="-69.84466552734375" positionY="184.8369140625" width="128" height="119"/>
     </elements>
 </model>
