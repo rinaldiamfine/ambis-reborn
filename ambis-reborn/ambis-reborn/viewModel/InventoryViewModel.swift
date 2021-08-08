@@ -22,6 +22,10 @@ class InventoryViewModel: ObservableObject {
     @Published var expiryDate: Date = Date()
     
     @Published var inventory: [InventoryModel] = []
+    @Published var inventoryExpiry: [InventoryModel] = []
+    @Published var inventoryFridge: [InventoryModel] = []
+    @Published var inventoryFreezer: [InventoryModel] = []
+    @Published var inventoryOther: [InventoryModel] = []
     
     @Published var inventoryCount: Int = 0
     @Published var inventoryExpire: Int = 0
@@ -141,7 +145,18 @@ class InventoryViewModel: ObservableObject {
             }
         }
         inventoryExpire = itemExpire.count
-        print(inventory.count, "INV COUNT")
+        //
+        inventoryExpiry = itemExpire
+        inventoryFridge = inventory.filter({ index in
+            return index.store == "Fridge"
+        })
+        inventoryFreezer = inventory.filter({ index in
+            return index.store == "Freezer"
+        })
+        inventoryOther = inventory.filter({ index in
+            return index.store == "Other"
+        })
+        //
         if inventory.count != 0 {
             progressBar = Float(itemExpire.count)/Float(inventory.count)
         }
@@ -162,6 +177,18 @@ class InventoryViewModel: ObservableObject {
             }
         }
         inventoryExpire = itemExpire.count
+        //
+        inventoryExpiry = itemExpire
+        inventoryFridge = inventory.filter({ index in
+            return index.store == "Fridge"
+        })
+        inventoryFreezer = inventory.filter({ index in
+            return index.store == "Freezer"
+        })
+        inventoryOther = inventory.filter({ index in
+            return index.store == "Other"
+        })
+        //
         if inventory.count != 0 {
             progressBar = Float(itemExpire.count)/Float(inventory.count)
         }

@@ -11,12 +11,13 @@ struct TabBarView: View {
     @State private var selectedTab = 1
     var defaultAccentColor = Color("BrandColor")
     @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
+    @State var totalInventSearch : Bool = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            InventoryView().tabItem {
-                InventoryView().getIconName()
-                InventoryView().gettabName()
+            InventoryView(totalInventSearch: $totalInventSearch).tabItem {
+                InventoryView(totalInventSearch: $totalInventSearch).getIconName()
+                InventoryView(totalInventSearch: $totalInventSearch).gettabName()
             }.tag(1)
             ShoppingView().tabItem {
                 ShoppingView().getIconName()
