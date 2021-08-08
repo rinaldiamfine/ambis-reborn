@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//import UIKit
 import WidgetKit
 import CoreData
 import UserNotifications
@@ -26,7 +25,7 @@ struct InventoryView: View {
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     @State private var needRefresh = true
-    @State var totalInventSearch: Int = 0
+    @Binding var totalInventSearch: Bool
     
     var storeAvailable = AppGlobalData.generateDataStore()
     
@@ -78,7 +77,8 @@ struct InventoryView: View {
                         //SETUP LIST
                         Section {
                             ForEach (inventoryViewModel.inventory.filter {
-                                filterList(expiryDate: $0.expiryDate, name: $0.name, store: $0.store)
+                                let filter = filterList(expiryDate: $0.expiryDate, name: $0.name, store: $0.store)
+                                return filter
                             }, id:\.id) {
                                 inventory in
                                 VStack(spacing: 10) {
@@ -99,6 +99,74 @@ struct InventoryView: View {
                                 .padding(.horizontal)
                             }
                         }
+                        
+                        VStack {
+                            if defaultFilter == "Expire Soon" {
+                                if inventoryViewModel.inventoryExpiry.isEmpty {
+                                    SpaceView()
+                                    ZStack {
+                                        Ellipse()
+                                            .fill(Color.init(UIColor.systemGray5))
+                                            .frame(width: 102, height: 102)
+                                        Image(systemName: "bag").font(.system(size: 42))
+                                            .foregroundColor(Color("BrandColor"))
+                                    }
+                                    Text("Great. None of your items are expiring soon.")
+                                        .foregroundColor(Color.init(UIColor.systemGray))
+                                        .padding(.top, 15)
+                                }
+                            }
+                            
+                            if defaultFilter == "Fridge" {
+                                if inventoryViewModel.inventoryFridge.isEmpty {
+                                    SpaceView()
+                                    ZStack {
+                                        Ellipse()
+                                            .fill(Color.init(UIColor.systemGray5))
+                                            .frame(width: 102, height: 102)
+                                        Image(systemName: "bag").font(.system(size: 42))
+                                            .foregroundColor(Color("BrandColor"))
+                                    }
+                                    Text("There are no items in your \(defaultFilter).")
+                                        .foregroundColor(Color.init(UIColor.systemGray))
+                                        .padding(.top, 15)
+                                }
+                            }
+                            
+                            if defaultFilter == "Freezer" {
+                                if inventoryViewModel.inventoryFreezer.isEmpty {
+                                    SpaceView()
+                                    ZStack {
+                                        Ellipse()
+                                            .fill(Color.init(UIColor.systemGray5))
+                                            .frame(width: 102, height: 102)
+                                        Image(systemName: "bag").font(.system(size: 42))
+                                            .foregroundColor(Color("BrandColor"))
+                                    }
+                                    Text("There are no items in your \(defaultFilter).")
+                                        .foregroundColor(Color.init(UIColor.systemGray))
+                                        .padding(.top, 15)
+                                }
+                            }
+                            
+                            if defaultFilter == "Other" {
+                                if inventoryViewModel.inventoryOther.isEmpty {
+                                    SpaceView()
+                                    ZStack {
+                                        Ellipse()
+                                            .fill(Color.init(UIColor.systemGray5))
+                                            .frame(width: 102, height: 102)
+                                        Image(systemName: "bag").font(.system(size: 42))
+                                            .foregroundColor(Color("BrandColor"))
+                                    }
+                                    Text("There are no items in your \(defaultFilter).")
+                                        .foregroundColor(Color.init(UIColor.systemGray))
+                                        .padding(.top, 15)
+                                }
+                            }
+                        }
+                        .frame(width: UIScreen.screenWidth)
+                        
                         VStack {
                             SpaceView()
                         }
@@ -127,14 +195,12 @@ struct InventoryView: View {
             InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
         }
         .onAppear(perform: {
-            print("APPEAR FORM")
             inventoryViewModel.getData()
             inventoryViewModel.loadList()
             foodCategoryViewModel.getData()
             NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
             
             setupWidgetContent()
-            print(inventoryData, "INVEN DATA")
         })
         
     }
