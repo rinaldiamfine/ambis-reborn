@@ -13,6 +13,7 @@
 		0EE5F00B26B8086F00D81C8D /* RecipeSortSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F00A26B8086F00D81C8D /* RecipeSortSample.swift */; };
 		302C8E0F26BD1E07009EBA28 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302C8E0E26BD1E07009EBA28 /* RecipeModel.swift */; };
 		302C8E1126BD2137009EBA28 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302C8E1026BD2137009EBA28 /* IngredientModel.swift */; };
+		302C8E1326C112D7009EBA28 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302C8E1226C112D7009EBA28 /* RecipeViewModel.swift */; };
 		3041C82126B28DB100E2B156 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C82026B28DB100E2B156 /* RecipeView.swift */; };
 		3041C82326B2990500E2B156 /* IngredientSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C82226B2990500E2B156 /* IngredientSample.swift */; };
 		3041C82526B29AC800E2B156 /* IngredientListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C82426B29AC800E2B156 /* IngredientListCellView.swift */; };
@@ -105,6 +106,7 @@
 		0EE5F00A26B8086F00D81C8D /* RecipeSortSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSortSample.swift; sourceTree = "<group>"; };
 		302C8E0E26BD1E07009EBA28 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		302C8E1026BD2137009EBA28 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
+		302C8E1226C112D7009EBA28 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		3041C82026B28DB100E2B156 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		3041C82226B2990500E2B156 /* IngredientSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSample.swift; sourceTree = "<group>"; };
 		3041C82426B29AC800E2B156 /* IngredientListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListCellView.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				90AD5F012697736900E98152 /* CategoryViewModel.swift */,
 				9090AC9726993F6C008AF935 /* InventoryViewModel.swift */,
 				307C551B269E076B00DD6FC3 /* ShoppingViewModel.swift */,
+				302C8E1226C112D7009EBA28 /* RecipeViewModel.swift */,
 				900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */,
 			);
 			path = viewModel;
@@ -525,6 +528,7 @@
 				9090AC9826993F6C008AF935 /* InventoryViewModel.swift in Sources */,
 				9070148B269E160200F8981A /* InventoryCategoryListView.swift in Sources */,
 				9070148D269ECC0B00F8981A /* InventoryFormEditView.swift in Sources */,
+				302C8E1326C112D7009EBA28 /* RecipeViewModel.swift in Sources */,
 				9090ACA226997208008AF935 /* FoodCategoryModel.swift in Sources */,
 				9090AC9C269948E3008AF935 /* InventoryFormView.swift in Sources */,
 				302C8E0F26BD1E07009EBA28 /* RecipeModel.swift in Sources */,

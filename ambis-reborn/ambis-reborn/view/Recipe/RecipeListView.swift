@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecipeListView: View {
+    @StateObject var recipeViewModel = RecipeViewModel()
     
     @State var toSort = false
     @State var sortDish: [RecipeSort] = [
