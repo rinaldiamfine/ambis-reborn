@@ -32,14 +32,15 @@ struct RecipeView: View {
     //                                                        IngredientSample(name: "Bawang", total: 2, totalType: "biji", isAvailable: true)])
     
     var body: some View {
-        
         VStack {
-            ImagePlaceholder()
-            RecipeTitle(name: defaultRecipeSample[0].name)
-            RecipeDescription(totalServes: defaultRecipeSample[0].totalServes, prepTime: defaultRecipeSample[0].prepTime, cookTime: defaultRecipeSample[0].cookTime)
-            Divider()
             ZStack {
-                IngredientListView(ingredientsSample: defaultRecipeSample[0].ingredient)
+                ScrollView {
+                    ImagePlaceholder()
+                    RecipeTitle(name: defaultRecipeSample[0].name)
+                    RecipeDescription(totalServes: defaultRecipeSample[0].totalServes, prepTime: defaultRecipeSample[0].prepTime, cookTime: defaultRecipeSample[0].cookTime)
+                    Divider()
+                    IngredientListView(ingredientsSample: defaultRecipeSample[0].ingredient)
+                }
                 VStack {
                     Spacer()
                     CookingStepButtonView(cookingSteps: defaultRecipeSample[0].cookStep)
@@ -76,10 +77,10 @@ struct ImagePlaceholder: View {
     var body: some View {
         Image("foodImageSample")
             .resizable()
+            .frame(minWidth: UIScreen.screenWidth - 30, minHeight: UIScreen.screenHeight / 3.7)
             .aspectRatio(contentMode: .fit)
             .mask(
                 RoundedRectangle(cornerRadius: 25)
-                    .frame(maxHeight: 220)
             )
             .padding(.top)
     }
@@ -130,10 +131,8 @@ struct IngredientListView: View {
                     .foregroundColor(Color("BrandColor"))
                     .font(.system(size: 15))
             }
-            ScrollView {
-                ForEach(0..<ingredientsSample.count) { tes in
-                    IngredientListCellView(ingredient: ingredientsSample[tes])
-                }
+            ForEach(0..<ingredientsSample.count) { tes in
+                IngredientListCellView(ingredient: ingredientsSample[tes])
             }
         }
     }
