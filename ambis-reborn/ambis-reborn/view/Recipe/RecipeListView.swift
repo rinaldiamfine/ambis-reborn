@@ -9,8 +9,12 @@ import SwiftUI
 
 struct RecipeListView: View {
     @StateObject var recipeViewModel = RecipeViewModel()
-    
+    var tags : [String]
     var dataRecipe = DataRecipe.recipes
+    
+    func mapDataRecipe() {
+        print(tags, "TAGES")
+    }
     
     var body: some View {
         ZStack {
@@ -61,6 +65,7 @@ struct RecipeListView: View {
         .navigationBarTitle("Recipe", displayMode: .automatic)
         .onAppear(perform: {
             recipeViewModel.getAllRecipe()
+            mapDataRecipe()
         })
     }
     

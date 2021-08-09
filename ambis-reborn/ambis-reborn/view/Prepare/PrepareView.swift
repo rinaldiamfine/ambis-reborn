@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreML
 
 struct PrepareView: View {
     @StateObject var inventoryViewModel = InventoryViewModel()
@@ -227,13 +228,40 @@ struct PrepareView: View {
 
 struct ButtonView: View {
     @StateObject var inventoryViewModel = InventoryViewModel()
+    @State var isShowingRecipeList: Bool = false
+    
+    func getSuggestion() -> [String] {
+        var suggestion: [String] = []
+        if isShowingRecipeList {
+            let model: ClassifierData = {
+                do {
+                    let config = MLModelConfiguration()
+                    return try ClassifierData(configuration: config)
+                } catch {
+                    print(error)
+                    fatalError("Couldn't create ClassifierData")
+                }
+            }()
+            
+            for inventory in inventoryViewModel.inventory {
+                if inventoryViewModel.prepareSelectedInventory.contains(inventory.id) {
+                    guard let result = try? model.prediction(text: inventory.name.lowercased()) else {
+                        fatalError("Prediction failed!")
+                    }
+                    suggestion.append(result.label)
+                }
+            }
+        }
+        return suggestion
+    }
     
     var body: some View {
         if !inventoryViewModel.prepareSelectedInventory.isEmpty {
             Button {
                 //Action
+                isShowingRecipeList = true
             } label: {
-                NavigationLink(destination: RecipeListView()) {
+                NavigationLink(destination: RecipeListView(tags: getSuggestion()), isActive: $isShowingRecipeList) {
                     HStack {
                         Spacer()
                         Text("Find Recipe")
