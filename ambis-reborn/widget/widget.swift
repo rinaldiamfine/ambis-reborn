@@ -205,8 +205,8 @@ struct widgetEntryView : View {
             smallWidget
         case .systemMedium:
             mediumWidget
-        case .systemLarge:
-            largeWidget
+//        case .systemLarge:
+//            largeWidget
         default:
             smallWidget
         }
@@ -427,6 +427,8 @@ struct widget: Widget {
         }
         .configurationDisplayName("ExpiRemind Widget")
         .description("This is an ExpiRemind widget.")
+//        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
