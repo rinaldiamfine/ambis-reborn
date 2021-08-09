@@ -9,17 +9,8 @@ import SwiftUI
 
 struct RecipeView: View {
     
-    @State var isCookingStepPresented: Bool = false
-    
-    func getIconName() -> Image {
-        return Image(systemName: "bag.fill")
-    }
-    func gettabName() -> Text {
-        return Text("Recipe (sementara)")
-    }
-    
-    //let defaultRecipeSample = DataRecipe.recipes
     var recipe: RecipeSample
+    @State var isCookingStepPresented: Bool = false
     
     var body: some View {
         VStack {

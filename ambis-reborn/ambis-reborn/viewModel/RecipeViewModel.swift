@@ -25,4 +25,25 @@ class RecipeViewModel: ObservableObject {
         RecipeSort(id: "", name: "Stove", isChoose: true),
         RecipeSort(id: "", name: "Microwave", isChoose: true),
         RecipeSort(id: "", name: "Oven", isChoose: true)]
+    
+    func saveRecipeData() {
+        let dataRecipe = DataRecipe.recipes
+        
+        for data in dataRecipe {
+            let recipe = Recipe(context: PersistenceController.shared.container.viewContext)
+            let ingredient = Ingredient(context: PersistenceController.shared.container.viewContext)
+            
+            recipe.name = data.name
+            recipe.cookStep = data.cookStep
+            for dataIngredient in data.ingredient {
+                ingredient.name = dataIngredient.name
+                recipe.addToToIngredient(ingredient)
+            }
+            
+            PersistenceController.shared.saveData()
+        }
+    }
+    
+    
+    
 }

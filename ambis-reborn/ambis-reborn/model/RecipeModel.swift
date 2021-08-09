@@ -28,7 +28,7 @@ struct RecipeModel {
     }
     
     var cookStep: [String] {
-        return recipe.cookStep as! [String]
+        return recipe.cookStep ?? []
     }
     
     var cookTime: Int {

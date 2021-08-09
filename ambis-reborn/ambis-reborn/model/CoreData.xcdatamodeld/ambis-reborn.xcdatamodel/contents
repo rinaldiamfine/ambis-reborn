@@ -36,7 +36,7 @@
     </entity>
     <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
         <attribute name="cookMethod" optional="YES" attributeType="String"/>
-        <attribute name="cookStep" optional="YES" attributeType="Transformable"/>
+        <attribute name="cookStep" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="cookTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="difficultyLevel" optional="YES" attributeType="String"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
