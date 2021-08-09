@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeView: View {
     
+    //var recipe: RecipeModel
     var recipe: RecipeSample
     @State var isCookingStepPresented: Bool = false
     
@@ -19,7 +20,7 @@ struct RecipeView: View {
                 RecipeTitle(name: recipe.name)
                 RecipeDescription(totalServes: recipe.totalServes, prepTime: recipe.prepTime, cookTime: recipe.cookTime)
                 Divider()
-                IngredientListView(ingredientsSample: recipe.ingredient)
+                IngredientListView(ingredients: recipe.ingredient)
             }
                 Spacer()
             CookingStepButtonView(cookingSteps: recipe.cookStep)
@@ -95,7 +96,8 @@ struct RecipeDescription: View {
 }
 
 struct IngredientListView: View {
-    let ingredientsSample: [IngredientSample]
+    //let ingredients: [IngredientModel]
+    let ingredients: [IngredientSample]
     
     var body: some View {
         VStack {
@@ -104,12 +106,13 @@ struct IngredientListView: View {
                     .font(.system(size: 19))
                     .fontWeight(.medium)
                 Spacer()
-                Text("\(ingredientsSample.count) item(s)")
+                Text("\(ingredients.count) item(s)")
                     .foregroundColor(Color("BrandColor"))
                     .font(.system(size: 15))
             }
-            ForEach(0..<ingredientsSample.count) { tes in
-                IngredientListCellView(ingredient: ingredientsSample[tes])
+            ForEach(0..<ingredients.count) { data in
+//                IngredientListCellView(ingredient: ingredients[data])
+                IngredientListCellView(ingredient: ingredients[data])
             }
         }
     }

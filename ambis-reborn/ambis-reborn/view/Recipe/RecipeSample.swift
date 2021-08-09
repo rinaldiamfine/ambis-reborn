@@ -14,8 +14,8 @@ struct RecipeSample {
     var cookMethod: String = ""
     var cookStep: [String]
     var totalServes: Int = 1
-    var category: String = "Dessert"
-    var level : String = "intermediate"
+    var recipeCategory: String = "Dessert"
+    var difficultyLevel : String = "intermediate"
     
     var ingredient: [IngredientSample]
 }

@@ -109,6 +109,15 @@ struct PersistenceController {
         }
     }
     
+    func getRecipeData() -> [Recipe] {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        do {
+            return try container.viewContext.fetch(request)
+        } catch {
+            return []
+        }
+    }
+    
     func saveData(completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
         if context.hasChanges {

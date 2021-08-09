@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeListItemView: View {
     
+    //var recipe: RecipeModel
     var recipe: RecipeSample
     
     var body: some View {
@@ -29,7 +30,7 @@ struct RecipeListItemView: View {
                         .padding(.bottom, 4)
                         .padding(.top, 20)
                         .foregroundColor(.primary)
-                    Text(recipe.category)
+                    Text(recipe.recipeCategory)
                         .font(.system(size: 12))
                         .foregroundColor(Color.init(.systemGray))
                     Spacer()
@@ -59,7 +60,7 @@ struct RecipeListItemView: View {
                             .resizable()
                             .frame(width: 12, height: 12, alignment: .center)
                             
-                        Text(recipe.level).font(.system(size: 12))
+                        Text(recipe.difficultyLevel).font(.system(size: 12))
                         .foregroundColor(Color.init(.systemGray))
                     }.padding(.top, 6)
                     Spacer()

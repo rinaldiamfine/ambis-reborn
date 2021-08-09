@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 import CoreData
 
-class RecipeViewModel: ObservableObject {
+class RecipeViewModel: ObservableObject, Identifiable {
     
     @Published var recipe: [RecipeModel] = []
+    @Published var recipeCount: Int = 0
     
     @Published var toSort = false
     @Published var sortDish: [RecipeSort] = [
@@ -25,6 +26,10 @@ class RecipeViewModel: ObservableObject {
         RecipeSort(id: "", name: "Stove", isChoose: true),
         RecipeSort(id: "", name: "Microwave", isChoose: true),
         RecipeSort(id: "", name: "Oven", isChoose: true)]
+    
+    init() {
+        saveRecipeData()
+    }
     
     func saveRecipeData() {
         let dataRecipe = DataRecipe.recipes
@@ -42,8 +47,12 @@ class RecipeViewModel: ObservableObject {
             
             PersistenceController.shared.saveData()
         }
+        print("save succesful")
     }
     
-    
+    func getAllRecipe() {
+        recipe = PersistenceController.shared.getRecipeData().map(RecipeModel.init)
+        recipeCount = recipe.count
+    }
     
 }

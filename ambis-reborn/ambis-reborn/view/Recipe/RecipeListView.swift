@@ -44,6 +44,12 @@ struct RecipeListView: View {
                             RecipeListItemView(recipe: dataRecipe[data])
                         }
                     }
+//                    ForEach(0..<recipeViewModel.recipe.count) { data in
+//                        NavigationLink(destination: RecipeView(recipe: recipeViewModel.recipe[data])) {
+//                            RecipeListItemView(recipe: recipeViewModel.recipe[data])
+//                        }
+//                    }
+
                 }
                 Spacer()
             }).sheet(isPresented: $recipeViewModel.toSort, content: {
@@ -53,7 +59,9 @@ struct RecipeListView: View {
         }
         .background(Color("AppBackground"))
         .navigationBarTitle("Recipe", displayMode: .automatic)
-       
+        .onAppear(perform: {
+            recipeViewModel.getAllRecipe()
+        })
     }
     
 }
