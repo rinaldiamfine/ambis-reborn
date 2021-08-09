@@ -18,7 +18,8 @@ class RecipeViewModel: ObservableObject, Identifiable {
     @Published var sortDish: [RecipeSort] = [
         RecipeSort(id: "", name: "Appetizer", isChoose: true),
         RecipeSort(id: "", name: "Main Dish", isChoose: true),
-        RecipeSort(id: "", name: "Dessert", isChoose: true)]
+        RecipeSort(id: "", name: "Dessert", isChoose: true),
+        RecipeSort(id: "", name: "Beverage", isChoose: true)]
     @Published var sortPortion: [RecipeSort] = [
         RecipeSort(id: "", name: "From lowest to highest", isChoose: true),
         RecipeSort(id: "", name: "From highest to lowest", isChoose: true)]
