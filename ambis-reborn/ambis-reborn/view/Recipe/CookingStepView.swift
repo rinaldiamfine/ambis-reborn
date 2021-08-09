@@ -9,18 +9,18 @@ import Foundation
 import SwiftUI
 
 struct CookingStepView: View {
+    
     let cookingStepSample: [String]
     
     var body: some View {
         VStack {
-            ZStack {
-                ScrollView {
-                    ImagePlaceholder()
-                        .padding(.bottom)
-                    CookingStepDetail(cookingStepSample: cookingStepSample)
-                }
+            ScrollView {
+                ImagePlaceholder()
+                    .padding(.bottom)
+                CookingStepDetail(cookingStepSample: cookingStepSample)
             }
-
+            Spacer()
+            CookingDoneButton()
         }
         .navigationBarTitle("Cooking Steps")
         .padding(.horizontal)
@@ -35,7 +35,7 @@ struct CookingStepDetail: View {
         ForEach(0..<cookingStepSample.count) { count in
             ZStack {
                 RoundedRectangle(cornerRadius: 25)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("BoxBackground"))
                 HStack {
                     VStack {
                         Circle()
@@ -64,6 +64,26 @@ struct CookingStepDetail: View {
                 .frame(maxHeight: .infinity)
             }
             
+        }
+    }
+}
+
+struct CookingDoneButton: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Text("Done")
+                .font(.system(size: 18, design: .rounded))
+                .foregroundColor(Color("BackgroundInverse"))
+                .contentShape(Rectangle())
+                .frame(width: UIScreen.screenWidth - 30, height: 50, alignment: .center)
+                .background(Color("BrandColor"))
+                .cornerRadius(15)
+                .padding(.bottom, 15)
         }
     }
 }

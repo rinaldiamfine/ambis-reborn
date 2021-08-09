@@ -18,40 +18,26 @@ struct RecipeView: View {
         return Text("Recipe (sementara)")
     }
     
-    let defaultRecipeSample = DataRecipe.recipes
-    //
-    //    let defaultRecipeSample = RecipeSample(name: "Ayam bumbu andaliman",
-    //                                           prepTime: 10,
-    //                                           cookTime: 30,
-    //                                           cookMethod: "Bakar",
-    //                                           cookStep: ["Siapkan bahan bahan",
-    //                                                      "Bakar ayam",
-    //                                                      "Beri bumbu"],
-    //                                           totalServes: 1,
-    //                                           ingredient: [IngredientSample(name: "Ayam", total: 1, totalType: "kg", isAvailable: false),
-    //                                                        IngredientSample(name: "Bawang", total: 2, totalType: "biji", isAvailable: true)])
+    //let defaultRecipeSample = DataRecipe.recipes
+    var recipe: RecipeSample
     
     var body: some View {
         VStack {
-            ZStack {
-                ScrollView {
-                    ImagePlaceholder()
-                    RecipeTitle(name: defaultRecipeSample[0].name)
-                    RecipeDescription(totalServes: defaultRecipeSample[0].totalServes, prepTime: defaultRecipeSample[0].prepTime, cookTime: defaultRecipeSample[0].cookTime)
-                    Divider()
-                    IngredientListView(ingredientsSample: defaultRecipeSample[0].ingredient)
-                }
-                VStack {
-                    Spacer()
-                    CookingStepButtonView(cookingSteps: defaultRecipeSample[0].cookStep)
-                }
+            ScrollView {
+                ImagePlaceholder()
+                RecipeTitle(name: recipe.name)
+                RecipeDescription(totalServes: recipe.totalServes, prepTime: recipe.prepTime, cookTime: recipe.cookTime)
+                Divider()
+                IngredientListView(ingredientsSample: recipe.ingredient)
             }
+                Spacer()
+            CookingStepButtonView(cookingSteps: recipe.cookStep)
         }
         .padding(.horizontal)
         .navigationBarTitleDisplayMode(.large)
         .navigationBarTitle(Text("Recipe"))
         .sheet(isPresented: $isCookingStepPresented) {
-            CookingStepView(cookingStepSample: defaultRecipeSample[0].cookStep)
+            CookingStepView(cookingStepSample: recipe.cookStep)
         }
         .background(Color("AppBackground"))
     }
@@ -164,8 +150,8 @@ struct CookingStepButtonView: View {
     }
 }
 
-struct RecipeView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeView()
-    }
-}
+//struct RecipeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecipeView()
+//    }
+//}

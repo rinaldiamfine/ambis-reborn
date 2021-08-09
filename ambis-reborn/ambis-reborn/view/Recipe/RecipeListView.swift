@@ -52,7 +52,7 @@ struct RecipeListView: View {
                 }.padding(.all, 12)
                 ScrollView {
                     ForEach(0..<dataRecipe.count) { data in
-                        NavigationLink(destination: RecipeView()) {
+                        NavigationLink(destination: RecipeView(recipe: dataRecipe[data])) {
                             RecipeListItemView(recipe: dataRecipe[data])
                         }
                     }
