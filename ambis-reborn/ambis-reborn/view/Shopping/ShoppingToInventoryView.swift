@@ -49,13 +49,15 @@ struct ShoppingToInventoryView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                VStack {
+                VStack(spacing: 10) {
+                    Spacer()
                     if shoppingViewModel.shoppingCount > 0 {
-                        List {
+                        ScrollView {
                             ForEach(0..<shoppingViewModel.shopping.count) { i in
                                 if shoppingViewModel.shoppingToBeMoved.contains(shoppingViewModel.shopping[i].id) {
                                     ShoppingToInventoryListView(shopping: shoppingViewModel.shopping[i], expiryDate: $shoppingViewModel.arrayExpiryDate[i], purchaseDate: $shoppingViewModel.arrayPurchaseDate[i], store: $shoppingViewModel.arrayStore[i], selectedArrayShowPicker: $selectedArrayShowPicker, isShowPickerStore: $isShowPickerStore, counterList: i)
                                         .contentShape(Rectangle())
+                                        .padding(.horizontal)
                                 } else {
                                     
                                 }
@@ -64,22 +66,22 @@ struct ShoppingToInventoryView: View {
                         .listStyle(InsetGroupedListStyle())
                     }
                 }
-                .navigationBarTitle("Add to Inventory", displayMode: .inline)
-                .navigationBarItems(
-                    leading:
-                        Button(action: actionCancel, label: {
-                            Text("Cancel")
-                                .font(.system(.callout, design: .rounded))
-                        }),
-                    trailing:
-                        Button(action: actionDone, label: {
-                            Text("Done")
-                                .font(.system(.callout, design: .rounded))
-                        })
-                )
-                
                 ShoppingModalStore(isShowPickerStore: $isShowPickerStore, shoppingViewModel: shoppingViewModel, selectedArrayShowPicker: $selectedArrayShowPicker)
             }
+            .background(Color("AppBackground"))
+            .navigationBarTitle("Add to Inventory", displayMode: .inline)
+            .navigationBarItems(
+                leading:
+                    Button(action: actionCancel, label: {
+                        Text("Cancel")
+                            .font(.system(.callout, design: .rounded))
+                    }),
+                trailing:
+                    Button(action: actionDone, label: {
+                        Text("Done")
+                            .font(.system(.callout, design: .rounded))
+                    })
+            )
         }
         .onDisappear() {
             print("Dissappear")

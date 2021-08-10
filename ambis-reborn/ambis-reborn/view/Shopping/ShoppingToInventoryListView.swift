@@ -12,6 +12,7 @@ struct ShoppingToInventoryListView: View {
     @ObservedObject var shoppingViewModel = ShoppingViewModel()
     @Environment(\.colorScheme) var colorScheme
     
+    @State private var boxBackground = Color("BoxBackground")
     @State private var iconBackground1 = Color("IconBackground1")
     @State private var iconBackground2 = Color("IconBackground2")
     
@@ -134,10 +135,11 @@ struct ShoppingToInventoryListView: View {
                                 .fill(colorScheme == .dark ? Color("BoxBackground") : Color("BoxColor"))
                         )
                     }
-                    .padding(.bottom, 15)
                 }
             }
         }
+        .padding(.all, 8)
+        .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
     }
 }
 //struct ShoppingToInventoryListView_Previews: PreviewProvider {

@@ -33,7 +33,7 @@ struct RecipeListView: View {
             }
             VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
                 HStack{
-                    Text("5 Recipes Available")
+                    Text("\(recipeViewModel.recipeCount) Recipes Available")
                     Spacer()
                     HStack {
                         Text("Sort").foregroundColor(Color("AccentColor"))
