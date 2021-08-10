@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RecipeListItemView: View {
     
-    //var recipe: RecipeModel
-    var recipe: RecipeSample
+    var recipe: RecipeModel
+    //var recipe: RecipeSample
     
     var body: some View {
         ZStack {

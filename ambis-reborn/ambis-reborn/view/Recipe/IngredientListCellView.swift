@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct IngredientListCellView: View {
-    //var ingredient: IngredientModel
-    var ingredient: IngredientSample
+    var ingredient: IngredientModel
+    //var ingredient: IngredientSample
     
     var body: some View {
         HStack {

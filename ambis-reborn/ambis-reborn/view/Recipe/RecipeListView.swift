@@ -43,16 +43,21 @@ struct RecipeListView: View {
                     }
                 }.padding(.all, 12)
                 ScrollView {
-                    ForEach(0..<dataRecipe.count) { data in
-                        NavigationLink(destination: RecipeView(recipe: dataRecipe[data])) {
-                            RecipeListItemView(recipe: dataRecipe[data])
-                        }
-                    }
+//                    ForEach(0..<dataRecipe.count) { data in
+//                        NavigationLink(destination: RecipeView(recipe: dataRecipe[data])) {
+//                            RecipeListItemView(recipe: dataRecipe[data])
+//                        }
+//                    }
 //                    ForEach(0..<recipeViewModel.recipe.count) { data in
 //                        NavigationLink(destination: RecipeView(recipe: recipeViewModel.recipe[data])) {
 //                            RecipeListItemView(recipe: recipeViewModel.recipe[data])
 //                        }
 //                    }
+                    ForEach(recipeViewModel.recipe, id:\.id) { recipe in
+                        NavigationLink(destination: RecipeView(recipe: recipe)) {
+                            RecipeListItemView(recipe: recipe)
+                        }
+                    }
 
                 }
                 Spacer()
@@ -65,6 +70,8 @@ struct RecipeListView: View {
         .navigationBarTitle("Recipe", displayMode: .automatic)
         .onAppear(perform: {
             recipeViewModel.getAllRecipe()
+            //print(recipeViewModel.recipe[0], "Mantap")
+            print(recipeViewModel.recipeCount)
             mapDataRecipe()
         })
     }
