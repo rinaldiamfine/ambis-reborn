@@ -28,9 +28,9 @@ class RecipeViewModel: ObservableObject, Identifiable {
         RecipeSort(id: "", name: "Microwave", isChoose: true),
         RecipeSort(id: "", name: "Oven", isChoose: true)]
     
-    init() {
-        saveRecipeData()
-    }
+//    init() {
+//        saveRecipeData()
+//    }
     
     func saveRecipeData() {
         let dataRecipe = DataRecipe.recipes
@@ -55,6 +55,11 @@ class RecipeViewModel: ObservableObject, Identifiable {
     func getAllRecipe() {
         recipe = PersistenceController.shared.getRecipeData().map(RecipeModel.init)
         recipeCount = recipe.count
+        if !UserDefaults.standard.isRecipeLoad() {
+            saveRecipeData()
+            UserDefaults.standard.setRecipeLoad(value: true)
+        }
+        
     }
     
 }
