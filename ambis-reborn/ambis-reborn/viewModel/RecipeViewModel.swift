@@ -37,19 +37,16 @@ class RecipeViewModel: ObservableObject, Identifiable {
         
         for data in dataRecipe {
             let recipe = Recipe(context: PersistenceController.shared.container.viewContext)
-            let ingredient = Ingredient(context: PersistenceController.shared.container.viewContext)
-            
-            let ingredients = NSSet(objects: ingredient)
             
             recipe.name = data.name
             recipe.cookStep = data.cookStep
             for dataIngredient in data.ingredient {
+                let ingredient = Ingredient(context: PersistenceController.shared.container.viewContext)
+                
                 ingredient.name = dataIngredient.name
-                //recipe.addToToIngredient(ingredient)
-                ingredients.adding(ingredient)
+                ingredient.toRecipe = recipe
             }
-            recipe.addToToIngredient(ingredients)
-            print(recipe.toIngredient!)
+            //print(recipe.toIngredient)
             PersistenceController.shared.saveData()
         }
         print("save succesful")
