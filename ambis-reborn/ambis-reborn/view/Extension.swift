@@ -102,3 +102,19 @@ extension View {
         return modifier(ResignKeyboardOnDragGesture())
     }
 }
+
+extension UserDefaults{
+
+    func setRecipeLoad(value: Bool) {
+        set(value, forKey: UserDefaultsKeys.isRecipeLoad.rawValue)
+    }
+
+    func isRecipeLoad()-> Bool {
+        return bool(forKey: UserDefaultsKeys.isRecipeLoad.rawValue)
+    }
+
+}
+
+enum UserDefaultsKeys : String {
+    case isRecipeLoad
+}
