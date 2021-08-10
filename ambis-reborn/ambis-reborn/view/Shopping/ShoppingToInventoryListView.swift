@@ -61,11 +61,11 @@ struct ShoppingToInventoryListView: View {
                 .padding(.leading, 2)
                 Spacer()
                 if isClicked {
-                    Image(systemName: "chevron.down")
+                    Image(systemName: "chevron.up")
                         .font(.system(size: 12, weight: .bold))
                         .foregroundColor(Color.init(UIColor.systemGray2))
                 } else {
-                    Image(systemName: "chevron.right")
+                    Image(systemName: "chevron.down")
                         .font(.system(size: 13, weight: .bold))
                         .foregroundColor(Color.init(UIColor.systemGray2))
                 }
