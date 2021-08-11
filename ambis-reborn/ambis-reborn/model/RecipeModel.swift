@@ -8,6 +8,23 @@
 import Foundation
 import CoreData
 
+
+struct RecipeCloudKitModel: Identifiable {
+    var id = UUID()
+    var photo: CKAsset
+    var tags: String = ""
+    
+    var name: String = ""
+    var category: String = ""
+    var totalServes: Int = 0
+    var prepTime: Int = 0
+    var cookTime: Int = 0
+    var difficultyLevel: String = ""
+    
+    var ingredients: [String] = []
+    var cookSteps: [String] = []
+}
+
 struct RecipeModel {
     let recipe: Recipe
     

@@ -14,6 +14,7 @@ struct RecipeListView: View {
     
     func mapDataRecipe() {
         print(tags, "TAGES")
+        print(recipeViewModel.recipes, "LIST RECIPES")
     }
     
     var body: some View {
@@ -43,11 +44,18 @@ struct RecipeListView: View {
                     }
                 }.padding(.all, 12)
                 ScrollView {
-                    ForEach(recipeViewModel.recipe, id:\.id) { recipe in
-                        NavigationLink(destination: RecipeView(recipe: recipe)) {
-                            RecipeListItemView(recipe: recipe)
+                    //SHOW FROM CLOUDKIT
+                    ForEach(recipeViewModel.recipes, id:\.id) { recipe in
+                        NavigationLink(destination: RecipeCloudKitView(recipe: recipe)) {
+                            RecipeListItemCloudKitView(recipe: recipe)
                         }
                     }
+                    //SHOW FROM COREDATA
+//                    ForEach(recipeViewModel.recipe, id:\.id) { recipe in
+//                        NavigationLink(destination: RecipeView(recipe: recipe)) {
+//                            RecipeListItemView(recipe: recipe)
+//                        }
+//                    }
 
                 }
                 Spacer()
@@ -60,6 +68,8 @@ struct RecipeListView: View {
         .navigationBarTitle("Recipe", displayMode: .automatic)
         .onAppear(perform: {
             recipeViewModel.getAllRecipe()
+            //FETCH FROM CLOUDKIT
+            recipeViewModel.fetchRecipes()
         })
     }
     
