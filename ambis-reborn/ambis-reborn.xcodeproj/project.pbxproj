@@ -34,6 +34,9 @@
 		900D341826B857F50052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
 		9020094226C1A02100AB0A5F /* ClassifierData.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */; };
 		9020094626C30CEF00AB0A5F /* InventoryNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */; };
+		9020094826C3D79A00AB0A5F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9020094726C3D79A00AB0A5F /* CloudKit.framework */; };
+		9020094A26C3F29800AB0A5F /* RecipeListItemCloudKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094926C3F29800AB0A5F /* RecipeListItemCloudKitView.swift */; };
+		9020094C26C3FF7400AB0A5F /* RecipeCloudKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094B26C3FF7400AB0A5F /* RecipeCloudKitView.swift */; };
 		9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047D1E526A488F200511A25 /* InventoryFilterView.swift */; };
 		90505E1F26B9564E00F0415A /* DataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90505E1E26B9564E00F0415A /* DataRecipe.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
@@ -129,6 +132,9 @@
 		900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryViewModel.swift; sourceTree = "<group>"; };
 		9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ClassifierData.mlmodel; sourceTree = "<group>"; };
 		9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNavBarView.swift; sourceTree = "<group>"; };
+		9020094726C3D79A00AB0A5F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		9020094926C3F29800AB0A5F /* RecipeListItemCloudKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListItemCloudKitView.swift; sourceTree = "<group>"; };
+		9020094B26C3FF7400AB0A5F /* RecipeCloudKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCloudKitView.swift; sourceTree = "<group>"; };
 		9047D1E526A488F200511A25 /* InventoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFilterView.swift; sourceTree = "<group>"; };
 		90505E1E26B9564E00F0415A /* DataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecipe.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9020094826C3D79A00AB0A5F /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +323,7 @@
 		9065A5FF26AA25EC00BAD3A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9020094726C3D79A00AB0A5F /* CloudKit.framework */,
 				9065A60026AA25EC00BAD3A6 /* WidgetKit.framework */,
 				9065A60226AA25EC00BAD3A6 /* SwiftUI.framework */,
 			);
@@ -369,12 +377,14 @@
 			isa = PBXGroup;
 			children = (
 				3041C82026B28DB100E2B156 /* RecipeView.swift */,
+				9020094B26C3FF7400AB0A5F /* RecipeCloudKitView.swift */,
 				3041C82426B29AC800E2B156 /* IngredientListCellView.swift */,
 				30C5329226BA6FE5004F1E3F /* CookingStepView.swift */,
 				3041C82226B2990500E2B156 /* IngredientSample.swift */,
 				3041C82626B2A07700E2B156 /* RecipeSample.swift */,
 				0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */,
 				0E20A2B126B2B23D0012F3C6 /* RecipeListItemView.swift */,
+				9020094926C3F29800AB0A5F /* RecipeListItemCloudKitView.swift */,
 				0EE5F00626B7EBF000D81C8D /* RecipeSortView.swift */,
 				0EE5F00A26B8086F00D81C8D /* RecipeSortSample.swift */,
 				90505E1E26B9564E00F0415A /* DataRecipe.swift */,
@@ -496,6 +506,7 @@
 				90AD5F0026976BF000E98152 /* CategoryFormView.swift in Sources */,
 				905DE8C8269332D300E7011C /* TabBarView.swift in Sources */,
 				90AD5F022697736900E98152 /* CategoryViewModel.swift in Sources */,
+				9020094A26C3F29800AB0A5F /* RecipeListItemCloudKitView.swift in Sources */,
 				900D340D26B832500052CF5D /* GlobalView.swift in Sources */,
 				90E8F2EA26B21872002BCBDE /* PrepareListExpiryView.swift in Sources */,
 				0E20A2B226B2B23D0012F3C6 /* RecipeListItemView.swift in Sources */,
@@ -522,6 +533,7 @@
 				90E8F2EC26B21880002BCBDE /* PrepareListView.swift in Sources */,
 				9082AE9B2693F479009A7161 /* SearchBar.swift in Sources */,
 				90706CB226A5726200471700 /* InventoryListExpiryView.swift in Sources */,
+				9020094C26C3FF7400AB0A5F /* RecipeCloudKitView.swift in Sources */,
 				900D341326B855AE0052CF5D /* WidgetInventoryModel.swift in Sources */,
 				302C8E1126BD2137009EBA28 /* IngredientModel.swift in Sources */,
 				0EE5F00B26B8086F00D81C8D /* RecipeSortSample.swift in Sources */,

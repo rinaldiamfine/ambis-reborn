@@ -8,8 +8,36 @@
 import Foundation
 import UIKit
 import CoreData
+import CloudKit
 
 class RecipeViewModel: ObservableObject, Identifiable {
+    @Published var recipes: [RecipeCloudKitModel] = []
+    let database = CKContainer(identifier: "iCloud.Ambis.Recipe").publicCloudDatabase
+    
+    func fetchRecipes() {
+        let query = CKQuery(recordType: "Recipes", predicate: NSPredicate(value: true))
+        database.perform(query, inZoneWith: .default) { ckRecord, error in
+            guard let records = ckRecord, error == nil else { return }
+            DispatchQueue.main.async {
+                self.recipes = records.compactMap { ck in
+                    RecipeCloudKitModel(
+                        id: UUID(),
+                        photo: ck["photo"] as! CKAsset,
+                        tags: ck["tags"] as! String,
+                        name: ck["name"] as! String,
+                        category: ck["category"] as! String,
+                        totalServes: ck["totalServes"] as! Int,
+                        prepTime: ck["prepTime"] as! Int,
+                        cookTime: ck["cookTime"] as! Int,
+                        difficultyLevel: ck["difficultyLevel"] as! String,
+                        ingredients: ck["ingredients"] as! [String],
+                        cookSteps: ck["cookSteps"] as! [String]
+                    )
+                }
+            }
+            print(self.recipe, "CHECK DATA RECIPES")
+        }
+    }
     
     @Published var recipe: [RecipeModel] = []
     @Published var recipeCount: Int = 0
