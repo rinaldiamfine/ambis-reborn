@@ -14,8 +14,9 @@ class RecipeViewModel: ObservableObject, Identifiable {
     @Published var recipes: [RecipeCloudKitModel] = []
     let database = CKContainer(identifier: "iCloud.Ambis.Recipe").publicCloudDatabase
     
-    func fetchRecipes() {
-        let query = CKQuery(recordType: "Recipes", predicate: NSPredicate(value: true))
+    func fetchRecipes(tags: [String]) {
+        let query = CKQuery(recordType: "Recipes", predicate: NSPredicate(format: "tags IN %@", tags))
+//        let query = CKQuery(recordType: "Recipes", predicate: NSPredicate(value: true))
         database.perform(query, inZoneWith: .default) { ckRecord, error in
             guard let records = ckRecord, error == nil else { return }
             DispatchQueue.main.async {
@@ -37,6 +38,7 @@ class RecipeViewModel: ObservableObject, Identifiable {
             }
             print(self.recipe, "CHECK DATA RECIPES")
         }
+        print(self.recipe, "CHECK DATA RECIPES OUTS")
     }
     
     @Published var recipe: [RecipeModel] = []

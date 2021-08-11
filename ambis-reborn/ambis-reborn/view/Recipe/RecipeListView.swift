@@ -34,7 +34,7 @@ struct RecipeListView: View {
             }
             VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
                 HStack{
-                    Text("\(recipeViewModel.recipeCount) Recipes Available")
+                    Text("\(recipeViewModel.recipes.count) Recipes Available")
                     Spacer()
                     HStack {
                         Text("Sort").foregroundColor(Color("AccentColor"))
@@ -69,7 +69,7 @@ struct RecipeListView: View {
         .onAppear(perform: {
             recipeViewModel.getAllRecipe()
             //FETCH FROM CLOUDKIT
-            recipeViewModel.fetchRecipes()
+            recipeViewModel.fetchRecipes(tags: tags)
         })
     }
     

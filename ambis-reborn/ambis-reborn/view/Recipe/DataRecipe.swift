@@ -86,7 +86,7 @@ struct DataEggRecipe {
                 "Tumis bawang putih dan bawang bombay sampai harum lalu masukkan wortel",
                 "Tumis sampai agak layu",
                 "Kecilkan api",
-                "tambahkan air dan masukkan duo saus serta bumbu perasa lain",
+                "tambahkan air dan masukkan dua saus serta bumbu perasa lain",
                 "Aduk rata dan masak sampai meletup letup, lalu guyurkan ke telur ceplok"],
             ingredient: [
                 IngredientSample(name: "Telur"),
@@ -194,7 +194,7 @@ struct DataMeatRecipe {
                 "Masukan ayam yang telah di rebus aduk rata.",
                 "Masukkan garam, penyedap rasa, dan merica bubuk sesuai selera",
                 "Tambahkan sedikit air, masukan potongan daun bawang. Masak hingga empuk",
-                "Bahan kuah, siapkan air. Masukkan daun bawang, kaldu ayam, dan merica bubuk",
+                "Bahan untuk kuah, siapkan air. Masukkan daun bawang, kaldu ayam, dan merica bubuk",
                 "Tata mie ayam. Letakkan mie, toping ayam dan siram dengan kuah."],
             ingredient: [
                 IngredientSample(name: "mie telur"),
@@ -313,10 +313,10 @@ struct DataSeafoodRecipe {
         
         RecipeSample(
             name: "Pecak Gurame",
-            cookStep: ["Bersihkan ikan lalu cuci bersih.",
+            cookStep: ["Bersihkan ikan gurame lalu cuci bersih.",
                        "Lumuri dengan jeruk nipis. Biarkan 15 menit.",
                        "Haluskan bumbu ikan lalu lumuri kebadan ikan hingga rata. Biarkan 15 menit.",
-                       "Goreng ikan hingga kering. Api kecil, dan jangan balik sebelum benar2 kering. Tutup penggorengannya ya. Angkat dan tiriskan.",
+                       "Goreng ikan hingga kering. Api kecil, dan jangan balik sebelum benar-benar kering. Tutup penggorengannya. Angkat dan tiriskan.",
                        "Buat bumbu pecak. Sangrai bumbu pecak hinga kering lalu tumbuk kasar.",
                        "Tumis bumbu pecak hingga harum. Masukan bumbu pelengkap serai, daun jeruk dan tomat hijau. Masak hingga wangi.",
                        "Masukan air, air asam, gula dan garam. Aduk rata lalu koreksi rasa. Masak air tinggal sedikit.",
@@ -340,7 +340,7 @@ struct DataSeafoodRecipe {
         
         RecipeSample(
             name: "Lele Goreng",
-            cookStep: ["Rendam lele dgn bumbu halus yg sdh diberi air dan cuka kurang lebih 15-30 menit",
+            cookStep: ["Rendam lele dgn bumbu halus yg sdh diberi air dan cuka kurang lebih 15 menit.",
                        "Sesaat sblm digoreng, taburi tepung bumbu lalu ratakan.",
                        "Goreng dlm minyak banyak yg sdh panas dgn api sedang, goreng hingga kecoklatan kemudian angkat dan sajikan."],
             ingredient: [
