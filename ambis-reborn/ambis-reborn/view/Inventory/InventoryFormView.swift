@@ -10,8 +10,8 @@ import UserNotifications
 import Combine
 
 struct InventoryFormView: View {
-    @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
-    @StateObject var foodCategoryViewModel: FoodCategoryViewModel = FoodCategoryViewModel()
+    @ObservedObject var inventoryViewModel: InventoryViewModel
+    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     
     @Binding var isPresented: Bool
     @Binding var defaultFilter: String
@@ -100,6 +100,7 @@ struct InventoryModalForm: View {
     }
     
     func categoryOnTap(category: FoodCategoryModel) {
+        print(inventoryViewModel.name, "GET NAME WHY NOT PASS")
         inventoryViewModel.previewSelectedCategory = category.imageString + " " + category.name
         inventoryViewModel.detailDisclaimer = category.estimation
         inventoryViewModel.toInventory = [category.foodCategory]
