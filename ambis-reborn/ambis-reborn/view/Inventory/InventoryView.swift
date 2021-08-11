@@ -56,6 +56,12 @@ struct InventoryView: View {
     }
     
     var body: some View {
+//        GeometryReader(content: { geometry in
+//            let topEdge = geometry.safeAreaInsets.top
+//            InventoryNavBar(navTitle: "Inventory", topEdge: topEdge)
+//                .ignoresSafeArea()
+//        })
+        
         NavigationView {
             VStack(spacing: 10) {
                 if inventoryViewModel.inventoryCount > 0 {
@@ -73,7 +79,7 @@ struct InventoryView: View {
                                     endPoint: .init(x: 0, y: 0.7)
                                 ))
                         )
-                        
+
                         //SETUP LIST
                         Section {
                             ForEach (inventoryViewModel.inventory.filter {
@@ -86,6 +92,10 @@ struct InventoryView: View {
                                         // EXPIRE SOON
                                         if defaultFilter == "Expire Soon" {
                                             InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
+//                                                .shadow(color: Color.gray.opacity(0.3), radius: 5)
+                                                .onTapGesture {
+                                                    presentModalForEdit()
+                                                }
                                         }
                                         //NOT EXPIRE SOON
                                         else {
@@ -99,7 +109,7 @@ struct InventoryView: View {
                                 .padding(.horizontal)
                             }
                         }
-                        
+
                         VStack {
                             if defaultFilter == "Expire Soon" {
                                 if inventoryViewModel.inventoryExpiry.isEmpty {
@@ -116,7 +126,7 @@ struct InventoryView: View {
                                         .padding(.top, 15)
                                 }
                             }
-                            
+
                             if defaultFilter == "Fridge" {
                                 if inventoryViewModel.inventoryFridge.isEmpty {
                                     SpaceView()
@@ -132,7 +142,7 @@ struct InventoryView: View {
                                         .padding(.top, 15)
                                 }
                             }
-                            
+
                             if defaultFilter == "Freezer" {
                                 if inventoryViewModel.inventoryFreezer.isEmpty {
                                     SpaceView()
@@ -148,7 +158,7 @@ struct InventoryView: View {
                                         .padding(.top, 15)
                                 }
                             }
-                            
+
                             if defaultFilter == "Other" {
                                 if inventoryViewModel.inventoryOther.isEmpty {
                                     SpaceView()
@@ -166,7 +176,7 @@ struct InventoryView: View {
                             }
                         }
                         .frame(width: UIScreen.screenWidth)
-                        
+
                         VStack {
                             SpaceView()
                         }
@@ -195,14 +205,21 @@ struct InventoryView: View {
             InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
         }
         .onAppear(perform: {
-            inventoryViewModel.getData()
-            inventoryViewModel.loadList()
+//            inventoryViewModel.getData()
             foodCategoryViewModel.getData()
+            inventoryViewModel.loadList()
             NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
-            
+
             setupWidgetContent()
         })
         
+    }
+    
+    func presentModalForEdit() {
+//        inventory: inventory,
+//        inventoryViewModel: inventoryViewModel,
+//        counterGate: inventoryViewModel.inventoryCount
+        inventoryViewModel.isPresented = true
     }
     
     func setupWidgetContent() {

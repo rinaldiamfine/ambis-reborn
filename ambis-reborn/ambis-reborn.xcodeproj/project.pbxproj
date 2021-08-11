@@ -33,6 +33,7 @@
 		900D341726B857C80052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
 		900D341826B857F50052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
 		9020094226C1A02100AB0A5F /* ClassifierData.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */; };
+		9020094626C30CEF00AB0A5F /* InventoryNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */; };
 		9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047D1E526A488F200511A25 /* InventoryFilterView.swift */; };
 		90505E1F26B9564E00F0415A /* DataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90505E1E26B9564E00F0415A /* DataRecipe.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
@@ -127,6 +128,7 @@
 		900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryModel.swift; sourceTree = "<group>"; };
 		900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryViewModel.swift; sourceTree = "<group>"; };
 		9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ClassifierData.mlmodel; sourceTree = "<group>"; };
+		9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNavBarView.swift; sourceTree = "<group>"; };
 		9047D1E526A488F200511A25 /* InventoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFilterView.swift; sourceTree = "<group>"; };
 		90505E1E26B9564E00F0415A /* DataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecipe.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +298,7 @@
 				9070148A269E160200F8981A /* InventoryCategoryListView.swift */,
 				9047D1E526A488F200511A25 /* InventoryFilterView.swift */,
 				9065A5F826A9738800BAD3A6 /* InventoryListFilterView.swift */,
+				9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				9090AC9A26993FA7008AF935 /* InventoryModel.swift in Sources */,
 				0EE5F00726B7EBF000D81C8D /* RecipeSortView.swift in Sources */,
 				307C551A269E070F00DD6FC3 /* ShoppingView.swift in Sources */,
+				9020094626C30CEF00AB0A5F /* InventoryNavBarView.swift in Sources */,
 				3041C82526B29AC800E2B156 /* IngredientListCellView.swift in Sources */,
 				307C5524269E9C2E00DD6FC3 /* ShoppingFormView.swift in Sources */,
 				9070148F269F5D4200F8981A /* Global.swift in Sources */,
@@ -687,7 +691,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"ambis-reborn/Preview Content\"";
-				DEVELOPMENT_TEAM = J35A6FFNU8;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ambis-reborn/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -713,7 +717,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"ambis-reborn/Preview Content\"";
-				DEVELOPMENT_TEAM = J35A6FFNU8;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ambis-reborn/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

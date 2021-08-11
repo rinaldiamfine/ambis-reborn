@@ -62,143 +62,100 @@ struct InventoryFilterView: View {
         .padding(.vertical)
         
         if !isSearchActive {
-            VStack(alignment: .leading) {
-                HStack {
+            VStack {
+                HStack(spacing: 0) {
                     Spacer()
                     VStack {
-                        if defaultFilter == "Expire Soon" {
-                            ZStack {
-                                Ellipse()
-                                    .fill(LinearGradient(
-                                        gradient: .init(colors: [colorBrand1, colorBrand2]),
-                                        startPoint: .init(x: 0, y: 0.5),
-                                        endPoint: .init(x: 0.8, y: 0.5)
-                                    ))
-                                    .frame(width: 46, height: 46)
-                                Image("BtnExpirySoonActive")
-                                    .resizable().frame(width: 26, height: 26)
-                            }
-                        } else {
-                            ZStack {
-                                Ellipse()
-    //                                    .strokeBorder(boxColor)
-                                    .fill(boxBackground)
-                                    .frame(width: 46, height: 46)
-                                Image("BtnExpirySoon")
-                                    .resizable()
-                                    .frame(width: 26, height: 26)
-                            }
+                        Rectangle()
+                            .fill(defaultFilter == "Expire Soon" ? Color("BrandColor") : boxBackground)
+                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
+                            .frame(width: 26, height: 4, alignment: .center)
+                        
+                        ZStack {
+                            Ellipse()
+                                .fill(boxBackground)
+                                .frame(width: 46, height: 46)
+                            Image("BtnExpirySoonActive")
+                                .resizable().frame(width: 26, height: 26)
                         }
                         Text("Expire Soon")
+                            .fontWeight(defaultFilter == "Expire Soon" ? .medium : .medium)
                             .font(.system(size: 12, design: .rounded))
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                            .foregroundColor(defaultFilter == "Expire Soon" ? Color("BackgroundInverse") : Color.secondary)
                     }.onTapGesture {
                         defaultFilter = "Expire Soon"
                     }
-                    .padding(.top)
                     .padding(.bottom)
-                    Spacer()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    
                     VStack {
-                        if defaultFilter == "Fridge" {
-                            ZStack {
-                                Ellipse()
-                                    .fill(LinearGradient(
-                                        gradient: .init(colors: [colorBrand1, colorBrand2]),
-                                        startPoint: .init(x: 0, y: 0.5),
-                                        endPoint: .init(x: 0.8, y: 0.5)
-                                    ))
-                                    .frame(width: 46, height: 46)
-                                Image("BtnFridgeActive")
-                                    .resizable()
-                                    .frame(width: 26, height: 26)
-                            }
-                        } else {
-                            ZStack {
-                                Ellipse()
-    //                                    .strokeBorder(boxColor)
-                                    .fill(boxBackground)
-                                    .frame(width: 46, height: 46)
-                                Image("BtnFridge")
-                                    .resizable()
-                                    .frame(width: 26, height: 26)
-                            }
+                        Rectangle()
+                            .fill(defaultFilter == "Fridge" ? Color("BrandColor") : boxBackground)
+                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
+                            .frame(width: 26, height: 4, alignment: .center)
+                        
+                        ZStack {
+                            Ellipse()
+                                .fill(boxBackground)
+                                .frame(width: 46, height: 46)
+                            Image("BtnFridgeActive")
+                                .resizable().frame(width: 26, height: 26)
                         }
-                        Text("   Fridge   ")
+                        Text("Fridge")
+                            .fontWeight(defaultFilter == "Fridge" ? .medium : .medium)
                             .font(.system(size: 12, design: .rounded))
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                            .foregroundColor(defaultFilter == "Fridge" ? Color("BackgroundInverse") : Color.secondary)
                     }.onTapGesture {
                         defaultFilter = "Fridge"
                     }
-                    .padding(.top)
                     .padding(.bottom)
-                    Spacer()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    
                     VStack {
-                        if defaultFilter == "Freezer" {
-                            ZStack {
-                                Ellipse()
-                                    .fill(LinearGradient(
-                                        gradient: .init(colors: [colorBrand1, colorBrand2]),
-                                        startPoint: .init(x: 0, y: 0.5),
-                                        endPoint: .init(x: 0.8, y: 0.5)
-                                    ))
-                                    .frame(width: 46, height: 46)
-                                Image("BtnFreezerActive")
-                                    .resizable()
-                                    .frame(width: 26, height: 26)
-                            }
-                        } else {
-                            ZStack {
-                                Ellipse()
-    //                                    .strokeBorder(boxColor)
-                                    .fill(boxBackground)
-                                    .frame(width: 46, height: 46)
-                                Image("BtnFreezer")
-                                    .resizable()
-                                    .frame(width: 26, height: 26)
-                            }
+                        Rectangle()
+                            .fill(defaultFilter == "Freezer" ? Color("BrandColor") : boxBackground)
+                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
+                            .frame(width: 26, height: 4, alignment: .center)
+                        
+                        ZStack {
+                            Ellipse()
+                                .fill(boxBackground)
+                                .frame(width: 46, height: 46)
+                            Image("BtnFreezerActive")
+                                .resizable().frame(width: 26, height: 26)
                         }
-                        Text("   Freezer   ")
+                        Text("Freezer")
+                            .fontWeight(defaultFilter == "Freezer" ? .medium : .medium)
                             .font(.system(size: 12, design: .rounded))
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                            .foregroundColor(defaultFilter == "Freezer" ? Color("BackgroundInverse") : Color.secondary)
                     }.onTapGesture {
                         defaultFilter = "Freezer"
                     }
-                    .padding(.top)
                     .padding(.bottom)
-                    Spacer()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    
                     VStack {
-                        if defaultFilter == "Other" {
-                            ZStack {
-                                Ellipse()
-                                    .fill(LinearGradient(
-                                        gradient: .init(colors: [colorBrand1, colorBrand2]),
-                                        startPoint: .init(x: 0, y: 0.5),
-                                        endPoint: .init(x: 0.8, y: 0.5)
-                                    ))
-                                    .frame(width: 46, height: 46)
-                                Image("BtnOtherActive")
-                                    .resizable()
-                                    .frame(width: 26, height: 26)
-                            }
-                        } else {
-                            ZStack {
-                                Ellipse()
-    //                                    .strokeBorder(boxColor)
-                                    .fill(boxBackground)
-                                    .frame(width: 46, height: 46)
-                                Image("BtnOther")
-                                    .resizable()
-                                    .frame(width: 26, height: 26)
-                            }
+                        Rectangle()
+                            .fill(defaultFilter == "Other" ? Color("BrandColor") : boxBackground)
+                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
+                            .frame(width: 26, height: 4, alignment: .center)
+                        
+                        ZStack {
+                            Ellipse()
+                                .fill(boxBackground)
+                                .frame(width: 46, height: 46)
+                            Image("BtnOtherActive")
+                                .resizable().frame(width: 26, height: 26)
                         }
-                        Text("   Other   ")
+                        Text("Other")
+                            .fontWeight(defaultFilter == "Other" ? .medium : .medium)
                             .font(.system(size: 12, design: .rounded))
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                            .foregroundColor(defaultFilter == "Other" ? Color("BackgroundInverse") : Color.secondary)
                     }.onTapGesture {
                         defaultFilter = "Other"
                     }
-                    .padding(.top)
                     .padding(.bottom)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                     Spacer()
                 }
                 .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))

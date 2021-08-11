@@ -40,7 +40,7 @@ class RecipeViewModel: ObservableObject, Identifiable {
             let ingredient = Ingredient(context: PersistenceController.shared.container.viewContext)
             
             recipe.name = data.name
-            recipe.cookStep = data.cookStep as NSObject
+            recipe.cookStep = data.cookStep as NSObject as? [String]
             for dataIngredient in data.ingredient {
                 ingredient.name = dataIngredient.name
                 recipe.addToToIngredient(ingredient)
