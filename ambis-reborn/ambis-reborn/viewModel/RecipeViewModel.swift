@@ -81,13 +81,12 @@ class RecipeViewModel: ObservableObject, Identifiable {
     }
     
     func getAllRecipe() {
-        recipe = PersistenceController.shared.getRecipeData().map(RecipeModel.init)
-        recipeCount = recipe.count
         if !UserDefaults.standard.isRecipeLoad() {
             saveRecipeData()
             UserDefaults.standard.setRecipeLoad(value: true)
         }
-        
+        recipe = PersistenceController.shared.getRecipeData().map(RecipeModel.init)
+        recipeCount = recipe.count
     }
     
 }
