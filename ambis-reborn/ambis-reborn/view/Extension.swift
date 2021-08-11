@@ -112,6 +112,7 @@ extension UserDefaults{
     func isRecipeLoad()-> Bool {
         return bool(forKey: UserDefaultsKeys.isRecipeLoad.rawValue)
     }
+}
 
 struct CornerRadiusStyle: ViewModifier {
     var radius: CGFloat
@@ -136,6 +137,8 @@ struct CornerRadiusStyle: ViewModifier {
 
 enum UserDefaultsKeys : String {
     case isRecipeLoad
+}
+
 extension View {
     func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
