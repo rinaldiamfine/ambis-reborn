@@ -18,12 +18,12 @@ struct CookingStepView: View {
                 ImagePlaceholder()
                     .padding(.bottom)
                 CookingStepDetail(cookingStepSample: cookingStepSample)
+                    .padding(.horizontal)
             }
             Spacer()
             CookingDoneButton()
         }
         .navigationBarTitle("Cooking Steps")
-        .padding(.horizontal)
         .background(Color("AppBackground"))
     }
 }
