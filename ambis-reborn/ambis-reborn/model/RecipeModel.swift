@@ -15,17 +15,14 @@ struct RecipeModel {
         return recipe.objectID
     }
     
-//    var ingredient: NSSet {
-//        return recipe.toIngredient ?? NSSet(array: [Ingredient()])
-//    }
-//    
-//    var ingredient: [IngredientModel] {
-//        let ingredient: [IngredientModel]
-//        for ingredientData in (recipe.toIngredient as? Set<Ingredient> ?? []) {
-//            ingredient.append(IngredientModel(ingredient: ingredientData))
-//        }
-//        return ingredient
-//    }
+    var ingredient: [IngredientModel] {
+        var ingredient: [IngredientModel] = []
+        for ingredientData in recipe.toIngredient ?? [] {
+            ingredient.append(IngredientModel(ingredient: ingredientData as! Ingredient))
+        }
+        return ingredient
+    }
+    
     
     var name: String {
         return recipe.name ?? ""

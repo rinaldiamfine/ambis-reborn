@@ -28,24 +28,25 @@ class RecipeViewModel: ObservableObject, Identifiable {
         RecipeSort(id: "", name: "Microwave", isChoose: true),
         RecipeSort(id: "", name: "Oven", isChoose: true)]
     
-    init() {
-        saveRecipeData()
-    }
+//    init() {
+//        saveRecipeData()
+//    }
     
     func saveRecipeData() {
         let dataRecipe = DataRecipe.recipes
         
         for data in dataRecipe {
             let recipe = Recipe(context: PersistenceController.shared.container.viewContext)
-            let ingredient = Ingredient(context: PersistenceController.shared.container.viewContext)
             
             recipe.name = data.name
-            recipe.cookStep = data.cookStep as NSObject as? [String]
+            recipe.cookStep = data.cookStep
             for dataIngredient in data.ingredient {
+                let ingredient = Ingredient(context: PersistenceController.shared.container.viewContext)
+                
                 ingredient.name = dataIngredient.name
-                recipe.addToToIngredient(ingredient)
+                ingredient.toRecipe = recipe
             }
-            
+            //print(recipe.toIngredient)
             PersistenceController.shared.saveData()
         }
         print("save succesful")
@@ -54,6 +55,11 @@ class RecipeViewModel: ObservableObject, Identifiable {
     func getAllRecipe() {
         recipe = PersistenceController.shared.getRecipeData().map(RecipeModel.init)
         recipeCount = recipe.count
+        if !UserDefaults.standard.isRecipeLoad() {
+            saveRecipeData()
+            UserDefaults.standard.setRecipeLoad(value: true)
+        }
+        
     }
     
 }

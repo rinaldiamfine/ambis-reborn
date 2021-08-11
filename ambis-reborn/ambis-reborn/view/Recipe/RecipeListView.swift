@@ -33,7 +33,7 @@ struct RecipeListView: View {
             }
             VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
                 HStack{
-                    Text("5 Recipes Available")
+                    Text("\(recipeViewModel.recipeCount) Recipes Available")
                     Spacer()
                     HStack {
                         Text("Sort").foregroundColor(Color("AccentColor"))
@@ -43,16 +43,11 @@ struct RecipeListView: View {
                     }
                 }.padding(.all, 12)
                 ScrollView {
-                    ForEach(0..<dataRecipe.count) { data in
-                        NavigationLink(destination: RecipeView(recipe: dataRecipe[data])) {
-                            RecipeListItemView(recipe: dataRecipe[data])
+                    ForEach(recipeViewModel.recipe, id:\.id) { recipe in
+                        NavigationLink(destination: RecipeView(recipe: recipe)) {
+                            RecipeListItemView(recipe: recipe)
                         }
                     }
-//                    ForEach(0..<recipeViewModel.recipe.count) { data in
-//                        NavigationLink(destination: RecipeView(recipe: recipeViewModel.recipe[data])) {
-//                            RecipeListItemView(recipe: recipeViewModel.recipe[data])
-//                        }
-//                    }
 
                 }
                 Spacer()
@@ -65,7 +60,6 @@ struct RecipeListView: View {
         .navigationBarTitle("Recipe", displayMode: .automatic)
         .onAppear(perform: {
             recipeViewModel.getAllRecipe()
-            mapDataRecipe()
         })
     }
     

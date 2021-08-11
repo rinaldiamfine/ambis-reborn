@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RecipeView: View {
     
-    //var recipe: RecipeModel
-    var recipe: RecipeSample
+    var recipe: RecipeModel
+    //var recipe: RecipeSample
     @State var isCookingStepPresented: Bool = false
     
     var body: some View {
@@ -18,7 +18,7 @@ struct RecipeView: View {
             ScrollView {
                 ImagePlaceholder()
                 RecipeTitle(name: recipe.name)
-                RecipeDescription(totalServes: recipe.totalServes, prepTime: recipe.prepTime, cookTime: recipe.cookTime)
+                RecipeDescription(totalServes: recipe.totalServes, prepTime: recipe.prepTime, cookTime: recipe.cookTime, difficultyLevel: recipe.difficultyLevel)
                 Divider()
                 IngredientListView(ingredients: recipe.ingredient)
             }
@@ -68,6 +68,7 @@ struct RecipeDescription: View {
     var totalServes: Int
     var prepTime: Int
     var cookTime: Int
+    var difficultyLevel: String
     
     var body: some View {
         HStack {
@@ -80,13 +81,13 @@ struct RecipeDescription: View {
             HStack {
                 Image(systemName: "clock")
                     .foregroundColor(Color(red: 253/255, green: 141/255, blue: 53/155))
-                Text("\(prepTime) mins")
+                Text("\(prepTime + cookTime) mins")
                     .font(.system(size: 15))
             }.padding(.trailing)
             HStack {
                 Image(systemName: "circle.grid.cross")
                     .foregroundColor(Color(red: 253/255, green: 141/255, blue: 53/155))
-                Text("intermediate")
+                Text("\(difficultyLevel)")
                     .font(.system(size: 15))
             }.padding(.trailing)
             Spacer()
@@ -96,8 +97,8 @@ struct RecipeDescription: View {
 }
 
 struct IngredientListView: View {
-    //let ingredients: [IngredientModel]
-    let ingredients: [IngredientSample]
+    let ingredients: [IngredientModel]
+    //let ingredients: [IngredientSample]
     
     var body: some View {
         VStack {
@@ -111,8 +112,8 @@ struct IngredientListView: View {
                     .font(.system(size: 15))
             }
             ForEach(0..<ingredients.count) { data in
-//                IngredientListCellView(ingredient: ingredients[data])
                 IngredientListCellView(ingredient: ingredients[data])
+                //IngredientListCellView(ingredient: ingredients[data])
             }
         }
     }
