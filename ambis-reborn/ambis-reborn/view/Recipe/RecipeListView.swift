@@ -39,7 +39,9 @@ struct RecipeListView: View {
                     HStack {
                         Text("Sort").foregroundColor(Color("AccentColor"))
                         Image(systemName: "arrow.up.arrow.down").foregroundColor(Color("AccentColor"))
-                    }.onTapGesture {
+                    }
+                    .hidden()
+                    .onTapGesture {
                         recipeViewModel.toSort = true
                     }
                 }.padding(.all, 12)
