@@ -16,7 +16,7 @@ struct InventoryView: View {
     
 //    @StateObject var widgetInventoryViewModel = WidgetInventoryViewModel()
     
-    @AppStorage("expiry", store: UserDefaults(suiteName: "group.inventoryUD")) var inventoryData : Data = Data()
+    @AppStorage("expiry", store: UserDefaults(suiteName: "group.widgetInventory")) var inventoryData : Data = Data()
     
     @ObservedObject var searchBar: SearchBar = SearchBar()
     @State private var defaultFilter = "Expire Soon"

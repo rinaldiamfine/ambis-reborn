@@ -39,7 +39,7 @@ struct InventoryNavBar: View {
     
     @StateObject var inventoryViewModel = InventoryViewModel()
     @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
-    @AppStorage("expiry", store: UserDefaults(suiteName: "group.inventoryUD")) var inventoryData : Data = Data()
+    @AppStorage("expiry", store: UserDefaults(suiteName: "group.widgetInventory")) var inventoryData : Data = Data()
     
     @ObservedObject var searchBar: SearchBar = SearchBar()
     @State private var defaultFilter = "Freezer"
