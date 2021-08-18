@@ -10,7 +10,10 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
-    @AppStorage("expiry", store: UserDefaults(suiteName: "group.widgetInventory")) var inventoryData : Data = Data()
+    //FOR PRODUCTION
+//    @AppStorage("expiry", store: UserDefaults(suiteName: "group.widgetInventory")) var inventoryData : Data = Data()
+    //FOR DEVELOPMENT
+    @AppStorage("expiry", store: UserDefaults(suiteName: "group.inventoryUD")) var inventoryData : Data = Data()
 //    guard let widgetGetExpiry = try? JSONDecoder().decode(WidgetInventoryModel.self, from: inventoryData) else { return }
     
     func placeholder(in context: Context) -> SimpleEntry {

@@ -12,7 +12,10 @@ import CloudKit
 
 class RecipeViewModel: ObservableObject, Identifiable {
     @Published var recipes: [RecipeCloudKitModel] = []
-    let database = CKContainer(identifier: "iCloud.icloud.keepfresh").publicCloudDatabase
+    //FOR PRODUCTION
+//    let database = CKContainer(identifier: "iCloud.icloud.keepfresh").publicCloudDatabase
+    //FOR DEVELOPMENT
+    let database = CKContainer(identifier: "iCloud.Ambis.Recipe").publicCloudDatabase
     
     func fetchRecipes(tags: [String]) {
         let query = CKQuery(recordType: "Recipes", predicate: NSPredicate(format: "tags IN %@", tags))

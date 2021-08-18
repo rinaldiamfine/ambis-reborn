@@ -37,6 +37,16 @@
 		9020094826C3D79A00AB0A5F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9020094726C3D79A00AB0A5F /* CloudKit.framework */; };
 		9020094A26C3F29800AB0A5F /* RecipeListItemCloudKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094926C3F29800AB0A5F /* RecipeListItemCloudKitView.swift */; };
 		9020094C26C3FF7400AB0A5F /* RecipeCloudKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094B26C3FF7400AB0A5F /* RecipeCloudKitView.swift */; };
+		902451DD26CD23BF00827711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 902451DC26CD23BF00827711 /* Assets.xcassets */; };
+		902451E426CD23BF00827711 /* watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 902451E326CD23BF00827711 /* watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		902451E926CD23BF00827711 /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902451E826CD23BF00827711 /* ambis_rebornApp.swift */; };
+		902451EB26CD23BF00827711 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902451EA26CD23BF00827711 /* ContentView.swift */; };
+		902451ED26CD23BF00827711 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902451EC26CD23BF00827711 /* NotificationController.swift */; };
+		902451EF26CD23BF00827711 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902451EE26CD23BF00827711 /* NotificationView.swift */; };
+		902451F126CD23BF00827711 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902451F026CD23BF00827711 /* ComplicationController.swift */; };
+		902451F326CD23C000827711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 902451F226CD23C000827711 /* Assets.xcassets */; };
+		902451F626CD23C000827711 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 902451F526CD23C000827711 /* Preview Assets.xcassets */; };
+		902451FB26CD23C000827711 /* watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 902451DA26CD23BE00827711 /* watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047D1E526A488F200511A25 /* InventoryFilterView.swift */; };
 		90505E1F26B9564E00F0415A /* DataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90505E1E26B9564E00F0415A /* DataRecipe.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
@@ -81,6 +91,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		902451E526CD23BF00827711 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 905DE8AA2693311500E7011C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 902451E226CD23BF00827711;
+			remoteInfo = "watch Extension";
+		};
+		902451F926CD23C000827711 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 905DE8AA2693311500E7011C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 902451D926CD23BE00827711;
+			remoteInfo = watch;
+		};
 		9065A60D26AA25EE00BAD3A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 905DE8AA2693311500E7011C /* Project object */;
@@ -91,6 +115,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		902451FF26CD23C000827711 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				902451E426CD23BF00827711 /* watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9024520326CD23C000827711 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				902451FB26CD23C000827711 /* watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9065A61026AA25EE00BAD3A6 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,6 +181,19 @@
 		9020094726C3D79A00AB0A5F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		9020094926C3F29800AB0A5F /* RecipeListItemCloudKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListItemCloudKitView.swift; sourceTree = "<group>"; };
 		9020094B26C3FF7400AB0A5F /* RecipeCloudKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCloudKitView.swift; sourceTree = "<group>"; };
+		902451DA26CD23BE00827711 /* watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		902451DC26CD23BF00827711 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		902451DE26CD23BF00827711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		902451E326CD23BF00827711 /* watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		902451E826CD23BF00827711 /* ambis_rebornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ambis_rebornApp.swift; sourceTree = "<group>"; };
+		902451EA26CD23BF00827711 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		902451EC26CD23BF00827711 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		902451EE26CD23BF00827711 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		902451F026CD23BF00827711 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		902451F226CD23C000827711 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		902451F526CD23C000827711 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		902451F726CD23C000827711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		902451F826CD23C000827711 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		9047D1E526A488F200511A25 /* InventoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFilterView.swift; sourceTree = "<group>"; };
 		90505E1E26B9564E00F0415A /* DataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecipe.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +240,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		902451E026CD23BF00827711 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		905DE8AF2693311500E7011C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,12 +267,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		902451DB26CD23BE00827711 /* watch */ = {
+			isa = PBXGroup;
+			children = (
+				902451DC26CD23BF00827711 /* Assets.xcassets */,
+				902451DE26CD23BF00827711 /* Info.plist */,
+			);
+			path = watch;
+			sourceTree = "<group>";
+		};
+		902451E726CD23BF00827711 /* watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				902451E826CD23BF00827711 /* ambis_rebornApp.swift */,
+				902451EA26CD23BF00827711 /* ContentView.swift */,
+				902451EC26CD23BF00827711 /* NotificationController.swift */,
+				902451EE26CD23BF00827711 /* NotificationView.swift */,
+				902451F026CD23BF00827711 /* ComplicationController.swift */,
+				902451F226CD23C000827711 /* Assets.xcassets */,
+				902451F726CD23C000827711 /* Info.plist */,
+				902451F826CD23C000827711 /* PushNotificationPayload.apns */,
+				902451F426CD23C000827711 /* Preview Content */,
+			);
+			path = "watch Extension";
+			sourceTree = "<group>";
+		};
+		902451F426CD23C000827711 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				902451F526CD23C000827711 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		905DE8A92693311500E7011C = {
 			isa = PBXGroup;
 			children = (
 				900D341126B854330052CF5D /* widgetExtension.entitlements */,
 				905DE8B42693311500E7011C /* ambis-reborn */,
 				9065A60426AA25EC00BAD3A6 /* widget */,
+				902451DB26CD23BE00827711 /* watch */,
+				902451E726CD23BF00827711 /* watch Extension */,
 				9065A5FF26AA25EC00BAD3A6 /* Frameworks */,
 				905DE8B32693311500E7011C /* Products */,
 			);
@@ -217,6 +318,8 @@
 			children = (
 				905DE8B22693311500E7011C /* ambis-reborn.app */,
 				9065A5FE26AA25EC00BAD3A6 /* widgetExtension.appex */,
+				902451DA26CD23BE00827711 /* watch.app */,
+				902451E326CD23BF00827711 /* watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -395,6 +498,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		902451D926CD23BE00827711 /* watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9024520026CD23C000827711 /* Build configuration list for PBXNativeTarget "watch" */;
+			buildPhases = (
+				902451D826CD23BE00827711 /* Resources */,
+				902451FF26CD23C000827711 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				902451E626CD23BF00827711 /* PBXTargetDependency */,
+			);
+			name = watch;
+			productName = watch;
+			productReference = 902451DA26CD23BE00827711 /* watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		902451E226CD23BF00827711 /* watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 902451FC26CD23C000827711 /* Build configuration list for PBXNativeTarget "watch Extension" */;
+			buildPhases = (
+				902451DF26CD23BF00827711 /* Sources */,
+				902451E026CD23BF00827711 /* Frameworks */,
+				902451E126CD23BF00827711 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "watch Extension";
+			productName = "watch Extension";
+			productReference = 902451E326CD23BF00827711 /* watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		905DE8B12693311500E7011C /* ambis-reborn */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 905DE8C12693311700E7011C /* Build configuration list for PBXNativeTarget "ambis-reborn" */;
@@ -403,11 +540,13 @@
 				905DE8AF2693311500E7011C /* Frameworks */,
 				905DE8B02693311500E7011C /* Resources */,
 				9065A61026AA25EE00BAD3A6 /* Embed App Extensions */,
+				9024520326CD23C000827711 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				9065A60E26AA25EE00BAD3A6 /* PBXTargetDependency */,
+				902451FA26CD23C000827711 /* PBXTargetDependency */,
 			);
 			name = "ambis-reborn";
 			productName = "ambis-reborn";
@@ -440,6 +579,12 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					902451D926CD23BE00827711 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					902451E226CD23BF00827711 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
 					905DE8B12693311500E7011C = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -463,11 +608,30 @@
 			targets = (
 				905DE8B12693311500E7011C /* ambis-reborn */,
 				9065A5FD26AA25EC00BAD3A6 /* widgetExtension */,
+				902451D926CD23BE00827711 /* watch */,
+				902451E226CD23BF00827711 /* watch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		902451D826CD23BE00827711 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				902451DD26CD23BF00827711 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		902451E126CD23BF00827711 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				902451F626CD23C000827711 /* Preview Assets.xcassets in Resources */,
+				902451F326CD23C000827711 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		905DE8B02693311500E7011C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -488,6 +652,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		902451DF26CD23BF00827711 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				902451ED26CD23BF00827711 /* NotificationController.swift in Sources */,
+				902451EB26CD23BF00827711 /* ContentView.swift in Sources */,
+				902451F126CD23BF00827711 /* ComplicationController.swift in Sources */,
+				902451E926CD23BF00827711 /* ambis_rebornApp.swift in Sources */,
+				902451EF26CD23BF00827711 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		905DE8AE2693311500E7011C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -569,6 +745,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		902451E626CD23BF00827711 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 902451E226CD23BF00827711 /* watch Extension */;
+			targetProxy = 902451E526CD23BF00827711 /* PBXContainerItemProxy */;
+		};
+		902451FA26CD23C000827711 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 902451D926CD23BE00827711 /* watch */;
+			targetProxy = 902451F926CD23C000827711 /* PBXContainerItemProxy */;
+		};
 		9065A60E26AA25EE00BAD3A6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9065A5FD26AA25EC00BAD3A6 /* widgetExtension */;
@@ -577,6 +763,94 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		902451FD26CD23C000827711 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"watch Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		902451FE26CD23C000827711 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"watch Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
+		9024520126CD23C000827711 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				IBSC_MODULE = watch_Extension;
+				INFOPLIST_FILE = watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		9024520226CD23C000827711 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				IBSC_MODULE = watch_Extension;
+				INFOPLIST_FILE = watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
 		905DE8BF2693311700E7011C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -701,9 +975,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "ambis-reborn/ambis-reborn.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ambis-reborn/Preview Content\"";
-				DEVELOPMENT_TEAM = J35A6FFNU8;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ambis-reborn/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -711,8 +985,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -727,9 +1001,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "ambis-reborn/ambis-reborn.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ambis-reborn/Preview Content\"";
-				DEVELOPMENT_TEAM = J35A6FFNU8;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ambis-reborn/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -737,8 +1011,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -753,7 +1027,7 @@
 				CODE_SIGN_ENTITLEMENTS = widgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = J35A6FFNU8;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				INFOPLIST_FILE = widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -761,7 +1035,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -777,7 +1051,7 @@
 				CODE_SIGN_ENTITLEMENTS = widgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = J35A6FFNU8;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				INFOPLIST_FILE = widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -785,7 +1059,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -796,6 +1070,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		902451FC26CD23C000827711 /* Build configuration list for PBXNativeTarget "watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				902451FD26CD23C000827711 /* Debug */,
+				902451FE26CD23C000827711 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9024520026CD23C000827711 /* Build configuration list for PBXNativeTarget "watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9024520126CD23C000827711 /* Debug */,
+				9024520226CD23C000827711 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		905DE8AD2693311500E7011C /* Build configuration list for PBXProject "ambis-reborn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

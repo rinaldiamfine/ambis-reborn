@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.widgetInventory</string>
+		<string>group.inventoryUD</string>
 	</array>
 </dict>
 </plist>
