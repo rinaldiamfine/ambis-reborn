@@ -48,6 +48,7 @@
 		902451F326CD23C000827711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 902451F226CD23C000827711 /* Assets.xcassets */; };
 		902451F626CD23C000827711 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 902451F526CD23C000827711 /* Preview Assets.xcassets */; };
 		902451FB26CD23C000827711 /* watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 902451DA26CD23BE00827711 /* watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9047004E26CE577D00B05B17 /* ComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047004D26CE577D00B05B17 /* ComplicationView.swift */; };
 		9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047D1E526A488F200511A25 /* InventoryFilterView.swift */; };
 		90505E1F26B9564E00F0415A /* DataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90505E1E26B9564E00F0415A /* DataRecipe.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
@@ -196,6 +197,7 @@
 		902451F526CD23C000827711 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		902451F726CD23C000827711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		902451F826CD23C000827711 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		9047004D26CE577D00B05B17 /* ComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationView.swift; sourceTree = "<group>"; };
 		9047D1E526A488F200511A25 /* InventoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFilterView.swift; sourceTree = "<group>"; };
 		90505E1E26B9564E00F0415A /* DataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecipe.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,6 +289,7 @@
 				902451EC26CD23BF00827711 /* NotificationController.swift */,
 				902451EE26CD23BF00827711 /* NotificationView.swift */,
 				902451F026CD23BF00827711 /* ComplicationController.swift */,
+				9047004D26CE577D00B05B17 /* ComplicationView.swift */,
 				902451F226CD23C000827711 /* Assets.xcassets */,
 				902451F726CD23C000827711 /* Info.plist */,
 				902451F826CD23C000827711 /* PushNotificationPayload.apns */,
@@ -662,6 +665,7 @@
 				902451ED26CD23BF00827711 /* NotificationController.swift in Sources */,
 				30A8D07326CE558D00DF30B1 /* ExpireSoonProgressBarView.swift in Sources */,
 				902451EB26CD23BF00827711 /* ContentView.swift in Sources */,
+				9047004E26CE577D00B05B17 /* ComplicationView.swift in Sources */,
 				902451F126CD23BF00827711 /* ComplicationController.swift in Sources */,
 				902451E926CD23BF00827711 /* ambis_rebornApp.swift in Sources */,
 				902451EF26CD23BF00827711 /* NotificationView.swift in Sources */,
