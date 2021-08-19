@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E20A2AF26B285BF0012F3C6 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */; };
 		0E20A2B226B2B23D0012F3C6 /* RecipeListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A2B126B2B23D0012F3C6 /* RecipeListItemView.swift */; };
+		0EB0724726CE64A400A3C895 /* ExpireSoonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB0724626CE64A400A3C895 /* ExpireSoonListView.swift */; };
 		0EE5F00726B7EBF000D81C8D /* RecipeSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F00626B7EBF000D81C8D /* RecipeSortView.swift */; };
 		0EE5F00B26B8086F00D81C8D /* RecipeSortSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F00A26B8086F00D81C8D /* RecipeSortSample.swift */; };
 		302C8E0F26BD1E07009EBA28 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302C8E0E26BD1E07009EBA28 /* RecipeModel.swift */; };
@@ -155,6 +156,7 @@
 /* Begin PBXFileReference section */
 		0E20A2AE26B285BF0012F3C6 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		0E20A2B126B2B23D0012F3C6 /* RecipeListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListItemView.swift; sourceTree = "<group>"; };
+		0EB0724626CE64A400A3C895 /* ExpireSoonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireSoonListView.swift; sourceTree = "<group>"; };
 		0EE5F00626B7EBF000D81C8D /* RecipeSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSortView.swift; sourceTree = "<group>"; };
 		0EE5F00A26B8086F00D81C8D /* RecipeSortSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSortSample.swift; sourceTree = "<group>"; };
 		302C8E0E26BD1E07009EBA28 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			children = (
 				902451E826CD23BF00827711 /* ambis_rebornApp.swift */,
 				902451EA26CD23BF00827711 /* ContentView.swift */,
+				0EB0724626CE64A400A3C895 /* ExpireSoonListView.swift */,
 				30A8D07226CE558D00DF30B1 /* ExpireSoonProgressBarView.swift */,
 				902451EC26CD23BF00827711 /* NotificationController.swift */,
 				902451EE26CD23BF00827711 /* NotificationView.swift */,
@@ -668,6 +671,7 @@
 				9047004E26CE577D00B05B17 /* ComplicationView.swift in Sources */,
 				902451F126CD23BF00827711 /* ComplicationController.swift in Sources */,
 				902451E926CD23BF00827711 /* ambis_rebornApp.swift in Sources */,
+				0EB0724726CE64A400A3C895 /* ExpireSoonListView.swift in Sources */,
 				902451EF26CD23BF00827711 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

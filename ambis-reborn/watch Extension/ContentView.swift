@@ -23,33 +23,13 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            TabView {
-                GeometryReader(content: { geometry in
-                    VStack(spacing: 15) {
-                        ExpireSoonProgressBarView()
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                    }
-                })
-
-                GeometryReader(content: { geometry in
-                    List {
-                        ForEach(dataInventory, id:\.id) {
-                            data in
-                            HStack {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 30, height: 30)
-                                    Text(data.icon).font(.system(.body))
-                                }
-                                VStack(alignment: .leading) {
-                                    Text(data.title).font(.system(.body, design: .rounded))
-                                    Text(data.subtitle).font(.system(.footnote, design: .rounded))
-                                }
-                            }
-                        }
-                    }
-                }).navigationTitle("Expiremind")
+            ScrollView {
+                VStack {
+                    ExpireSoonProgressBarView()
+                    ExpireSoonListView()
+                }
             }
+            .navigationTitle("Expiremind")
         }
     }
 }
