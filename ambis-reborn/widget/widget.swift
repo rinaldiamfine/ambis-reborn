@@ -125,6 +125,7 @@ struct largeListContentView: View {
                 Text(content.icon).font(.system(size: 24))
             }
             .padding(.leading, 10)
+            
             VStack(alignment: .leading, spacing: 5) {
                 Text(content.name).font(.system(size: 13, design: .rounded))
                 HStack {
