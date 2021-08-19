@@ -24,6 +24,7 @@
 		307C5520269E946500DD6FC3 /* ShoppingListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C551F269E946500DD6FC3 /* ShoppingListEmptyView.swift */; };
 		307C5522269E99AE00DD6FC3 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C5521269E99AE00DD6FC3 /* ShoppingListView.swift */; };
 		307C5524269E9C2E00DD6FC3 /* ShoppingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C5523269E9C2E00DD6FC3 /* ShoppingFormView.swift */; };
+		30A8D07326CE558D00DF30B1 /* ExpireSoonProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A8D07226CE558D00DF30B1 /* ExpireSoonProgressBarView.swift */; };
 		30C5329326BA6FE5004F1E3F /* CookingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C5329226BA6FE5004F1E3F /* CookingStepView.swift */; };
 		30CD65CB26A03F4D003CA34A /* ShoppingToInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CD65CA26A03F4D003CA34A /* ShoppingToInventoryView.swift */; };
 		30CD65CD26A04263003CA34A /* ShoppingToInventoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CD65CC26A04263003CA34A /* ShoppingToInventoryListView.swift */; };
@@ -168,6 +169,7 @@
 		307C551F269E946500DD6FC3 /* ShoppingListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListEmptyView.swift; sourceTree = "<group>"; };
 		307C5521269E99AE00DD6FC3 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		307C5523269E9C2E00DD6FC3 /* ShoppingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingFormView.swift; sourceTree = "<group>"; };
+		30A8D07226CE558D00DF30B1 /* ExpireSoonProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireSoonProgressBarView.swift; sourceTree = "<group>"; };
 		30C5329226BA6FE5004F1E3F /* CookingStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingStepView.swift; sourceTree = "<group>"; };
 		30CD65CA26A03F4D003CA34A /* ShoppingToInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToInventoryView.swift; sourceTree = "<group>"; };
 		30CD65CC26A04263003CA34A /* ShoppingToInventoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToInventoryListView.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			children = (
 				902451E826CD23BF00827711 /* ambis_rebornApp.swift */,
 				902451EA26CD23BF00827711 /* ContentView.swift */,
+				30A8D07226CE558D00DF30B1 /* ExpireSoonProgressBarView.swift */,
 				902451EC26CD23BF00827711 /* NotificationController.swift */,
 				902451EE26CD23BF00827711 /* NotificationView.swift */,
 				902451F026CD23BF00827711 /* ComplicationController.swift */,
@@ -657,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				902451ED26CD23BF00827711 /* NotificationController.swift in Sources */,
+				30A8D07326CE558D00DF30B1 /* ExpireSoonProgressBarView.swift in Sources */,
 				902451EB26CD23BF00827711 /* ContentView.swift in Sources */,
 				902451F126CD23BF00827711 /* ComplicationController.swift in Sources */,
 				902451E926CD23BF00827711 /* ambis_rebornApp.swift in Sources */,

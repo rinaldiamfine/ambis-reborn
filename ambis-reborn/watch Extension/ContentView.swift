@@ -24,22 +24,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             TabView {
-                GeometryReader(content: { geometry in
-                    ZStack {
-                        Circle()
-                            .stroke(lineWidth: 10.0)
-                            .opacity(0.3)
-                            .foregroundColor(Color(.red))
-                            .frame(width: 135, height: 135)
-                        Circle()
-                            .trim(from: 0.0, to: CGFloat(1))
-                            .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
-                            .foregroundColor(Color(.blue))
-                            .frame(width: 135, height: 135)
-                    }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                }).navigationTitle("Expiremind")
-                
+                ExpireSoonProgressBarView()
+
                 GeometryReader(content: { geometry in
                     List {
                         ForEach(dataInventory, id:\.id) {

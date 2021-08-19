@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/fabiandk/Documents/ambis-reborn/ambis-reborn/ambis-reborn.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
