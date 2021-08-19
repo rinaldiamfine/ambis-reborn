@@ -24,7 +24,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             TabView {
-                ExpireSoonProgressBarView()
+                GeometryReader(content: { geometry in
+                    VStack(spacing: 15) {
+                        ExpireSoonProgressBarView()
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                    }
+                })
 
                 GeometryReader(content: { geometry in
                     List {
