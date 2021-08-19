@@ -21,13 +21,13 @@ struct ExpireSoonProgressBarView: View {
                         .trim(from: 0.0, to: CGFloat(1 - (Double(nearExpiryItem) / Double(totalInventory))))
                         .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
                         .opacity(0.3)
-                        .foregroundColor(Color(.green))
+                        .foregroundColor(Color("SuccessColor"))
                         .rotationEffect(Angle(degrees: calculateBackCircleRotationAngle(numerator: nearExpiryItem, denumerator: totalInventory)))
                         .frame(width: 115, height: 115)
                     Circle()
                         .trim(from: 0.0, to: CGFloat(Double(nearExpiryItem) / Double(totalInventory)))
                         .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
-                        .foregroundColor(Color(.red))
+                        .foregroundColor(Color("DangerColor"))
                         .rotationEffect(Angle(degrees: 270))
                         .frame(width: 115, height: 115)
                 } else {
@@ -35,7 +35,7 @@ struct ExpireSoonProgressBarView: View {
                         .trim(from: 0.025, to: CGFloat(0.975 - (Double(nearExpiryItem) / Double(totalInventory))))
                         .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
                         .opacity(0.3)
-                        .foregroundColor(Color(.green))
+                        .foregroundColor(Color("SuccessColor"))
                         .rotationEffect(Angle(degrees: calculateBackCircleRotationAngle(numerator: nearExpiryItem, denumerator: totalInventory)))
                         .frame(width: 115, height: 115)
                     Circle()
@@ -46,16 +46,21 @@ struct ExpireSoonProgressBarView: View {
                         .frame(width: 115, height: 115)
                 }
                 
-                Text(String(nearExpiryItem) + "\nItems")
-                    .multilineTextAlignment(.center)
-                    .font(.system(.headline, design: .rounded))
-            }.navigationTitle("Expiremind")
+                ZStack {
+                    Circle()
+                        .fill(Color("GrayColor"))
+                        .frame(width: 80, height: 80)
+                    Text(String(nearExpiryItem) + "\nItems")
+                        .multilineTextAlignment(.center)
+                        .font(.system(.headline, design: .rounded))
+                }
+            }
             Spacer()
             Text("Expires in 3 days or less")
                 .multilineTextAlignment(.center)
                 .font(.system(.body, design: .rounded))
+            Spacer()
         }
-
     }
     
     func calculateBackCircleRotationAngle(numerator: Int, denumerator: Int) -> Double {

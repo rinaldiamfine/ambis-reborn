@@ -20,17 +20,21 @@ struct ExpireSoonListView: View {
     ]
     
     var body: some View {
-        Section(header: viewHeader(title: "One Day")) {
-            ForEach(dataInventory, id:\.id) { mData in
-                listView(data: mData, color: Color("RedListColor"))
+        VStack {
+            Section(header: viewHeader(title: "In 1 day or less")) {
+                ForEach(dataInventory, id:\.id) { mData in
+                    listView(data: mData, color: Color("DangerColorTransparent"))
+                }
+            }
+            
+            Section(header: viewHeader(title: "In 2-3 days")) {
+                ForEach(dataInventory, id:\.id) { mData in
+                    listView(data: mData, color: Color("WarningColorTransparent"))
+                }
             }
         }
         
-        Section(header: viewHeader(title: "Two Day")) {
-            ForEach(dataInventory, id:\.id) { mData in
-                listView(data: mData, color: Color("RedListColor"))
-            }
-        }
+        
     }
     
     func listView(data: FormatInventory, color: Color) -> some View {
@@ -49,14 +53,16 @@ struct ExpireSoonListView: View {
         }
         .padding(.horizontal, 4)
         .padding(.vertical, 2)
-        .background(Color(.gray))
+        .background(color)
         .cornerRadius(15)
         .padding(.horizontal, 8)
     }
     
     func viewHeader(title: String) -> some View {
         return HStack {
-            Text(title).font(.system(size: 14))
+            Text(title)
+                .font(.system(.footnote, design: .rounded))
+//                .textCase(.uppercase)
             Spacer()
         }
         .foregroundColor(.white)

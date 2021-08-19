@@ -23,12 +23,15 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack {
+            GeometryReader(content: { geometry in
+                ScrollView {
                     ExpireSoonProgressBarView()
+                        .ignoresSafeArea(.all, edges: .bottom)
+                        .frame(width: geometry.size.width, height: geometry.safeAreaInsets.bottom + geometry.size.height)
+                    
                     ExpireSoonListView()
                 }
-            }
+            })
             .navigationTitle("Expiremind")
         }
     }
