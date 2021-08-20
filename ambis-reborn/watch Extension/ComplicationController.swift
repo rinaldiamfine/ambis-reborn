@@ -14,7 +14,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         FormatInventory(title: "Sayur", subtitle: "Freezer ・ 10Pcs", expiryInt: 5, icon: "🥦")
     ]
     
-    let expiRemindComplication: [CLKComplicationFamily] = [.graphicCircular, .graphicExtraLarge, .modularLarge]
+    let expiRemindComplication: [CLKComplicationFamily] = [.graphicCircular, .graphicExtraLarge, .graphicRectangular]
     // MARK: - Complication Configuration
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
@@ -83,8 +83,8 @@ extension ComplicationController {
             return CLKComplicationTemplateGraphicCircularView(
                 TemplateGraphicCircularView()
             )
-        case .modularLarge:
-            return CLKComplicationTemplateGraphicCircularView(
+        case .graphicRectangular:
+            return CLKComplicationTemplateGraphicRectangularFullView(
                 TemplateGraphicRectangularFullView()
             )
         case .graphicExtraLarge:

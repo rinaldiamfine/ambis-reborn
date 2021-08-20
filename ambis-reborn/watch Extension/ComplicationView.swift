@@ -72,7 +72,7 @@ struct TemplateGraphicRectangularFullView: View {
                     .foregroundColor(.secondary)
                 ProgressView(value: Float(nearExpiryItem), total: Float(totalInventory)).progressViewStyle(LinearProgressViewStyle(tint: Color("BrandColor")))
                 HStack {
-                    Text("\(nearExpiryItem)")
+                    Text("0")
                         .font(.system(.subheadline, design: .rounded))
                     Spacer()
                     Text("\(totalInventory)")
