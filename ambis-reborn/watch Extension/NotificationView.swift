@@ -25,7 +25,7 @@ struct NotificationView: View {
                 
                 HStack(alignment: .center) {
                     Text("ExpiRemind")
-                        .font(.system(.body, design: .rounded))
+                        .font(.system(.footnote, design: .rounded))
                         .foregroundColor(Color("InfoColor"))
                 }
             }

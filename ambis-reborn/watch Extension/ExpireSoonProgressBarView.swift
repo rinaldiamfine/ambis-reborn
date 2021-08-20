@@ -48,13 +48,13 @@ struct ExpireSoonProgressBarView: View {
                     Circle()
                         .fill(Color("GrayColor"))
                         .frame(width: 80, height: 80)
-                    Text(String(nearExpiryItem) + "\nItems")
+                    Text(String(nearExpiryItem) + "\nitems")
                         .multilineTextAlignment(.center)
                         .font(.system(.headline, design: .rounded))
                 }
             }
             Spacer()
-            Text("Expires in 3 days or less")
+            Text("Expires in 3 days\nor less")
                 .multilineTextAlignment(.center)
                 .font(.system(.body, design: .rounded))
             Spacer()

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct FormatInventory : Identifiable {
     var id = UUID()
@@ -16,10 +17,24 @@ struct FormatInventory : Identifiable {
 }
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+//    @FetchRequest(entity: Inventory.entity(), sortDescriptors: []) var invent: FetchedResults<Inventory>
+    
+    @ObservedObject var inventoryViewModel = InventoryViewModel()
+    @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
+    
     @State var dataInventory : [FormatInventory] = [
         FormatInventory(title: "Paha Ayam", subtitle: "Fridge ・ 1Kg", expiryInt: 3, icon: "🥩"),
         FormatInventory(title: "Sayur", subtitle: "Freezer ・ 10Pcs", expiryInt: 5, icon: "🥦")
     ]
+    
+    func checker() {
+//        var inv = PersistenceController.shared.getInventoryData().map(InventoryModel.init).sorted { $0.expiryDate < $1.expiryDate }
+//        print(invent.count , "GET INV DATA")
+//        print(res.count, "RES")
+//        print(inventoryViewModel.inventory , "GET INVENT")
+//        print(foodCategoryViewModel.getData(), "FCTG")
+    }
     
     var body: some View {
         NavigationView {
@@ -33,7 +48,12 @@ struct ContentView: View {
                 }
             })
             .navigationTitle("Expiremind")
-        }
+        }.onAppear(perform: {
+            foodCategoryViewModel.getData()
+            inventoryViewModel.loadList()
+//                    NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
+            checker()
+        })
     }
 }
 

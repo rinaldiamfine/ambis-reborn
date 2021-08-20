@@ -6,15 +6,21 @@
 //
 
 import ClockKit
-
+import SwiftUI
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
+    @State var dataInventory : [FormatInventory] = [
+        FormatInventory(title: "Paha Ayam", subtitle: "Fridge ・ 1Kg", expiryInt: 3, icon: "🥩"),
+        FormatInventory(title: "Sayur", subtitle: "Freezer ・ 10Pcs", expiryInt: 5, icon: "🥦")
+    ]
     
+    let expiRemindComplication: [CLKComplicationFamily] = [.graphicCircular, .graphicExtraLarge, .modularLarge]
     // MARK: - Complication Configuration
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
-            CLKComplicationDescriptor(identifier: "complication", displayName: "ambis-reborn", supportedFamilies: CLKComplicationFamily.allCases)
+//            CLKComplicationDescriptor(identifier: "complication", displayName: "ambis-reborn", supportedFamilies: CLKComplicationFamily.allCases)
+            CLKComplicationDescriptor(identifier: "complication", displayName: "ExpiRemind", supportedFamilies: expiRemindComplication)
             // Multiple complication support can be added here with more descriptors
         ]
         
@@ -42,7 +48,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         // Call the handler with the current timeline entry
-        handler(nil)
+//        handler(nil)
+        
+//        if let next = dataController.nextAppointment(from: Date()),
+        if 1 == 1,
+             let template = makeTemplate(for: dataInventory, complication: complication) {
+             let entry = CLKComplicationTimelineEntry(
+               date: Date(),
+               complicationTemplate: template)
+             handler(entry)
+        } else {
+          handler(nil)
+        }
     }
     
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
@@ -55,5 +72,27 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached
         handler(nil)
+    }
+}
+
+extension ComplicationController {
+    func makeTemplate(for formatInventory: [FormatInventory], complication: CLKComplication) -> CLKComplicationTemplate? {
+        switch complication.family {
+        //[.graphicCircular, .graphicExtraLarge, .modularLarge]
+        case .graphicCircular:
+            return CLKComplicationTemplateGraphicCircularView(
+                TemplateGraphicCircularView()
+            )
+        case .modularLarge:
+            return CLKComplicationTemplateGraphicCircularView(
+                TemplateGraphicRectangularFullView()
+            )
+        case .graphicExtraLarge:
+            return CLKComplicationTemplateGraphicExtraLargeCircularView(
+                TemplateGraphicExtraLargeCircularView()
+            )
+        default:
+              return nil
+        }
     }
 }

@@ -58,6 +58,32 @@ struct TemplateGraphicCircularView: View {
     }
 }
 
+struct TemplateGraphicRectangularFullView: View {
+    @State var nearExpiryItem: Int = 4
+    @State var totalInventory: Int = 16
+    
+    var body: some View {
+        HStack(spacing: 10) {
+            VStack(alignment: .leading) {
+                Text("\(nearExpiryItem)/\(totalInventory) ITEMS")
+                    .font(.system(.body, design: .rounded))
+                Text("Expires in 3 days or less")
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundColor(.secondary)
+                ProgressView(value: Float(nearExpiryItem), total: Float(totalInventory)).progressViewStyle(LinearProgressViewStyle(tint: Color("BrandColor")))
+                HStack {
+                    Text("\(nearExpiryItem)")
+                        .font(.system(.subheadline, design: .rounded))
+                    Spacer()
+                    Text("\(totalInventory)")
+                        .font(.system(.subheadline, design: .rounded))
+                }
+            }
+        }
+    }
+    
+}
+
 struct TemplateGraphicExtraLargeCircularView: View {
     @State var nearExpiryItem: Int = 4
     @State var totalInventory: Int = 16
@@ -123,8 +149,9 @@ struct ComplicationView_Previews: PreviewProvider {
             )
             .previewContext()
             
-//            CLKComplicationTemplateModularLargeTallBody(headerTextProvider: CLKTextProvider(format: "A"), bodyTextProvider: CLKTextProvider(format: "A"))
-//            .previewContext()
+            CLKComplicationTemplateGraphicRectangularFullView(
+                TemplateGraphicRectangularFullView()
+            ).previewContext()
             
             CLKComplicationTemplateGraphicCircularView(
                 TemplateGraphicCircularView()

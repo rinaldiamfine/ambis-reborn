@@ -6,13 +6,32 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct ambis_rebornApp: App {
+//    var managedObjectContext = (WKExtension.shared().delegate as! WatchPersistenceController).container.viewContext
+    
+    let persistenceController = WatchPersistenceController.shared
+    @Environment(\.scenePhase) private var scenePhase
+    
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
+        }.onChange(of: scenePhase) { phase in
+            switch phase {
+                case .active:
+                    print("active")
+                case .inactive:
+                    print("inactive")
+                case .background:
+                    print("background")
+                    persistenceController.saveData()
+                @unknown default:
+                    print("Apple update status baru kah")
             }
         }
 

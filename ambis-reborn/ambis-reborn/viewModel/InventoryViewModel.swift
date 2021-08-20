@@ -163,7 +163,7 @@ class InventoryViewModel: ObservableObject {
         foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
         foodCategoryCount = foodCategories.count
         
-        Notification.instance.requestAuthorization()
+//        Notification.instance.requestAuthorization()
     }
     
     func getData() {

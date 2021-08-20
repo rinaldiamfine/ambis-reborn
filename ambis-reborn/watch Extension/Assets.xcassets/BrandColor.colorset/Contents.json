@@ -5,9 +5,9 @@
         "color-space" : "srgb",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0x8E",
-          "green" : "0x9A",
-          "red" : "0x3E"
+          "blue" : "0.557",
+          "green" : "0.604",
+          "red" : "0.247"
         }
       },
       "idiom" : "universal"

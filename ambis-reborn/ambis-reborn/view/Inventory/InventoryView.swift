@@ -207,6 +207,7 @@ struct InventoryView: View {
             InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
         }
         .onAppear(perform: {
+            Notification.instance.requestAuthorization()
 //            inventoryViewModel.getData()
             foodCategoryViewModel.getData()
             inventoryViewModel.loadList()

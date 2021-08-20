@@ -50,6 +50,16 @@
 		902451F626CD23C000827711 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 902451F526CD23C000827711 /* Preview Assets.xcassets */; };
 		902451FB26CD23C000827711 /* watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 902451DA26CD23BE00827711 /* watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9047004E26CE577D00B05B17 /* ComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047004D26CE577D00B05B17 /* ComplicationView.swift */; };
+		9047005526CECB8400B05B17 /* WidgetInventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */; };
+		9047005626CECB8800B05B17 /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
+		9047005826CECE8800B05B17 /* InventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9926993FA7008AF935 /* InventoryModel.swift */; };
+		9047005926CECE9000B05B17 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC952699222D008AF935 /* Persistence.swift */; };
+		9047005A26CECED000B05B17 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8CF2693E54F00E7011C /* CoreData.xcdatamodeld */; };
+		9047005B26CECEF300B05B17 /* ShoppingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C551D269E077700DD6FC3 /* ShoppingModel.swift */; };
+		9047005C26CECF4D00B05B17 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9726993F6C008AF935 /* InventoryViewModel.swift */; };
+		9047005D26CECF5100B05B17 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5F012697736900E98152 /* CategoryViewModel.swift */; };
+		9047005E26CECF6A00B05B17 /* FoodCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090ACA126997208008AF935 /* FoodCategoryModel.swift */; };
+		9047006026CF67CB00B05B17 /* WatchPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047005F26CF67CB00B05B17 /* WatchPersistence.swift */; };
 		9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047D1E526A488F200511A25 /* InventoryFilterView.swift */; };
 		90505E1F26B9564E00F0415A /* DataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90505E1E26B9564E00F0415A /* DataRecipe.swift */; };
 		905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8B52693311600E7011C /* ambis_rebornApp.swift */; };
@@ -200,6 +210,9 @@
 		902451F726CD23C000827711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		902451F826CD23C000827711 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		9047004D26CE577D00B05B17 /* ComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationView.swift; sourceTree = "<group>"; };
+		9047004F26CEC9C900B05B17 /* watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watch.entitlements; sourceTree = "<group>"; };
+		9047005726CECB9D00B05B17 /* watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "watch Extension.entitlements"; sourceTree = "<group>"; };
+		9047005F26CF67CB00B05B17 /* WatchPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPersistence.swift; sourceTree = "<group>"; };
 		9047D1E526A488F200511A25 /* InventoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryFilterView.swift; sourceTree = "<group>"; };
 		90505E1E26B9564E00F0415A /* DataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecipe.swift; sourceTree = "<group>"; };
 		905DE8B22693311500E7011C /* ambis-reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ambis-reborn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,6 +289,7 @@
 		902451DB26CD23BE00827711 /* watch */ = {
 			isa = PBXGroup;
 			children = (
+				9047004F26CEC9C900B05B17 /* watch.entitlements */,
 				902451DC26CD23BF00827711 /* Assets.xcassets */,
 				902451DE26CD23BF00827711 /* Info.plist */,
 			);
@@ -285,6 +299,7 @@
 		902451E726CD23BF00827711 /* watch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9047005726CECB9D00B05B17 /* watch Extension.entitlements */,
 				902451E826CD23BF00827711 /* ambis_rebornApp.swift */,
 				902451EA26CD23BF00827711 /* ContentView.swift */,
 				0EB0724626CE64A400A3C895 /* ExpireSoonListView.swift */,
@@ -297,6 +312,7 @@
 				902451F726CD23C000827711 /* Info.plist */,
 				902451F826CD23C000827711 /* PushNotificationPayload.apns */,
 				902451F426CD23C000827711 /* Preview Content */,
+				9047005F26CF67CB00B05B17 /* WatchPersistence.swift */,
 			);
 			path = "watch Extension";
 			sourceTree = "<group>";
@@ -668,9 +684,19 @@
 				902451ED26CD23BF00827711 /* NotificationController.swift in Sources */,
 				30A8D07326CE558D00DF30B1 /* ExpireSoonProgressBarView.swift in Sources */,
 				902451EB26CD23BF00827711 /* ContentView.swift in Sources */,
+				9047005A26CECED000B05B17 /* CoreData.xcdatamodeld in Sources */,
+				9047005E26CECF6A00B05B17 /* FoodCategoryModel.swift in Sources */,
+				9047005526CECB8400B05B17 /* WidgetInventoryModel.swift in Sources */,
 				9047004E26CE577D00B05B17 /* ComplicationView.swift in Sources */,
 				902451F126CD23BF00827711 /* ComplicationController.swift in Sources */,
+				9047005B26CECEF300B05B17 /* ShoppingModel.swift in Sources */,
+				9047006026CF67CB00B05B17 /* WatchPersistence.swift in Sources */,
 				902451E926CD23BF00827711 /* ambis_rebornApp.swift in Sources */,
+				9047005826CECE8800B05B17 /* InventoryModel.swift in Sources */,
+				9047005C26CECF4D00B05B17 /* InventoryViewModel.swift in Sources */,
+				9047005626CECB8800B05B17 /* WidgetInventoryViewModel.swift in Sources */,
+				9047005D26CECF5100B05B17 /* CategoryViewModel.swift in Sources */,
+				9047005926CECE9000B05B17 /* Persistence.swift in Sources */,
 				0EB0724726CE64A400A3C895 /* ExpireSoonListView.swift in Sources */,
 				902451EF26CD23BF00827711 /* NotificationView.swift in Sources */,
 			);
@@ -779,6 +805,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "watch Extension/watch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"watch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = Q4FVKJHX54;
@@ -803,6 +830,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "watch Extension/watch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"watch Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = Q4FVKJHX54;
@@ -829,6 +857,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = watch/watch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				IBSC_MODULE = watch_Extension;
@@ -849,6 +878,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = watch/watch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				IBSC_MODULE = watch_Extension;
