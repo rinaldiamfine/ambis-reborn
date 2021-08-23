@@ -12,7 +12,7 @@ import CoreData
 struct ambis_rebornApp: App {
 //    var managedObjectContext = (WKExtension.shared().delegate as! WatchPersistenceController).container.viewContext
     
-    let persistenceController = WatchPersistenceController.shared
+    private let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) private var scenePhase
     
     @SceneBuilder var body: some Scene {

@@ -17,19 +17,16 @@ import SwiftUI
 
 struct WatchPersistenceController {
     static let shared = PersistenceController()
-    let container: NSPersistentContainer
-    
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "CoreData")
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        }
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+    let container: NSPersistentCloudKitContainer = {
+        //data model
+        let container = NSPersistentCloudKitContainer(name: "CoreData")
+        container.loadPersistentStores { storeDescription, error in
+            if let err = error as NSError? {
+                print("Error \(err.userInfo)")
             }
-        })
-    }
+        }
+        return container
+    }()
     
     func saveData(completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
