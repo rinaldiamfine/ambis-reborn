@@ -16,7 +16,10 @@ struct ShoppingView: View {
     @State var isMovedToInventory = false
     
     func getIconName() -> Image {
-        return Image(systemName: "bag.fill")
+        return Image("TabBarShopping")
+    }
+    func getIconNameActive() -> Image {
+        return Image("TabBarShoppingActive")
     }
     func gettabName() -> Text {
         return Text("Shopping List")
@@ -42,12 +45,13 @@ struct ShoppingView: View {
                 if shoppingViewModel.shoppingCount > 0 {
                     ZStack {
                         ScrollView {
-                            VStack {
-                                SpaceView()
-                            }.background(
-                                Rectangle()
-                                    .fill(LinearGradient(gradient: .init(colors: [Color("Gradient1"), Color("Gradient2")]), startPoint: .init(x: 0, y: 0.1), endPoint: .init(x: 0, y: 1)))
-                            )
+                            Text("")
+//                            VStack {
+//                                SpaceView()
+//                            }.background(
+//                                Rectangle()
+//                                    .fill(LinearGradient(gradient: .init(colors: [Color("Gradient1"), Color("Gradient2")]), startPoint: .init(x: 0, y: 0.1), endPoint: .init(x: 0, y: 1)))
+//                            )
                             
                             Section {
                                 ForEach(shoppingViewModel.shopping, id:\.id) {
