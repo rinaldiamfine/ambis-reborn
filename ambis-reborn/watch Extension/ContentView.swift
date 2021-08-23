@@ -59,6 +59,45 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+            EmptyStateContentView()
+        }
+    }
+}
+
+
+struct EmptyStateContentView: View {
+    var body: some View {
+        NavigationView {
+            GeometryReader(content: { geometry in
+                ScrollView {
+                    VStack(alignment: .center, spacing: 5) {
+                        Spacer()
+                        ZStack {
+                            Circle()
+                                .stroke(style: StrokeStyle(lineWidth: 7.84, lineCap: .round, lineJoin: .round))
+                                .foregroundColor(Color("BrandColor"))
+                                .frame(width: 75.12)
+                            Circle()
+                                .foregroundColor(Color("BrandColor"))
+                                .frame(width: 52.26)
+                            Text("👍🏻").font(.title2)
+                        }
+                        Text("Congratulations")
+                            .font(.system(.headline, design: .rounded))
+                        Text("No item will reach\nexpired in 3 days")
+                            .multilineTextAlignment(.center)
+                            .font(.system(.footnote, design: .rounded))
+                        Spacer()
+                    }
+                    .ignoresSafeArea(.all, edges: .bottom)
+                    .frame(width: geometry.size.width, height: geometry.safeAreaInsets.bottom + geometry.size.height)
+                }
+            })
+            .navigationTitle("Expiremind")
+        }.onAppear(perform: {
+            
+        })
     }
 }
