@@ -19,19 +19,19 @@ struct RecipeListView: View {
     
     var body: some View {
         ZStack {
-            VStack{
-                VStack {}
-                .frame(
-                      minWidth: 0,maxWidth: .infinity,
-                      minHeight: 0,maxHeight: 100,
-                      alignment: .topLeading
-                    )
-                .background(
-                    Rectangle()
-                        .fill(LinearGradient(gradient: .init(colors: [Color("Gradient1"), Color("Gradient2")]), startPoint: .init(x: 0, y: 0.1), endPoint: .init(x: 0, y: 1)))
-                    )
-                Spacer()
-            }
+//            VStack{
+//                VStack {}
+//                .frame(
+//                      minWidth: 0,maxWidth: .infinity,
+//                      minHeight: 0,maxHeight: 100,
+//                      alignment: .topLeading
+//                    )
+//                .background(
+//                    Rectangle()
+//                        .fill(LinearGradient(gradient: .init(colors: [Color("Gradient1"), Color("Gradient2")]), startPoint: .init(x: 0, y: 0.1), endPoint: .init(x: 0, y: 1)))
+//                    )
+//                Spacer()
+//            }
             VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
                 HStack{
                     Text("\(recipeViewModel.recipes.count) Recipes Available")

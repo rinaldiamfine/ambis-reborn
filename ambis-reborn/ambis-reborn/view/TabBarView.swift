@@ -16,19 +16,35 @@ struct TabBarView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             InventoryView(totalInventSearch: $totalInventSearch).tabItem {
-                InventoryView(totalInventSearch: $totalInventSearch).getIconName()
+                if selectedTab == 1 {
+                    InventoryView(totalInventSearch: $totalInventSearch).getIconNameActive()
+                } else {
+                    InventoryView(totalInventSearch: $totalInventSearch).getIconName()
+                }
                 InventoryView(totalInventSearch: $totalInventSearch).gettabName()
             }.tag(1)
             ShoppingView().tabItem {
-                ShoppingView().getIconName()
+                if selectedTab == 2 {
+                    ShoppingView().getIconNameActive()
+                } else {
+                    ShoppingView().getIconName()
+                }
                 ShoppingView().gettabName()
             }.tag(2)
             PrepareView().tabItem {
-                PrepareView().getIconName()
+                if selectedTab == 3 {
+                    PrepareView().getIconNameActive()
+                } else {
+                    PrepareView().getIconName()
+                }
                 PrepareView().gettabName()
             }.tag(3)
             CategoryView().tabItem {
-                CategoryView().getIconName()
+                if selectedTab == 4 {
+                    CategoryView().getIconNameActive()
+                } else {
+                    CategoryView().getIconName()
+                }
                 CategoryView().gettabName()
             }.tag(4)
 //            RecipeView().tabItem {

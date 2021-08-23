@@ -54,7 +54,10 @@ struct CategoryView: View {
     }
     
     func getIconName() -> Image {
-        return Image(systemName: "square.grid.2x2.fill")
+        return Image("TabBarSetting")
+    }
+    func getIconNameActive() -> Image {
+        return Image("TabBarSettingActive")
     }
     func gettabName() -> Text {
         return Text("Category")

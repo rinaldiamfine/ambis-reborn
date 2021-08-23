@@ -23,7 +23,10 @@ struct PrepareView: View {
     @State private var action: Int? = 0
     
     func getIconName() -> Image {
-        return Image(systemName: "flame.fill")
+        return Image("TabBarPreparing")
+    }
+    func getIconNameActive() -> Image {
+        return Image("TabBarPreparingActive")
     }
     func gettabName() -> Text {
         return Text("Prepare")
@@ -65,14 +68,14 @@ struct PrepareView: View {
                                 PrepareFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton, searchText: $searchText, showCancelButton: $showCancelButton)
                                     .padding(.horizontal)
                             }
-                            .background(
-                                Rectangle()
-                                    .fill(LinearGradient(
-                                        gradient: .init(colors: !showCancelButton ? [Color("Gradient1"), Color("Gradient2")] : [Color(UIColor.systemBackground)]),
-                                        startPoint: .init(x: 0, y: 0),
-                                        endPoint: .init(x: 0, y: 0.7)
-                                    ))
-                            )
+//                            .background(
+//                                Rectangle()
+//                                    .fill(LinearGradient(
+//                                        gradient: .init(colors: !showCancelButton ? [Color("Gradient1"), Color("Gradient2")] : [Color(UIColor.systemBackground)]),
+//                                        startPoint: .init(x: 0, y: 0),
+//                                        endPoint: .init(x: 0, y: 0.7)
+//                                    ))
+//                            )
                             
                             //SETUP LIST
                             Section {
