@@ -20,65 +20,81 @@ struct TemplateGraphicCircularView: View {
     
     var body: some View {
         ZStack {
-            if nearExpiryItem == 0 || nearExpiryItem == totalInventory {
-                Circle()
-                    .trim(from: 0.0, to: CGFloat(1 - (Double(nearExpiryItem) / Double(totalInventory))))
-                    .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
-                    .opacity(0.3)
-                    .foregroundColor(Color("SuccessColor"))
-                    .rotationEffect(Angle(degrees: ComplicationCircularCalculate(numerator: nearExpiryItem, denumerator: totalInventory)))
-                    .frame(width: 48)
-                Circle()
-                    .trim(from: 0.0, to: CGFloat(Double(nearExpiryItem) / Double(totalInventory)))
-                    .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color("DangerColor"))
-                    .rotationEffect(Angle(degrees: 270))
-                    .frame(width: 48)
-            } else {
-                Circle()
-                    .trim(from: 0.05, to: CGFloat(0.95 - (Double(nearExpiryItem) / Double(totalInventory))))
-                    .stroke(style: StrokeStyle(lineWidth: 10.0, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color("SuccessColorTransparent"))
-                    .rotationEffect(Angle(degrees: ComplicationCircularCalculate(numerator: nearExpiryItem, denumerator: totalInventory)))
-                    .frame(width: 48)
-                Circle()
-                    .trim(from: 0.05, to: CGFloat(Double(nearExpiryItem) / Double(totalInventory) - 0.05))
-                    .stroke(style: StrokeStyle(lineWidth: 10.0, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color("DangerColor"))
-                    .rotationEffect(Angle(degrees: 270))
-                    .frame(width: 48)
-            }
-            
-            ZStack {
-                Image("BrandIcon")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-            }
+            Image("BrandIcon")
+                .resizable()
         }
     }
 }
 
+struct sampleInventory {
+    var name: String
+    var dayUntilExpiry: Int
+}
 struct TemplateGraphicRectangularFullView: View {
-    @State var nearExpiryItem: Int = 4
-    @State var totalInventory: Int = 16
+    @State var sample: [sampleInventory] = [sampleInventory(name: "Paha", dayUntilExpiry: 7)]
+    
+    @Environment(\.complicationRenderingMode) var renderingMode
+    
+    @State var firstText: String = "Expiring in 3 days or less"
+    @State var secondText: String = "Paha Ayam"
+    @State var thirdText: String = "and 4 other items"
+    @State var bgColor: Color = Color("DangerColorTransparent")
+    
+    func adjustTextView(sample: [sampleInventory]) {
+        if sample.isEmpty || sample[0].dayUntilExpiry > 3 {
+            firstText = "You're good!"
+            secondText = "No worries!"
+            thirdText = "Nothing's expiring"
+            bgColor = Color("SuccessColorTransparent")
+        } else if !sample.isEmpty {
+            secondText = sample[0].name
+            if sample.count == 1 {
+                thirdText = "use it soon!"
+            } else {
+                thirdText = "and \(sample.count - 1) other items"
+            }
+            if sample[0].dayUntilExpiry < 0 {
+                firstText = "Expired"
+                thirdText = "Don't do it again :("
+            } else if sample[0].dayUntilExpiry == 0 {
+                firstText = "Expiring today"
+            } else if sample[0].dayUntilExpiry == 1 {
+                firstText = "Expiring tomorrow"
+            } else {
+                firstText = "Expiring in 3 days or less"
+                bgColor = Color("WarningColorTransparent")
+            }
+        }
+    }
     
     var body: some View {
-        HStack(spacing: 10) {
-            VStack(alignment: .leading) {
-                Text("\(nearExpiryItem)/\(totalInventory) ITEMS")
-                    .font(.system(.body, design: .rounded))
-                Text("Expires in 3 days or less")
-                    .font(.system(.subheadline, design: .rounded))
-                    .foregroundColor(.secondary)
-                ProgressView(value: Float(nearExpiryItem), total: Float(totalInventory)).progressViewStyle(LinearProgressViewStyle(tint: Color("BrandColor")))
+        VStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(bgColor)
+                    .complicationForeground()
                 HStack {
-                    Text("0")
-                        .font(.system(.subheadline, design: .rounded))
+                    Text(firstText)
+                        .font(.system(size: 14))
+                        .padding()
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(1)
                     Spacer()
-                    Text("\(totalInventory)")
-                        .font(.system(.subheadline, design: .rounded))
                 }
             }
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(secondText)
+                        .font(.system(size: 17))
+                        .foregroundColor(.white)
+                    Text(thirdText)
+                        .font(.system(size: 14))
+                        .foregroundColor(.gray)
+                }.padding(.horizontal)
+                Spacer()
+            }
+        }.onAppear{
+            adjustTextView(sample: sample)
         }
     }
     
@@ -144,19 +160,42 @@ struct ComplicationView: View {
 struct ComplicationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CLKComplicationTemplateGraphicExtraLargeCircularView(
-                TemplateGraphicExtraLargeCircularView()
-            )
-            .previewContext()
-            
-            CLKComplicationTemplateGraphicRectangularFullView(
-                TemplateGraphicRectangularFullView()
-            ).previewContext()
-            
             CLKComplicationTemplateGraphicCircularView(
                 TemplateGraphicCircularView()
-            )
-            .previewContext()
+            ).previewContext()
+            
+            CLKComplicationTemplateGraphicRectangularFullView(
+                TemplateGraphicRectangularFullView(sample: [sampleInventory(name: "Paha", dayUntilExpiry: 7)])
+            ).previewContext(faceColor: .blue)
+            //1
+            CLKComplicationTemplateGraphicRectangularFullView(
+                TemplateGraphicRectangularFullView(sample: [sampleInventory(name: "Paha", dayUntilExpiry: 7)])
+            ).previewContext()
+            //2
+            CLKComplicationTemplateGraphicRectangularFullView(
+                TemplateGraphicRectangularFullView(sample: [sampleInventory(name: "Paha Ayam", dayUntilExpiry: 3)])
+            ).previewContext()
+            //3
+            CLKComplicationTemplateGraphicRectangularFullView(
+                TemplateGraphicRectangularFullView(sample: [sampleInventory(name: "Paha Ayam", dayUntilExpiry: 2), sampleInventory(name: "Paha Sapi", dayUntilExpiry: 3)])
+            ).previewContext()
+            //4
+            CLKComplicationTemplateGraphicRectangularFullView(
+                TemplateGraphicRectangularFullView(sample: [sampleInventory(name: "Paha Ayam", dayUntilExpiry: 1)])
+            ).previewContext()
+            //5
+            CLKComplicationTemplateGraphicRectangularFullView(
+                TemplateGraphicRectangularFullView(sample: [sampleInventory(name: "Paha Ayam", dayUntilExpiry: 0)])
+            ).previewContext()
+            //6
+            CLKComplicationTemplateGraphicRectangularFullView(
+                TemplateGraphicRectangularFullView(sample: [sampleInventory(name: "Paha Kerbau", dayUntilExpiry: -2)])
+            ).previewContext()
+            
+            CLKComplicationTemplateGraphicExtraLargeCircularView(
+                TemplateGraphicExtraLargeCircularView()
+            ).previewContext()
+            
         }
     }
 }
