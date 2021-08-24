@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ClockKit
+import CoreData
 
 func ComplicationCircularCalculate(numerator: Int, denumerator: Int) -> Double {
     let angle = Double(numerator) / Double(denumerator) * 360
@@ -29,6 +30,9 @@ struct sampleInventory {
     var dayUntilExpiry: Int
 }
 struct TemplateGraphicRectangularFullView: View {
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Inventory.expiryDate, ascending: true)], animation: .default)
+    private var myInvent: FetchedResults<Inventory>
+
     @State var sample: [sampleInventory] = [sampleInventory(name: "Paha", dayUntilExpiry: 7)]
 
     @State var firstText: String = "Expiring in 3 days or less"
@@ -36,32 +40,65 @@ struct TemplateGraphicRectangularFullView: View {
     @State var thirdText: String = "and 4 other items"
     @State var bgColor: Color = Color("DangerColorTransparent")
     
-    func adjustTextView(sample: [sampleInventory]) {
-        if sample.isEmpty || sample[0].dayUntilExpiry > 3 {
+    func setupData() {
+        let dateNow = Date()
+        let todayDate = Date().addingTimeInterval(24 * 60 * 60)
+        let tomorrowDate = Date().addingTimeInterval(24 * 60 * 60 * 2)
+        let dangerDate = Date().addingTimeInterval(24 * 60 * 60 * 4)
+        
+        if myInvent.isEmpty || myInvent[0].expiryDate! > dangerDate {
             firstText = "You're good!"
             secondText = "No worries!"
             thirdText = "Nothing's expiring"
             bgColor = Color("SuccessColorTransparent")
-        } else if !sample.isEmpty {
-            secondText = sample[0].name
-            if sample.count == 1 {
+        } else if !myInvent.isEmpty {
+            secondText = myInvent[0].name!
+            if myInvent.count == 1 {
                 thirdText = "use it soon!"
             } else {
-                thirdText = "and \(sample.count - 1) other items"
+                thirdText = "and \(myInvent.count - 1) other items"
             }
-            if sample[0].dayUntilExpiry < 0 {
+            if myInvent[0].expiryDate! < dateNow {
                 firstText = "Expired"
                 thirdText = "Don't do it again :("
-            } else if sample[0].dayUntilExpiry == 0 {
+            } else if myInvent[0].expiryDate! < todayDate {
                 firstText = "Expiring today"
-            } else if sample[0].dayUntilExpiry == 1 {
+            } else if myInvent[0].expiryDate! < tomorrowDate {
                 firstText = "Expiring tomorrow"
             } else {
                 firstText = "Expiring in 3 days or less"
                 bgColor = Color("WarningColorTransparent")
             }
         }
+        
     }
+    
+//    func adjustTextView(sample: [sampleInventory]) {
+//        if sample.isEmpty || sample[0].dayUntilExpiry > 3 {
+//            firstText = "You're good!"
+//            secondText = "No worries!"
+//            thirdText = "Nothing's expiring"
+//            bgColor = Color("SuccessColorTransparent")
+//        } else if !sample.isEmpty {
+//            secondText = sample[0].name
+//            if sample.count == 1 {
+//                thirdText = "use it soon!"
+//            } else {
+//                thirdText = "and \(sample.count - 1) other items"
+//            }
+//            if sample[0].dayUntilExpiry < 0 {
+//                firstText = "Expired"
+//                thirdText = "Don't do it again :("
+//            } else if sample[0].dayUntilExpiry == 0 {
+//                firstText = "Expiring today"
+//            } else if sample[0].dayUntilExpiry == 1 {
+//                firstText = "Expiring tomorrow"
+//            } else {
+//                firstText = "Expiring in 3 days or less"
+//                bgColor = Color("WarningColorTransparent")
+//            }
+//        }
+//    }
     
     var body: some View {
         VStack {
@@ -91,7 +128,7 @@ struct TemplateGraphicRectangularFullView: View {
                 Spacer()
             }
         }.onAppear{
-            adjustTextView(sample: sample)
+            setupData()
         }
     }
     

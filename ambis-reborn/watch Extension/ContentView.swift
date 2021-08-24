@@ -30,7 +30,7 @@ struct ContentView: View {
     func setupData() {
         let dateNow = Date()
         let todayDate = Date().addingTimeInterval(24 * 60 * 60)
-        let dangerDate = Date().addingTimeInterval(24 * 60 * 60 * 3)
+        let dangerDate = Date().addingTimeInterval(24 * 60 * 60 * 4)
         let currentInvent = myInvent.filter { inv in
             if inv.expiryDate! <= todayDate {
                 dataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
