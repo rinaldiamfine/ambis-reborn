@@ -12,6 +12,7 @@
 		0EB0724726CE64A400A3C895 /* ExpireSoonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB0724626CE64A400A3C895 /* ExpireSoonListView.swift */; };
 		0EE5F00726B7EBF000D81C8D /* RecipeSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F00626B7EBF000D81C8D /* RecipeSortView.swift */; };
 		0EE5F00B26B8086F00D81C8D /* RecipeSortSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F00A26B8086F00D81C8D /* RecipeSortSample.swift */; };
+		0EFF8A1326CFB18700C17526 /* WatchConnectivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFF8A1126CFB18700C17526 /* WatchConnectivityViewModel.swift */; };
 		302C8E0F26BD1E07009EBA28 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302C8E0E26BD1E07009EBA28 /* RecipeModel.swift */; };
 		302C8E1126BD2137009EBA28 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302C8E1026BD2137009EBA28 /* IngredientModel.swift */; };
 		302C8E1326C112D7009EBA28 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302C8E1226C112D7009EBA28 /* RecipeViewModel.swift */; };
@@ -169,6 +170,7 @@
 		0EB0724626CE64A400A3C895 /* ExpireSoonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireSoonListView.swift; sourceTree = "<group>"; };
 		0EE5F00626B7EBF000D81C8D /* RecipeSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSortView.swift; sourceTree = "<group>"; };
 		0EE5F00A26B8086F00D81C8D /* RecipeSortSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSortSample.swift; sourceTree = "<group>"; };
+		0EFF8A1126CFB18700C17526 /* WatchConnectivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityViewModel.swift; sourceTree = "<group>"; };
 		302C8E0E26BD1E07009EBA28 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		302C8E1026BD2137009EBA28 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
 		302C8E1226C112D7009EBA28 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
@@ -286,6 +288,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E659ED526D4D04C008B81C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0EC467EB26D3A29F00E467AB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0EFF8A1126CFB18700C17526 /* WatchConnectivityViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		902451DB26CD23BE00827711 /* watch */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +316,8 @@
 		902451E726CD23BF00827711 /* watch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0E659ED526D4D04C008B81C5 /* Model */,
+				0EC467EB26D3A29F00E467AB /* ViewModel */,
 				9047005726CECB9D00B05B17 /* watch Extension.entitlements */,
 				902451E826CD23BF00827711 /* ambis_rebornApp.swift */,
 				902451EA26CD23BF00827711 /* ContentView.swift */,
@@ -694,6 +713,7 @@
 				902451E926CD23BF00827711 /* ambis_rebornApp.swift in Sources */,
 				9047005826CECE8800B05B17 /* InventoryModel.swift in Sources */,
 				9047005C26CECF4D00B05B17 /* InventoryViewModel.swift in Sources */,
+				0EFF8A1326CFB18700C17526 /* WatchConnectivityViewModel.swift in Sources */,
 				9047005626CECB8800B05B17 /* WidgetInventoryViewModel.swift in Sources */,
 				9047005D26CECF5100B05B17 /* CategoryViewModel.swift in Sources */,
 				9047005926CECE9000B05B17 /* Persistence.swift in Sources */,
@@ -833,7 +853,7 @@
 				CODE_SIGN_ENTITLEMENTS = "watch Extension/watch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"watch Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				DEVELOPMENT_TEAM = Z8L38KRZAK;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -880,7 +900,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = watch/watch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				DEVELOPMENT_TEAM = Z8L38KRZAK;
 				IBSC_MODULE = watch_Extension;
 				INFOPLIST_FILE = watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ExpiRemind.dev.watchkitapp;
@@ -1045,7 +1065,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ambis-reborn/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				DEVELOPMENT_TEAM = Z8L38KRZAK;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ambis-reborn/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1093,7 +1113,7 @@
 				CODE_SIGN_ENTITLEMENTS = widgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = Q4FVKJHX54;
+				DEVELOPMENT_TEAM = Z8L38KRZAK;
 				INFOPLIST_FILE = widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

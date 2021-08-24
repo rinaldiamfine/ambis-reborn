@@ -1,9 +1,9 @@
 {
     "aps": {
         "alert": {
-            "body": "Test message",
-            "title": "Optional title",
-            "subtitle": "Optional subtitle"
+            "body": "and 4 other items",
+            "title": "Expiring in 3 days or less",
+            "subtitle": "Paha Ayam"
         },
         "category": "myCategory",
         "thread-id": "5280"

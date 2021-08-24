@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import UserNotifications
 
 struct FormatInventory : Identifiable {
     var id = UUID()
@@ -44,7 +45,10 @@ struct ContentView: View {
                         .ignoresSafeArea(.all, edges: .bottom)
                         .frame(width: geometry.size.width, height: geometry.safeAreaInsets.bottom + geometry.size.height)
                     
-                    ExpireSoonListView()
+                    ExpireSoonListView().onTapGesture {
+                        
+                    }
+                    notify
                 }
             })
             .navigationTitle("Expiremind")
@@ -54,6 +58,42 @@ struct ContentView: View {
 //                    NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
             checker()
         })
+    }
+    
+    var notify: some View {
+        VStack{
+            Button("Request permission"){
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+                    if success{
+                        print("All set")
+                    } else if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+            Button("Schedule Notification")
+            {
+                let content = UNMutableNotificationContent()
+                
+                content.title = "Expiring in 3 days or less"
+                content.subtitle = "Paha Ayam"
+                content.body = "and 4 other items"
+                content.sound = .default
+                content.categoryIdentifier = "myCategory"
+                let category = UNNotificationCategory(identifier: "myCategory", actions: [], intentIdentifiers: [], options: [])
+                UNUserNotificationCenter.current().setNotificationCategories([category])
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                let request = UNNotificationRequest(identifier: "myCategory", content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request) { (error) in
+                    if let error = error{
+                        print(error.localizedDescription)
+                    }else{
+                        print("scheduled successfully")
+                    }
+                }
+            }
+        }
+        
     }
 }
 
