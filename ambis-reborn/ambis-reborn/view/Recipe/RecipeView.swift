@@ -14,24 +14,26 @@ struct RecipeView: View {
     @State var isCookingStepPresented: Bool = false
     
     var body: some View {
-        VStack {
-            ScrollView {
-                ImagePlaceholder()
-                RecipeTitle(name: recipe.name)
-                RecipeDescription(totalServes: recipe.totalServes, prepTime: recipe.prepTime, cookTime: recipe.cookTime, difficultyLevel: recipe.difficultyLevel)
-                Divider()
-                IngredientListView(ingredients: recipe.ingredient)
-            }
-                Spacer()
-            CookingStepButtonView(cookingSteps: recipe.cookStep)
-        }
-        .padding(.horizontal)
-        .navigationBarTitleDisplayMode(.large)
-        .navigationBarTitle(Text("Recipe"))
-        .sheet(isPresented: $isCookingStepPresented) {
-            CookingStepView(cookingStepSample: recipe.cookStep)
-        }
-        .background(Color("AppBackground"))
+        //REMOVE USING CLOUDKIT
+        Text("")
+//        VStack {
+//            ScrollView {
+//                ImagePlaceholder()
+//                RecipeTitle(name: recipe.name)
+//                RecipeDescription(totalServes: recipe.totalServes, prepTime: recipe.prepTime, cookTime: recipe.cookTime, difficultyLevel: recipe.difficultyLevel)
+//                Divider()
+//                IngredientListView(ingredients: recipe.ingredient)
+//            }
+//                Spacer()
+//            CookingStepButtonView(cookingSteps: recipe.cookStep)
+//        }
+//        .padding(.horizontal)
+//        .navigationBarTitleDisplayMode(.large)
+//        .navigationBarTitle(Text("Recipe"))
+//        .sheet(isPresented: $isCookingStepPresented) {
+//            CookingStepView(cookingStepSample: recipe.cookStep)
+//        }
+//        .background(Color("AppBackground"))
     }
     
     
