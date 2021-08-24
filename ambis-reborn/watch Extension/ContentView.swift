@@ -18,28 +18,39 @@ struct FormatInventory : Identifiable {
 }
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var managedObjectContext
-//    @FetchRequest(entity: Inventory.entity(), sortDescriptors: []) var invent: FetchedResults<Inventory>
-    
-    @StateObject var inventoryViewModel = InventoryViewModel()
-    @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
-    
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Inventory.expiryDate, ascending: true)], animation: .default)
     private var myInvent: FetchedResults<Inventory>
     
-//    @State var dataInventory : [FormatInventory] = [
-//        FormatInventory(title: "Paha Ayam", subtitle: "Fridge ・ 1Kg", expiryInt: 3, icon: "🥩"),
-//        FormatInventory(title: "Sayur", subtitle: "Freezer ・ 10Pcs", expiryInt: 5, icon: "🥦")
-//    ]
+    private var topInventoryModel: Inventory = Inventory()
+    private var bottomInventoryModel: Inventory = Inventory()
+    @State var dataInventory : [FormatInventory] = []
+    @State var firstDataInventory : [FormatInventory] = []
+    @State var secondDataInventory : [FormatInventory] = []
     
-    func checker() {
-        print(inventoryViewModel.inventory, "INVENT")
-        print(myInvent.count, "MY INVENT")
-//        var inv = PersistenceController.shared.getInventoryData().map(InventoryModel.init).sorted { $0.expiryDate < $1.expiryDate }
-//        print(invent.count , "GET INV DATA")
-//        print(res.count, "RES")
-//        print(inventoryViewModel.inventory , "GET INVENT")
-//        print(foodCategoryViewModel.getData(), "FCTG")
+    func setupData() {
+        let dateNow = Date()
+        let todayDate = Date().addingTimeInterval(24 * 60 * 60)
+        let dangerDate = Date().addingTimeInterval(24 * 60 * 60 * 3)
+        let currentInvent = myInvent.filter { inv in
+            if inv.expiryDate! <= todayDate {
+                dataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
+                firstDataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
+                return true
+            } else if inv.expiryDate! > todayDate && inv.expiryDate! <= dangerDate {
+                dataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
+                secondDataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
+                return true
+            } else {
+                return false
+            }
+            
+            if dateNow >= inv.expiryDate! {
+                //SETUP NOTIF
+                setupNotification(data: inv)
+                return true
+            }
+        }
+        print(dataInventory, "ALL DATA INVENT")
     }
     
     func setupSubtitle(data: Inventory) -> String {
@@ -47,28 +58,71 @@ struct ContentView: View {
         return formatText
     }
     
+    func setupNotification(data: Inventory) {
+        let content = UNMutableNotificationContent()
+        content.title = "Your item it's Expired"
+        content.subtitle = "Paha Ayam"
+        content.body = "and 4 other items"
+        content.sound = .default
+        content.categoryIdentifier = data.uuid!.uuidString
+        let category = UNNotificationCategory(identifier: data.uuid!.uuidString, actions: [], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "myCategory", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }else{
+                print("scheduled successfully")
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             GeometryReader(content: { geometry in
-                if (myInvent.count != 0) {
+                if (dataInventory.count != 0) {
                     List {
-                        ForEach(myInvent) { invent in
-                            HStack {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 30, height: 30)
-                                        .foregroundColor(.black)
-                                    Text(invent.toFoodCategory?.imageString ?? "").font(.system(.body))
+                        if firstDataInventory.count != 0 {
+                            Section(header: Text("In 1 day or less")) {
+                                ForEach(firstDataInventory) { data in
+                                    HStack {
+                                        ZStack {
+                                            Circle()
+                                                .frame(width: 30, height: 30)
+                                                .foregroundColor(.black)
+                                            Text(data.icon).font(.system(.body))
+                                        }
+                                        VStack(alignment: .leading) {
+                                            Text(data.title).font(.system(.body, design: .rounded))
+                                            Text(data.subtitle).font(.system(.footnote, design: .rounded))
+                                        }.padding(.all, 4)
+                                        Spacer()
+                                    }
                                 }
-                                VStack(alignment: .leading) {
-                                    Text(invent.name ?? "").font(.system(.body, design: .rounded))
-                                    Text(setupSubtitle(data: invent)).font(.system(.footnote, design: .rounded))
-                                }.padding(.all, 4)
-                                Spacer()
+                            }
+                        }
+                        
+                        if secondDataInventory.count != 0 {
+                            Section(header: Text("In 2-3 days")) {
+                                ForEach(secondDataInventory) { data in
+                                    HStack {
+                                        ZStack {
+                                            Circle()
+                                                .frame(width: 30, height: 30)
+                                                .foregroundColor(.black)
+                                            Text(data.icon).font(.system(.body))
+                                        }
+                                        VStack(alignment: .leading) {
+                                            Text(data.title).font(.system(.body, design: .rounded))
+                                            Text(data.subtitle).font(.system(.footnote, design: .rounded))
+                                        }.padding(.all, 4)
+                                        Spacer()
+                                    }
+                                }
                             }
                         }
                     }
-//                    notify
                 } else {
                     VStack(alignment: .center, spacing: 5) {
                         Spacer()
@@ -95,10 +149,15 @@ struct ContentView: View {
             })
             .navigationTitle("Expiremind")
         }.onAppear(perform: {
-            foodCategoryViewModel.getData()
-            inventoryViewModel.loadList()
-//                    NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
-            checker()
+            setupData()
+            
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+                if success{
+                    print("All set")
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
         })
     }
     
@@ -116,7 +175,6 @@ struct ContentView: View {
             Button("Schedule Notification")
             {
                 let content = UNMutableNotificationContent()
-                
                 content.title = "Expiring in 3 days or less"
                 content.subtitle = "Paha Ayam"
                 content.body = "and 4 other items"

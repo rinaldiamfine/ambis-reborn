@@ -1071,7 +1071,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ambis-reborn/Preview Content\"";
-				DEVELOPMENT_TEAM = Z8L38KRZAK;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ambis-reborn/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1119,7 +1119,7 @@
 				CODE_SIGN_ENTITLEMENTS = widgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = Z8L38KRZAK;
+				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				INFOPLIST_FILE = widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
