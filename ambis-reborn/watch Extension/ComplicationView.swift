@@ -15,13 +15,11 @@ func ComplicationCircularCalculate(numerator: Int, denumerator: Int) -> Double {
 
 struct TemplateGraphicCircularView: View {
     
-    @State var nearExpiryItem: Int = 4
-    @State var totalInventory: Int = 16
-    
     var body: some View {
         ZStack {
             Image("BrandIcon")
                 .resizable()
+                .scaledToFill()
         }
     }
 }
@@ -32,9 +30,7 @@ struct sampleInventory {
 }
 struct TemplateGraphicRectangularFullView: View {
     @State var sample: [sampleInventory] = [sampleInventory(name: "Paha", dayUntilExpiry: 7)]
-    
-    @Environment(\.complicationRenderingMode) var renderingMode
-    
+
     @State var firstText: String = "Expiring in 3 days or less"
     @State var secondText: String = "Paha Ayam"
     @State var thirdText: String = "and 4 other items"
@@ -73,10 +69,11 @@ struct TemplateGraphicRectangularFullView: View {
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(bgColor)
                     .complicationForeground()
-                HStack {
+                    .ignoresSafeArea(.all, edges: .horizontal)
+                HStack() {
                     Text(firstText)
                         .font(.system(size: 14))
-                        .padding()
+                        .padding(.vertical, 7)
                         .multilineTextAlignment(.leading)
                         .lineLimit(1)
                     Spacer()
@@ -101,49 +98,22 @@ struct TemplateGraphicRectangularFullView: View {
 }
 
 struct TemplateGraphicExtraLargeCircularView: View {
-    @State var nearExpiryItem: Int = 4
-    @State var totalInventory: Int = 16
+    @State var sample: [sampleInventory] = [sampleInventory(name: "Paha", dayUntilExpiry: 7)]
     
     var body: some View {
+//        if sample.isEmpty || sample[0].dayUntilExpiry > 3 {
+//            VStack {
+//                Text("CONGRATS!!")
+//                Text("No item in your inventory is expiring soon")
+//                Text("Maybe it's time to plan your next meal?")
+//            }
+//        } else {
+//            Text("Your items:")
+//
+//        }
         ZStack {
-            if nearExpiryItem == 0 || nearExpiryItem == totalInventory {
-                Circle()
-                    .trim(from: 0.0, to: CGFloat(1 - (Double(nearExpiryItem) / Double(totalInventory))))
-                    .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
-                    .opacity(0.3)
-                    .foregroundColor(Color("SuccessColor"))
-                    .rotationEffect(Angle(degrees: ComplicationCircularCalculate(numerator: nearExpiryItem, denumerator: totalInventory)))
-                    .frame(width: 115, height: 115)
-                Circle()
-                    .trim(from: 0.0, to: CGFloat(Double(nearExpiryItem) / Double(totalInventory)))
-                    .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color("DangerColor"))
-                    .rotationEffect(Angle(degrees: 270))
-                    .frame(width: 115, height: 115)
-            } else {
-                Circle()
-                    .trim(from: 0.025, to: CGFloat(0.975 - (Double(nearExpiryItem) / Double(totalInventory))))
-                    .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
-                    .opacity(0.3)
-                    .foregroundColor(Color("SuccessColor"))
-                    .rotationEffect(Angle(degrees: ComplicationCircularCalculate(numerator: nearExpiryItem, denumerator: totalInventory)))
-                    .frame(width: 115, height: 115)
-                Circle()
-                    .trim(from: 0.025, to: CGFloat(Double(nearExpiryItem) / Double(totalInventory) - 0.025))
-                    .stroke(style: StrokeStyle(lineWidth: 12.0, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color("DangerColor"))
-                    .rotationEffect(Angle(degrees: 270))
-                    .frame(width: 115, height: 115)
-            }
-            
-            ZStack {
-                Circle()
-                    .fill(Color("GrayColor"))
-                    .frame(width: 80, height: 80)
-                Text(String(nearExpiryItem) + "\nItems")
-                    .multilineTextAlignment(.center)
-                    .font(.system(.headline, design: .rounded))
-            }
+            Image("BrandIcon")
+                .resizable()
         }
     }
 }
@@ -163,6 +133,10 @@ struct ComplicationView_Previews: PreviewProvider {
             CLKComplicationTemplateGraphicCircularView(
                 TemplateGraphicCircularView()
             ).previewContext()
+            
+            CLKComplicationTemplateGraphicCircularView(
+                TemplateGraphicCircularView()
+            ).previewContext(faceColor: .yellow)
             
             CLKComplicationTemplateGraphicRectangularFullView(
                 TemplateGraphicRectangularFullView(sample: [sampleInventory(name: "Paha", dayUntilExpiry: 7)])
