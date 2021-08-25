@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import UserNotifications
+import WatchConnectivity
 
 struct FormatInventory : Identifiable {
     var id = UUID()
@@ -18,54 +19,50 @@ struct FormatInventory : Identifiable {
 }
 
 struct ContentView: View {
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Inventory.expiryDate, ascending: true)], animation: .default)
-    private var myInvent: FetchedResults<Inventory>
+    @StateObject var inventoryViewModel = InventoryViewModel()
+    @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
     
-    private var topInventoryModel: Inventory = Inventory()
-    private var bottomInventoryModel: Inventory = Inventory()
     @State var dataInventory : [FormatInventory] = []
     @State var firstDataInventory : [FormatInventory] = []
     @State var secondDataInventory : [FormatInventory] = []
     
+    let todayDate = Date().addingTimeInterval(24 * 60 * 60)
+    let dangerDate = Date().addingTimeInterval(24 * 60 * 60 * 4)
+    
     func setupData() {
-        let dateNow = Date()
-        let todayDate = Date().addingTimeInterval(24 * 60 * 60)
-        let dangerDate = Date().addingTimeInterval(24 * 60 * 60 * 4)
-        let currentInvent = myInvent.filter { inv in
-            if inv.expiryDate! <= todayDate {
-                dataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
-                firstDataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
+        print("GET INVN DATA", inventoryViewModel.inventory)
+        inventoryViewModel.inventory.filter { inv in
+            if inv.expiryDate <= todayDate {
+                dataInventory.append(FormatInventory(title: inv.name, subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.watchIcon))
+                firstDataInventory.append(FormatInventory(title: inv.name, subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.watchIcon))
                 return true
-            } else if inv.expiryDate! > todayDate && inv.expiryDate! <= dangerDate {
-                dataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
-                secondDataInventory.append(FormatInventory(title: inv.name ?? "", subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.toFoodCategory?.imageString ?? ""))
+            } else if inv.expiryDate > todayDate && inv.expiryDate <= dangerDate {
+                dataInventory.append(FormatInventory(title: inv.name , subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.watchIcon))
+                secondDataInventory.append(FormatInventory(title: inv.name, subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.watchIcon))
                 return true
             } else {
                 return false
             }
-            
-            if dateNow >= inv.expiryDate! {
-                //SETUP NOTIF
-                setupNotification(data: inv)
-                return true
-            }
         }
-        print(dataInventory, "ALL DATA INVENT")
     }
     
-    func setupSubtitle(data: Inventory) -> String {
-        let formatText = "\(data.store ?? "") ・ \(data.total) \(data.totalType ?? "")"
+    func setupSubtitle(data: InventoryModel) -> String {
+        let formatText = "\(data.store ) ・ \(data.total) \(data.totalType)"
         return formatText
     }
     
-    func setupNotification(data: Inventory) {
+    func DirectSetupNotif() {
+        
+        print(WCSession.default.applicationContext, "APPLICATIO CONTE")
+        print(WCSession.default.receivedApplicationContext, "Direct APPLICATION CONTENXT")
+        
         let content = UNMutableNotificationContent()
-        content.title = "Your item it's Expired"
+        content.title = "Expiring in 3 days or less"
         content.subtitle = "Paha Ayam"
         content.body = "and 4 other items"
         content.sound = .default
-        content.categoryIdentifier = data.uuid!.uuidString
-        let category = UNNotificationCategory(identifier: data.uuid!.uuidString, actions: [], intentIdentifiers: [], options: [])
+        content.categoryIdentifier = "myCategory"
+        let category = UNNotificationCategory(identifier: "myCategory", actions: [], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([category])
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: "myCategory", content: content, trigger: trigger)
@@ -76,6 +73,20 @@ struct ContentView: View {
                 print("scheduled successfully")
             }
         }
+    }
+    
+    func setupNotification(data: Inventory) {
+        let content = UNMutableNotificationContent()
+        
+        content.title = "Inventory Has Expired"
+        content.body = "Your Item \(data.name) has expired."
+        content.sound = .default
+        
+        let dateMatching = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: data.expiryDate!)
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateMatching, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
     }
     
     var body: some View {
@@ -136,8 +147,14 @@ struct ContentView: View {
                                 .frame(width: 52.26)
                             Text("👍🏻").font(.title2)
                         }
+//                        .onTapGesture {
+//                            DirectSetupNotif()
+//                        }
                         Text("Congratulations")
                             .font(.system(.headline, design: .rounded))
+//                            .onTapGesture {
+//                                DirectSetupNotif()
+//                            }
                         Text("No item will reach\nexpired in 3 days")
                             .multilineTextAlignment(.center)
                             .font(.system(.footnote, design: .rounded))
@@ -149,6 +166,8 @@ struct ContentView: View {
             })
             .navigationTitle("Expiremind")
         }.onAppear(perform: {
+            foodCategoryViewModel.getData()
+            inventoryViewModel.loadList()
             setupData()
             
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in

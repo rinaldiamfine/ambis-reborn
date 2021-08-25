@@ -4,10 +4,11 @@
 //
 //  Created by Rinaldi LNU on 10/07/21.
 //
-
+import Foundation
 import SwiftUI
 import UserNotifications
 import Combine
+import WatchConnectivity
 
 struct InventoryFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
@@ -16,6 +17,8 @@ struct InventoryFormView: View {
     @Binding var isPresented: Bool
     @Binding var defaultFilter: String
     
+    let dateFormater = DateFormatter()
+    
     @State private var showingActionSheet = false
     @State private var isShowPickerType = false
     @State private var isShowPickerStore = false
@@ -23,17 +26,29 @@ struct InventoryFormView: View {
     var navigationName = "Add Inventory"
     
     func actionDone() {
+        var action = "create"
         if inventoryViewModel.status == "edit" {
             inventoryViewModel.editData(inventoryViewModel.inventory[inventoryViewModel.selectedIndex])
+            
+            action = "edit"
+            
             defaultFilter = inventoryViewModel.inventory[inventoryViewModel.selectedIndex].store
         } else {
             inventoryViewModel.saveData()
+            
+            action = "create"
+            
             defaultFilter = inventoryViewModel.store
         }
         inventoryViewModel.getData()
-        Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
+        
+        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: action)
+        WatchManager.shared.sendParamsToWatch(dict: dictValue)
+        
+        Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
         inventoryViewModel.resetData()
         isPresented = false
+//        print(watc)
     }
     
     func actionCancel() {

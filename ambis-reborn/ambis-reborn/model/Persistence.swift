@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import WatchConnectivity
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -22,9 +23,9 @@ struct PersistenceController {
 //            }
 //        })
 //    }
-    let container: NSPersistentCloudKitContainer = {
+    let container: NSPersistentContainer = {
         //data model
-        let container = NSPersistentCloudKitContainer(name: "CoreData")
+        let container = NSPersistentContainer(name: "CoreData")
         container.loadPersistentStores { storeDescription, error in
             if let err = error as NSError? {
                 print("Error \(err.userInfo)")
@@ -61,7 +62,6 @@ struct PersistenceController {
     
     func editInventoryData(inventory: Inventory, model: InventoryModel, completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
-        print(model, "MODEL LIST")
         inventory.setValue(model.name, forKey: "name")
         inventory.setValue(model.total, forKey: "total")
         inventory.setValue(model.totalType, forKey: "totalType")
@@ -70,9 +70,6 @@ struct PersistenceController {
         inventory.setValue(model.foodCategory, forKey: "toFoodCategory")
         do {
             try saveData()
-//            try context.save()
-//            context.refresh(inventory, mergeChanges: true)
-//            saveData(completion: completion)
             completion(nil)
         } catch {
             completion(error)

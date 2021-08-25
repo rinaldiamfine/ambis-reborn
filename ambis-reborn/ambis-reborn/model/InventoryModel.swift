@@ -11,6 +11,14 @@ import CoreData
 struct InventoryModel {
     let inventory: Inventory
     
+    var watchIcon: String {
+        return inventory.watchIcon ?? ""
+    }
+    
+    var inventoryId: UUID {
+        return inventory.inventoryId ?? UUID()
+    }
+    
     var id: NSManagedObjectID {
         return inventory.objectID
     }
