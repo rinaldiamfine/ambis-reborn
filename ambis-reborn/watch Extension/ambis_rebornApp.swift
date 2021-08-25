@@ -13,6 +13,7 @@ struct ambis_rebornApp: App {
 //    var managedObjectContext = (WKExtension.shared().delegate as! WatchPersistenceController).container.viewContext
     
     private let persistenceController = PersistenceController.shared
+    private let watchManager = WatchManager.shared
     @Environment(\.scenePhase) private var scenePhase
     
     @SceneBuilder var body: some Scene {
@@ -29,7 +30,7 @@ struct ambis_rebornApp: App {
                     print("inactive")
                 case .background:
                     print("background")
-                    persistenceController.saveData()
+//                    persistenceController.saveData()
                 @unknown default:
                     print("Apple update status baru kah")
             }

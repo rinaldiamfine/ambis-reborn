@@ -22,15 +22,15 @@ class Notification {
         
     }
     
-    func sendNotification(itemName: String, reminderDate: Date) {
+    func sendNotification(inventId: String, itemName: String, reminderDate: Date) {
         let content = UNMutableNotificationContent()
         content.title = "Inventory Has Expired"
         content.body = "Your Item \(itemName) has expired."
         content.sound = .default
-        content.badge = 1
+//        content.badge = 1
         let dateMatching = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: reminderDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateMatching, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: inventId, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
 }

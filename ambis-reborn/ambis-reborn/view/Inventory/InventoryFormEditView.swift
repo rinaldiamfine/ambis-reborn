@@ -35,7 +35,7 @@ struct InventoryFormEditView: View {
         inventoryViewModel.editData(inventory)
         inventoryViewModel.getData()
         //SET NOTIF
-        Notification.instance.sendNotification(itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
+        Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
         //POP VIEW
         isPresented = false
     }

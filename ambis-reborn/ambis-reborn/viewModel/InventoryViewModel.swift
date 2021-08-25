@@ -10,6 +10,9 @@ import UIKit
 import CoreData
 
 class InventoryViewModel: ObservableObject {
+    @Published var inventoryId = UUID()
+    @Published var watchIcon = ""
+    
     @Published var name: String = ""
     @Published var total: String = ""
     @Published var totalType: String = "Kg"
@@ -79,6 +82,7 @@ class InventoryViewModel: ObservableObject {
         isPresented = true
     }
     func prepareDataEdit(index: Int) {
+        print(inventory[index].inventoryId ,"GET INV ID")
         name = inventory[index].name
         total = String(inventory[index].total)
         totalType = inventory[index].totalType
@@ -90,8 +94,10 @@ class InventoryViewModel: ObservableObject {
             previewSelectedCategory = (inventory[index].foodCategory.imageString! + " " + inventory[index].foodCategory.name!)
             detailDisclaimer = inventory[index].foodCategory.estimation!
         }
+        
     }
     //EDIT
+    
     
     //DELETE
     func deleteItemByContextMenu(index: InventoryModel) {
@@ -123,6 +129,7 @@ class InventoryViewModel: ObservableObject {
     //CREATE
     
     func resetData() {
+        inventoryId = UUID()
         name = ""
         total = ""
         totalType = "Kg"
@@ -221,6 +228,7 @@ class InventoryViewModel: ObservableObject {
         inventory.purchaseDate = purchaseDate
         inventory.expiryDate = expiryDate
         inventory.store = store
+        inventory.inventoryId = inventoryId
         if toInventory.count > 0 {
             inventory.toFoodCategory = toInventory.first
         }

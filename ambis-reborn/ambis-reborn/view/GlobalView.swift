@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+func setupWatchDictValue(inventory: InventoryViewModel, action: String) -> [String: Any] {
+    let dateFormater = DateFormatter()
+    dateFormater.dateFormat = "yyyy-MM-dd hh:mm:ss"
+    let stringDate = dateFormater.string(from: inventory.expiryDate)
+    return [
+        "inventoryId": inventory.inventoryId.uuidString,
+        "name": inventory.name,
+        "store": inventory.store,
+        "total": inventory.total,
+        "totalType": inventory.totalType,
+        "expiredDate": stringDate,
+        "categoryIcon": inventory.toInventory.first?.imageString ?? "",
+        "action": action
+    ]
+}
+
 struct GlobalView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

@@ -11,6 +11,7 @@ import CoreData
 @main
 struct ambis_rebornApp: App {
     let persistenceController = PersistenceController.shared
+    private let watchManager = WatchManager.shared
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
