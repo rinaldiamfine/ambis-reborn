@@ -7,11 +7,12 @@
 
 import Foundation
 import CoreData
-
+import SwiftUI
+import UIKit
 
 struct RecipeCloudKitModel: Identifiable {
     var id = UUID()
-    var photo: CKAsset
+    var photo: NSObject?
     var tags: String = ""
     
     var name: String = ""

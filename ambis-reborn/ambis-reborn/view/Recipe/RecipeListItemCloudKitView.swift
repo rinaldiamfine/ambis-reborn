@@ -21,11 +21,11 @@ struct RecipeListItemCloudKitView: View {
         ZStack {
             HStack {
                 ZStack {
-                    Image(uiImage: UIImage(data: setupImage(url: recipe.photo.fileURL!) as Data)!)
-                        .resizable()
-                        .frame(width: 80, height: 80, alignment: .center)
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
+//                    Image(uiImage: UIImage(data: setupImage(url: recipe.photo.fileURL!) as Data)!)
+//                        .resizable()
+//                        .frame(width: 80, height: 80, alignment: .center)
+//                        .aspectRatio(contentMode: .fit)
+//                        .cornerRadius(10)
                 }
                 VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
                     Text(recipe.name)

@@ -21,13 +21,13 @@ struct RecipeCloudKitView: View {
     var body: some View {
         VStack {
             ScrollView {
-                Image(uiImage: UIImage(data: setupImage(url: recipe.photo.fileURL!) as Data)!)
-                    .resizable()
-                    .frame(width: UIScreen.screenWidth - 30, height: UIScreen.screenHeight / 3.7, alignment: .center)
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(25)
-                    .padding(.top)
-                    .padding(.horizontal)
+//                Image(uiImage: UIImage(data: setupImage(url: recipe.photo.fileURL!) as Data)!)
+//                    .resizable()
+//                    .frame(width: UIScreen.screenWidth - 30, height: UIScreen.screenHeight / 3.7, alignment: .center)
+//                    .aspectRatio(contentMode: .fit)
+//                    .cornerRadius(25)
+//                    .padding(.top)
+//                    .padding(.horizontal)
                 
                 HStack {
                     Text(recipe.name)
@@ -135,13 +135,13 @@ struct CookingStepCloudKitView: View {
     var body: some View {
         VStack {
             ScrollView {
-                Image(uiImage: UIImage(data: setupImage(url: recipe.photo.fileURL!) as Data)!)
-                    .resizable()
-                    .frame(width: UIScreen.screenWidth - 30, height: UIScreen.screenHeight / 3.7, alignment: .center)
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(25)
-                    .padding(.vertical)
-                    .padding(.horizontal)
+//                Image(uiImage: UIImage(data: setupImage(url: recipe.photo.fileURL!) as Data)!)
+//                    .resizable()
+//                    .frame(width: UIScreen.screenWidth - 30, height: UIScreen.screenHeight / 3.7, alignment: .center)
+//                    .aspectRatio(contentMode: .fit)
+//                    .cornerRadius(25)
+//                    .padding(.vertical)
+//                    .padding(.horizontal)
                 
                 ForEach(0..<recipe.cookSteps.count) { count in
                     ZStack {

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "905DE8B12693311500E7011C"
-               BuildableName = "ambis-reborn.app"
-               BlueprintName = "ambis-reborn"
-               ReferencedContainer = "container:ambis-reborn.xcodeproj">
+               BuildableName = "ExpiRemind.app"
+               BlueprintName = "ExpiRemind"
+               ReferencedContainer = "container:ExpiRemind.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "905DE8B12693311500E7011C"
-            BuildableName = "ambis-reborn.app"
-            BlueprintName = "ambis-reborn"
-            ReferencedContainer = "container:ambis-reborn.xcodeproj">
+            BuildableName = "ExpiRemind.app"
+            BlueprintName = "ExpiRemind"
+            ReferencedContainer = "container:ExpiRemind.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "905DE8B12693311500E7011C"
-            BuildableName = "ambis-reborn.app"
-            BlueprintName = "ambis-reborn"
-            ReferencedContainer = "container:ambis-reborn.xcodeproj">
+            BuildableName = "ExpiRemind.app"
+            BlueprintName = "ExpiRemind"
+            ReferencedContainer = "container:ExpiRemind.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
