@@ -420,7 +420,6 @@
 				90E8F2E226B164C5002BCBDE /* Prepare */,
 				90E8F2E426B16540002BCBDE /* Recipe */,
 				90905AD4269D66FA00D8A500 /* Shopping */,
-				90905AD3269D66EF00D8A500 /* Summary */,
 				905DE8CA2693332C00E7011C /* Category */,
 				905DE8C92693332000E7011C /* Inventory */,
 				905DE8C7269332D300E7011C /* TabBarView.swift */,
@@ -453,11 +452,11 @@
 				9090AC9B269948E3008AF935 /* InventoryFormView.swift */,
 				9070148C269ECC0B00F8981A /* InventoryFormEditView.swift */,
 				9090AC9D269948F0008AF935 /* InventoryListView.swift */,
+				9065A5F826A9738800BAD3A6 /* InventoryListFilterView.swift */,
 				90706CB126A5726200471700 /* InventoryListExpiryView.swift */,
 				9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */,
 				9070148A269E160200F8981A /* InventoryCategoryListView.swift */,
 				9047D1E526A488F200511A25 /* InventoryFilterView.swift */,
-				9065A5F826A9738800BAD3A6 /* InventoryListFilterView.swift */,
 				9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */,
 			);
 			path = Inventory;
@@ -493,13 +492,6 @@
 				9065A60A26AA25EE00BAD3A6 /* Info.plist */,
 			);
 			path = widget;
-			sourceTree = "<group>";
-		};
-		90905AD3269D66EF00D8A500 /* Summary */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Summary;
 			sourceTree = "<group>";
 		};
 		90905AD4269D66FA00D8A500 /* Shopping */ = {

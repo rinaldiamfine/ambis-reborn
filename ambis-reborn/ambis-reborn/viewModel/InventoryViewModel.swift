@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
+
 class InventoryViewModel: ObservableObject {
     @Published var inventoryId = UUID()
     @Published var watchIcon = ""
@@ -55,9 +56,7 @@ class InventoryViewModel: ObservableObject {
         inventory.totalType = shopping.totalType
         inventory.purchaseDate = purchaseDate
         inventory.expiryDate = expiryDate
-        //
         inventory.store = store
-        //
         if shopping.shopping.toFoodCategory != nil {
             toInventory = [shopping.foodCategory]
             if toInventory.count > 0 {
@@ -82,7 +81,6 @@ class InventoryViewModel: ObservableObject {
         isPresented = true
     }
     func prepareDataEdit(index: Int) {
-        print(inventory[index].inventoryId ,"GET INV ID")
         name = inventory[index].name
         total = String(inventory[index].total)
         totalType = inventory[index].totalType

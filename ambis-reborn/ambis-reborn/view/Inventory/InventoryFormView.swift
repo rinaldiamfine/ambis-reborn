@@ -48,7 +48,6 @@ struct InventoryFormView: View {
         Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
         inventoryViewModel.resetData()
         isPresented = false
-//        print(watc)
     }
     
     func actionCancel() {
@@ -115,7 +114,6 @@ struct InventoryModalForm: View {
     }
     
     func categoryOnTap(category: FoodCategoryModel) {
-        print(inventoryViewModel.name, "GET NAME WHY NOT PASS")
         inventoryViewModel.previewSelectedCategory = category.imageString + " " + category.name
         inventoryViewModel.detailDisclaimer = category.estimation
         inventoryViewModel.toInventory = [category.foodCategory]

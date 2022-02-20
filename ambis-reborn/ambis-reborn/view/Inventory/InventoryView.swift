@@ -13,35 +13,24 @@ import UserNotifications
 struct InventoryView: View {
     @StateObject var inventoryViewModel = InventoryViewModel()
     @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
-    
-//    @StateObject var widgetInventoryViewModel = WidgetInventoryViewModel()
-    //FOR-PRODUCTION
-//    @AppStorage("expiry", store: UserDefaults(suiteName: "group.widgetInventory")) var inventoryData : Data = Data()
-    //FOR DEVELOPMENT
     @AppStorage("expiry", store: UserDefaults(suiteName: "group.inventoryData")) var inventoryData : Data = Data()
     
     @ObservedObject var searchBar: SearchBar = SearchBar()
     @State private var defaultFilter = "Expire Soon"
-    @Environment(\.colorScheme) var colorScheme
     
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
-    @State private var needRefresh = true
-    @Binding var totalInventSearch: Bool
-    
-    var storeAvailable = AppGlobalData.generateDataStore()
     
     func getIconNameActive() -> Image {
         return Image("TabBarInventoryActive")
-//        return Image(systemName: "list.dash")
     }
     func getIconName() -> Image {
         return Image("TabBarInventory")
-//        return Image(systemName: "list.dash")
     }
     func gettabName() -> Text {
         return Text("Inventory")
     }
+    
     func filterList(expiryDate: Date, name: String, store: String) -> Bool {
         if defaultFilter == "Expire Soon" {
             if !showCancelButton {
@@ -63,31 +52,15 @@ struct InventoryView: View {
     }
     
     var body: some View {
-//        GeometryReader(content: { geometry in
-//            let topEdge = geometry.safeAreaInsets.top
-//            InventoryNavBar(navTitle: "Inventory", topEdge: topEdge)
-//                .ignoresSafeArea()
-//        })
-        
         NavigationView {
             VStack(spacing: 10) {
                 if inventoryViewModel.inventoryCount > 0 {
                     ScrollView {
-                        //SETUP SEARCH AND FILTER
                         VStack(spacing: 10) {
                             InventoryFilterView(defaultFilter: $defaultFilter, isSearchActive: $showCancelButton, searchText: $searchText, showCancelButton: $showCancelButton)
                                 .padding(.horizontal)
                         }
-//                        .background(
-//                            Rectangle()
-//                                .fill(LinearGradient(
-//                                    gradient: .init(colors: !showCancelButton ? [Color("Gradient1"), Color("Gradient2")] : [Color(UIColor.systemBackground)]),
-//                                    startPoint: .init(x: 0, y: 0),
-//                                    endPoint: .init(x: 0, y: 0.7)
-//                                ))
-//                        )
-
-                        //SETUP LIST
+                        
                         Section {
                             ForEach (inventoryViewModel.inventory.filter {
                                 let filter = filterList(expiryDate: $0.expiryDate, name: $0.name, store: $0.store)
@@ -99,7 +72,6 @@ struct InventoryView: View {
                                         // EXPIRE SOON
                                         if defaultFilter == "Expire Soon" {
                                             InventoryListExpiryView(inventory: inventory, inventoryViewModel: inventoryViewModel, counterGate: inventoryViewModel.inventoryCount)
-//                                                .shadow(color: Color.gray.opacity(0.3), radius: 5)
                                                 .onTapGesture {
                                                     presentModalForEdit()
                                                 }
@@ -128,7 +100,7 @@ struct InventoryView: View {
                                         Image(systemName: "bag").font(.system(size: 42))
                                             .foregroundColor(Color("BrandColor"))
                                     }
-                                    Text("Great. None of your items are expiring soon.")
+                                    Text("Great, None of your items are expiring soon.")
                                         .foregroundColor(Color.init(UIColor.systemGray))
                                         .padding(.top, 15)
                                 }
@@ -213,20 +185,15 @@ struct InventoryView: View {
         }
         .onAppear(perform: {
             Notification.instance.requestAuthorization()
-//            inventoryViewModel.getData()
             foodCategoryViewModel.getData()
             inventoryViewModel.loadList()
             NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
-
             setupWidgetContent()
         })
         
     }
     
     func presentModalForEdit() {
-//        inventory: inventory,
-//        inventoryViewModel: inventoryViewModel,
-//        counterGate: inventoryViewModel.inventoryCount
         inventoryViewModel.isPresented = true
     }
     
