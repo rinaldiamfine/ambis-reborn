@@ -10,7 +10,6 @@ import SwiftUI
 struct InventoryEmptyStateView: View {
     @State var title: String
     @State var subtitle: String
-    
     var body: some View {
         VStack(spacing: 30) {
             Spacer()
@@ -32,10 +31,10 @@ struct InventoryEmptyStateView: View {
             HStack(alignment: .center) {
                 VStack(alignment: .center, spacing: 5) {
                     Text(title)
-                        .font(.system(size:18, design: .rounded))
+                        .font(.system(.headline, design: .rounded))
                         .foregroundColor(Color.init(UIColor.systemGray))
                     Text(subtitle)
-                        .font(.system(size:15, design: .rounded))
+                        .font(.system(.subheadline, design: .rounded))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color.init(UIColor.systemGray))
                 }

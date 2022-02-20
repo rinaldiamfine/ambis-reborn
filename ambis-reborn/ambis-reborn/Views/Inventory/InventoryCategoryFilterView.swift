@@ -49,17 +49,18 @@ struct InventoryCategoryFilterContentView: View {
 }
 
 struct InventoryCategoryFilterView: View {
-    @State var defaultFilter = "Expire Soon"
-    @ObservedObject var viewModel: InventoryViewModel
+    @Binding var filterCategory: String
+    @ObservedObject var inventoryViewModel: InventoryViewModel
     var filterStoreAvailable = AppGlobalData.generateFilterDataSotre()
-    
     var body: some View {
         VStack {
             HStack(spacing: 0) {
                 Spacer()
                 ForEach (filterStoreAvailable, id:\.id) {
                     store in
-                    InventoryCategoryFilterContentView(filter: $defaultFilter, name: store.name)
+                    InventoryCategoryFilterContentView(
+                        filter: $filterCategory,
+                        name: store.name)
                     .padding(.bottom)
                     .frame(minWidth: 0, maxWidth: .infinity)
                 }
@@ -74,6 +75,6 @@ struct InventoryCategoryFilterView: View {
 
 struct InventoryCategoryFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        InventoryCategoryFilterView(viewModel: InventoryViewModel())
+        InventoryCategoryFilterView(filterCategory: .constant("Expire Soon"), inventoryViewModel: InventoryViewModel())
     }
 }

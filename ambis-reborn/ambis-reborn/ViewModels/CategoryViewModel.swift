@@ -20,6 +20,15 @@ class FoodCategoryViewModel: ObservableObject {
     @Published var foodCategories: [FoodCategoryModel] = []
     @Published var foodCategoriesCount: Int = 0
     
+    init() {
+        fetchCategory()
+    }
+    
+    func fetchCategory() {
+        foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
+        foodCategoriesCount = foodCategories.count
+    }
+    
     func getData() {
         foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
         foodCategoriesCount = foodCategories.count

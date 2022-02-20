@@ -8,29 +8,30 @@
 import SwiftUI
 
 struct InventoryMainView: View {
-    @ObservedObject var viewModel = InventoryViewModel()
-    @State var isPresented = false
-    
+    @ObservedObject var inventoryViewModel = InventoryViewModel()
+    @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
+    @State var filterCategory = "Expire Soon"
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
                 VStack(alignment: .leading) {
-                    if viewModel.inventory.isEmpty {
+                    if inventoryViewModel.inventory.isEmpty {
                         InventoryEmptyStateView(
                             title: "There are no items in your inventory",
                             subtitle: "Press the + button to add")
                     }
                     else {
                         ScrollView {
-                            InventoryCategoryFilterView(viewModel: viewModel)
+                            InventoryCategoryFilterView(
+                                filterCategory: $filterCategory,
+                                inventoryViewModel: inventoryViewModel)
                                 .padding(.horizontal)
-                            
-                            ForEach (viewModel.inventory, id:\.id) {
+                            ForEach (inventoryViewModel.inventory, id:\.id) {
                                 inventory in
                                 VStack(spacing: 10) {
                                     InventoryListView(
                                         inventory: inventory,
-                                        inventoryViewModel: viewModel)
+                                        inventoryViewModel: inventoryViewModel)
                                 }
                                 .padding(.horizontal)
                             }
@@ -38,19 +39,25 @@ struct InventoryMainView: View {
                         .background(Color("AppBackground"))
                     }
                 }
-            }
-            .navigationTitle("Inventory")
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        isPresented.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .imageScale(.large)
-                            .foregroundColor(Color("BackgroundInverse"))
+                .navigationTitle("Inventory")
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button {
+                            inventoryViewModel.isPresented.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                                .imageScale(.large)
+                                .foregroundColor(Color("BackgroundInverse"))
+                        }
                     }
                 }
-
+                .sheet(isPresented: $inventoryViewModel.isPresented) {
+                    InventoryModalFormView(
+                        inventoryViewModel: inventoryViewModel,
+                        foodCategoryViewModel: foodCategoryViewModel,
+                        isPresented: $inventoryViewModel.isPresented,
+                        filterCategory: $filterCategory)
+                }
             }
         }
     }

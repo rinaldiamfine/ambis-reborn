@@ -6,9 +6,7 @@
 //
 
 import Foundation
-import UIKit
 import CoreData
-
 
 class InventoryViewModel: ObservableObject {
     @Published var inventoryId = UUID()
@@ -51,12 +49,40 @@ class InventoryViewModel: ObservableObject {
     @Published var isEmpty = false
     
     init() {
+        setDefaultForm()
         fetchInventory()
     }
-    
     func fetchInventory() {
-        print("THIs IC CALLED")
-        inventory = PersistenceController.shared.getInventoryData().map(InventoryModel.init)
+        inventory = InventoryCoreDataManager.shared.fetch()
+        foodCategories = FoodCategoryCoreDataManager.shared.fetch()
+    }
+    func save() {
+        print(toInventory, "GET TO INV FCXCK")
+        let inventory = Inventory(context: InventoryCoreDataManager.shared.viewContext)
+        inventory.name = name
+        inventory.total = Double(total) ?? Double(0)
+        inventory.totalType = totalType
+        inventory.purchaseDate = purchaseDate
+        inventory.expiryDate = expiryDate
+        inventory.store = store
+        inventory.inventoryId = inventoryId
+        if toInventory.count > 0 {
+            inventory.toFoodCategory = toInventory.first
+        }
+        InventoryCoreDataManager.shared.save()
+        setDefaultForm()
+    }
+    func setDefaultForm() {
+        inventoryId = UUID()
+        name = ""
+        total = ""
+        totalType = "Kg"
+        store = "Fridge"
+        expiryDate = Date()
+        purchaseDate = Date()
+        toInventory = []
+        previewSelectedCategory = "Choose Category"
+        detailDisclaimer = ""
     }
     
     

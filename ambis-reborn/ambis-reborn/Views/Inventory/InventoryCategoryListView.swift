@@ -19,11 +19,13 @@ struct InventoryCategoryListView: View {
                 Spacer()
                 let formatName = foodCategory.imageString + " " + foodCategory.name
                 if previewSelectedCategory == formatName {
-                    Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                    Image(systemName: "checkmark")
+                        .foregroundColor(Color("AccentColor"))
                 }
             }
             .navigationBarBackButtonHidden(false)
-            .navigationBarHidden(false).accentColor(.red)
+            .navigationBarHidden(false)
+            .accentColor(.red)
 //            .navigationTitle("Food Category").accentColor(Color("BackgroundInverse"))
 //        }.accentColor( .black)
     }
