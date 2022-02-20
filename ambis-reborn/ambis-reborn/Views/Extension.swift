@@ -25,7 +25,7 @@ extension UINavigationController {
         let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .largeTitle)
             .withDesign(design)!.withSymbolicTraits(UIFontDescriptor.SymbolicTraits.traitBold)!
         let fontLarge = UIFont(descriptor: descriptor, size: 38)
-        let fontSmall = UIFont(descriptor: descriptor, size: 17)
+        let fontSmall = UIFont(descriptor: descriptor, size: 18)
         
         navBar.largeTitleTextAttributes = [.font : fontLarge]
         navBar.titleTextAttributes = [.font : fontSmall]

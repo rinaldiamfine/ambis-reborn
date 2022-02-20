@@ -48,6 +48,18 @@ class InventoryViewModel: ObservableObject {
     
     @Published var prepareSelectedInventory: [NSManagedObjectID] = []
     
+    @Published var isEmpty = false
+    
+    init() {
+        fetchInventory()
+    }
+    
+    func fetchInventory() {
+        print("THIs IC CALLED")
+        inventory = PersistenceController.shared.getInventoryData().map(InventoryModel.init)
+    }
+    
+    
     //DATA FROM SHOPPING LIST
     func readDataFromShopping(shopping: ShoppingModel, purchaseDate: Date ,expiryDate: Date, store: String) {
         let inventory = Inventory(context: PersistenceController.shared.container.viewContext)

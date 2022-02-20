@@ -15,7 +15,7 @@ struct TabBarView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            InventoryView().tabItem {
+            InventoryMainView().tabItem {
                 if selectedTab == 1 {
                     InventoryView().getIconNameActive()
                 } else {
