@@ -9,7 +9,6 @@ import SwiftUI
 
 struct InventoryMainView: View {
     @ObservedObject var inventoryViewModel = InventoryViewModel()
-    @ObservedObject var foodCategoryViewModel = FoodCategoryViewModel()
     @State var filterCategory = "Expire Soon"
     var body: some View {
         NavigationView {
@@ -54,7 +53,6 @@ struct InventoryMainView: View {
                 .sheet(isPresented: $inventoryViewModel.isPresented) {
                     InventoryModalFormView(
                         inventoryViewModel: inventoryViewModel,
-                        foodCategoryViewModel: foodCategoryViewModel,
                         isPresented: $inventoryViewModel.isPresented,
                         filterCategory: $filterCategory)
                 }

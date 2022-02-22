@@ -10,7 +10,7 @@ import Combine
 
 struct InventoryModalFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
-    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
+//    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     @Binding var isPresented: Bool
     @Binding var filterCategory: String
     @State private var isShowActionSheet = false
@@ -28,10 +28,10 @@ struct InventoryModalFormView: View {
             filterCategory = inventoryViewModel.store
         }
         inventoryViewModel.getData()
-        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: action)
-        WatchManager.shared.sendParamsToWatch(dict: dictValue)
-        Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
-        inventoryViewModel.resetData()
+//        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: action)
+//        WatchManager.shared.sendParamsToWatch(dict: dictValue)
+//        Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
+//        inventoryViewModel.resetData()
         isPresented = false
     }
     func actionCancel() {
@@ -94,6 +94,7 @@ struct InventoryModalFormContentView: View {
         inventoryViewModel.previewSelectedCategory = category.imageString + " " + category.name
         inventoryViewModel.detailDisclaimer = category.estimation
         inventoryViewModel.toInventory = [category.foodCategory]
+        inventoryViewModel.toFoodCategory = category.foodCategory
         inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
         inventoryViewModel.expiryEstimation = Int(category.expiryEstimation)
     }
@@ -127,7 +128,7 @@ struct InventoryModalFormContentView: View {
             }
             Section(header: Text("Product Category")
                         .font(.system(.caption, design: .rounded))) {
-                Picker(selection: $inventoryViewModel.toInventory, label: Text(inventoryViewModel.previewSelectedCategory)
+                Picker(selection: $inventoryViewModel.toFoodCategory, label: Text(inventoryViewModel.previewSelectedCategory)
                         .font(.system(.callout, design: .rounded))) {
                     ForEach(inventoryViewModel.foodCategories, id:\.id) { category in
                         InventoryCategoryListView(

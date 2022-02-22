@@ -34,10 +34,18 @@ class InventoryCoreDataManager {
         viewContext.delete(object)
         save(completion: completion)
     }
-    func fetch() -> [InventoryModel] {
+    func fetchInventory() -> [InventoryModel] {
         let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
         do {
             return try viewContext.fetch(request).map(InventoryModel.init)
+        } catch {
+            return []
+        }
+    }
+    func fetchCategory() -> [FoodCategoryModel] {
+        let request: NSFetchRequest<FoodCategory> = FoodCategory.fetchRequest()
+        do {
+            return try viewContext.fetch(request).map(FoodCategoryModel.init)
         } catch {
             return []
         }

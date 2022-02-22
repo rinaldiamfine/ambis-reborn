@@ -18,6 +18,7 @@ class InventoryViewModel: ObservableObject {
     @Published var store: String = "Fridge"
     
     @Published var toInventory: [FoodCategory] = []
+    @Published var toFoodCategory: FoodCategory = FoodCategory()
     @Published var selectedInventory = 0
     
     @Published var purchaseDate: Date = Date()
@@ -53,21 +54,20 @@ class InventoryViewModel: ObservableObject {
         fetchInventory()
     }
     func fetchInventory() {
-        inventory = InventoryCoreDataManager.shared.fetch()
-        foodCategories = FoodCategoryCoreDataManager.shared.fetch()
+        inventory = InventoryCoreDataManager.shared.fetchInventory()
+        foodCategories = InventoryCoreDataManager.shared.fetchCategory()
     }
     func save() {
-        print(toInventory, "GET TO INV FCXCK")
         let inventory = Inventory(context: InventoryCoreDataManager.shared.viewContext)
-        inventory.name = name
-        inventory.total = Double(total) ?? Double(0)
-        inventory.totalType = totalType
-        inventory.purchaseDate = purchaseDate
-        inventory.expiryDate = expiryDate
+        inventory.name = self.name
+        inventory.total = Double(self.total) ?? Double(0)
+        inventory.totalType = self.totalType
+        inventory.purchaseDate = self.purchaseDate
+        inventory.expiryDate = self.expiryDate
         inventory.store = store
-        inventory.inventoryId = inventoryId
-        if toInventory.count > 0 {
-            inventory.toFoodCategory = toInventory.first
+        inventory.inventoryId = self.inventoryId
+        if !self.toInventory.isEmpty {
+            inventory.toFoodCategory = self.toFoodCategory
         }
         InventoryCoreDataManager.shared.save()
         setDefaultForm()
