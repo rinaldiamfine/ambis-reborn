@@ -10,7 +10,6 @@ import Combine
 
 struct InventoryModalFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
-//    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel
     @Binding var isPresented: Bool
     @Binding var filterCategory: String
     @State private var isShowActionSheet = false
@@ -21,13 +20,11 @@ struct InventoryModalFormView: View {
         if inventoryViewModel.status == "edit" {
             inventoryViewModel.edit()
             action = "edit"
-            filterCategory = inventoryViewModel.inventory[inventoryViewModel.selectedIndex].store
         } else {
             inventoryViewModel.create()
             action = "create"
-            filterCategory = inventoryViewModel.store
         }
-//        inventoryViewModel.getData()
+        filterCategory = inventoryViewModel.store
         
 //        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: action)
 //        WatchManager.shared.sendParamsToWatch(dict: dictValue)

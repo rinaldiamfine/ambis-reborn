@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct InventoryCategoryFilterContentView: View {
-    @Binding var filter: String
+    @ObservedObject var inventoryViewModel: InventoryViewModel
     @State var name: String
     func actionTap() {
-        filter = name
+        inventoryViewModel.filterCategory = name
     }
     var body: some View {
         VStack {
             Rectangle()
-                .fill(filter == name ? Color("BrandColor") : Color("BoxBackground"))
+                .fill(inventoryViewModel.filterCategory == name ? Color("BrandColor") : Color("BoxBackground"))
                 .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
                 .frame(width: 26, height: 4, alignment: .center)
             ZStack {
@@ -38,9 +38,9 @@ struct InventoryCategoryFilterContentView: View {
                 }
             }
             Text(name)
-                .fontWeight(filter == name ? .medium : .medium)
+                .fontWeight(inventoryViewModel.filterCategory == name ? .medium : .medium)
                 .font(.system(size: 12, design: .rounded))
-                .foregroundColor(filter == name ? Color("BackgroundInverse") : Color.secondary)
+                .foregroundColor(inventoryViewModel.filterCategory == name ? Color("BackgroundInverse") : Color.secondary)
         }
         .onTapGesture {
             actionTap()
@@ -49,7 +49,6 @@ struct InventoryCategoryFilterContentView: View {
 }
 
 struct InventoryCategoryFilterView: View {
-    @Binding var filterCategory: String
     @ObservedObject var inventoryViewModel: InventoryViewModel
     var filterStoreAvailable = AppGlobalData.generateFilterDataSotre()
     var body: some View {
@@ -58,9 +57,7 @@ struct InventoryCategoryFilterView: View {
                 Spacer()
                 ForEach (filterStoreAvailable, id:\.id) {
                     store in
-                    InventoryCategoryFilterContentView(
-                        filter: $filterCategory,
-                        name: store.name)
+                    InventoryCategoryFilterContentView(inventoryViewModel: self.inventoryViewModel, name: store.name)
                     .padding(.bottom)
                     .frame(minWidth: 0, maxWidth: .infinity)
                 }
@@ -75,6 +72,6 @@ struct InventoryCategoryFilterView: View {
 
 struct InventoryCategoryFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        InventoryCategoryFilterView(filterCategory: .constant("Expire Soon"), inventoryViewModel: InventoryViewModel())
+        InventoryCategoryFilterView(inventoryViewModel: InventoryViewModel())
     }
 }

@@ -22,11 +22,10 @@ struct InventoryMainView: View {
                     else {
                         ScrollView {
                             InventoryCategoryFilterView(
-                                filterCategory: $filterCategory,
                                 inventoryViewModel: inventoryViewModel)
                                 .padding(.horizontal)
                                 .padding(.top, 10)
-                            ForEach (inventoryViewModel.inventory, id:\.id) {
+                            ForEach (inventoryViewModel.filterByCategory(), id:\.id) {
                                 inventory in
                                 VStack(spacing: 10) {
                                     InventoryMainContentView(

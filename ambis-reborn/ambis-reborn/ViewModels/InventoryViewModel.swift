@@ -11,20 +11,20 @@ import CoreData
 class InventoryViewModel: ObservableObject {
     @Published var inventoryId = UUID()
     @Published var watchIcon = ""
+    @Published var filterCategory = "Expire Soon"
     
     @Published var id: NSManagedObjectID = NSManagedObjectID()
     @Published var name: String = ""
     @Published var total: String = ""
     @Published var totalType: String = "Kg"
     @Published var store: String = "Fridge"
-    
     @Published var toFoodCategory: FoodCategory = FoodCategory()
-    @Published var selectedInventory = 0
-    
     @Published var purchaseDate: Date = Date()
     @Published var expiryDate: Date = Date()
     
     @Published var inventory: [InventoryModel] = []
+    @Published var foodCategories: [FoodCategoryModel] = []
+    
 //    @Published var inventoryExpiry: [InventoryModel] = []
 //    @Published var inventoryFridge: [InventoryModel] = []
 //    @Published var inventoryFreezer: [InventoryModel] = []
@@ -34,9 +34,6 @@ class InventoryViewModel: ObservableObject {
     @Published var inventoryExpire: Int = 0
     @Published var progressBar: Float = 0.0
     
-    @Published var foodCategories: [FoodCategoryModel] = []
-    @Published var foodCategoryCount: Int = 0
-    
     @Published var isPresented: Bool = false
     @Published var selectedIndex: Int = 0
     @Published var status: String = ""
@@ -45,11 +42,36 @@ class InventoryViewModel: ObservableObject {
     @Published var detailDisclaimer: String = ""
     @Published var expiryEstimation: Int = 0
     
+    // NOT USED
     @Published var prepareSelectedInventory: [NSManagedObjectID] = []
+    private var timeIntervalExpiry = 24*60*60*3 // 3 DAYS
         
     init() {
         setDefaultForm()
         fetchInventory()
+        self.filterCategory = "Expire Soon"
+    }
+    
+    func filterByCategory() -> [InventoryModel] {
+        if self.filterCategory == "Expire Soon" {
+            return inventory.filter { inventory in
+                if inventory.expiryDate <= Date().addingTimeInterval(TimeInterval(timeIntervalExpiry)) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        } else {
+            return inventory.filter { inventory in
+                if inventory.store == self.filterCategory {
+                    return true
+                }
+                else {
+                    return false
+                    
+                }
+            }
+        }
     }
     func fetchInventory() {
         inventory = ExpiRemindCoreDataManager.shared.fetchInventory()
@@ -98,16 +120,6 @@ class InventoryViewModel: ObservableObject {
         status = "edit"
         isPresented = true
     }
-    
-    func deleteById(model: InventoryModel) {
-        let inventory = ExpiRemindCoreDataManager.shared.getInventoryById(id: model.id)
-        if let inventory = inventory {
-            ExpiRemindCoreDataManager.shared.viewContext.delete(inventory)
-            ExpiRemindCoreDataManager.shared.save()
-        }
-        fetchInventory()
-    }
-    
     func edit() {
         let inventory = ExpiRemindCoreDataManager.shared.getInventoryById(id: self.id)
         if let inventory = inventory {
@@ -122,6 +134,14 @@ class InventoryViewModel: ObservableObject {
             inventory.toFoodCategory = self.toFoodCategory
         }
         ExpiRemindCoreDataManager.shared.save()
+    }
+    func deleteById(model: InventoryModel) {
+        let inventory = ExpiRemindCoreDataManager.shared.getInventoryById(id: model.id)
+        if let inventory = inventory {
+            ExpiRemindCoreDataManager.shared.viewContext.delete(inventory)
+            ExpiRemindCoreDataManager.shared.save()
+        }
+        fetchInventory()
     }
     
     //        let existingInventory = ExpiRemindCoreDataManager.shared.getInventoryById(id: inventoryData.id)
