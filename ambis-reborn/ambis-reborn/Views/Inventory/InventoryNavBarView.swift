@@ -173,8 +173,8 @@ struct InventoryNavBar: View {
             }
             .onAppear(perform: {
                 foodCategoryViewModel.getData()
-                inventoryViewModel.loadList()
-                NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
+//                inventoryViewModel.loadList()
+//                NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
 //                setupWidgetContent()
             })
             .modifier(OffsetModifier(offset: $offset))

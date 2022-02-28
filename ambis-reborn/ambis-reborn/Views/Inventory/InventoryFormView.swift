@@ -28,25 +28,25 @@ struct InventoryFormView: View {
     func actionDone() {
         var action = "create"
         if inventoryViewModel.status == "edit" {
-            inventoryViewModel.editData(inventoryViewModel.inventory[inventoryViewModel.selectedIndex])
+//            inventoryViewModel.editData(inventoryViewModel.inventory[inventoryViewModel.selectedIndex])
             
             action = "edit"
             
             defaultFilter = inventoryViewModel.inventory[inventoryViewModel.selectedIndex].store
         } else {
-            inventoryViewModel.saveData()
+//            inventoryViewModel.saveData()
             
             action = "create"
             
             defaultFilter = inventoryViewModel.store
         }
-        inventoryViewModel.getData()
+//        inventoryViewModel.getData()
         
         let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: action)
         WatchManager.shared.sendParamsToWatch(dict: dictValue)
         
         Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
-        inventoryViewModel.resetData()
+//        inventoryViewModel.resetData()
         isPresented = false
     }
     
@@ -57,7 +57,7 @@ struct InventoryFormView: View {
     func categoryOnTap(category: FoodCategoryModel) {
         inventoryViewModel.previewSelectedCategory = category.imageString + " " + category.name
         inventoryViewModel.detailDisclaimer = category.estimation
-        inventoryViewModel.toInventory = [category.foodCategory]
+//        inventoryViewModel.toInventory = [category.foodCategory]
         inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
         inventoryViewModel.expiryEstimation = Int(category.expiryEstimation)
     }
@@ -89,7 +89,7 @@ struct InventoryFormView: View {
                     buttons: [
                         .destructive(Text("Discard Changes")) {
                             isPresented = false
-                            inventoryViewModel.resetData()
+//                            inventoryViewModel.resetData()
                         },
                         .cancel()
                     ]
@@ -116,7 +116,7 @@ struct InventoryModalForm: View {
     func categoryOnTap(category: FoodCategoryModel) {
         inventoryViewModel.previewSelectedCategory = category.imageString + " " + category.name
         inventoryViewModel.detailDisclaimer = category.estimation
-        inventoryViewModel.toInventory = [category.foodCategory]
+//        inventoryViewModel.toInventory = [category.foodCategory]
         inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
         inventoryViewModel.expiryEstimation = Int(category.expiryEstimation)
     }
@@ -151,17 +151,17 @@ struct InventoryModalForm: View {
             }
             Section(header: Text("Product Category")
                         .font(.system(.caption, design: .rounded))) {
-                Picker(selection: $inventoryViewModel.toInventory, label: Text(inventoryViewModel.previewSelectedCategory)
-                        .font(.system(.callout, design: .rounded))) {
-                    ForEach(inventoryViewModel.foodCategories, id:\.id) { category in
-                        InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $inventoryViewModel.previewSelectedCategory)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                categoryOnTap(category: category)
-                            }
-                            .navigationTitle("Food Category")
-                    }
-                }
+//                Picker(selection: $inventoryViewModel.toInventory, label: Text(inventoryViewModel.previewSelectedCategory)
+//                        .font(.system(.callout, design: .rounded))) {
+//                    ForEach(inventoryViewModel.foodCategories, id:\.id) { category in
+//                        InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $inventoryViewModel.previewSelectedCategory)
+//                            .contentShape(Rectangle())
+//                            .onTapGesture {
+//                                categoryOnTap(category: category)
+//                            }
+//                            .navigationTitle("Food Category")
+//                    }
+//                }
                 HStack {
                     Text("Storing Type")
                         .font(.system(.callout, design: .rounded))

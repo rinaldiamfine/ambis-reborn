@@ -91,67 +91,67 @@ struct InventoryView: View {
 
                         VStack {
                             if defaultFilter == "Expire Soon" {
-                                if inventoryViewModel.inventoryExpiry.isEmpty {
-                                    SpaceView()
-                                    ZStack {
-                                        Ellipse()
-                                            .fill(Color.init(UIColor.systemGray5))
-                                            .frame(width: 102, height: 102)
-                                        Image(systemName: "bag").font(.system(size: 42))
-                                            .foregroundColor(Color("BrandColor"))
-                                    }
-                                    Text("Great, None of your items are expiring soon.")
-                                        .foregroundColor(Color.init(UIColor.systemGray))
-                                        .padding(.top, 15)
-                                }
+//                                if inventoryViewModel.inventoryExpiry.isEmpty {
+//                                    SpaceView()
+//                                    ZStack {
+//                                        Ellipse()
+//                                            .fill(Color.init(UIColor.systemGray5))
+//                                            .frame(width: 102, height: 102)
+//                                        Image(systemName: "bag").font(.system(size: 42))
+//                                            .foregroundColor(Color("BrandColor"))
+//                                    }
+//                                    Text("Great, None of your items are expiring soon.")
+//                                        .foregroundColor(Color.init(UIColor.systemGray))
+//                                        .padding(.top, 15)
+//                                }
                             }
 
                             if defaultFilter == "Fridge" {
-                                if inventoryViewModel.inventoryFridge.isEmpty {
-                                    SpaceView()
-                                    ZStack {
-                                        Ellipse()
-                                            .fill(Color.init(UIColor.systemGray5))
-                                            .frame(width: 102, height: 102)
-                                        Image(systemName: "bag").font(.system(size: 42))
-                                            .foregroundColor(Color("BrandColor"))
-                                    }
-                                    Text("There are no items in your \(defaultFilter).")
-                                        .foregroundColor(Color.init(UIColor.systemGray))
-                                        .padding(.top, 15)
-                                }
+//                                if inventoryViewModel.inventoryFridge.isEmpty {
+//                                    SpaceView()
+//                                    ZStack {
+//                                        Ellipse()
+//                                            .fill(Color.init(UIColor.systemGray5))
+//                                            .frame(width: 102, height: 102)
+//                                        Image(systemName: "bag").font(.system(size: 42))
+//                                            .foregroundColor(Color("BrandColor"))
+//                                    }
+//                                    Text("There are no items in your \(defaultFilter).")
+//                                        .foregroundColor(Color.init(UIColor.systemGray))
+//                                        .padding(.top, 15)
+//                                }
                             }
 
                             if defaultFilter == "Freezer" {
-                                if inventoryViewModel.inventoryFreezer.isEmpty {
-                                    SpaceView()
-                                    ZStack {
-                                        Ellipse()
-                                            .fill(Color.init(UIColor.systemGray5))
-                                            .frame(width: 102, height: 102)
-                                        Image(systemName: "bag").font(.system(size: 42))
-                                            .foregroundColor(Color("BrandColor"))
-                                    }
-                                    Text("There are no items in your \(defaultFilter).")
-                                        .foregroundColor(Color.init(UIColor.systemGray))
-                                        .padding(.top, 15)
-                                }
+//                                if inventoryViewModel.inventoryFreezer.isEmpty {
+//                                    SpaceView()
+//                                    ZStack {
+//                                        Ellipse()
+//                                            .fill(Color.init(UIColor.systemGray5))
+//                                            .frame(width: 102, height: 102)
+//                                        Image(systemName: "bag").font(.system(size: 42))
+//                                            .foregroundColor(Color("BrandColor"))
+//                                    }
+//                                    Text("There are no items in your \(defaultFilter).")
+//                                        .foregroundColor(Color.init(UIColor.systemGray))
+//                                        .padding(.top, 15)
+//                                }
                             }
 
                             if defaultFilter == "Other" {
-                                if inventoryViewModel.inventoryOther.isEmpty {
-                                    SpaceView()
-                                    ZStack {
-                                        Ellipse()
-                                            .fill(Color.init(UIColor.systemGray5))
-                                            .frame(width: 102, height: 102)
-                                        Image(systemName: "bag").font(.system(size: 42))
-                                            .foregroundColor(Color("BrandColor"))
-                                    }
-                                    Text("There are no items in your \(defaultFilter).")
-                                        .foregroundColor(Color.init(UIColor.systemGray))
-                                        .padding(.top, 15)
-                                }
+//                                if inventoryViewModel.inventoryOther.isEmpty {
+//                                    SpaceView()
+//                                    ZStack {
+//                                        Ellipse()
+//                                            .fill(Color.init(UIColor.systemGray5))
+//                                            .frame(width: 102, height: 102)
+//                                        Image(systemName: "bag").font(.system(size: 42))
+//                                            .foregroundColor(Color("BrandColor"))
+//                                    }
+//                                    Text("There are no items in your \(defaultFilter).")
+//                                        .foregroundColor(Color.init(UIColor.systemGray))
+//                                        .padding(.top, 15)
+//                                }
                             }
                         }
                         .frame(width: UIScreen.screenWidth)
@@ -172,13 +172,13 @@ struct InventoryView: View {
                 }
             }
             .navigationBarTitle("Inventory")
-            .navigationBarItems(
-                trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
-                    Image(systemName: "plus")
-                        .imageScale(.large)
-                        .foregroundColor(Color("BackgroundInverse"))
-                }).contentShape(Circle())
-            )
+//            .navigationBarItems(
+//                trailing: Button(action: inventoryViewModel.prepareCreateData, label: {
+//                    Image(systemName: "plus")
+//                        .imageScale(.large)
+//                        .foregroundColor(Color("BackgroundInverse"))
+//                }).contentShape(Circle())
+//            )
         }
         .sheet(isPresented: $inventoryViewModel.isPresented) {
             InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
@@ -186,8 +186,8 @@ struct InventoryView: View {
         .onAppear(perform: {
             Notification.instance.requestAuthorization()
             foodCategoryViewModel.getData()
-            inventoryViewModel.loadList()
-            NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
+//            inventoryViewModel.loadList()
+//            NotificationCenter.default.addObserver(inventoryViewModel, selector: #selector(inventoryViewModel.refresh), name: NSNotification.Name(rawValue: "inventoryUpdated"), object: nil)
             setupWidgetContent()
         })
         

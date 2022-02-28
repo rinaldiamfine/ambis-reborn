@@ -8,32 +8,7 @@
 import Foundation
 import CoreData
 
-class InventoryCoreDataManager {
-    let persisntentContainer: NSPersistentContainer
-    static let shared = InventoryCoreDataManager()
-    var viewContext: NSManagedObjectContext {
-        return persisntentContainer.viewContext
-    }
-    private init() {
-        persisntentContainer = NSPersistentContainer(name: "CoreData")
-        persisntentContainer.loadPersistentStores { (_, error) in
-            if let error = error {
-                fatalError("Unable to initialize coredata stack \(error)")
-            }
-        }
-    }
-    func save(completion: @escaping (Error?) -> () = {_ in}) {
-        do {
-            try viewContext.save()
-        } catch {
-            viewContext.rollback()
-            print(error.localizedDescription)
-        }
-    }
-    func delete(_ object: NSManagedObject, completion: @escaping (Error?) -> () = {_ in}) {
-        viewContext.delete(object)
-        save(completion: completion)
-    }
+extension ExpiRemindCoreDataManager {
     func fetchInventory() -> [InventoryModel] {
         let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
         do {
@@ -42,12 +17,12 @@ class InventoryCoreDataManager {
             return []
         }
     }
-    func fetchCategory() -> [FoodCategoryModel] {
-        let request: NSFetchRequest<FoodCategory> = FoodCategory.fetchRequest()
+    
+    func getInventoryById(id: NSManagedObjectID) -> Inventory? {
         do {
-            return try viewContext.fetch(request).map(FoodCategoryModel.init)
+            return try viewContext.existingObject(with: id) as? Inventory
         } catch {
-            return []
+            return nil
         }
     }
 }

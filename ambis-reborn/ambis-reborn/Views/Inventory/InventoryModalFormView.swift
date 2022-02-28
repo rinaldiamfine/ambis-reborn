@@ -19,15 +19,16 @@ struct InventoryModalFormView: View {
     func actionDone() {
         var action = "create"
         if inventoryViewModel.status == "edit" {
-            inventoryViewModel.editData(inventoryViewModel.inventory[inventoryViewModel.selectedIndex])
+            inventoryViewModel.edit()
             action = "edit"
             filterCategory = inventoryViewModel.inventory[inventoryViewModel.selectedIndex].store
         } else {
-            inventoryViewModel.save()
+            inventoryViewModel.create()
             action = "create"
             filterCategory = inventoryViewModel.store
         }
-        inventoryViewModel.getData()
+//        inventoryViewModel.getData()
+        
 //        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: action)
 //        WatchManager.shared.sendParamsToWatch(dict: dictValue)
 //        Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
@@ -69,7 +70,7 @@ struct InventoryModalFormView: View {
                     buttons: [
                         .destructive(Text("Discard Changes")) {
                             isPresented = false
-                            inventoryViewModel.resetData()
+                            inventoryViewModel.setDefaultForm()
                         },
                         .cancel()
                     ]
@@ -93,7 +94,7 @@ struct InventoryModalFormContentView: View {
     func categoryOnTap(category: FoodCategoryModel) {
         inventoryViewModel.previewSelectedCategory = category.imageString + " " + category.name
         inventoryViewModel.detailDisclaimer = category.estimation
-        inventoryViewModel.toInventory = [category.foodCategory]
+//        inventoryViewModel.toInventory = [category.foodCategory]
         inventoryViewModel.toFoodCategory = category.foodCategory
         inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
         inventoryViewModel.expiryEstimation = Int(category.expiryEstimation)

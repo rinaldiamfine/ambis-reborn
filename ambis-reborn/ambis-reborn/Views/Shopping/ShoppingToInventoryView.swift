@@ -35,7 +35,7 @@ struct ShoppingToInventoryView: View {
                 shoppingViewModel.store = shoppingViewModel.arrayStore[counter]
                 
                 //CREATE
-                inventoryViewModel.readDataFromShopping(shopping: shopping, purchaseDate: shoppingViewModel.arrayPurchaseDate[counter], expiryDate: shoppingViewModel.arrayExpiryDate[counter], store: shoppingViewModel.arrayStore[counter])
+//                inventoryViewModel.readDataFromShopping(shopping: shopping, purchaseDate: shoppingViewModel.arrayPurchaseDate[counter], expiryDate: shoppingViewModel.arrayExpiryDate[counter], store: shoppingViewModel.arrayStore[counter])
                 
                 //ADD Notification
                 Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: shopping.name, reminderDate: shoppingViewModel.expiryDate)

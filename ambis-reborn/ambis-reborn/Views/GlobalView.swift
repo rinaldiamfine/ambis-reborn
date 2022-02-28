@@ -18,7 +18,7 @@ func setupWatchDictValue(inventory: InventoryViewModel, action: String) -> [Stri
         "total": inventory.total,
         "totalType": inventory.totalType,
         "expiredDate": stringDate,
-        "categoryIcon": inventory.toInventory.first?.imageString ?? "",
+        "categoryIcon": inventory.toFoodCategory.imageString ?? "",
         "action": action
     ]
 }

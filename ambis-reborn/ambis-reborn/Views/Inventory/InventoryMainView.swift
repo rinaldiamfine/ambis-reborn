@@ -25,15 +25,17 @@ struct InventoryMainView: View {
                                 filterCategory: $filterCategory,
                                 inventoryViewModel: inventoryViewModel)
                                 .padding(.horizontal)
+                                .padding(.top, 10)
                             ForEach (inventoryViewModel.inventory, id:\.id) {
                                 inventory in
                                 VStack(spacing: 10) {
-                                    InventoryListView(
+                                    InventoryMainContentView(
                                         inventory: inventory,
                                         inventoryViewModel: inventoryViewModel)
                                 }
                                 .padding(.horizontal)
                             }
+                            .animation(.default)
                         }
                         .background(Color("AppBackground"))
                     }
@@ -42,6 +44,8 @@ struct InventoryMainView: View {
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         Button {
+                            inventoryViewModel.setDefaultForm()
+                            inventoryViewModel.status = "create"
                             inventoryViewModel.isPresented.toggle()
                         } label: {
                             Image(systemName: "plus")

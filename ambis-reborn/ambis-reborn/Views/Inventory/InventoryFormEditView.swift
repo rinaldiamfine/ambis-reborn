@@ -23,7 +23,7 @@ struct InventoryFormEditView: View {
     
     func prepareData() {
         //EDIT MODE - AUTO FILL TEXTFIELD DATA
-        inventoryViewModel.prepareDataEdit(index: selectedIndex)
+//        inventoryViewModel.prepareDataEdit(index: selectedIndex)
         let inventorySelected = inventoryViewModel.inventory[selectedIndex]
         previewSelectedCategory = String(inventorySelected.foodCategory.imageString ?? "") + " " + String(inventorySelected.foodCategory.name!)
         detailDisclaimer = inventoryViewModel.inventory[selectedIndex].foodCategory.estimation!
@@ -32,8 +32,8 @@ struct InventoryFormEditView: View {
     func actionDone() {
         //EDIT ITEM
         let inventory = inventoryViewModel.inventory[selectedIndex]
-        inventoryViewModel.editData(inventory)
-        inventoryViewModel.getData()
+//        inventoryViewModel.editData(inventory)
+//        inventoryViewModel.getData()
         //SET NOTIF
         Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
         //POP VIEW
@@ -41,7 +41,7 @@ struct InventoryFormEditView: View {
     }
     
     func actionCancel() {
-        inventoryViewModel.resetData()
+//        inventoryViewModel.resetData()
         //POP VIEW
         isPresented = false
     }
@@ -49,7 +49,7 @@ struct InventoryFormEditView: View {
     func categoryOnTap(category: FoodCategoryModel) {
         previewSelectedCategory = category.imageString + " " + category.name
         detailDisclaimer = category.estimation
-        inventoryViewModel.toInventory = [category.foodCategory]
+//        inventoryViewModel.toInventory = [category.foodCategory]
         inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
         expiryEstimation = Int(category.expiryEstimation)
         presentSelectCategory = false
@@ -65,17 +65,17 @@ struct InventoryFormEditView: View {
                     TextField("Qty", text: $inventoryViewModel.total)
                     TextField("Type", text: $inventoryViewModel.totalType)
                 }
-                Section(header: Text("Product Category")) {
-                    Picker(selection: $inventoryViewModel.toInventory, label: Text(previewSelectedCategory)) {
-                        ForEach(foodCategoryViewModel.foodCategories, id:\.id) { category in
-                            InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $previewSelectedCategory)
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    categoryOnTap(category: category)
-                                }
-                        }
-                    }
-                }
+//                Section(header: Text("Product Category")) {
+//                    Picker(selection: $inventoryViewModel.toInventory, label: Text(previewSelectedCategory)) {
+//                        ForEach(foodCategoryViewModel.foodCategories, id:\.id) { category in
+//                            InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $previewSelectedCategory)
+//                                .contentShape(Rectangle())
+//                                .onTapGesture {
+//                                    categoryOnTap(category: category)
+//                                }
+//                        }
+//                    }
+//                }
                 Section(header: Text("Date Information")) {
                     DatePicker("Buy", selection: Binding<Date> (
                         get: { inventoryViewModel.purchaseDate },

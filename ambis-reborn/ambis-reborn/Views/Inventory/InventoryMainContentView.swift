@@ -1,13 +1,13 @@
 //
-//  InventoryListFilterView.swift
-//  ambis-reborn
+//  InventoryMainContentView.swift
+//  ExpiRemind
 //
-//  Created by Rinaldi LNU on 22/07/21.
+//  Created by Rinaldi LNU on 23/02/22.
 //
 
 import SwiftUI
 
-struct InventoryListFilterView: View {
+struct InventoryMainContentView: View {
     var inventory: InventoryModel
     @ObservedObject var inventoryViewModel: InventoryViewModel
     @State private var boxBackground = Color("BoxBackground")
@@ -17,8 +17,6 @@ struct InventoryListFilterView: View {
     
     @State private var limitChar: Int = 20
     @State private var startLimit: Int = 17
-    var counterGate: Int
-    
     private var remainingDays: Int {
         var format = 0
         for i in filterInvent() {
@@ -64,14 +62,6 @@ struct InventoryListFilterView: View {
         return format
     }
     
-    func formatStore() -> String {
-        var format = ""
-        for i in filterInvent() {
-            format = i.store
-        }
-        return format
-    }
-    
     var body: some View {
         HStack {
             if inventory.foodCategory != FoodCategory() {
@@ -84,19 +74,17 @@ struct InventoryListFilterView: View {
                         ))
                         .frame(width: 46, height: 46)
                     Text(formatIcon()).font(.system(size: 28))
-                }.padding(.leading, 10)
-                
-            }
-            VStack(alignment: .leading, spacing: 5) {
-//                Text(String(counterGate))
-                Text(formatTitle()).font(.system(size: 15, design: .rounded))
-                HStack {
-                    Text(formatStore()).font(.system(size: 13, design: .rounded)).foregroundColor(Color.init(.systemGray))
-                    Text("・").font(.system(size: 13, design: .rounded)).foregroundColor(Color.init(.systemGray))
-                    Text(formatSubtitle()).font(.system(size: 13, design: .rounded)).foregroundColor(Color.init(.systemGray))
                 }
-            }.padding(.leading, 2)
+                .padding(.leading, 10)
+            }
+            
+            VStack(alignment: .leading, spacing: 5) {
+                Text(formatTitle()).font(.system(size: 15, design: .rounded))
+                Text(formatSubtitle()).font(.system(size: 13, design: .rounded)).foregroundColor(Color.init(.systemGray))
+            }
+            .padding(.leading, 2)
             Spacer()
+            
             if remainingDays == 0 {
                 Text("Today")
                     .font(.system(size: 12, design: .rounded))
@@ -148,27 +136,27 @@ struct InventoryListFilterView: View {
         .padding(.bottom, 8)
         .padding(.trailing, 8)
         .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
-            .contextMenu {
-                Button {
-//                    inventoryViewModel.editData(index: inventory)
-                } label: {
-                    Label("Update Inventory", systemImage: "square.and.pencil")
-                }
-
-                Button {
-                    actionShare(data: inventory)
-                } label: {
-                    Label("Share", systemImage: "arrowshape.turn.up.forward")
-                }
-
-                Divider()
-                Button {
-//                    inventoryViewModel.deleteItemByContextMenu(index: inventory)
-                } label: {
-                    Text("Remove")
-                    Image(systemName: "trash")
-                }
+        .contextMenu {
+            Button {
+                inventoryViewModel.fillForm(model: inventory)
+            } label: {
+                Label("Update Inventory", systemImage: "square.and.pencil")
             }
+
+            Button {
+                actionShare(data: inventory)
+            } label: {
+                Label("Share", systemImage: "arrowshape.turn.up.forward")
+            }
+
+            Divider()
+            Button {
+                inventoryViewModel.deleteById(model: inventory)
+            } label: {
+                Text("Remove")
+                Image(systemName: "trash")
+            }
+        }
     }
     
     func actionShare(data: InventoryModel) {

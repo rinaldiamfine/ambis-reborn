@@ -166,7 +166,7 @@ struct ContentView: View {
             .navigationTitle("Expiremind")
         }.onAppear(perform: {
             foodCategoryViewModel.getData()
-            inventoryViewModel.loadList()
+//            inventoryViewModel.loadList()
             setupData()
             
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in

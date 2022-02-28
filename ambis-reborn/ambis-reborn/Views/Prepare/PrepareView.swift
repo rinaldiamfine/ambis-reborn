@@ -104,67 +104,67 @@ struct PrepareView: View {
                             
                             VStack {
                                 if defaultFilter == "Expire Soon" {
-                                    if inventoryViewModel.inventoryExpiry.isEmpty {
-                                        SpaceView()
-                                        ZStack {
-                                            Ellipse()
-                                                .fill(Color.init(UIColor.systemGray5))
-                                                .frame(width: 102, height: 102)
-                                            Image(systemName: "bag").font(.system(size: 42))
-                                                .foregroundColor(Color("BrandColor"))
-                                        }
-                                        Text("Great. None of your items are expiring soon.")
-                                            .foregroundColor(Color.init(UIColor.systemGray))
-                                            .padding(.top, 15)
-                                    }
+//                                    if inventoryViewModel.inventoryExpiry.isEmpty {
+//                                        SpaceView()
+//                                        ZStack {
+//                                            Ellipse()
+//                                                .fill(Color.init(UIColor.systemGray5))
+//                                                .frame(width: 102, height: 102)
+//                                            Image(systemName: "bag").font(.system(size: 42))
+//                                                .foregroundColor(Color("BrandColor"))
+//                                        }
+//                                        Text("Great. None of your items are expiring soon.")
+//                                            .foregroundColor(Color.init(UIColor.systemGray))
+//                                            .padding(.top, 15)
+//                                    }
                                 }
                                 
                                 if defaultFilter == "Fridge" {
-                                    if inventoryViewModel.inventoryFridge.isEmpty {
-                                        SpaceView()
-                                        ZStack {
-                                            Ellipse()
-                                                .fill(Color.init(UIColor.systemGray5))
-                                                .frame(width: 102, height: 102)
-                                            Image(systemName: "bag").font(.system(size: 42))
-                                                .foregroundColor(Color("BrandColor"))
-                                        }
-                                        Text("There are no items in your \(defaultFilter).")
-                                            .foregroundColor(Color.init(UIColor.systemGray))
-                                            .padding(.top, 15)
-                                    }
+//                                    if inventoryViewModel.inventoryFridge.isEmpty {
+//                                        SpaceView()
+//                                        ZStack {
+//                                            Ellipse()
+//                                                .fill(Color.init(UIColor.systemGray5))
+//                                                .frame(width: 102, height: 102)
+//                                            Image(systemName: "bag").font(.system(size: 42))
+//                                                .foregroundColor(Color("BrandColor"))
+//                                        }
+//                                        Text("There are no items in your \(defaultFilter).")
+//                                            .foregroundColor(Color.init(UIColor.systemGray))
+//                                            .padding(.top, 15)
+//                                    }
                                 }
                                 
                                 if defaultFilter == "Freezer" {
-                                    if inventoryViewModel.inventoryFreezer.isEmpty {
-                                        SpaceView()
-                                        ZStack {
-                                            Ellipse()
-                                                .fill(Color.init(UIColor.systemGray5))
-                                                .frame(width: 102, height: 102)
-                                            Image(systemName: "bag").font(.system(size: 42))
-                                                .foregroundColor(Color("BrandColor"))
-                                        }
-                                        Text("There are no items in your \(defaultFilter).")
-                                            .foregroundColor(Color.init(UIColor.systemGray))
-                                            .padding(.top, 15)
-                                    }
+//                                    if inventoryViewModel.inventoryFreezer.isEmpty {
+//                                        SpaceView()
+//                                        ZStack {
+//                                            Ellipse()
+//                                                .fill(Color.init(UIColor.systemGray5))
+//                                                .frame(width: 102, height: 102)
+//                                            Image(systemName: "bag").font(.system(size: 42))
+//                                                .foregroundColor(Color("BrandColor"))
+//                                        }
+//                                        Text("There are no items in your \(defaultFilter).")
+//                                            .foregroundColor(Color.init(UIColor.systemGray))
+//                                            .padding(.top, 15)
+//                                    }
                                 }
                                 
                                 if defaultFilter == "Other" {
-                                    if inventoryViewModel.inventoryOther.isEmpty {
-                                        SpaceView()
-                                        ZStack {
-                                            Ellipse()
-                                                .fill(Color.init(UIColor.systemGray5))
-                                                .frame(width: 102, height: 102)
-                                            Image(systemName: "bag").font(.system(size: 42))
-                                                .foregroundColor(Color("BrandColor"))
-                                        }
-                                        Text("There are no items in your \(defaultFilter).")
-                                            .foregroundColor(Color.init(UIColor.systemGray))
-                                            .padding(.top, 15)
-                                    }
+//                                    if inventoryViewModel.inventoryOther.isEmpty {
+//                                        SpaceView()
+//                                        ZStack {
+//                                            Ellipse()
+//                                                .fill(Color.init(UIColor.systemGray5))
+//                                                .frame(width: 102, height: 102)
+//                                            Image(systemName: "bag").font(.system(size: 42))
+//                                                .foregroundColor(Color("BrandColor"))
+//                                        }
+//                                        Text("There are no items in your \(defaultFilter).")
+//                                            .foregroundColor(Color.init(UIColor.systemGray))
+//                                            .padding(.top, 15)
+//                                    }
                                 }
                             }
                             .frame(width: UIScreen.screenWidth)
@@ -222,8 +222,8 @@ struct PrepareView: View {
 //            RecipeListView()
 //        }
         .onAppear(perform: {
-            inventoryViewModel.getData()
-            inventoryViewModel.loadList()
+//            inventoryViewModel.getData()
+//            inventoryViewModel.loadList()
             foodCategoryViewModel.getData()
         })
     }

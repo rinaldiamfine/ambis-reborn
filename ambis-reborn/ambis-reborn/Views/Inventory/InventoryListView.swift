@@ -138,7 +138,7 @@ struct InventoryListView: View {
         .background(RoundedRectangle(cornerRadius: 15).fill(boxBackground))
         .contextMenu {
             Button {
-                inventoryViewModel.editData(index: inventory)
+//                inventoryViewModel.editData(index: inventory)
             } label: {
                 Label("Update Inventory", systemImage: "square.and.pencil")
             }
@@ -151,7 +151,7 @@ struct InventoryListView: View {
 
             Divider()
             Button {
-                inventoryViewModel.deleteItemByContextMenu(index: inventory)
+//                inventoryViewModel.deleteItemByContextMenu(index: inventory)
             } label: {
                 Text("Remove")
                 Image(systemName: "trash")
