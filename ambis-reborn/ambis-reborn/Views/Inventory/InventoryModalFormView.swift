@@ -11,7 +11,6 @@ import Combine
 struct InventoryModalFormView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
     @Binding var isPresented: Bool
-    @Binding var filterCategory: String
     @State private var isShowActionSheet = false
     @State private var isShowPickerType = false
     @State private var isShowPickerStore = false
@@ -24,12 +23,11 @@ struct InventoryModalFormView: View {
             inventoryViewModel.create()
             action = "create"
         }
-        filterCategory = inventoryViewModel.store
+        inventoryViewModel.filterCategory = inventoryViewModel.store
         
 //        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: action)
 //        WatchManager.shared.sendParamsToWatch(dict: dictValue)
 //        Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
-//        inventoryViewModel.resetData()
         isPresented = false
     }
     func actionCancel() {
@@ -91,7 +89,6 @@ struct InventoryModalFormContentView: View {
     func categoryOnTap(category: FoodCategoryModel) {
         inventoryViewModel.previewSelectedCategory = category.imageString + " " + category.name
         inventoryViewModel.detailDisclaimer = category.estimation
-//        inventoryViewModel.toInventory = [category.foodCategory]
         inventoryViewModel.toFoodCategory = category.foodCategory
         inventoryViewModel.expiryDate = Calendar.current.date(byAdding: .day, value: Int(category.expiryEstimation), to: inventoryViewModel.purchaseDate)!
         inventoryViewModel.expiryEstimation = Int(category.expiryEstimation)

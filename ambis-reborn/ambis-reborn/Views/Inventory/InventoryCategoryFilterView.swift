@@ -51,22 +51,27 @@ struct InventoryCategoryFilterContentView: View {
 struct InventoryCategoryFilterView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
     var filterStoreAvailable = AppGlobalData.generateFilterDataSotre()
+    @Environment(\.isSearching) var isSearching
     var body: some View {
         VStack {
-            HStack(spacing: 0) {
-                Spacer()
-                ForEach (filterStoreAvailable, id:\.id) {
-                    store in
-                    InventoryCategoryFilterContentView(inventoryViewModel: self.inventoryViewModel, name: store.name)
-                    .padding(.bottom)
-                    .frame(minWidth: 0, maxWidth: .infinity)
+            if !isSearching {
+                HStack(spacing: 0) {
+                    Spacer()
+                    ForEach (filterStoreAvailable, id:\.id) {
+                        store in
+                        InventoryCategoryFilterContentView(inventoryViewModel: self.inventoryViewModel, name: store.name)
+                        .padding(.bottom)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }
-            .background(
-                RoundedRectangle(cornerRadius: 15)
+                .background(
+                    RoundedRectangle(cornerRadius: 15)
                     .fill(Color("BoxBackground")))
-        }.animation(.default)
+            }
+        }
+        .padding(.bottom, 10)
+        .animation(.default)
     }
 }
 

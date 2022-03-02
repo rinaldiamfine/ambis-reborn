@@ -25,11 +25,6 @@ class InventoryViewModel: ObservableObject {
     @Published var inventory: [InventoryModel] = []
     @Published var foodCategories: [FoodCategoryModel] = []
     
-//    @Published var inventoryExpiry: [InventoryModel] = []
-//    @Published var inventoryFridge: [InventoryModel] = []
-//    @Published var inventoryFreezer: [InventoryModel] = []
-//    @Published var inventoryOther: [InventoryModel] = []
-    
     @Published var inventoryCount: Int = 0
     @Published var inventoryExpire: Int = 0
     @Published var progressBar: Float = 0.0
@@ -42,9 +37,10 @@ class InventoryViewModel: ObservableObject {
     @Published var detailDisclaimer: String = ""
     @Published var expiryEstimation: Int = 0
     
+    private var timeIntervalExpiry = 24*60*60*3 // 3 DAYS
+    
     // NOT USED
     @Published var prepareSelectedInventory: [NSManagedObjectID] = []
-    private var timeIntervalExpiry = 24*60*60*3 // 3 DAYS
         
     init() {
         setDefaultForm()
