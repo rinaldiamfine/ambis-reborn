@@ -13,6 +13,16 @@ struct TabBarView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
     var storeAvailable = AppGlobalData.generateDataStore()
     
+    init() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+            if success{
+                print("Setup notification success!")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             InventoryMainView().tabItem {
