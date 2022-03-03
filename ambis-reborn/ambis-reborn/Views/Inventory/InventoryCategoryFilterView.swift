@@ -51,10 +51,10 @@ struct InventoryCategoryFilterContentView: View {
 struct InventoryCategoryFilterView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
     var filterStoreAvailable = AppGlobalData.generateFilterDataSotre()
-    @Environment(\.isSearching) var isSearching
+//    @Environment(\.isSearching) var isSearching
     var body: some View {
         VStack {
-            if !isSearching {
+//            if !isSearching {
                 HStack(spacing: 0) {
                     Spacer()
                     ForEach (filterStoreAvailable, id:\.id) {
@@ -68,7 +68,7 @@ struct InventoryCategoryFilterView: View {
                 .background(
                     RoundedRectangle(cornerRadius: 15)
                     .fill(Color("BoxBackground")))
-            }
+//            }
         }
         .padding(.bottom, 10)
         .animation(.default)

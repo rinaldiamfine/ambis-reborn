@@ -35,6 +35,7 @@
 		900D341426B855F40052CF5D /* WidgetInventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */; };
 		900D341726B857C80052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
 		900D341826B857F50052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
+		9011CF8F27D0387C00E4D69A /* InventoryListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011CF8E27D0387C00E4D69A /* InventoryListContentView.swift */; };
 		9020094226C1A02100AB0A5F /* ClassifierData.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */; };
 		9020094626C30CEF00AB0A5F /* InventoryNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */; };
 		9020094826C3D79A00AB0A5F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9020094726C3D79A00AB0A5F /* CloudKit.framework */; };
@@ -208,6 +209,7 @@
 		900D341126B854330052CF5D /* widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widgetExtension.entitlements; sourceTree = "<group>"; };
 		900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryModel.swift; sourceTree = "<group>"; };
 		900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryViewModel.swift; sourceTree = "<group>"; };
+		9011CF8E27D0387C00E4D69A /* InventoryListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListContentView.swift; sourceTree = "<group>"; };
 		9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ClassifierData.mlmodel; sourceTree = "<group>"; };
 		9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNavBarView.swift; sourceTree = "<group>"; };
 		9020094726C3D79A00AB0A5F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -485,6 +487,7 @@
 				9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */,
 				90BE8CF127C24CEA006E9AE6 /* InventoryMainView.swift */,
 				9090BC0227C659900044B34F /* InventoryMainContentView.swift */,
+				9011CF8E27D0387C00E4D69A /* InventoryListContentView.swift */,
 				90BE8CF727C2E016006E9AE6 /* InventoryModalFormView.swift */,
 				90BE8CF327C24D9E006E9AE6 /* InventoryEmptyStateView.swift */,
 				90BE8CF527C25601006E9AE6 /* InventoryCategoryFilterView.swift */,
@@ -842,6 +845,7 @@
 				90E8F2EE26B22757002BCBDE /* PrepareListFilterView.swift in Sources */,
 				9090AC9826993F6C008AF935 /* InventoryViewModel.swift in Sources */,
 				9090BC0327C659900044B34F /* InventoryMainContentView.swift in Sources */,
+				9011CF8F27D0387C00E4D69A /* InventoryListContentView.swift in Sources */,
 				9070148B269E160200F8981A /* InventoryCategoryListView.swift in Sources */,
 				9070148D269ECC0B00F8981A /* InventoryFormEditView.swift in Sources */,
 				302C8E1326C112D7009EBA28 /* RecipeViewModel.swift in Sources */,

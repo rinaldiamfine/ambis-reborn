@@ -85,10 +85,10 @@ struct InventoryEmptyStateView: View {
                 
                 HStack(alignment: .center) {
                     VStack(alignment: .center, spacing: 5) {
-                        Text("There are no items found")
+                        Text(title)
                             .font(.system(.headline, design: .rounded))
                             .foregroundColor(Color.init(UIColor.systemGray))
-                        Text("Please try another keyword")
+                        Text(subtitle)
                             .font(.system(.subheadline, design: .rounded))
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color.init(UIColor.systemGray))

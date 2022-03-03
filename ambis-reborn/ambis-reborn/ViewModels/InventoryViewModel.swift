@@ -12,6 +12,7 @@ class InventoryViewModel: ObservableObject {
     @Published var inventoryId = UUID()
     @Published var watchIcon = ""
     @Published var filterCategory = "Expire Soon"
+    @Published var filterQuery = ""
     
     @Published var id: NSManagedObjectID = NSManagedObjectID()
     @Published var name: String = ""
@@ -48,6 +49,16 @@ class InventoryViewModel: ObservableObject {
         self.filterCategory = "Expire Soon"
     }
     
+    func filterByQuery() -> [InventoryModel] {
+        if filterQuery != "" {
+            return inventory.filter { inventory in
+                return inventory.name.localizedStandardContains(filterQuery)
+            }
+        } else {
+            return inventory
+        }
+    }
+    
     func filterByCategory() -> [InventoryModel] {
         if self.filterCategory == "Expire Soon" {
             return inventory.filter { inventory in
@@ -64,7 +75,6 @@ class InventoryViewModel: ObservableObject {
                 }
                 else {
                     return false
-                    
                 }
             }
         }

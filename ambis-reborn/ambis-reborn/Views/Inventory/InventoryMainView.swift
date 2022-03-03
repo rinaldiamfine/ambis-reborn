@@ -9,46 +9,26 @@ import SwiftUI
 
 struct InventoryMainView: View {
     @ObservedObject var inventoryViewModel = InventoryViewModel()
-    @State var filterCategory = "Expire Soon"
-    
-    @State private var query = ""
     
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
-                VStack(alignment: .leading) {
+                VStack {
                     if inventoryViewModel.inventory.isEmpty {
                         InventoryEmptyStateView(
-                            inventoryViewModel: inventoryViewModel, icon: "plus",
+                            inventoryViewModel: inventoryViewModel,
+                            icon: "plus",
                             title: "There are no items in your inventory",
                             subtitle: "Press the + button to add")
                     }
                     else {
-                        ScrollView {
-                            VStack {
-                                InventoryCategoryFilterView(
-                                    inventoryViewModel: inventoryViewModel)
-                                    .padding(.horizontal)
-                                if inventoryViewModel.filterByCategory().isEmpty {
-                                    InventoryEmptyStateView(
-                                        inventoryViewModel: inventoryViewModel, icon: inventoryViewModel.filterCategory,
-                                        title: "",
-                                        subtitle: "Press the + button to add")
-                                        .frame(height: geometry.self.size.height)
-                                } else {
-                                    ForEach (inventoryViewModel.filterByCategory(), id:\.id) {
-                                        inventory in
-                                        VStack(spacing: 10) {
-                                            InventoryMainContentView(
-                                                inventory: inventory,
-                                                inventoryViewModel: inventoryViewModel)
-                                        }
-                                        .padding(.horizontal)
-                                    }
-                                }
-                            }
-                            .searchable(text: $query, prompt: "Search Inventory")
+                        VStack {
+                            InventoryMainContentView(
+                                inventoryViewModel: inventoryViewModel)
                         }
+                        .searchable(
+                            text: $inventoryViewModel.filterQuery,
+                            prompt: "Search Inventory")
                         .background(Color("AppBackground"))
                     }
                 }
