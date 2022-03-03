@@ -14,13 +14,9 @@ struct TabBarView: View {
     var storeAvailable = AppGlobalData.generateDataStore()
     
     init() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
-            if success{
-                print("Setup notification success!")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
+        NotificationManager.shared.requestAuthorization()
+//        print(UIApplication.shared.applicationIconBadgeNumber)
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     var body: some View {

@@ -51,6 +51,10 @@
 		9011CFAD27D108B000E4D69A /* FoodCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090ACA126997208008AF935 /* FoodCategoryModel.swift */; };
 		9011CFAE27D108BD00E4D69A /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 905DE8CF2693E54F00E7011C /* CoreData.xcdatamodeld */; };
 		9011CFAF27D108D200E4D69A /* ExpiRemindCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090BBFF27C657D90044B34F /* ExpiRemindCoreDataManager.swift */; };
+		9011CFB327D1144300E4D69A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011CFB227D1144300E4D69A /* NotificationManager.swift */; };
+		9011CFB427D1153200E4D69A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011CFB227D1144300E4D69A /* NotificationManager.swift */; };
+		9011CFB527D1153300E4D69A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011CFB227D1144300E4D69A /* NotificationManager.swift */; };
+		9011CFB627D1214200E4D69A /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9726993F6C008AF935 /* InventoryViewModel.swift */; };
 		9020094226C1A02100AB0A5F /* ClassifierData.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */; };
 		9020094826C3D79A00AB0A5F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9020094726C3D79A00AB0A5F /* CloudKit.framework */; };
 		9020094A26C3F29800AB0A5F /* RecipeListItemCloudKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094926C3F29800AB0A5F /* RecipeListItemCloudKitView.swift */; };
@@ -221,6 +225,7 @@
 		9011CF9C27D1012700E4D69A /* ColorsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsHelper.swift; sourceTree = "<group>"; };
 		9011CFA427D1050800E4D69A /* MediumListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumListContentView.swift; sourceTree = "<group>"; };
 		9011CFA727D1058C00E4D69A /* LargeListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeListContentView.swift; sourceTree = "<group>"; };
+		9011CFB227D1144300E4D69A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ClassifierData.mlmodel; sourceTree = "<group>"; };
 		9020094726C3D79A00AB0A5F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		9020094926C3F29800AB0A5F /* RecipeListItemCloudKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListItemCloudKitView.swift; sourceTree = "<group>"; };
@@ -568,6 +573,7 @@
 				90BE8CFF27C2EAA0006E9AE6 /* InventoryCoreDataManager.swift */,
 				9090BBF627C2F8370044B34F /* FoodCategoryCoreDataManager.swift */,
 				9090BBFF27C657D90044B34F /* ExpiRemindCoreDataManager.swift */,
+				9011CFB227D1144300E4D69A /* NotificationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -786,6 +792,7 @@
 				9090BC0127C657D90044B34F /* ExpiRemindCoreDataManager.swift in Sources */,
 				0EB0724726CE64A400A3C895 /* ExpireSoonListView.swift in Sources */,
 				902451EF26CD23BF00827711 /* NotificationView.swift in Sources */,
+				9011CFB527D1153300E4D69A /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +818,7 @@
 				90BE8CF827C2E016006E9AE6 /* InventoryModalFormView.swift in Sources */,
 				9011CF9A27D1008200E4D69A /* ScreenExtension.swift in Sources */,
 				900D340D26B832500052CF5D /* GlobalView.swift in Sources */,
+				9011CFB327D1144300E4D69A /* NotificationManager.swift in Sources */,
 				90E8F2EA26B21872002BCBDE /* PrepareListExpiryView.swift in Sources */,
 				0E20A2B226B2B23D0012F3C6 /* RecipeListItemView.swift in Sources */,
 				9011CFA327D103AD00E4D69A /* WatchManager.swift in Sources */,
@@ -873,12 +881,14 @@
 				9011CFAE27D108BD00E4D69A /* CoreData.xcdatamodeld in Sources */,
 				900D341826B857F50052CF5D /* WidgetInventoryViewModel.swift in Sources */,
 				9011CFAF27D108D200E4D69A /* ExpiRemindCoreDataManager.swift in Sources */,
+				9011CFB427D1153200E4D69A /* NotificationManager.swift in Sources */,
 				9065A60B26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
 				9011CFAD27D108B000E4D69A /* FoodCategoryModel.swift in Sources */,
 				9011CFAB27D108A600E4D69A /* InventoryCoreDataManager.swift in Sources */,
 				9065A60626AA25EC00BAD3A6 /* widget.swift in Sources */,
 				9011CFAA27D1089A00E4D69A /* InventoryModel.swift in Sources */,
 				9011CFAC27D108A900E4D69A /* FoodCategoryCoreDataManager.swift in Sources */,
+				9011CFB627D1214200E4D69A /* InventoryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

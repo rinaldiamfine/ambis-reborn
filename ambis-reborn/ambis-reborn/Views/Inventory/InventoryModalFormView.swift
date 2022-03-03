@@ -15,19 +15,15 @@ struct InventoryModalFormView: View {
     @State private var isShowPickerType = false
     @State private var isShowPickerStore = false
     func actionDone() {
-        var action = "create"
         if inventoryViewModel.status == "edit" {
             inventoryViewModel.edit()
-            action = "edit"
         } else {
             inventoryViewModel.create()
-            action = "create"
         }
+        NotificationManager.shared.pushNotification(inventory: inventoryViewModel)
         inventoryViewModel.filterCategory = inventoryViewModel.store
-        
-//        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: action)
+//        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: inventoryViewModel.status)
 //        WatchManager.shared.sendParamsToWatch(dict: dictValue)
-//        Notification.instance.sendNotification(inventId: inventoryViewModel.inventoryId.uuidString, itemName: inventoryViewModel.name, reminderDate: inventoryViewModel.expiryDate)
         isPresented = false
     }
     func actionCancel() {

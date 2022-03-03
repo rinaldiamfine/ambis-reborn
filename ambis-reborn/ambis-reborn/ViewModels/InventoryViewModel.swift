@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UserNotifications
 
 class InventoryViewModel: ObservableObject {
     @Published var inventoryId = UUID()
@@ -114,6 +115,7 @@ class InventoryViewModel: ObservableObject {
         name = model.name
         total = String(model.total)
         totalType = model.totalType
+        inventoryId = model.inventoryId
         store = model.store
         expiryDate = model.expiryDate
         purchaseDate = model.purchaseDate
@@ -148,4 +150,5 @@ class InventoryViewModel: ObservableObject {
         }
         fetchInventory()
     }
+    
 }
