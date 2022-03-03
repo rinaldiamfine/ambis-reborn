@@ -15,7 +15,7 @@ struct InventoryMainContentView: View {
         GeometryReader { geometry in
             if !isSearching {
                 if inventoryViewModel.filterByCategory().isEmpty {
-                    VStack {
+                    ScrollView {
                         HStack {
                             InventoryCategoryFilterView(
                                 inventoryViewModel: inventoryViewModel)
@@ -28,6 +28,7 @@ struct InventoryMainContentView: View {
                                 title: "",
                                 subtitle: "Press the + button to add")
                         }
+                        .frame(minHeight: geometry.size.height - 140)
                     }
                 } else {
                     ScrollView {
@@ -46,6 +47,7 @@ struct InventoryMainContentView: View {
                             .padding(.horizontal)
                         }
                     }
+                    .fixFlickering()
                 }
             } else {
                 if inventoryViewModel.filterByQuery().isEmpty {

@@ -10,7 +10,7 @@ import SwiftUI
 struct TabBarView: View {
     @State private var selectedTab = 1
     var defaultAccentColor = Color("BrandColor")
-//    @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
+    @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
     var storeAvailable = AppGlobalData.generateDataStore()
     
     var body: some View {
@@ -23,6 +23,7 @@ struct TabBarView: View {
                 }
                 InventoryView().gettabName()
             }.tag(1)
+                .environmentObject(inventoryViewModel)
 //            ShoppingView().tabItem {
 //                if selectedTab == 2 {
 //                    ShoppingView().getIconNameActive()

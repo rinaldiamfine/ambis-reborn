@@ -46,7 +46,6 @@ class InventoryViewModel: ObservableObject {
     init() {
         setDefaultForm()
         fetchInventory()
-        self.filterCategory = "Expire Soon"
     }
     
     func filterByQuery() -> [InventoryModel] {

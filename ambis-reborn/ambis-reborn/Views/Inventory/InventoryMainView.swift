@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InventoryMainView: View {
-    @ObservedObject var inventoryViewModel = InventoryViewModel()
+    @EnvironmentObject var inventoryViewModel: InventoryViewModel
     
     var body: some View {
         NavigationView {
