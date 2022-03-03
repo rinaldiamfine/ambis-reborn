@@ -84,12 +84,12 @@ struct ShoppingFormView: View {
                     Section(header: Text("Product Category")
                                 .font(.system(.caption, design: .rounded))) {
                         Picker(selection: $shoppingViewModel.toShopping, label: Text(shoppingViewModel.previewSelectedCategory)) {
-                            ForEach(foodCategoryViewModel.foodCategories, id: \.id) {
-                                category in InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $shoppingViewModel.previewSelectedCategory).contentShape(Rectangle())
-                                    .onTapGesture {
-                                        categoryOnTap(category: category)
-                                    }
-                            }
+//                            ForEach(foodCategoryViewModel.foodCategories, id: \.id) {
+//                                category in InventoryCategoryListView(foodCategory: category, previewSelectedCategory: $shoppingViewModel.previewSelectedCategory).contentShape(Rectangle())
+//                                    .onTapGesture {
+//                                        categoryOnTap(category: category)
+//                                    }
+//                            }
                         }
                     }
                 }

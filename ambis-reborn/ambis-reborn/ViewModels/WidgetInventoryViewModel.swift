@@ -11,14 +11,11 @@ import CoreData
 
 class WidgetInventoryViewModel: ObservableObject {
     @Published var inventoryModel = [WidgetInventoryModel]()
-    
     @Published var totalExpiry : Int = 0
     @Published var totalInventory : Int = 0
     @Published var progressBar : Double = 0.0
-//    @Published var inventoryList: [InventoryModel]
     
     init() {
         inventoryModel = []
-//        inventoryList = []
     }
 }

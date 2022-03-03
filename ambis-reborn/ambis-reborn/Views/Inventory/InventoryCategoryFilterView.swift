@@ -15,9 +15,8 @@ struct InventoryCategoryFilterContentView: View {
     }
     var body: some View {
         VStack {
-            Rectangle()
+            RoundedRectangle(cornerRadius: 5)
                 .fill(inventoryViewModel.filterCategory == name ? Color("BrandColor") : Color("BoxBackground"))
-                .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
                 .frame(width: 26, height: 4, alignment: .center)
             ZStack {
                 Ellipse()
@@ -51,27 +50,23 @@ struct InventoryCategoryFilterContentView: View {
 struct InventoryCategoryFilterView: View {
     @ObservedObject var inventoryViewModel: InventoryViewModel
     var filterStoreAvailable = AppGlobalData.generateFilterDataSotre()
-//    @Environment(\.isSearching) var isSearching
     var body: some View {
         VStack {
-//            if !isSearching {
-                HStack(spacing: 0) {
-                    Spacer()
-                    ForEach (filterStoreAvailable, id:\.id) {
-                        store in
-                        InventoryCategoryFilterContentView(inventoryViewModel: self.inventoryViewModel, name: store.name)
-                        .padding(.bottom)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                    }
-                    Spacer()
+            HStack(spacing: 0) {
+                Spacer()
+                ForEach (filterStoreAvailable, id:\.id) {
+                    store in
+                    InventoryCategoryFilterContentView(inventoryViewModel: self.inventoryViewModel, name: store.name)
+                    .padding(.bottom)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                 }
-                .background(
-                    RoundedRectangle(cornerRadius: 15)
-                    .fill(Color("BoxBackground")))
-//            }
+                Spacer()
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                .fill(Color("BoxBackground")))
         }
         .padding(.bottom, 10)
-        .animation(.default)
     }
 }
 

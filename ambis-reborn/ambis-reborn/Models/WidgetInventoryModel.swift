@@ -14,20 +14,7 @@ struct WidgetInventoryModel: Identifiable, Decodable, Encodable {
     var totalExpiry: Int
     var totalInventory: Int
     var progressBar: Float
-//    var inventory: [String]
     var inventory: [WidgetInventoryModelList]
-    
-//    enum CodingKeys: String, CodingKey {
-//        case totalExpiry, totalInventory, progressBar, inventory
-//    }
-//
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        totalExpiry = try values.decode(Int.self, forKey: .totalExpiry)
-//        totalInventory = try values.decode(Int.self, forKey: .totalInventory)
-//        progressBar = try values.decode(Float.self, forKey: .totalExpiry)
-//    }
-
 }
 
 struct WidgetInventoryModelList: Identifiable, Decodable, Encodable {

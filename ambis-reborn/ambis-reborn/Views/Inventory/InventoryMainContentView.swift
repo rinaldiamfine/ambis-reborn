@@ -32,22 +32,24 @@ struct InventoryMainContentView: View {
                     }
                 } else {
                     ScrollView {
-                        HStack {
-                            InventoryCategoryFilterView(
-                                inventoryViewModel: inventoryViewModel)
-                                .padding(.horizontal)
-                        }
-                        ForEach (inventoryViewModel.filterByCategory(), id:\.id) {
-                            inventory in
-                            VStack(spacing: 10) {
-                                InventoryListContentView(
-                                    inventory: inventory,
+                        VStack {
+                            HStack {
+                                InventoryCategoryFilterView(
                                     inventoryViewModel: inventoryViewModel)
+                                    .padding(.horizontal)
                             }
-                            .padding(.horizontal)
+                            ForEach (inventoryViewModel.filterByCategory(), id:\.id) {
+                                inventory in
+                                VStack(spacing: 10) {
+                                    InventoryListContentView(
+                                        inventory: inventory,
+                                        inventoryViewModel: inventoryViewModel)
+                                }
+                                .padding(.horizontal)
+                            }
                         }
+                        .animation(.default)
                     }
-                    .fixFlickering()
                 }
             } else {
                 if inventoryViewModel.filterByQuery().isEmpty {

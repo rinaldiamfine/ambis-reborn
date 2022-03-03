@@ -46,21 +46,21 @@ struct PersistenceController {
         saveData()
     }
     
-    func editInventoryData(inventory: Inventory, model: InventoryModel, completion: @escaping (Error?) -> () = {_ in}) {
-        let context = container.viewContext
-        inventory.setValue(model.name, forKey: "name")
-        inventory.setValue(model.total, forKey: "total")
-        inventory.setValue(model.totalType, forKey: "totalType")
-        inventory.setValue(model.purchaseDate, forKey: "purchaseDate")
-        inventory.setValue(model.expiryDate, forKey: "expiryDate")
-        inventory.setValue(model.foodCategory, forKey: "toFoodCategory")
-        do {
-            try saveData()
-            completion(nil)
-        } catch {
-            completion(error)
-        }
-    }
+//    func editInventoryData(inventory: Inventory, model: InventoryModel, completion: @escaping (Error?) -> () = {_ in}) {
+//        let context = container.viewContext
+//        inventory.setValue(model.name, forKey: "name")
+//        inventory.setValue(model.total, forKey: "total")
+//        inventory.setValue(model.totalType, forKey: "totalType")
+//        inventory.setValue(model.purchaseDate, forKey: "purchaseDate")
+//        inventory.setValue(model.expiryDate, forKey: "expiryDate")
+//        inventory.setValue(model.foodCategory, forKey: "toFoodCategory")
+//        do {
+//            try saveData()
+//            completion(nil)
+//        } catch {
+//            completion(error)
+//        }
+//    }
     
     func editShoppingData(shopping: Shopping, model: ShoppingModel) {
         let context = container.viewContext

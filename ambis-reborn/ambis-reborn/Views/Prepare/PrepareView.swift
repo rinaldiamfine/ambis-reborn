@@ -11,7 +11,7 @@ import CoreML
 struct PrepareView: View {
     @StateObject var inventoryViewModel = InventoryViewModel()
     @StateObject var foodCategoryViewModel = FoodCategoryViewModel()
-    @ObservedObject var searchBar: SearchBar = SearchBar()
+//    @ObservedObject var searchBar: SearchBar = SearchBar()
     @State private var defaultFilter = "Expire Soon"
     @Environment(\.colorScheme) var colorScheme
     
@@ -197,7 +197,7 @@ struct PrepareView: View {
                     
                 } else {
                     Spacer()
-                    InventoryListEmptyView()
+//                    InventoryListEmptyView()
                         .onTapGesture {
                             inventoryViewModel.isPresented = true
                         }
@@ -215,9 +215,9 @@ struct PrepareView: View {
 //            )
         }
         .accentColor(.primary)
-        .sheet(isPresented: $inventoryViewModel.isPresented) {
-            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
-        }
+//        .sheet(isPresented: $inventoryViewModel.isPresented) {
+//            InventoryFormView(inventoryViewModel: inventoryViewModel, foodCategoryViewModel: foodCategoryViewModel, isPresented: $inventoryViewModel.isPresented, defaultFilter: $defaultFilter)
+//        }
 //        .sheet(isPresented: $isMovedToRecipeList){
 //            RecipeListView()
 //        }

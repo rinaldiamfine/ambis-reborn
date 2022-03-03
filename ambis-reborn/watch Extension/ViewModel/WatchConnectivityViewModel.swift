@@ -118,6 +118,5 @@ class WatchConnectivityViewModel: NSObject, ObservableObject, WCSessionDelegate 
 }
 
 extension Notification.Name {
-    
-    static let articleSent = Notification.Name("ArticleSent")
+    static let articleSent = Notification.Name("WatchSent")
 }

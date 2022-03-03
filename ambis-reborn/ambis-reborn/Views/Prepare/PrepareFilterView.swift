@@ -50,7 +50,7 @@ struct PrepareFilterView: View {
             )
             if showCancelButton  {
                 Button("Cancel") {
-                    UIApplication.shared.endEditing(true)
+//                    UIApplication.shared.endEditing(true)
                     self.searchText = ""
                     self.showCancelButton = false
                 }
@@ -68,7 +68,7 @@ struct PrepareFilterView: View {
                     VStack {
                         Rectangle()
                             .fill(defaultFilter == "Expire Soon" ? Color("BrandColor") : boxBackground)
-                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
+//                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
                             .frame(width: 26, height: 4, alignment: .center)
                         
                         ZStack {
@@ -91,7 +91,7 @@ struct PrepareFilterView: View {
                     VStack {
                         Rectangle()
                             .fill(defaultFilter == "Fridge" ? Color("BrandColor") : boxBackground)
-                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
+//                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
                             .frame(width: 26, height: 4, alignment: .center)
                         
                         ZStack {
@@ -114,7 +114,7 @@ struct PrepareFilterView: View {
                     VStack {
                         Rectangle()
                             .fill(defaultFilter == "Freezer" ? Color("BrandColor") : boxBackground)
-                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
+//                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
                             .frame(width: 26, height: 4, alignment: .center)
                         
                         ZStack {
@@ -137,7 +137,7 @@ struct PrepareFilterView: View {
                     VStack {
                         Rectangle()
                             .fill(defaultFilter == "Other" ? Color("BrandColor") : boxBackground)
-                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
+//                            .cornerRadius(radius: 5, corners: [.bottomLeft, .bottomRight])
                             .frame(width: 26, height: 4, alignment: .center)
                         
                         ZStack {

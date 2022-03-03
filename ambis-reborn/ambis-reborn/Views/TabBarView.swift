@@ -17,11 +17,11 @@ struct TabBarView: View {
         TabView(selection: $selectedTab) {
             InventoryMainView().tabItem {
                 if selectedTab == 1 {
-                    InventoryView().getIconNameActive()
+                    InventoryMainView().getIconNameActive()
                 } else {
-                    InventoryView().getIconName()
+                    InventoryMainView().getIconName()
                 }
-                InventoryView().gettabName()
+                InventoryMainView().gettabName()
             }.tag(1)
                 .environmentObject(inventoryViewModel)
 //            ShoppingView().tabItem {
@@ -47,8 +47,10 @@ struct TabBarView: View {
                     CategoryView().getIconName()
                 }
                 CategoryView().gettabName()
-            }.tag(4)
-        }.accentColor(defaultAccentColor)
+            }
+            .tag(4)
+        }
+        .accentColor(defaultAccentColor)
     }
 }
 
