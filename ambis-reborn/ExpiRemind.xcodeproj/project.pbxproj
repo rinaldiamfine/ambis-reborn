@@ -35,6 +35,7 @@
 		900D341426B855F40052CF5D /* WidgetInventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */; };
 		900D341726B857C80052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
 		900D341826B857F50052CF5D /* WidgetInventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */; };
+		9011CF8F27D0387C00E4D69A /* InventoryListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011CF8E27D0387C00E4D69A /* InventoryListContentView.swift */; };
 		9020094226C1A02100AB0A5F /* ClassifierData.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */; };
 		9020094626C30CEF00AB0A5F /* InventoryNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */; };
 		9020094826C3D79A00AB0A5F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9020094726C3D79A00AB0A5F /* CloudKit.framework */; };
@@ -97,8 +98,21 @@
 		9090AC9E269948F0008AF935 /* InventoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9D269948F0008AF935 /* InventoryListView.swift */; };
 		9090ACA026994AB1008AF935 /* InventoryListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */; };
 		9090ACA226997208008AF935 /* FoodCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090ACA126997208008AF935 /* FoodCategoryModel.swift */; };
+		9090BBF527C2F1970044B34F /* InventoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE8CFF27C2EAA0006E9AE6 /* InventoryCoreDataManager.swift */; };
+		9090BBF727C2F8370044B34F /* FoodCategoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090BBF627C2F8370044B34F /* FoodCategoryCoreDataManager.swift */; };
+		9090BBF827C2F8370044B34F /* FoodCategoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090BBF627C2F8370044B34F /* FoodCategoryCoreDataManager.swift */; };
+		9090BC0027C657D90044B34F /* ExpiRemindCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090BBFF27C657D90044B34F /* ExpiRemindCoreDataManager.swift */; };
+		9090BC0127C657D90044B34F /* ExpiRemindCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090BBFF27C657D90044B34F /* ExpiRemindCoreDataManager.swift */; };
+		9090BC0327C659900044B34F /* InventoryMainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090BC0227C659900044B34F /* InventoryMainContentView.swift */; };
 		90AD5F0026976BF000E98152 /* CategoryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5EFF26976BF000E98152 /* CategoryFormView.swift */; };
 		90AD5F022697736900E98152 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD5F012697736900E98152 /* CategoryViewModel.swift */; };
+		90BE8CF227C24CEA006E9AE6 /* InventoryMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE8CF127C24CEA006E9AE6 /* InventoryMainView.swift */; };
+		90BE8CF427C24D9E006E9AE6 /* InventoryEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE8CF327C24D9E006E9AE6 /* InventoryEmptyStateView.swift */; };
+		90BE8CF627C25601006E9AE6 /* InventoryCategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE8CF527C25601006E9AE6 /* InventoryCategoryFilterView.swift */; };
+		90BE8CF827C2E016006E9AE6 /* InventoryModalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE8CF727C2E016006E9AE6 /* InventoryModalFormView.swift */; };
+		90BE8CFB27C2E07E006E9AE6 /* ModalTotalTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE8CFA27C2E07E006E9AE6 /* ModalTotalTypeView.swift */; };
+		90BE8CFD27C2E13C006E9AE6 /* ModalStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE8CFC27C2E13C006E9AE6 /* ModalStoreView.swift */; };
+		90BE8D0027C2EAA0006E9AE6 /* InventoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE8CFF27C2EAA0006E9AE6 /* InventoryCoreDataManager.swift */; };
 		90E8F2E626B16563002BCBDE /* PrepareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8F2E526B16563002BCBDE /* PrepareView.swift */; };
 		90E8F2E826B17047002BCBDE /* PrepareFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8F2E726B17047002BCBDE /* PrepareFilterView.swift */; };
 		90E8F2EA26B21872002BCBDE /* PrepareListExpiryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8F2E926B21872002BCBDE /* PrepareListExpiryView.swift */; };
@@ -195,6 +209,7 @@
 		900D341126B854330052CF5D /* widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widgetExtension.entitlements; sourceTree = "<group>"; };
 		900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryModel.swift; sourceTree = "<group>"; };
 		900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInventoryViewModel.swift; sourceTree = "<group>"; };
+		9011CF8E27D0387C00E4D69A /* InventoryListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListContentView.swift; sourceTree = "<group>"; };
 		9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ClassifierData.mlmodel; sourceTree = "<group>"; };
 		9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNavBarView.swift; sourceTree = "<group>"; };
 		9020094726C3D79A00AB0A5F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -255,8 +270,18 @@
 		9090AC9D269948F0008AF935 /* InventoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListView.swift; sourceTree = "<group>"; };
 		9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListEmptyView.swift; sourceTree = "<group>"; };
 		9090ACA126997208008AF935 /* FoodCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryModel.swift; sourceTree = "<group>"; };
+		9090BBF627C2F8370044B34F /* FoodCategoryCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryCoreDataManager.swift; sourceTree = "<group>"; };
+		9090BBFF27C657D90044B34F /* ExpiRemindCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiRemindCoreDataManager.swift; sourceTree = "<group>"; };
+		9090BC0227C659900044B34F /* InventoryMainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryMainContentView.swift; sourceTree = "<group>"; };
 		90AD5EFF26976BF000E98152 /* CategoryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFormView.swift; sourceTree = "<group>"; };
 		90AD5F012697736900E98152 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		90BE8CF127C24CEA006E9AE6 /* InventoryMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryMainView.swift; sourceTree = "<group>"; };
+		90BE8CF327C24D9E006E9AE6 /* InventoryEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryEmptyStateView.swift; sourceTree = "<group>"; };
+		90BE8CF527C25601006E9AE6 /* InventoryCategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCategoryFilterView.swift; sourceTree = "<group>"; };
+		90BE8CF727C2E016006E9AE6 /* InventoryModalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryModalFormView.swift; sourceTree = "<group>"; };
+		90BE8CFA27C2E07E006E9AE6 /* ModalTotalTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTotalTypeView.swift; sourceTree = "<group>"; };
+		90BE8CFC27C2E13C006E9AE6 /* ModalStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalStoreView.swift; sourceTree = "<group>"; };
+		90BE8CFF27C2EAA0006E9AE6 /* InventoryCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCoreDataManager.swift; sourceTree = "<group>"; };
 		90E8F2E526B16563002BCBDE /* PrepareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareView.swift; sourceTree = "<group>"; };
 		90E8F2E726B17047002BCBDE /* PrepareFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareFilterView.swift; sourceTree = "<group>"; };
 		90E8F2E926B21872002BCBDE /* PrepareListExpiryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareListExpiryView.swift; sourceTree = "<group>"; };
@@ -377,9 +402,10 @@
 			isa = PBXGroup;
 			children = (
 				900D341026B8541F0052CF5D /* ambis-reborn.entitlements */,
-				905DE8C62693321200E7011C /* viewModel */,
-				905DE8C5269331FF00E7011C /* view */,
-				905DE8C4269331F900E7011C /* model */,
+				90BE8CFE27C2EA85006E9AE6 /* CoreDataManager */,
+				905DE8C62693321200E7011C /* ViewModels */,
+				905DE8C5269331FF00E7011C /* Views */,
+				905DE8C4269331F900E7011C /* Models */,
 				905DE8B52693311600E7011C /* ambis_rebornApp.swift */,
 				905DE8B72693311600E7011C /* ContentView.swift */,
 				905DE8B92693311700E7011C /* Assets.xcassets */,
@@ -397,7 +423,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		905DE8C4269331F900E7011C /* model */ = {
+		905DE8C4269331F900E7011C /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				9020094126C1A02100AB0A5F /* ClassifierData.mlmodel */,
@@ -411,16 +437,16 @@
 				9070148E269F5D4200F8981A /* Global.swift */,
 				900D341226B855AE0052CF5D /* WidgetInventoryModel.swift */,
 			);
-			path = model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		905DE8C5269331FF00E7011C /* view */ = {
+		905DE8C5269331FF00E7011C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				90BE8CF927C2E06D006E9AE6 /* Modal */,
 				90E8F2E226B164C5002BCBDE /* Prepare */,
 				90E8F2E426B16540002BCBDE /* Recipe */,
 				90905AD4269D66FA00D8A500 /* Shopping */,
-				90905AD3269D66EF00D8A500 /* Summary */,
 				905DE8CA2693332C00E7011C /* Category */,
 				905DE8C92693332000E7011C /* Inventory */,
 				905DE8C7269332D300E7011C /* TabBarView.swift */,
@@ -431,10 +457,10 @@
 				900D340C26B832500052CF5D /* GlobalView.swift */,
 				90745FF026D5B4FD00CB305A /* WatchManager.swift */,
 			);
-			path = view;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		905DE8C62693321200E7011C /* viewModel */ = {
+		905DE8C62693321200E7011C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				90AD5F012697736900E98152 /* CategoryViewModel.swift */,
@@ -443,7 +469,7 @@
 				302C8E1226C112D7009EBA28 /* RecipeViewModel.swift */,
 				900D341626B857C80052CF5D /* WidgetInventoryViewModel.swift */,
 			);
-			path = viewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		905DE8C92693332000E7011C /* Inventory */ = {
@@ -453,12 +479,18 @@
 				9090AC9B269948E3008AF935 /* InventoryFormView.swift */,
 				9070148C269ECC0B00F8981A /* InventoryFormEditView.swift */,
 				9090AC9D269948F0008AF935 /* InventoryListView.swift */,
+				9065A5F826A9738800BAD3A6 /* InventoryListFilterView.swift */,
 				90706CB126A5726200471700 /* InventoryListExpiryView.swift */,
 				9090AC9F26994AB1008AF935 /* InventoryListEmptyView.swift */,
 				9070148A269E160200F8981A /* InventoryCategoryListView.swift */,
 				9047D1E526A488F200511A25 /* InventoryFilterView.swift */,
-				9065A5F826A9738800BAD3A6 /* InventoryListFilterView.swift */,
 				9020094526C30CEF00AB0A5F /* InventoryNavBarView.swift */,
+				90BE8CF127C24CEA006E9AE6 /* InventoryMainView.swift */,
+				9090BC0227C659900044B34F /* InventoryMainContentView.swift */,
+				9011CF8E27D0387C00E4D69A /* InventoryListContentView.swift */,
+				90BE8CF727C2E016006E9AE6 /* InventoryModalFormView.swift */,
+				90BE8CF327C24D9E006E9AE6 /* InventoryEmptyStateView.swift */,
+				90BE8CF527C25601006E9AE6 /* InventoryCategoryFilterView.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -495,13 +527,6 @@
 			path = widget;
 			sourceTree = "<group>";
 		};
-		90905AD3269D66EF00D8A500 /* Summary */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Summary;
-			sourceTree = "<group>";
-		};
 		90905AD4269D66FA00D8A500 /* Shopping */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +538,25 @@
 				30CD65CC26A04263003CA34A /* ShoppingToInventoryListView.swift */,
 			);
 			path = Shopping;
+			sourceTree = "<group>";
+		};
+		90BE8CF927C2E06D006E9AE6 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				90BE8CFA27C2E07E006E9AE6 /* ModalTotalTypeView.swift */,
+				90BE8CFC27C2E13C006E9AE6 /* ModalStoreView.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		90BE8CFE27C2EA85006E9AE6 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				90BE8CFF27C2EAA0006E9AE6 /* InventoryCoreDataManager.swift */,
+				9090BBF627C2F8370044B34F /* FoodCategoryCoreDataManager.swift */,
+				9090BBFF27C657D90044B34F /* ExpiRemindCoreDataManager.swift */,
+			);
+			path = CoreDataManager;
 			sourceTree = "<group>";
 		};
 		90E8F2E226B164C5002BCBDE /* Prepare */ = {
@@ -721,9 +765,12 @@
 				9047005826CECE8800B05B17 /* InventoryModel.swift in Sources */,
 				9047005C26CECF4D00B05B17 /* InventoryViewModel.swift in Sources */,
 				0EFF8A1326CFB18700C17526 /* WatchConnectivityViewModel.swift in Sources */,
+				9090BBF827C2F8370044B34F /* FoodCategoryCoreDataManager.swift in Sources */,
 				9047005626CECB8800B05B17 /* WidgetInventoryViewModel.swift in Sources */,
 				9047005D26CECF5100B05B17 /* CategoryViewModel.swift in Sources */,
 				9047005926CECE9000B05B17 /* Persistence.swift in Sources */,
+				9090BBF527C2F1970044B34F /* InventoryCoreDataManager.swift in Sources */,
+				9090BC0127C657D90044B34F /* ExpiRemindCoreDataManager.swift in Sources */,
 				0EB0724726CE64A400A3C895 /* ExpireSoonListView.swift in Sources */,
 				902451EF26CD23BF00827711 /* NotificationView.swift in Sources */,
 			);
@@ -741,23 +788,28 @@
 				900D341726B857C80052CF5D /* WidgetInventoryViewModel.swift in Sources */,
 				905DE8B82693311600E7011C /* ContentView.swift in Sources */,
 				9047D1E626A488F200511A25 /* InventoryFilterView.swift in Sources */,
+				90BE8CF427C24D9E006E9AE6 /* InventoryEmptyStateView.swift in Sources */,
 				9090AC9E269948F0008AF935 /* InventoryListView.swift in Sources */,
 				9065A5F926A9738800BAD3A6 /* InventoryListFilterView.swift in Sources */,
+				90BE8CF227C24CEA006E9AE6 /* InventoryMainView.swift in Sources */,
 				9090ACA026994AB1008AF935 /* InventoryListEmptyView.swift in Sources */,
 				90745FF126D5B4FD00CB305A /* WatchManager.swift in Sources */,
 				90AD5F0026976BF000E98152 /* CategoryFormView.swift in Sources */,
 				905DE8C8269332D300E7011C /* TabBarView.swift in Sources */,
 				90AD5F022697736900E98152 /* CategoryViewModel.swift in Sources */,
 				9020094A26C3F29800AB0A5F /* RecipeListItemCloudKitView.swift in Sources */,
+				90BE8CF827C2E016006E9AE6 /* InventoryModalFormView.swift in Sources */,
 				900D340D26B832500052CF5D /* GlobalView.swift in Sources */,
 				90E8F2EA26B21872002BCBDE /* PrepareListExpiryView.swift in Sources */,
 				0E20A2B226B2B23D0012F3C6 /* RecipeListItemView.swift in Sources */,
 				90E8F2E626B16563002BCBDE /* PrepareView.swift in Sources */,
 				905DE8D72693E93B00E7011C /* CategoryListView.swift in Sources */,
 				3041C82126B28DB100E2B156 /* RecipeView.swift in Sources */,
+				90BE8CFB27C2E07E006E9AE6 /* ModalTotalTypeView.swift in Sources */,
 				3041C82726B2A07700E2B156 /* RecipeSample.swift in Sources */,
 				307C5522269E99AE00DD6FC3 /* ShoppingListView.swift in Sources */,
 				307C551C269E076B00DD6FC3 /* ShoppingViewModel.swift in Sources */,
+				90BE8CF627C25601006E9AE6 /* InventoryCategoryFilterView.swift in Sources */,
 				905DE8D12693E54F00E7011C /* CoreData.xcdatamodeld in Sources */,
 				9090AC962699222D008AF935 /* Persistence.swift in Sources */,
 				9090AC9A26993FA7008AF935 /* InventoryModel.swift in Sources */,
@@ -767,6 +819,7 @@
 				3041C82526B29AC800E2B156 /* IngredientListCellView.swift in Sources */,
 				307C5524269E9C2E00DD6FC3 /* ShoppingFormView.swift in Sources */,
 				9070148F269F5D4200F8981A /* Global.swift in Sources */,
+				9090BC0027C657D90044B34F /* ExpiRemindCoreDataManager.swift in Sources */,
 				905DE8B62693311600E7011C /* ambis_rebornApp.swift in Sources */,
 				307C551E269E077700DD6FC3 /* ShoppingModel.swift in Sources */,
 				9020094226C1A02100AB0A5F /* ClassifierData.mlmodel in Sources */,
@@ -777,17 +830,22 @@
 				90706CB226A5726200471700 /* InventoryListExpiryView.swift in Sources */,
 				9020094C26C3FF7400AB0A5F /* RecipeCloudKitView.swift in Sources */,
 				900D341326B855AE0052CF5D /* WidgetInventoryModel.swift in Sources */,
+				90BE8D0027C2EAA0006E9AE6 /* InventoryCoreDataManager.swift in Sources */,
 				302C8E1126BD2137009EBA28 /* IngredientModel.swift in Sources */,
 				0EE5F00B26B8086F00D81C8D /* RecipeSortSample.swift in Sources */,
 				905DE8CC2693333C00E7011C /* InventoryView.swift in Sources */,
 				90E8F2E826B17047002BCBDE /* PrepareFilterView.swift in Sources */,
 				90505E1F26B9564E00F0415A /* DataRecipe.swift in Sources */,
+				90BE8CFD27C2E13C006E9AE6 /* ModalStoreView.swift in Sources */,
+				9090BBF727C2F8370044B34F /* FoodCategoryCoreDataManager.swift in Sources */,
 				9065A60C26AA25EE00BAD3A6 /* widget.intentdefinition in Sources */,
 				905DE8CE2693334A00E7011C /* CategoryView.swift in Sources */,
 				307C5520269E946500DD6FC3 /* ShoppingListEmptyView.swift in Sources */,
 				90905AD2269D386600D8A500 /* Notification.swift in Sources */,
 				90E8F2EE26B22757002BCBDE /* PrepareListFilterView.swift in Sources */,
 				9090AC9826993F6C008AF935 /* InventoryViewModel.swift in Sources */,
+				9090BC0327C659900044B34F /* InventoryMainContentView.swift in Sources */,
+				9011CF8F27D0387C00E4D69A /* InventoryListContentView.swift in Sources */,
 				9070148B269E160200F8981A /* InventoryCategoryListView.swift in Sources */,
 				9070148D269ECC0B00F8981A /* InventoryFormEditView.swift in Sources */,
 				302C8E1326C112D7009EBA28 /* RecipeViewModel.swift in Sources */,
@@ -980,7 +1038,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1035,7 +1093,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1058,7 +1116,7 @@
 				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ambis-reborn/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1084,7 +1142,7 @@
 				DEVELOPMENT_TEAM = Q4FVKJHX54;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ambis-reborn/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

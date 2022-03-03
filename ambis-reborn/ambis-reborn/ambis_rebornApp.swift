@@ -10,14 +10,14 @@ import CoreData
 
 @main
 struct ambis_rebornApp: App {
-    let persistenceController = PersistenceController.shared
+//    let persistenceController = PersistenceController.shared
     private let watchManager = WatchManager.shared
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
         WindowGroup {
             TabBarView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
         }
         .onChange(of: scenePhase) { phase in
@@ -28,9 +28,9 @@ struct ambis_rebornApp: App {
                     print("inactive")
                 case .background:
                     print("background")
-                    persistenceController.saveData()
+//                    persistenceController.saveData()
                 @unknown default:
-                    print("Apple update status baru kah")
+                    print("unknown")
             }
         }
     }

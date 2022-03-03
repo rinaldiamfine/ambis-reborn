@@ -30,7 +30,6 @@ struct ContentView: View {
     let dangerDate = Date().addingTimeInterval(24 * 60 * 60 * 4)
     
     func setupData() {
-        print("GET INVN DATA", inventoryViewModel.inventory)
         inventoryViewModel.inventory.filter { inv in
             if inv.expiryDate <= todayDate {
                 dataInventory.append(FormatInventory(title: inv.name, subtitle: setupSubtitle(data: inv), expiryInt: 1, icon: inv.watchIcon))
@@ -79,10 +78,10 @@ struct ContentView: View {
         let content = UNMutableNotificationContent()
         
         content.title = "Inventory Has Expired"
-        content.body = "Your Item \(data.name) has expired."
+        content.body = "Your Item \(data.name ?? "") has expired."
         content.sound = .default
         
-        let dateMatching = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: data.expiryDate!)
+//        let dateMatching = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: data.expiryDate!)
 //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateMatching, repeats: false)
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
@@ -167,7 +166,7 @@ struct ContentView: View {
             .navigationTitle("Expiremind")
         }.onAppear(perform: {
             foodCategoryViewModel.getData()
-            inventoryViewModel.loadList()
+//            inventoryViewModel.loadList()
             setupData()
             
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
