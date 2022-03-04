@@ -58,16 +58,18 @@ class InventoryViewModel: ObservableObject {
             return inventory
         }
     }
-    
+    func filterInventoryExpired() -> [InventoryModel] {
+        return inventory.filter { inventory in
+            if inventory.expiryDate <= Date().addingTimeInterval(TimeInterval(timeIntervalExpiry)) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
     func filterByCategory() -> [InventoryModel] {
         if self.filterCategory == "Expire Soon" {
-            return inventory.filter { inventory in
-                if inventory.expiryDate <= Date().addingTimeInterval(TimeInterval(timeIntervalExpiry)) {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            return filterInventoryExpired()
         } else {
             return inventory.filter { inventory in
                 if inventory.store == self.filterCategory {

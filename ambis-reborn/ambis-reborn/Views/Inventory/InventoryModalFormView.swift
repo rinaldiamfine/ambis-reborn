@@ -20,7 +20,7 @@ struct InventoryModalFormView: View {
         } else {
             inventoryViewModel.create()
         }
-        NotificationManager.shared.pushNotification(inventory: inventoryViewModel)
+        NotificationManager.shared.inventoryPushNotification(inventory: inventoryViewModel)
         inventoryViewModel.filterCategory = inventoryViewModel.store
 //        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: inventoryViewModel.status)
 //        WatchManager.shared.sendParamsToWatch(dict: dictValue)

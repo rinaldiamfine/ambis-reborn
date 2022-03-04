@@ -10,43 +10,25 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
-    //FOR PRODUCTION
-//    @AppStorage("expiry", store: UserDefaults(suiteName: "group.widgetInventory")) var inventoryData : Data = Data()
-    //FOR DEVELOPMENT
-    @AppStorage("expiry", store: UserDefaults(suiteName: "group.inventoryData")) var inventoryData : Data = Data()
-//    guard let widgetGetExpiry = try? JSONDecoder().decode(WidgetInventoryModel.self, from: inventoryData) else { return }
+    @AppStorage("expiry", store: UserDefaults(suiteName: "group.widget.inventory")) var groupWidgetInventory : Data = Data()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), inventory: WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0, inventory: []))
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), inventory: WidgetInventoryModel(inventory: []))
     }
-
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date(), configuration: configuration, inventory: setupExpireData())
         completion(entry)
     }
-
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        
         let entry = SimpleEntry(date: Date(), configuration: configuration, inventory: setupExpireData())
         entries.append(entry)
-        
-//        let currentDate = Date()
-//        for hourOffset in 0 ..< 5 {
-//            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-//            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-//            entries.append(entry)
-//        }
-
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-    
     func setupExpireData() -> WidgetInventoryModel {
-        guard let expire = try? JSONDecoder().decode(WidgetInventoryModel.self, from: inventoryData) else{
-            return WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0, inventory: [])
+        guard let expire = try? JSONDecoder().decode(WidgetInventoryModel.self, from: groupWidgetInventory) else{
+            return WidgetInventoryModel(inventory: [])
         }
         return expire
     }
@@ -61,10 +43,6 @@ struct SimpleEntry: TimelineEntry {
 struct widgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var family
-//    @StateObject var inventoryModel = WidgetInventoryViewModel()
-//    @State var totalExpiry: Int = 5
-//    @State var totalInventory: Int = 25
-    @State var progressValue: Float = 0.0
     @State private var backgroundColor = Color("BackgroundColor")
 
     var body: some View {
@@ -90,7 +68,7 @@ struct widgetEntryView : View {
                 .background(Color("BrandColor"))
                 HStack{
                     VStack {
-                        if entry.inventory.inventory.count == 0 {
+                        if entry.inventory.inventory.isEmpty {
                             ZStack {
                                 Ellipse()
                                     .fill(Color.init(UIColor.systemGray5))
@@ -148,7 +126,7 @@ struct widgetEntryView : View {
                     .frame(width: geometry.size.width*10/100, height: geometry.size.height)
                     .background(Color("BrandColor"))
                     
-                    if entry.inventory.inventory.count == 0 {
+                    if entry.inventory.inventory.isEmpty {
                         VStack {
                             ZStack {
                                 Ellipse()
@@ -204,7 +182,8 @@ struct widgetEntryView : View {
                                 VStack(alignment: .leading, spacing: 0) {
                                     ForEach (0..<entry.inventory.inventory.count) { data in
                                         if data < 3 {
-                                            MediumListContentView(content: entry.inventory.inventory[data])
+                                            MediumListContentView(
+                                                widgetInventoryModel: entry.inventory.inventory[data])
                                                 .frame(height: geometry.size.height/3)
                                         }
                                     }
@@ -234,7 +213,7 @@ struct widgetEntryView : View {
                 .background(Color("BrandColor"))
                 
                 HStack(alignment: .top) {
-                    if entry.inventory.inventory.count == 0 {
+                    if entry.inventory.inventory.isEmpty {
                         VStack {
                             ZStack {
                                 Ellipse()
@@ -298,7 +277,12 @@ struct widget: Widget {
 
 struct widget_Previews: PreviewProvider {
     static var previews: some View {
-        widgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), inventory: WidgetInventoryModel(totalExpiry: 0, totalInventory: 0, progressBar: 0.0, inventory: [])))
+        widgetEntryView(
+            entry: SimpleEntry(
+                date: Date(),
+                configuration: ConfigurationIntent(),
+                inventory: WidgetInventoryModel(
+                    inventory: [])))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

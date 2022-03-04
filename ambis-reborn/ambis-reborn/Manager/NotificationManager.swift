@@ -34,7 +34,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         notificationCenter.removeAllPendingNotificationRequests()
     }
     
-    func pushNotification(inventory: InventoryViewModel) {
+    func inventoryPushNotification(inventory: InventoryViewModel) {
         let content = UNMutableNotificationContent()
         content.title = "Inventory Has Expired"
         content.subtitle = "Your Item \(inventory.name) has expired."
