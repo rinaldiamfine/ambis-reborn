@@ -34,18 +34,37 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         notificationCenter.removeAllPendingNotificationRequests()
     }
     
-    func inventoryPushNotification(inventory: InventoryViewModel) {
+    func inventoryPushNotification(inventory: InventoryViewModel, type: String) {
         let content = UNMutableNotificationContent()
-        content.title = "Inventory Has Expired"
-        content.subtitle = "Your Item \(inventory.name) has expired."
+        let timeIntervalMinutes = 1
+        let timeIntervalDays = 24 * 60 * 60
+        var addTimeInterval = Double(-timeIntervalMinutes * 60)
+        if type == "expiry-soon" {
+            content.title = "Inventory is About to Expire"
+            content.body = "Your Item \(inventory.name) is about to expire soon. Use it or share it with someone you know."
+            addTimeInterval = Double(-timeIntervalMinutes * 60) + Double(-timeIntervalDays * 3) //3 DAYS BEFORE EXPIRED
+        } else if type == "expiry-today" {
+            content.title = "Inventory Expires Today"
+            content.body = "Your Item \(inventory.name) expires today. Check whether it is still usable, and use it as soon as possible."
+        } else if type == "expired" {
+            content.title = "Inventory Has Expired"
+            content.body = "Your Item \(inventory.name) has expired."
+            addTimeInterval = Double(-timeIntervalMinutes * 60) + Double(timeIntervalDays) // + 1 DAYS (EXPIRED)
+        }
         content.sound = UNNotificationSound.default
         // NEED TO FIX THIS TO ADD BADGES
          content.badge = 1
-        let timeIntervalMinutes = 1
-        let formatExpiryDate = inventory.expiryDate.addingTimeInterval(Double(-timeIntervalMinutes * 60))
-        let dateMatching = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: formatExpiryDate)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateMatching, repeats: false)
-        let request = UNNotificationRequest(identifier: inventory.inventoryId.uuidString, content: content, trigger: trigger)
+        let formatIdentifier = type + "-" + inventory.inventoryId.uuidString
+        let formatExpiryDate = inventory.expiryDate.addingTimeInterval(addTimeInterval)
+        let dateMatching = Calendar.current.dateComponents(
+            [.year, .month, .day, .hour, .minute, .second],
+            from: formatExpiryDate)
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: dateMatching,
+            repeats: false)
+        let request = UNNotificationRequest(
+            identifier: formatIdentifier, content: content,
+            trigger: trigger)
         notificationCenter.add(request)
     }
 

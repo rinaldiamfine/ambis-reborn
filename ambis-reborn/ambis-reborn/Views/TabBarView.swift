@@ -19,6 +19,7 @@ struct TabBarView: View {
         NotificationManager.shared.requestAuthorization()
         UIApplication.shared.applicationIconBadgeNumber = 0
         setupWidgetContent()
+//        NotificationManager.shared.showPendingNotifications()
     }
     
     func setupWidgetContent() {

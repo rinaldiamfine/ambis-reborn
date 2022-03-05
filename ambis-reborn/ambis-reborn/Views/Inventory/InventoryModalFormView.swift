@@ -20,7 +20,9 @@ struct InventoryModalFormView: View {
         } else {
             inventoryViewModel.create()
         }
-        NotificationManager.shared.inventoryPushNotification(inventory: inventoryViewModel)
+        NotificationManager.shared.inventoryPushNotification(inventory: inventoryViewModel, type: "expiry-soon")
+        NotificationManager.shared.inventoryPushNotification(inventory: inventoryViewModel, type: "expiry-today")
+        NotificationManager.shared.inventoryPushNotification(inventory: inventoryViewModel, type: "expired")
         inventoryViewModel.filterCategory = inventoryViewModel.store
 //        let dictValue = setupWatchDictValue(inventory: inventoryViewModel, action: inventoryViewModel.status)
 //        WatchManager.shared.sendParamsToWatch(dict: dictValue)
