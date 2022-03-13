@@ -12,6 +12,7 @@ struct TabBarView: View {
     @State private var selectedTab = 1
     var defaultAccentColor = Color("BrandColor")
     @ObservedObject var inventoryViewModel: InventoryViewModel = InventoryViewModel()
+    @ObservedObject var foodCategoryViewModel: FoodCategoryViewModel = FoodCategoryViewModel()
     @AppStorage("expiry", store: UserDefaults(suiteName: "group.widget.inventory")) var groupWidgetInventory : Data = Data()
     var storeAvailable = AppGlobalData.generateDataStore()
     
@@ -79,6 +80,7 @@ struct TabBarView: View {
                 CategoryView().gettabName()
             }
             .tag(4)
+                .environmentObject(foodCategoryViewModel)
         }
         .accentColor(defaultAccentColor)
     }

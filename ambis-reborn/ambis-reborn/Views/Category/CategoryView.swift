@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct CategoryView: View {
-    @StateObject private var foodCategoryViewModel = FoodCategoryViewModel()
+    @EnvironmentObject var foodCategoryViewModel: FoodCategoryViewModel
     @State var isPresented = false
     @State private var selectCategory: Int = 0
     
@@ -26,7 +26,7 @@ struct CategoryView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+//            VStack {
                 List {
                     Section(header:
                                 Text("Food Category").font(.system(.caption, design: .rounded))) {
@@ -42,15 +42,15 @@ struct CategoryView: View {
                         }
                 }
                 .listStyle(InsetGroupedListStyle())
-            }
+//            }
             .navigationBarTitle("Category")
             .sheet(isPresented: $isPresented) {
                 CategoryFormView(foodCategoryViewModel: self.foodCategoryViewModel, isPresented: $isPresented, selectedCategory: $selectCategory)
             }
         }
-        .onAppear(perform: {
-            foodCategoryViewModel.getData()
-        })
+//        .onAppear(perform: {
+//            foodCategoryViewModel.getData()
+//        })
     }
     
     func getIconName() -> Image {

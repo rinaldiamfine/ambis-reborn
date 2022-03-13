@@ -91,7 +91,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             GeometryReader(content: { geometry in
-                if (dataInventory.count != 0) {
+                if (!dataInventory.isEmpty) {
                     List {
                         if firstDataInventory.count != 0 {
                             Section(header: Text("In 1 day or less")) {
@@ -133,37 +133,32 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .navigationTitle("Expiremind")
                 } else {
-                    VStack(alignment: .center, spacing: 5) {
-                        Spacer()
-                        ZStack {
-                            Circle()
-                                .stroke(style: StrokeStyle(lineWidth: 7.84, lineCap: .round, lineJoin: .round))
-                                .foregroundColor(Color("BrandColor"))
-                                .frame(width: 75.12)
-                            Circle()
-                                .foregroundColor(Color("BrandColor"))
-                                .frame(width: 52.26)
-                            Text("👍🏻").font(.title2)
-                        }
-//                        .onTapGesture {
-//                            DirectSetupNotif()
+                    EmptyStateContentView()
+//                    VStack(alignment: .center, spacing: 5) {
+//                        Spacer()
+//                        ZStack {
+//                            Circle()
+//                                .stroke(style: StrokeStyle(lineWidth: 7.84, lineCap: .round, lineJoin: .round))
+//                                .foregroundColor(Color("BrandColor"))
+//                                .frame(width: 75.12)
+//                            Circle()
+//                                .foregroundColor(Color("BrandColor"))
+//                                .frame(width: 52.26)
+//                            Text("👍🏻").font(.title2)
 //                        }
-                        Text("Congratulations")
-                            .font(.system(.headline, design: .rounded))
-//                            .onTapGesture {
-//                                DirectSetupNotif()
-//                            }
-                        Text("No item will reach\nexpired in 3 days")
-                            .multilineTextAlignment(.center)
-                            .font(.system(.footnote, design: .rounded))
-                        Spacer()
-                    }
-                    .ignoresSafeArea(.all, edges: .bottom)
-                    .frame(width: geometry.size.width, height: geometry.safeAreaInsets.bottom + geometry.size.height)
+//                        Text("Congratulations")
+//                            .font(.system(.headline, design: .rounded))
+//                        Text("No item will reach\nexpired in 3 days")
+//                            .multilineTextAlignment(.center)
+//                            .font(.system(.footnote, design: .rounded))
+//                        Spacer()
+//                    }
+//                    .ignoresSafeArea(.all, edges: .bottom)
+//                    .frame(width: geometry.size.width, height: geometry.safeAreaInsets.bottom + geometry.size.height)
                 }
             })
-            .navigationTitle("Expiremind")
         }.onAppear(perform: {
             foodCategoryViewModel.getData()
 //            inventoryViewModel.loadList()
@@ -229,7 +224,7 @@ struct EmptyStateContentView: View {
     var body: some View {
         NavigationView {
             GeometryReader(content: { geometry in
-                ScrollView {
+//                ScrollView {
                     VStack(alignment: .center, spacing: 5) {
                         Spacer()
                         ZStack {
@@ -251,10 +246,11 @@ struct EmptyStateContentView: View {
                     }
                     .ignoresSafeArea(.all, edges: .bottom)
                     .frame(width: geometry.size.width, height: geometry.safeAreaInsets.bottom + geometry.size.height)
-                }
+//                }
             })
             .navigationTitle("Expiremind")
-        }.onAppear(perform: {
-        })
+        }
+//            .onAppear(perform: {
+//        })
     }
 }

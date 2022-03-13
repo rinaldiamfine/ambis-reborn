@@ -25,8 +25,21 @@ class FoodCategoryViewModel: ObservableObject {
     }
     
     func fetchCategory() {
-        foodCategories = PersistenceController.shared.getCategoryData().map(FoodCategoryModel.init)
+        foodCategories =  ExpiRemindCoreDataManager.shared.fetchCategory()
         foodCategoriesCount = foodCategories.count
+        if foodCategories.isEmpty {
+            defaultFoodCategory = DefalutFoodCategory.generateDefaultCategory()
+            for food in defaultFoodCategory {
+                let foodCategory = FoodCategory(context: PersistenceController.shared.container.viewContext)
+                foodCategory.name = food.name
+                foodCategory.subtitle = food.subtitle
+                foodCategory.estimation = food.estimation
+                foodCategory.imageString = food.iconString
+                foodCategory.expiryEstimation = food.expiryEstimation
+                PersistenceController.shared.saveData()
+            }
+            fetchCategory()
+        }
     }
     
     func getData() {
